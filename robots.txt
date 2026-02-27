@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /merci-candidature.html
+Disallow: /merci-ebook.html
+
+Sitemap: https://eperformance.pro/sitemap.xml
