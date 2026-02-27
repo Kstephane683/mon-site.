@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ePerformance Academy — Apprenez la publicité digitale</title>
+  <meta name="description" content="ePerformance Academy — Formez-vous à la publicité Facebook et Instagram. Ebook, formation Zoom ou présentiel avec K. STÉPHANE." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://eperformance.pro/formation.html" />
+  <meta property="og:title" content="ePerformance Academy — Maîtrisez la publicité digitale" />
+  <meta property="og:description" content="Ebook, formation Zoom ou présentiel. Apprenez à créer des campagnes rentables sur Facebook et Instagram." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://eperformance.pro/formation.html" />
+  <meta property="og:image" content="https://eperformance.pro/couverture-ebook.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z7QW8BCYQ1"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z7QW8BCYQ1');</script>
+
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1592627695615531');fbq('track','PageView');</script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1592627695615531&ev=PageView&noscript=1"/></noscript>
+
+  <style>
+    :root{
+      --bg:#08080c;--bg2:#0c0c10;--card:#101014;--border:#1c1c22;--border2:#282830;
+      --text:#edeae3;--muted:#7a7a85;--soft:#b0aaa0;
+      --gold:#c9a96e;--gold2:#e2c07a;--gold-bg:rgba(201,169,110,.08);--gold-border:rgba(201,169,110,.22);
+      --blue:#1a42c0;--blue2:#2452d8;--wa:#25D366;
+      --green:#4ade80;--green-bg:rgba(74,222,128,.08);--green-border:rgba(74,222,128,.22);
+      --r:20px;--r2:28px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+    h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1160px;margin:0 auto;padding:0 1.5rem}
+    section{padding:6rem 0}
+
+    /* NAV */
+    .sticky{position:sticky;top:0;z-index:100;background:rgba(8,8,12,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0}
+    .brand strong{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;letter-spacing:.03em}
+    .brand span{display:block;font-size:.72rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+    .nav-links{display:flex;align-items:center;gap:1.4rem}
+    .nav-links a{font-size:.88rem;color:var(--muted);transition:color .2s}
+    .nav-links a:hover{color:var(--text)}
+    .burger{display:none;width:42px;height:42px;background:transparent;border:1px solid var(--border2);border-radius:12px;color:var(--text);cursor:pointer;align-items:center;justify-content:center;font-size:1rem}
+    @media(max-width:860px){.nav-links{display:none}.burger{display:flex}}
+
+    /* BUTTONS */
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;border:1px solid transparent;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.93rem;cursor:pointer;transition:all .2s;white-space:nowrap;user-select:none;text-decoration:none}
+    .btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .btn-primary:hover{background:var(--blue2)}
+    .btn-gold{background:var(--gold);color:#08080c;border-color:var(--gold);font-weight:700}
+    .btn-gold:hover{background:var(--gold2)}
+    .btn-ghost{background:transparent;color:var(--text);border-color:var(--border2)}
+    .btn-ghost:hover{border-color:var(--gold-border)}
+    .btn-outline{background:transparent;color:var(--text);border-color:var(--gold-border)}
+    .btn-outline:hover{background:var(--gold-bg)}
+    .btn-wa{background:var(--wa);color:#fff;border-color:var(--wa)}
+    .btn-wa:hover{filter:brightness(1.1)}
+
+    /* BADGE */
+    .badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);border:1px solid var(--gold-border);background:var(--gold-bg);padding:.38rem .9rem;border-radius:999px}
+    .badge-green{color:var(--green);border-color:var(--green-border);background:var(--green-bg)}
+
+    /* SECTION HEADER */
+    .s-eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);display:block;margin-bottom:.55rem}
+    .s-title{font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;font-weight:700;margin-bottom:.8rem}
+    .s-sub{font-size:1rem;color:var(--muted);max-width:740px;line-height:1.75;margin-bottom:2.5rem}
+
+    /* DIVIDER */
+    .divider{height:1px;background:linear-gradient(to right,transparent,var(--border2),transparent)}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(16px);transition:.6s ease}
+    .reveal.show{opacity:1;transform:translateY(0)}
+
+    /* HERO */
+    .hero{padding:6rem 0 5rem;position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:
+        radial-gradient(ellipse 65% 50% at 5% 60%,rgba(26,66,192,.13) 0%,transparent 60%),
+        radial-gradient(ellipse 50% 40% at 92% 15%,rgba(201,169,110,.1) 0%,transparent 55%),
+        radial-gradient(ellipse 40% 35% at 60% 90%,rgba(201,169,110,.06) 0%,transparent 55%);
+      pointer-events:none}
+    .hero-inner{position:relative;max-width:780px}
+    .hero-title{font-size:clamp(2.8rem,5.5vw,4.6rem);line-height:1.06;font-weight:700;letter-spacing:-.02em;margin:1rem 0 1.3rem}
+    .hero-title em{color:var(--gold);font-style:italic}
+    .hero-lead{font-size:1.1rem;color:var(--soft);max-width:620px;line-height:1.75;margin-bottom:2rem}
+    .hero-cta{display:flex;gap:.85rem;flex-wrap:wrap;margin-bottom:2.5rem}
+    .hero-parcours{display:flex;gap:1rem;flex-wrap:wrap}
+    .parcours-step{display:flex;align-items:center;gap:.65rem;padding:.75rem 1.1rem;background:var(--card);border:1px solid var(--border);border-radius:14px;font-size:.88rem;color:var(--soft)}
+    .parcours-step i{color:var(--gold);font-size:.9rem}
+    .parcours-step strong{color:var(--text)}
+    .parcours-arrow{color:var(--muted);font-size:.85rem;display:flex;align-items:center}
+    @media(max-width:600px){.parcours-arrow{display:none}}
+
+    /* NIVEAUX */
+    .niveaux-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    @media(max-width:900px){.niveaux-grid{grid-template-columns:1fr}}
+    .niveau-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:2rem 1.8rem;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:border-color .25s,transform .25s}
+    .niveau-card:hover{transform:translateY(-3px);border-color:rgba(201,169,110,.35)}
+    .niveau-card.featured{border-color:rgba(201,169,110,.45);background:linear-gradient(150deg,#111115,#0d0d09)}
+    .niveau-num{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:700;color:rgba(201,169,110,.07);position:absolute;top:.2rem;right:1rem;line-height:1;pointer-events:none}
+    .niveau-icon{width:46px;height:46px;border-radius:14px;background:var(--gold-bg);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;margin-bottom:1.2rem}
+    .niveau-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin-bottom:.4rem}
+    .niveau-name{font-size:1.4rem;font-weight:700;margin-bottom:.3rem}
+    .niveau-tag{font-size:.8rem;color:var(--muted);margin-bottom:1.2rem}
+    .niveau-divider{height:1px;background:var(--border);margin:1.2rem 0}
+    .niveau-features{list-style:none;display:flex;flex-direction:column;gap:.55rem;flex:1;margin-bottom:1.6rem}
+    .niveau-features li{font-size:.91rem;color:var(--soft);display:flex;gap:.65rem;align-items:flex-start}
+    .niveau-features li::before{content:"—";color:var(--gold);flex-shrink:0;font-size:.85rem;margin-top:.05rem}
+    .niveau-price{margin-bottom:1.4rem}
+    .price-main{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--text)}
+    .price-old{font-size:.88rem;color:var(--muted);text-decoration:line-through;margin-left:.4rem}
+    .price-promo{display:inline-block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--green);background:var(--green-bg);border:1px solid var(--green-border);padding:.2rem .6rem;border-radius:999px;margin-left:.4rem}
+    .price-unit{font-size:.82rem;color:var(--muted);display:block;margin-top:.2rem}
+    .niveau-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:auto}
+
+    /* PROGRAMME */
+    .programme-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+    @media(max-width:700px){.programme-grid{grid-template-columns:1fr}}
+    .module-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem 1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color .25s}
+    .module-card:hover{border-color:rgba(201,169,110,.25)}
+    .module-num{flex-shrink:0;width:34px;height:34px;border-radius:10px;background:var(--gold-bg);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;color:var(--gold)}
+    .module-body h4{font-size:.96rem;font-weight:600;margin-bottom:.3rem}
+    .module-body p{font-size:.86rem;color:var(--muted);line-height:1.55}
+
+    /* FORMAT CARDS */
+    .format-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+    @media(max-width:700px){.format-grid{grid-template-columns:1fr}}
+    .format-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.6rem;transition:border-color .25s,transform .25s}
+    .format-card:hover{border-color:rgba(201,169,110,.3);transform:translateY(-2px)}
+    .format-icon{width:42px;height:42px;border-radius:12px;background:var(--gold-bg);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;margin-bottom:1rem}
+    .format-card h3{font-size:1.1rem;font-weight:600;margin-bottom:.4rem;font-family:'DM Sans',sans-serif}
+    .format-card p{color:var(--soft);font-size:.91rem;line-height:1.6;margin-bottom:1rem}
+    .format-prices{display:flex;flex-direction:column;gap:.35rem}
+    .format-price-line{display:flex;justify-content:space-between;align-items:center;font-size:.88rem;padding:.4rem 0;border-bottom:1px solid var(--border)}
+    .format-price-line:last-child{border-bottom:none}
+    .format-price-line span{color:var(--muted)}
+    .format-price-line strong{color:var(--gold2)}
+
+    /* POUR QUI */
+    .pourqui-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:900px;margin:0 auto}
+    @media(max-width:640px){.pourqui-grid{grid-template-columns:1fr}}
+    .pourqui-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.6rem}
+    .pourqui-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem;font-weight:600}
+    .pourqui-items{display:flex;flex-direction:column;gap:.6rem}
+    .pourqui-item{display:flex;gap:.7rem;font-size:.91rem;color:var(--soft);align-items:flex-start}
+
+    /* CALLOUT */
+    .callout{padding:1.3rem 1.5rem;border:1px solid var(--gold-border);border-left:3px solid var(--gold);border-radius:14px;background:var(--gold-bg);font-size:.93rem;color:var(--soft);line-height:1.7}
+    .callout strong{color:var(--gold2)}
+
+    /* WA */
+    .wa{position:fixed;right:22px;bottom:22px;z-index:1000;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--wa);box-shadow:0 8px 28px rgba(0,0,0,.55);transition:transform .2s}
+    .wa:hover{transform:scale(1.07)}
+    .wa i{font-size:2.1rem;color:#fff}
+
+    /* MOBILE PANEL */
+    .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:999}
+    .panel{position:absolute;right:0;top:0;height:100%;width:min(340px,92vw);background:#0a0a0e;border-left:1px solid var(--border);padding:1.2rem;display:flex;flex-direction:column;gap:.7rem}
+    .panel a{padding:.9rem 1rem;border:1px solid var(--border);border-radius:14px;color:var(--text);font-size:.95rem;transition:border-color .2s}
+    .panel a:hover{border-color:var(--gold-border)}
+    .panel-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem}
+    .close-btn{width:40px;height:40px;background:transparent;border:1px solid var(--border2);border-radius:10px;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:3rem 0;color:var(--muted)}
+    .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem}
+    footer a{color:#ccc8c0;transition:color .2s}
+    footer a:hover{color:var(--gold)}
+  </style>
+</head>
+<body>
+
+<!-- WA FLOAT -->
+<a class="wa" target="_blank" rel="noopener" href="https://wa.me/2250151170666?text=Bonjour%20ePerformance%2C%20je%20veux%20en%20savoir%20plus%20sur%20la%20formation.">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- MOBILE MENU -->
+<div class="overlay" id="overlay" aria-hidden="true">
+  <div class="panel" role="dialog">
+    <div class="panel-top">
+      <div class="brand"><strong>ePerformance</strong><span>Academy</span></div>
+      <button class="close-btn" id="closeBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <a class="mLink" href="#programme">Programme</a>
+    <a class="mLink" href="#formats">Formats</a>
+    <a class="mLink" href="#niveaux">Offres</a>
+    <a class="mLink" href="index.html">Retour au site</a>
+    <a class="btn btn-wa mLink" target="_blank" rel="noopener" href="https://wa.me/2250151170666?text=Bonjour%2C%20je%20veux%20en%20savoir%20plus%20sur%20la%20formation." style="margin-top:.3rem;justify-content:center">
+      <i class="fa-brands fa-whatsapp"></i> Réserver ma place
+    </a>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="sticky">
+  <div class="container nav">
+    <a href="index.html" class="brand"><strong>ePerformance</strong><span>Academy</span></a>
+    <nav class="nav-links">
+      <a href="#programme">Programme</a>
+      <a href="#formats">Formats</a>
+      <a href="#niveaux">Offres</a>
+      <a href="index.html" class="btn btn-ghost" style="padding:.55rem 1.1rem;font-size:.88rem"><i class="fa-solid fa-arrow-left"></i> Retour</a>
+    </nav>
+    <button class="burger" id="burgerBtn"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner reveal">
+      <span class="badge"><i class="fa-solid fa-graduation-cap"></i> ePerformance Academy</span>
+      <h1 class="hero-title">Maîtrisez la publicité<br>digitale <em>de A à Z.</em></h1>
+      <p class="hero-lead">
+        Apprenez à créer, configurer et optimiser vos campagnes Facebook et Instagram — avec la méthode terrain de K. STÉPHANE, 8 ans de pratique en Afrique francophone.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#niveaux"><i class="fa-solid fa-layer-group"></i> Voir les offres</a>
+        <a class="btn btn-wa" target="_blank" rel="noopener" href="https://wa.me/2250151170666?text=Bonjour%20ePerformance%2C%20je%20veux%20r%C3%A9server%20ma%20place%20pour%20la%20formation."><i class="fa-brands fa-whatsapp"></i> Réserver ma place</a>
+        <a class="btn btn-ghost" href="#programme"><i class="fa-solid fa-list"></i> Le programme</a>
+      </div>
+
+      <!-- PARCOURS -->
+      <div class="hero-parcours">
+        <div class="parcours-step"><i class="fa-solid fa-book"></i><span><strong>Ebook</strong> — Apprenez seul</span></div>
+        <div class="parcours-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="parcours-step"><i class="fa-solid fa-chalkboard-user"></i><span><strong>Formation</strong> — Guidé en direct</span></div>
+        <div class="parcours-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="parcours-step"><i class="fa-solid fa-rocket"></i><span><strong>ePerformance</strong> — Accompagnement</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- POUR QUI -->
+<section style="background:var(--bg2);padding:5rem 0">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem">
+      <span class="s-eyebrow">Éligibilité</span>
+      <h2 class="s-title">Cette formation est faite pour vous si…</h2>
+    </div>
+    <div class="pourqui-grid reveal">
+      <div class="pourqui-card">
+        <p class="pourqui-label" style="color:var(--green)">✓ Adapté</p>
+        <div class="pourqui-items">
+          <div class="pourqui-item"><i class="fa-solid fa-check" style="color:var(--green);margin-top:.1rem;flex-shrink:0"></i><span>Vous avez une page Facebook ou Instagram mais ne savez pas comment faire de la publicité</span></div>
+          <div class="pourqui-item"><i class="fa-solid fa-check" style="color:var(--green);margin-top:.1rem;flex-shrink:0"></i><span>Vous avez déjà lancé des publicités mais sans vraiment comprendre ce que vous faisiez</span></div>
+          <div class="pourqui-item"><i class="fa-solid fa-check" style="color:var(--green);margin-top:.1rem;flex-shrink:0"></i><span>Vous êtes entrepreneur, commerçant ou prestataire et voulez gérer vos campagnes vous-même</span></div>
+          <div class="pourqui-item"><i class="fa-solid fa-check" style="color:var(--green);margin-top:.1rem;flex-shrink:0"></i><span>Vous partez de zéro et voulez apprendre dans l'ordre, sans vous perdre</span></div>
+        </div>
+      </div>
+      <div class="pourqui-card">
+        <p class="pourqui-label" style="color:#f87171">✗ Pas adapté</p>
+        <div class="pourqui-items">
+          <div class="pourqui-item"><i class="fa-solid fa-xmark" style="color:#f87171;margin-top:.1rem;flex-shrink:0"></i><span>Vous cherchez quelqu'un qui gère vos campagnes à votre place (→ voir l'accompagnement ePerformance)</span></div>
+          <div class="pourqui-item"><i class="fa-solid fa-xmark" style="color:#f87171;margin-top:.1rem;flex-shrink:0"></i><span>Vous voulez uniquement optimiser la rentabilité d'un système déjà en place</span></div>
+          <div class="pourqui-item"><i class="fa-solid fa-xmark" style="color:#f87171;margin-top:.1rem;flex-shrink:0"></i><span>Vous cherchez une formation théorique sans mise en pratique immédiate</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROGRAMME -->
+<section id="programme">
+  <div class="container">
+    <div class="reveal">
+      <span class="s-eyebrow">Le programme</span>
+      <h2 class="s-title">Ce que vous allez apprendre</h2>
+      <p class="s-sub">11 modules complets — de la création de votre page professionnelle jusqu'à la maîtrise du Pixel Meta et du gestionnaire de publicités.</p>
+    </div>
+    <div class="programme-grid">
+      <div class="module-card reveal">
+        <div class="module-num">0</div>
+        <div class="module-body"><h4>Introduction à Facebook pour les entreprises</h4><p>Comprendre l'écosystème Meta et pourquoi Facebook reste incontournable pour votre activité.</p></div>
+      </div>
+      <div class="module-card reveal">
+        <div class="module-num">1</div>
+        <div class="module-body"><h4>Créer une Page Facebook professionnelle</h4><p>Étapes complètes sur iPhone, Android et ordinateur. Nom, catégorie, bio, photos.</p></div>
+      </div>
+      <div class="module-card reveal">
+        <div class="module-num">2</div>
+        <div class="module-body"><h4>Mettre à jour et configurer votre Page</h4><p>Bouton d'action, association WhatsApp Business et Instagram, coordonnées.</p></div>
+      </div>
+      <div class="module-card reveal">
+        <div class="module-num">3</div>
+        <div class="module-body"><h4>Gérer les accès à votre Page</h4><p>Accès Facebook, accès par tâche, accès Community Manager. Donner les bons droits aux bonnes personnes.</p></div>
+      </div>
+      <div class="module-card reveal">
+        <div class="module-num">4</div>
+        <div class="module-body"><h4>Sécuriser votre compte Facebook</h4><p>Authentification à deux facteurs, protection de votre compte publicitaire.</p></div>
+      </div>
+      <div class="module-card reveal">
+        <div class="module-num">5</div>
+        <div class="module-body"><h4>Booster une publication</h4><p>Objectifs, audience, budget, durée, placements. Quand et comment booster efficacement.</p></div>
+      </div>
+      <div class="module-card reveal">
+        <div class="module-num">6</div>
+        <div class="module-body"><h4>Créer une publicité automatisée</h4><p>Utiliser le bouton Promouvoir depuis votre page Facebook pour des résultats rapides.</p></div>
+      </div>
+      <div class="module-card reveal">
+        <div class="module-num">7</div>
+        <div class="module-body"><h4>Créer une publicité manuellement</h4><p>Maîtrise complète du Gestionnaire de publicités — structure campagne, ensemble de publicités, annonce.</p></div>
+      </div>
+      <div class="module-card reveal">
+        <div class="module-num">8</div>
+        <div class="module-body"><h4>Créer une publicité depuis Instagram</h4><p>Configurer et lancer des campagnes directement depuis votre compte Instagram.</p></div>
+      </div>
+      <div class="module-card reveal">
+        <div class="module-num">9</div>
+        <div class="module-body"><h4>Configurer un compte publicitaire</h4><p>Modes de paiement, paramètres, portefeuille Business — tout pour avoir un compte opérationnel.</p></div>
+      </div>
+      <div class="module-card reveal">
+        <div class="module-num">10</div>
+        <div class="module-body"><h4>Maîtriser le Pixel Meta</h4><p>Installation, configuration et utilisation du Pixel pour suivre vos conversions et affiner votre ciblage.</p></div>
+      </div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:1.8rem">
+      <strong>Bonus inclus :</strong> une sélection d'outils pour booster votre productivité — Canva, CapCut, Adobe Express, et d'autres — pour créer des visuels et vidéos efficaces pour vos publicités.
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FORMATS -->
+<section id="formats" style="background:var(--bg2)">
+  <div class="container">
+    <div class="reveal">
+      <span class="s-eyebrow">Les formats</span>
+      <h2 class="s-title">Choisissez votre façon d'apprendre</h2>
+      <p class="s-sub">Même contenu, même niveau d'exigence — le format s'adapte à votre rythme et votre situation.</p>
+    </div>
+    <div class="format-grid">
+      <div class="format-card reveal">
+        <div class="format-icon"><i class="fa-solid fa-book-open"></i></div>
+        <h3>Ebook PDF</h3>
+        <p>Le programme complet en document PDF. Apprenez à votre rythme, revenez sur les modules quand vous voulez, gardez-le comme référence.</p>
+        <div class="format-prices">
+          <div class="format-price-line">
+            <span>Accès immédiat · Téléchargement direct</span>
+            <div>
+              <strong>15 000 FCFA</strong>
+              <span style="font-size:.8rem;color:var(--muted);text-decoration:line-through;margin-left:.4rem">25 000</span>
+              <span style="font-size:.7rem;background:var(--green-bg);color:var(--green);border:1px solid var(--green-border);padding:.15rem .5rem;border-radius:999px;margin-left:.4rem">−10 000</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:1.2rem;display:flex;gap:.7rem;flex-wrap:wrap">
+          <!-- TODO: remplacer href par lien de paiement / PDF -->
+          <a class="btn btn-gold" href="https://wa.me/2250151170666?text=Bonjour%20ePerformance%2C%20je%20veux%20acheter%20l%27ebook%20formation%20Facebook%20Ads." target="_blank" rel="noopener"><i class="fa-solid fa-cart-shopping"></i> Acheter l'ebook</a>
+        </div>
+      </div>
+
+      <div class="format-card reveal">
+        <div class="format-icon"><i class="fa-solid fa-video"></i></div>
+        <h3>Formation Zoom (en ligne)</h3>
+        <p>Session en direct avec K. STÉPHANE. Vous posez vos questions en temps réel, vous pratiquez pendant la session. Individuel ou en groupe.</p>
+        <div class="format-prices">
+          <div class="format-price-line">
+            <span>Session individuelle (2h)</span>
+            <strong>35 000 FCFA</strong>
+          </div>
+          <div class="format-price-line">
+            <span>Session groupe — max 10 (2h)</span>
+            <strong>15 000 FCFA / pers</strong>
+          </div>
+        </div>
+        <div style="margin-top:1.2rem">
+          <a class="btn btn-wa" href="https://wa.me/2250151170666?text=Bonjour%20ePerformance%2C%20je%20veux%20r%C3%A9server%20une%20formation%20Zoom." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Réserver ma session</a>
+        </div>
+      </div>
+
+      <div class="format-card reveal">
+        <div class="format-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+        <h3>Formation présentielle</h3>
+        <p>Formation en face à face. Idéal pour les équipes et les entrepreneurs qui veulent une immersion complète avec un accompagnement personnalisé.</p>
+        <div class="format-prices">
+          <div class="format-price-line">
+            <span>Session individuelle (3h)</span>
+            <strong>60 000 FCFA</strong>
+          </div>
+          <div class="format-price-line">
+            <span>Session groupe — max 10 (3h)</span>
+            <strong>25 000 FCFA / pers</strong>
+          </div>
+        </div>
+        <div style="margin-top:1.2rem">
+          <a class="btn btn-wa" href="https://wa.me/2250151170666?text=Bonjour%20ePerformance%2C%20je%20veux%20r%C3%A9server%20une%20formation%20en%20pr%C3%A9sentiel." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Réserver ma session</a>
+        </div>
+      </div>
+
+      <div class="format-card reveal" style="border-color:rgba(201,169,110,.3);background:linear-gradient(145deg,#111115,#0d0d09)">
+        <div class="format-icon" style="background:rgba(26,66,192,.12);border-color:rgba(26,66,192,.3);color:#6b9ef8"><i class="fa-solid fa-rocket"></i></div>
+        <h3>Vous voulez aller plus loin ?</h3>
+        <p>La formation vous donne les bases pour créer des campagnes. L'accompagnement ePerformance vous aide à les rendre rentables — avec vos propres chiffres, votre propre modèle.</p>
+        <div style="margin-top:1.4rem;display:flex;gap:.7rem;flex-wrap:wrap">
+          <a class="btn btn-primary" href="index.html#candidature"><i class="fa-solid fa-arrow-right"></i> Voir l'accompagnement</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- OFFRES RÉCAP -->
+<section id="niveaux">
+  <div class="container">
+    <div class="reveal">
+      <span class="s-eyebrow">Récapitulatif</span>
+      <h2 class="s-title">Trois façons d'avancer</h2>
+      <p class="s-sub">Du plus accessible au plus complet. Commencez là où vous êtes.</p>
+    </div>
+    <div class="niveaux-grid">
+
+      <div class="niveau-card reveal">
+        <div class="niveau-num">1</div>
+        <div class="niveau-icon"><i class="fa-solid fa-book-open"></i></div>
+        <p class="niveau-label">Niveau 1</p>
+        <h3 class="niveau-name">Ebook</h3>
+        <p class="niveau-tag">Apprenez seul, à votre rythme</p>
+        <div class="niveau-divider"></div>
+        <ul class="niveau-features">
+          <li>Programme complet en PDF (11 modules)</li>
+          <li>Étapes détaillées pas à pas</li>
+          <li>Captures d'écran illustrées</li>
+          <li>Bonus outils de productivité</li>
+          <li>Accès immédiat, à vie</li>
+        </ul>
+        <div class="niveau-price">
+          <span class="price-main">15 000 FCFA</span>
+          <span class="price-old">25 000</span>
+          <span class="price-promo">−10 000</span>
+        </div>
+        <div class="niveau-actions">
+          <a class="btn btn-gold" href="https://wa.me/2250151170666?text=Bonjour%20ePerformance%2C%20je%20veux%20acheter%20l%27ebook%20formation." target="_blank" rel="noopener"><i class="fa-solid fa-cart-shopping"></i> Acheter</a>
+        </div>
+      </div>
+
+      <div class="niveau-card featured reveal">
+        <div class="niveau-num">2</div>
+        <span class="badge" style="margin-bottom:.9rem"><i class="fa-solid fa-star"></i> Recommandé</span>
+        <div class="niveau-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+        <p class="niveau-label">Niveau 2</p>
+        <h3 class="niveau-name">Formation</h3>
+        <p class="niveau-tag">Guidé en direct par K. STÉPHANE</p>
+        <div class="niveau-divider"></div>
+        <ul class="niveau-features">
+          <li>Tout le contenu de l'ebook</li>
+          <li>Session en direct (Zoom ou présentiel)</li>
+          <li>Questions-réponses en temps réel</li>
+          <li>Mise en pratique pendant la session</li>
+          <li>Individuel ou en groupe (max 10)</li>
+        </ul>
+        <div class="niveau-price">
+          <span class="price-main">À partir de 15 000</span>
+          <span class="price-unit">FCFA / pers (groupe) · 35 000 FCFA (individuel Zoom) · 60 000 FCFA (présentiel)</span>
+        </div>
+        <div class="niveau-actions">
+          <a class="btn btn-gold" href="https://wa.me/2250151170666?text=Bonjour%20ePerformance%2C%20je%20veux%20r%C3%A9server%20une%20formation." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Réserver</a>
+        </div>
+      </div>
+
+      <div class="niveau-card reveal">
+        <div class="niveau-num">3</div>
+        <div class="niveau-icon" style="background:rgba(26,66,192,.12);border-color:rgba(26,66,192,.3);color:#6b9ef8"><i class="fa-solid fa-rocket"></i></div>
+        <p class="niveau-label">Niveau 3</p>
+        <h3 class="niveau-name">Accompagnement</h3>
+        <p class="niveau-tag">ePerformance — Rentabilité sur 90 jours</p>
+        <div class="niveau-divider"></div>
+        <ul class="niveau-features">
+          <li>Pour ceux qui ont déjà les bases</li>
+          <li>Diagnostic complet + plan 90 jours</li>
+          <li>CAC, LTV, Payback, marge nette</li>
+          <li>Optimisation et scaling structuré</li>
+          <li>Suivi et pilotage continu</li>
+        </ul>
+        <div class="niveau-price">
+          <span class="price-main" style="font-size:1.4rem">Sur candidature</span>
+          <span class="price-unit">Budget pub minimum recommandé : 300 000 FCFA/mois</span>
+        </div>
+        <div class="niveau-actions">
+          <a class="btn btn-primary" href="index.html#candidature"><i class="fa-solid fa-magnifying-glass"></i> Candidater</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA FINAL -->
+<section style="background:var(--bg2);padding:5rem 0;text-align:center">
+  <div class="container">
+    <div class="reveal">
+      <span class="badge" style="margin-bottom:1.2rem"><i class="fa-solid fa-chalkboard-user"></i> ePerformance Academy</span>
+      <h2 style="font-size:clamp(2rem,4vw,2.8rem);margin-bottom:1rem">Prêt à prendre en main<br>votre publicité ?</h2>
+      <p style="color:var(--soft);font-size:1rem;max-width:560px;margin:0 auto 2rem">Ebook, formation Zoom ou présentiel — choisissez ce qui correspond à votre situation et passez à l'action.</p>
+      <div style="display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-gold" href="https://wa.me/2250151170666?text=Bonjour%20ePerformance%2C%20je%20veux%20en%20savoir%20plus%20sur%20la%20formation." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Écrire sur WhatsApp</a>
+        <a class="btn btn-ghost" href="index.html#candidature">Voir l'accompagnement ePerformance</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container foot">
+    <div>
+      <div class="brand"><strong style="font-size:1.3rem">ePerformance</strong><span style="font-size:.72rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase">Academy</span></div>
+      <p style="margin-top:1rem;font-size:.9rem">Formation publicité digitale — Facebook & Instagram</p>
+      <p style="margin-top:.4rem;font-size:.9rem"><i class="fa-solid fa-envelope" style="color:var(--gold);margin-right:.45rem"></i><a href="mailto:bonjour@eperformance.pro">bonjour@eperformance.pro</a></p>
+      <p style="font-size:.9rem"><i class="fa-brands fa-whatsapp" style="color:var(--gold);margin-right:.45rem"></i><a href="tel:+2250151170666">+225 01 51 17 06 66</a></p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.5rem;font-size:.9rem">
+      <a href="index.html">Accueil ePerformance</a>
+      <a href="guide.html">Guide gratuit</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <p style="margin-top:.75rem;font-size:.82rem;color:var(--muted)">© 2026 ePerformance</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger=document.getElementById('burgerBtn');
+  const overlay=document.getElementById('overlay');
+  const closeBtn=document.getElementById('closeBtn');
+  const mLinks=document.querySelectorAll('.mLink');
+  const openMenu=()=>{overlay.style.display='block';overlay.setAttribute('aria-hidden','false')};
+  const closeMenu=()=>{overlay.style.display='none';overlay.setAttribute('aria-hidden','true')};
+  burger?.addEventListener('click',openMenu);
+  closeBtn?.addEventListener('click',closeMenu);
+  overlay?.addEventListener('click',e=>{if(e.target===overlay)closeMenu()});
+  mLinks.forEach(l=>l.addEventListener('click',closeMenu));
+
+  const reveals=document.querySelectorAll('.reveal');
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}})},{threshold:.1});
+  reveals.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
