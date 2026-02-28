@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>K. Stéphane — ePerformance</title>
+  <meta name="description" content="K. Stéphane — Stratégie digitale & acquisition rentable. Tous mes liens." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://eperformance.pro/kstephane" />
+  <meta property="og:title" content="K. Stéphane — ePerformance" />
+  <meta property="og:description" content="J'aide les entrepreneurs à structurer leur acquisition et à rendre leurs publicités réellement rentables." />
+  <meta property="og:image" content="https://i.ibb.co/dJGD0ysZ/20c44899-8966-47fe-bc62-f0108faaabd3.jpg" />
+  <meta property="og:url" content="https://eperformance.pro/kstephane" />
+  <meta property="og:type" content="profile" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z7QW8BCYQ1"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z7QW8BCYQ1');</script>
+
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1592627695615531');fbq('track','PageView');</script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1592627695615531&ev=PageView&noscript=1"/></noscript>
+
+  <style>
+    :root{
+      --bg:#08080c;
+      --card:#101014;
+      --border:#1c1c22;
+      --border2:#242428;
+      --text:#edeae3;
+      --muted:#5a5a65;
+      --soft:#9a9490;
+      --gold:#c9a96e;
+      --gold2:#e2c07a;
+      --gold-bg:rgba(201,169,110,.07);
+      --gold-border:rgba(201,169,110,.2);
+      --wa:#25D366;
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:'DM Sans',system-ui,sans-serif;
+      min-height:100vh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:3rem 1.2rem 4rem;
+      line-height:1.6;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(ellipse 70% 45% at 50% 0%,rgba(201,169,110,.07) 0%,transparent 60%),
+        radial-gradient(ellipse 50% 40% at 15% 80%,rgba(26,66,192,.07) 0%,transparent 55%);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      width:100%;
+      max-width:440px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:0;
+    }
+
+    /* HEADER */
+    .header{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      margin-bottom:1.8rem;
+      animation:fadeUp .6s ease both;
+    }
+
+    .avatar-wrap{
+      position:relative;
+      margin-bottom:1.1rem;
+    }
+
+    .avatar{
+      width:88px;
+      height:88px;
+      border-radius:50%;
+      object-fit:cover;
+      object-position:center top;
+      border:1px solid var(--gold-border);
+      display:block;
+      filter:grayscale(100%);
+    }
+
+    .avatar-ring{
+      position:absolute;
+      inset:-4px;
+      border-radius:50%;
+      border:1px solid rgba(201,169,110,.25);
+      animation:pulse 3s ease infinite;
+    }
+
+    @keyframes pulse{
+      0%,100%{opacity:.6;transform:scale(1)}
+      50%{opacity:1;transform:scale(1.03)}
+    }
+
+    .name{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.7rem;
+      font-weight:700;
+      letter-spacing:-.01em;
+      line-height:1.1;
+      margin-bottom:.25rem;
+    }
+
+    .role{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.13em;
+      color:var(--gold);
+      margin-bottom:.9rem;
+    }
+
+    .tagline{
+      font-size:.93rem;
+      color:var(--soft);
+      max-width:340px;
+      line-height:1.65;
+    }
+
+    /* DIVIDER */
+    .sep{
+      width:40px;
+      height:1px;
+      background:var(--gold-border);
+      margin:1.6rem auto;
+    }
+
+    /* BOUTONS */
+    .links{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:.75rem;
+    }
+
+    .link-btn{
+      display:flex;
+      align-items:center;
+      gap:1rem;
+      width:100%;
+      padding:1rem 1.3rem;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      color:var(--text);
+      text-decoration:none;
+      font-size:.94rem;
+      font-weight:500;
+      transition:border-color .22s, transform .22s, background .22s;
+      position:relative;
+      overflow:hidden;
+      animation:fadeUp .6s ease both;
+    }
+
+    .link-btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,transparent,rgba(201,169,110,.04),transparent);
+      opacity:0;
+      transition:opacity .3s;
+    }
+
+    .link-btn:hover{
+      border-color:rgba(201,169,110,.35);
+      transform:translateY(-2px);
+      background:#131318;
+    }
+
+    .link-btn:hover::before{opacity:1}
+
+    .link-btn.primary{
+      border-color:rgba(201,169,110,.3);
+      background:var(--gold-bg);
+    }
+
+    .link-btn.primary:hover{
+      border-color:rgba(201,169,110,.55);
+      background:rgba(201,169,110,.12);
+    }
+
+    .link-btn.wa{
+      border-color:rgba(37,211,102,.25);
+      background:rgba(37,211,102,.06);
+    }
+
+    .link-btn.wa:hover{
+      border-color:rgba(37,211,102,.45);
+      background:rgba(37,211,102,.1);
+    }
+
+    .btn-icon{
+      width:36px;
+      height:36px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.95rem;
+      flex-shrink:0;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--border2);
+    }
+
+    .link-btn.primary .btn-icon{
+      background:var(--gold-bg);
+      border-color:var(--gold-border);
+      color:var(--gold);
+    }
+
+    .link-btn.wa .btn-icon{
+      background:rgba(37,211,102,.1);
+      border-color:rgba(37,211,102,.25);
+      color:var(--wa);
+    }
+
+    .btn-text{flex:1}
+    .btn-label{display:block;font-weight:600;font-size:.93rem}
+    .btn-sub{display:block;font-size:.78rem;color:var(--muted);margin-top:.05rem}
+
+    .btn-arrow{
+      color:var(--muted);
+      font-size:.8rem;
+      flex-shrink:0;
+      transition:transform .2s, color .2s;
+    }
+
+    .link-btn:hover .btn-arrow{
+      transform:translateX(3px);
+      color:var(--gold);
+    }
+
+    /* ANIMATION DELAYS */
+    .link-btn:nth-child(1){animation-delay:.1s}
+    .link-btn:nth-child(2){animation-delay:.18s}
+    .link-btn:nth-child(3){animation-delay:.26s}
+    .link-btn:nth-child(4){animation-delay:.34s}
+    .link-btn:nth-child(5){animation-delay:.42s}
+
+    /* RÉSEAUX */
+    .socials{
+      display:flex;
+      gap:.75rem;
+      margin-top:1.8rem;
+      animation:fadeUp .6s .5s ease both;
+    }
+
+    .social-link{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--card);
+      border:1px solid var(--border);
+      color:var(--muted);
+      font-size:1rem;
+      text-decoration:none;
+      transition:border-color .2s,color .2s,transform .2s;
+    }
+
+    .social-link:hover{
+      border-color:var(--gold-border);
+      color:var(--gold);
+      transform:translateY(-2px);
+    }
+
+    /* EMAIL */
+    .email-line{
+      margin-top:1.1rem;
+      font-size:.78rem;
+      color:var(--muted);
+      animation:fadeUp .6s .55s ease both;
+    }
+
+    .email-line a{
+      color:var(--muted);
+      text-decoration:none;
+      transition:color .2s;
+    }
+
+    .email-line a:hover{color:var(--gold)}
+
+    /* FOOTER */
+    .footer{
+      margin-top:2rem;
+      font-size:.72rem;
+      color:#3a3a42;
+      text-align:center;
+      animation:fadeUp .6s .6s ease both;
+    }
+
+    .footer a{color:#3a3a42;text-decoration:none}
+    .footer a:hover{color:var(--muted)}
+
+    /* KEYFRAMES */
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(14px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .header{animation-delay:.02s}
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="avatar-wrap">
+      <img
+        class="avatar"
+        src="https://i.ibb.co/dJGD0ysZ/20c44899-8966-47fe-bc62-f0108faaabd3.jpg"
+        alt="K. Stéphane — ePerformance"
+        loading="eager"
+      />
+      <div class="avatar-ring"></div>
+    </div>
+    <p class="name">K. Stéphane</p>
+    <p class="role">Stratégie digitale &amp; acquisition rentable</p>
+    <p class="tagline">J'aide les entrepreneurs à structurer leur acquisition et à rendre leurs publicités réellement rentables.</p>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- BOUTONS -->
+  <div class="links">
+
+    <a class="link-btn wa" target="_blank" rel="noopener"
+       href="https://wa.me/2250151170666?text=Bonjour%20K.%20St%C3%A9phane%2C%20je%20vous%20contacte%20via%20votre%20page%20de%20liens.">
+      <div class="btn-icon"><i class="fa-brands fa-whatsapp"></i></div>
+      <div class="btn-text">
+        <span class="btn-label">WhatsApp professionnel</span>
+        <span class="btn-sub">Réponse rapide · +225 01 51 17 06 66</span>
+      </div>
+      <i class="fa-solid fa-arrow-right btn-arrow"></i>
+    </a>
+
+    <a class="link-btn primary" href="https://eperformance.pro/index.html#candidature">
+      <div class="btn-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+      <div class="btn-text">
+        <span class="btn-label">Travailler avec moi</span>
+        <span class="btn-sub">Candidater à l'accompagnement ePerformance</span>
+      </div>
+      <i class="fa-solid fa-arrow-right btn-arrow"></i>
+    </a>
+
+    <a class="link-btn" href="https://eperformance.pro/formation.html">
+      <div class="btn-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+      <div class="btn-text">
+        <span class="btn-label">Découvrir la formation</span>
+        <span class="btn-sub">ePerformance Academy — Ebook, Zoom, présentiel</span>
+      </div>
+      <i class="fa-solid fa-arrow-right btn-arrow"></i>
+    </a>
+
+    <a class="link-btn" href="https://eperformance.pro/guide.html">
+      <div class="btn-icon"><i class="fa-solid fa-download"></i></div>
+      <div class="btn-text">
+        <span class="btn-label">Guide gratuit</span>
+        <span class="btn-sub">Pourquoi votre publicité n'est pas rentable</span>
+      </div>
+      <i class="fa-solid fa-arrow-right btn-arrow"></i>
+    </a>
+
+    <a class="link-btn" href="https://eperformance.pro">
+      <div class="btn-icon"><i class="fa-solid fa-globe"></i></div>
+      <div class="btn-text">
+        <span class="btn-label">Site officiel</span>
+        <span class="btn-sub">eperformance.pro</span>
+      </div>
+      <i class="fa-solid fa-arrow-right btn-arrow"></i>
+    </a>
+
+  </div>
+
+  <!-- RÉSEAUX -->
+  <div class="socials">
+    <a class="social-link" target="_blank" rel="noopener"
+       href="https://www.facebook.com/performanc77"
+       aria-label="Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a class="social-link" target="_blank" rel="noopener"
+       href="https://www.instagram.com/e_eperformance"
+       aria-label="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a class="social-link" target="_blank" rel="noopener"
+       href="https://www.tiktok.com/@k..stephane7"
+       aria-label="TikTok">
+      <i class="fa-brands fa-tiktok"></i>
+    </a>
+  </div>
+
+  <!-- EMAIL -->
+  <p class="email-line">
+    <a href="mailto:bonjour@eperformance.pro">bonjour@eperformance.pro</a>
+  </p>
+
+  <!-- FOOTER -->
+  <p class="footer">
+    © 2026 ePerformance ·
+    <a href="https://eperformance.pro/mentions-legales.html">Mentions légales</a>
+  </p>
+
+</div>
+</body>
+</html>
