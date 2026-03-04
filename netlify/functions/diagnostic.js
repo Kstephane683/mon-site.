@@ -304,11 +304,15 @@ Ton direct, expert, orienté résultats. Pas de généralités. Parle en tant qu
       data.budget_accompagnement === '300_600k' ? '✅ QUALIFIÉ' :
       data.budget_accompagnement === '100_300k' ? '🔵 À QUALIFIER' : '⚪ FAIBLE BUDGET';
 
-    const sourcesDisplay = data.sources_acquisition || data.sources || 'Non renseigné';
+    const sourcesRaw = data.sources_acquisition || data.sources || '';
+const sourcesMap = { bouche_a_oreille: 'Bouche-à-oreille', whatsapp: 'WhatsApp', reseaux_organiques: 'Réseaux sociaux organiques', seo_google: 'SEO / Google', facebook_ads: 'Facebook Ads', tiktok_organique: 'TikTok organique', autres: 'Autres' };
+const sourcesDisplay = sourcesRaw ? sourcesRaw.split(',').map(s => sourcesMap[s.trim()] || s.trim()).join(', ') : 'Non renseigné';
     const whatsappRelance = data.usage_whatsapp || data.relance_whatsapp || 'Non renseigné';
     const blocage = data.blocage_principal || data.blocage || 'Non renseigné';
-    const caMensuel = data.ca_mensuel || 'Non renseigné';
-    const venteMoyenne = data.vente_moyenne || data.panier_moyen || 'Non renseigné';
+    const caMensuelRaw = parseFloat(data.ca_mensuel) || null;
+const caMensuel = caMensuelRaw ? caMensuelRaw.toLocaleString('fr-FR') + ' FCFA' : 'Non renseigné';
+    const venteMoyenne = parseFloat(data.vente_moyenne || data.panier_moyen) || null;
+const venteMoyenneDisplay = venteMoyenne ? venteMoyenne.toLocaleString('fr-FR') + ' FCFA' : 'Non renseigné';
 
     const emailAdmin = `<!DOCTYPE html>
 <html lang="fr">
@@ -406,9 +410,9 @@ Ton direct, expert, orienté résultats. Pas de généralités. Parle en tant qu
     <tr><td style="background-color:#101014;border:1px solid #1c1c22;border-radius:12px;padding:20px;">
       <div style="font-size:10px;color:#7a7a85;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">Données Brutes</div>
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;width:40%;">CA mensuel</td><td style="color:#edeae3;font-size:12px;">${caMensuel} FCFA</td></tr>
+        <tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;width:40%;">CA mensuel</td><td style="color:#edeae3;font-size:12px;">${caMensuel}</td></tr>
         <tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;">Clients/mois</td><td style="color:#edeae3;font-size:12px;">${data.clients_par_mois || '0'}</td></tr>
-        <tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;">Vente moyenne</td><td style="color:#edeae3;font-size:12px;">${venteMoyenne} FCFA</td></tr>
+        <tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;">Vente moyenne</td><td style="color:#edeae3;font-size:12px;">${venteMoyenneDisplay}</td></tr>
         <tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;">Marge</td><td style="color:#edeae3;font-size:12px;">${Math.round(marge)}%</td></tr>
         <tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;">Pub active</td><td style="color:#edeae3;font-size:12px;">${data.pub_active || 'non'}</td></tr>
         <tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;">Budget pub</td><td style="color:#edeae3;font-size:12px;">${bud > 0 ? bud.toLocaleString('fr-FR') + ' FCFA' : 'Pas de pub'}</td></tr>
