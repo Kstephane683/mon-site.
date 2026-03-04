@@ -28,11 +28,13 @@ exports.handler = async (event) => {
     // 1. CALCULS RATIOS
     // ============================================================
     const cli = Math.max(parseFloat(data.clients_par_mois) || 1, 1);
-    const pan = parseFloat(data.panier_moyen) || 0;
-    const marge = parseFloat(data.marge_pct) || 30;
-    const bud = parseFloat(data.budget_pub) || 0;
+const pan = parseFloat(data.vente_moyenne) || parseFloat(data.panier_moyen) || 0;
+const marge = parseFloat(data.marge) || parseFloat(data.marge_pct) || 30;
+const bud = parseFloat(data.budget_pub) || 0;
     const dm = { moins_1: 1, '1_3': 2, '3_6': 4.5, '6_12': 9, plus_12: 14 };
-    const duree = dm[data.duree_vie_client] || 2;
+const duree = dm[data.duree_vie_client] || 2;
+const email = data.email || '';
+const whatsapp = (data.whatsapp || '').replace(/\D/g, '');
     const cac = bud > 0 ? Math.round(bud / cli) : 0;
     const ltv = Math.round(pan * duree);
     const margeAbs = pan * (marge / 100);
