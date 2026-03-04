@@ -21,8 +21,8 @@ exports.handler = async (event) => {
 
   try {
     const data = JSON.parse(event.body);
-    const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
-    const BREVO_KEY = process.env.BREVO_API_KEY;
+    const ANTHROPIC_KEY = process.env.ANTHROPICAPIKEY;
+const BREVO_KEY = process.env.BREVOAPIKEY;
 
     // ============================================================
     // 1. CALCULS RATIOS
