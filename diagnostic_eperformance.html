@@ -726,9 +726,9 @@ async function submitForm(){
     sv.classList.add('show');
     sv.scrollIntoView({behavior:'smooth',block:'center'});
   },7200);
-  fetch('https://formspree.io/f/mpqjbgkg',{
+  fetch('/.netlify/functions/diagnostic',{
     method:'POST',
-    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    headers:{'Content-Type':'application/json'},
     body:JSON.stringify({
       _subject:'Nouveau diagnostic — '+d.nom+' ('+d.secteur+')',
       nom:d.nom,whatsapp:d.whatsapp,email:d.email,
