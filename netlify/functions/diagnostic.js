@@ -102,7 +102,7 @@ exports.handler = async (event) => {
           max_tokens: 400,
           messages: [{
             role: 'user',
-            content: `Tu es ePerformance, cabinet stratégique en Afrique francophone. Génère un paragraphe d'analyse court (4-5 phrases) et percutant pour ce prospect.
+            content: `Tu es ePerformance, cabinet stratégique en Afrique francophone. Génère un paragraphe d'analyse court (4-5 phrases) et percutant pour ce prospect. Données : Secteur ${data.secteur}, CA ${data.ca_mensuel} FCFA/mois, ${data.clients_par_mois} clients/mois, Marge ${Math.round(marge)}%, Score ${score}/100. Faille principale : ${top3[0]?.t}. Recommandation : ${reco.label}. Ton direct, expert, orienté résultats. Pas de généralités. Parle en tant que cabinet, pas en "je". IMPORTANT : Réponds uniquement en texte brut. Aucun markdown, aucun astérisque, aucun gras, aucun titre.`
 Données : Secteur ${data.secteur}, CA ${data.ca_mensuel} FCFA/mois, ${data.clients_par_mois} clients/mois, Marge ${Math.round(marge)}%, Score ${score}/100.
 Faille principale : ${top3[0]?.t}.
 Recommandation : ${reco.label}.
