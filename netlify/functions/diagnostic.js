@@ -46,19 +46,19 @@ exports.handler = async (event) => {
 
     // Failles
     const failles = [];
-    if (cac === 0 && data.pub_active !== 'oui') failles.push({ t: 'Acquisition non structur&eacute;e', d: 'Aucun investissement publicitaire trac&eacute;. La croissance d&eacute;pend uniquement du bouche-&agrave;-oreille &mdash; fragile et non scalable.' });
+    if (cac === 0 && data.pub_active !== 'oui') failles.push({ t: 'Acquisition non structurée', d: 'Aucun investissement publicitaire trac&eacute;. La croissance d&eacute;pend uniquement du bouche-&agrave;-oreille &mdash; fragile et non scalable.' });
     if (ratioLTV > 0 && ratioLTV < 3) failles.push({ t: 'Ratio LTV:CAC insuffisant (' + ratioLTV + ':1)', d: "Chaque client rapporte moins de 3x son cout d'acquisition. En dessous de 3:1, le modele n'est pas rentable a grande echelle." });
-    if (data.duree_vie_client === 'moins_1') failles.push({ t: 'Z&eacute;ro r&eacute;tention client', d: "Vos clients n'ach&egrave;tent qu'une seule fois. Sans rachat, vous devez constamment acqu&eacute;rir de nouveaux clients pour maintenir votre CA." });
+    if (data.duree_vie_client === 'moins_1') failles.push({ t: 'Zéro rétention client', d: "Vos clients n'ach&egrave;tent qu'une seule fois. Sans rachat, vous devez constamment acqu&eacute;rir de nouveaux clients pour maintenir votre CA." });
     if (data.usage_whatsapp === 'non') failles.push({ t: 'Aucune relance client', d: "WhatsApp n'est pas utilis&eacute; pour relancer vos prospects et clients. C'est le canal de conversion le plus puissant en Afrique francophone." });
-    if (data.site_web === 'non') failles.push({ t: 'Absence de pr&eacute;sence digitale', d: 'Sans page de vente, vous ne pouvez pas convertir du trafic en clients de fa&ccedil;on autonome et mesurable.' });
+    if (data.site_web === 'non') failles.push({ t: 'Absence de présence digitale', d: 'Sans page de vente, vous ne pouvez pas convertir du trafic en clients de fa&ccedil;on autonome et mesurable.' });
     if (marge < 25) failles.push({ t: 'Marge insuffisante pour scaler', d: 'Avec ' + Math.round(marge) + '% de marge, augmenter les depenses publicitaires ne sera pas rentable. La marge doit &ecirc;tre restructur&eacute;e en priorit&eacute;.' });
     if (failles.length === 0) failles.push({ t: 'Structure correcte', d: 'Votre mod&egrave;le pr&eacute;sente une base saine. Des ajustements cibl&eacute;s permettraient d&#39;acc&eacute;l&eacute;rer significativement.' });
     const top3 = failles.slice(0, 3);
 
     // Recommandation
     let reco;
-    if (score >= 75) reco = { label: 'Pr&ecirc;t pour le scaling', msg: 'Votre structure est saine. Vous &ecirc;tes en position d&#39;acc&eacute;l&eacute;rer avec m&eacute;thode. Un plan 90 jours permettrait de doubler vos r&eacute;sultats.' };
-    else if (score >= 50) reco = { label: 'Optimisation n&eacute;cessaire', msg: 'Des failles critiques limitent votre rentabilit&eacute;. Un accompagnement structur&eacute; permettrait de les corriger en 60 &agrave; 90 jours.' };
+    if (score >= 75) reco = { label: 'Prêt pour le scaling', msg: 'Votre structure est saine. Vous &ecirc;tes en position d&#39;acc&eacute;l&eacute;rer avec m&eacute;thode. Un plan 90 jours permettrait de doubler vos r&eacute;sultats.' };
+    else if (score >= 50) reco = { label: 'Optimisation nécessaire', msg: 'Des failles critiques limitent votre rentabilit&eacute;. Un accompagnement structur&eacute; permettrait de les corriger en 60 &agrave; 90 jours.' };
     else reco = { label: 'Restructuration prioritaire', msg: 'Votre mod&egrave;le pr&eacute;sente des risques structurels importants. Une restructuration de base est indispensable avant tout investissement suppl&eacute;mentaire.' };
 
     // Accroche par secteur
@@ -356,7 +356,16 @@ exports.handler = async (event) => {
       return res.json();
     };
 
-    const faillePrincipale = top3[0] ? top3[0].t : 'faille identifiee';
+    // Nettoyer les entites HTML pour les sujets email (texte brut)
+    const stripHtml = function(str) {
+      return str
+        .replace(/&eacute;/g, 'é').replace(/&egrave;/g, 'è').replace(/&ecirc;/g, 'ê')
+        .replace(/&agrave;/g, 'à').replace(/&acirc;/g, 'â').replace(/&ocirc;/g, 'ô')
+        .replace(/&ucirc;/g, 'û').replace(/&ccedil;/g, 'ç').replace(/&icirc;/g, 'î')
+        .replace(/&Eacute;/g, 'É').replace(/&mdash;/g, '-').replace(/&ndash;/g, '-')
+        .replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ');
+    };
+    const faillePrincipale = top3[0] ? stripHtml(top3[0].t) : 'faille identifiée';
 
     if (email) {
       await sendEmail(
