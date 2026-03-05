@@ -46,41 +46,41 @@ exports.handler = async (event) => {
 
     // Failles
     const failles = [];
-    if (cac === 0 && data.pub_active !== 'oui') failles.push({ t: 'Acquisition non structuree', d: 'Aucun investissement publicitaire trace. La croissance depend uniquement du bouche-a-oreille — fragile et non scalable.' });
+    if (cac === 0 && data.pub_active !== 'oui') failles.push({ t: 'Acquisition non structur&eacute;e', d: 'Aucun investissement publicitaire trac&eacute;. La croissance d&eacute;pend uniquement du bouche-&agrave;-oreille &mdash; fragile et non scalable.' });
     if (ratioLTV > 0 && ratioLTV < 3) failles.push({ t: 'Ratio LTV:CAC insuffisant (' + ratioLTV + ':1)', d: "Chaque client rapporte moins de 3x son cout d'acquisition. En dessous de 3:1, le modele n'est pas rentable a grande echelle." });
-    if (data.duree_vie_client === 'moins_1') failles.push({ t: 'Zero retention client', d: "Vos clients n'achevent qu'une seule fois. Sans rachat, vous devez constamment acquerir de nouveaux clients pour maintenir votre CA." });
-    if (data.usage_whatsapp === 'non') failles.push({ t: 'Aucune relance client', d: "WhatsApp n'est pas utilise pour relancer vos prospects et clients. C'est le canal de conversion le plus puissant en Afrique francophone." });
-    if (data.site_web === 'non') failles.push({ t: 'Absence de presence digitale', d: 'Sans page de vente, vous ne pouvez pas convertir du trafic en clients de facon autonome et mesurable.' });
-    if (marge < 25) failles.push({ t: 'Marge insuffisante pour scaler', d: 'Avec ' + Math.round(marge) + '% de marge, augmenter les depenses publicitaires ne sera pas rentable. La marge doit etre restructuree en priorite.' });
-    if (failles.length === 0) failles.push({ t: 'Structure correcte', d: 'Votre modele presente une base saine. Des ajustements cibles permettraient d accelerer significativement.' });
+    if (data.duree_vie_client === 'moins_1') failles.push({ t: 'Z&eacute;ro r&eacute;tention client', d: "Vos clients n'ach&egrave;tent qu'une seule fois. Sans rachat, vous devez constamment acqu&eacute;rir de nouveaux clients pour maintenir votre CA." });
+    if (data.usage_whatsapp === 'non') failles.push({ t: 'Aucune relance client', d: "WhatsApp n'est pas utilis&eacute; pour relancer vos prospects et clients. C'est le canal de conversion le plus puissant en Afrique francophone." });
+    if (data.site_web === 'non') failles.push({ t: 'Absence de pr&eacute;sence digitale', d: 'Sans page de vente, vous ne pouvez pas convertir du trafic en clients de fa&ccedil;on autonome et mesurable.' });
+    if (marge < 25) failles.push({ t: 'Marge insuffisante pour scaler', d: 'Avec ' + Math.round(marge) + '% de marge, augmenter les depenses publicitaires ne sera pas rentable. La marge doit &ecirc;tre restructur&eacute;e en priorit&eacute;.' });
+    if (failles.length === 0) failles.push({ t: 'Structure correcte', d: 'Votre mod&egrave;le pr&eacute;sente une base saine. Des ajustements cibl&eacute;s permettraient d&#39;acc&eacute;l&eacute;rer significativement.' });
     const top3 = failles.slice(0, 3);
 
     // Recommandation
     let reco;
-    if (score >= 75) reco = { label: 'Pret pour le scaling', msg: 'Votre structure est saine. Vous etes en position d accelerer avec methode. Un plan 90 jours permettrait de doubler vos resultats.' };
-    else if (score >= 50) reco = { label: 'Optimisation necessaire', msg: 'Des failles critiques limitent votre rentabilite. Un accompagnement structure permettrait de les corriger en 60 a 90 jours.' };
-    else reco = { label: 'Restructuration prioritaire', msg: 'Votre modele presente des risques structurels importants. Une restructuration de base est indispensable avant tout investissement supplementaire.' };
+    if (score >= 75) reco = { label: 'Pr&ecirc;t pour le scaling', msg: 'Votre structure est saine. Vous &ecirc;tes en position d&#39;acc&eacute;l&eacute;rer avec m&eacute;thode. Un plan 90 jours permettrait de doubler vos r&eacute;sultats.' };
+    else if (score >= 50) reco = { label: 'Optimisation n&eacute;cessaire', msg: 'Des failles critiques limitent votre rentabilit&eacute;. Un accompagnement structur&eacute; permettrait de les corriger en 60 &agrave; 90 jours.' };
+    else reco = { label: 'Restructuration prioritaire', msg: 'Votre mod&egrave;le pr&eacute;sente des risques structurels importants. Une restructuration de base est indispensable avant tout investissement suppl&eacute;mentaire.' };
 
     // Accroche par secteur
     const accroches = {
-      mlm: 'Le MLM repose sur un systeme. Voici ce qui manque au votre.',
-      ecommerce: "Votre boutique attire des visiteurs. Voici pourquoi ils ne passent pas a l'achat.",
-      formation: 'Votre expertise est reelle. Voici ce qui empeche vos prospects de vous faire confiance assez vite.',
+      mlm: 'Le MLM repose sur un syst&egrave;me. Voici ce qui manque au v&ocirc;tre.',
+      ecommerce: "Votre boutique attire des visiteurs. Voici pourquoi ils ne passent pas &agrave; l'achat.",
+      formation: 'Votre expertise est r&eacute;elle. Voici ce qui emp&ecirc;che vos prospects de vous faire confiance assez vite.',
       cosmetiques: "Vos produits ont de la valeur. Voici pourquoi vos clients n'en parlent pas autour d'eux.",
       restauration: 'Vos clients viennent. Voici pourquoi ils ne reviennent pas assez souvent.',
       immobilier: 'Votre portefeuille existe. Voici ce qui ralentit vos transactions.',
-      services: 'Vous livrez de la qualite. Voici pourquoi vos clients ne vous recommandent pas systematiquement.',
-      autre: 'Votre activite genere du chiffre. Voici ce qui limite votre croissance reelle.'
+      services: 'Vous livrez de la qualit&eacute;. Voici pourquoi vos clients ne vous recommandent pas syst&eacute;matiquement.',
+      autre: 'Votre activit&eacute; g&eacute;n&egrave;re du chiffre. Voici ce qui limite votre croissance r&eacute;elle.'
     };
     const accroche = accroches[data.secteur] || accroches['autre'];
 
     // Valeurs N/A enrichies
     const cacDisplay = cac > 0 ? cac.toLocaleString('fr-FR') + ' FCFA' : null;
-    const cacNA = "Non calcule - vous n'investissez pas encore en publicite payante";
+    const cacNA = "Non calcul&eacute; &mdash; vous n'investissez pas encore en publicit&eacute; payante";
     const ratioDisplay = ratioLTV > 0 ? ratioLTV + ':1' : null;
-    const ratioNA = "Non applicable - activez une source d'acquisition payante pour mesurer ce ratio";
+    const ratioNA = "Non applicable &mdash; activez une source d'acquisition payante pour mesurer ce ratio";
     const paybackDisplay = payback > 0 ? payback + ' mois' : null;
-    const paybackNA = 'Non applicable - ce delai se calcule uniquement avec un budget publicitaire';
+    const paybackNA = 'Non applicable &mdash; ce d&eacute;lai se calcule uniquement avec un budget publicitaire';
 
     // Couleurs score
     const scoreColor = score >= 75 ? '#6fcf8a' : score >= 50 ? '#c9a96e' : '#e07070';
@@ -89,9 +89,9 @@ exports.handler = async (event) => {
 
     // Donnees brutes
     const caMensuelRaw = parseFloat(data.ca_mensuel) || null;
-    const caMensuel = caMensuelRaw ? caMensuelRaw.toLocaleString('fr-FR') + ' FCFA' : 'Non renseigne';
+    const caMensuel = caMensuelRaw ? caMensuelRaw.toLocaleString('fr-FR') + ' FCFA' : 'Non renseign&eacute;';
     const venteMoyenneRaw = parseFloat(data.vente_moyenne || data.panier_moyen) || null;
-    const venteMoyenneDisplay = venteMoyenneRaw ? venteMoyenneRaw.toLocaleString('fr-FR') + ' FCFA' : 'Non renseigne';
+    const venteMoyenneDisplay = venteMoyenneRaw ? venteMoyenneRaw.toLocaleString('fr-FR') + ' FCFA' : 'Non renseign&eacute;';
     const sourcesRaw = data.sources_acquisition || data.sources || '';
     const sourcesMap = {
       bouche_a_oreille: 'Bouche-a-oreille',
@@ -104,9 +104,9 @@ exports.handler = async (event) => {
     };
     const sourcesDisplay = sourcesRaw
       ? sourcesRaw.split(',').map(function(s) { return sourcesMap[s.trim()] || s.trim(); }).join(', ')
-      : 'Non renseigne';
-    const whatsappRelance = data.usage_whatsapp || data.relance_whatsapp || 'Non renseigne';
-    const blocage = data.blocage_principal || data.blocage || 'Non renseigne';
+      : 'Non renseign&eacute;';
+    const whatsappRelance = data.usage_whatsapp || data.relance_whatsapp || 'Non renseign&eacute;';
+    const blocage = data.blocage_principal || data.blocage || 'Non renseign&eacute;';
 
     // Budget qualification
     const budgetLabel = {
@@ -284,7 +284,7 @@ exports.handler = async (event) => {
       '<td width="50%" style="padding-left:6px;"><div style="background-color:#101014;border:1px solid #1c1c22;border-radius:12px;padding:16px;text-align:center;">',
       '<div style="font-size:10px;color:#7a7a85;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Qualification</div>',
       '<div style="font-size:16px;font-weight:700;color:#c9a96e;margin-top:8px;">' + budgetPriorite + '</div>',
-      '<div style="font-size:12px;color:#7a7a85;margin-top:6px;">' + (budgetLabel[data.budget_accompagnement] || 'Non renseigne') + '</div></div></td>',
+      '<div style="font-size:12px;color:#7a7a85;margin-top:6px;">' + (budgetLabel[data.budget_accompagnement] || 'Non renseign&eacute;') + '</div></div></td>',
       '</tr></table></td></tr>',
 
       '<tr><td style="padding:0 0 16px 0;text-align:center;">',
@@ -295,11 +295,11 @@ exports.handler = async (event) => {
       '<div style="font-size:10px;color:#7a7a85;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">Prospect</div>',
       '<table width="100%" cellpadding="0" cellspacing="0" border="0">',
       '<tr><td style="color:#7a7a85;font-size:13px;padding:4px 0;width:40%;">Nom</td><td style="color:#edeae3;font-weight:700;font-size:13px;">' + nomProspect + '</td></tr>',
-      '<tr><td style="color:#7a7a85;font-size:13px;padding:4px 0;">WhatsApp</td><td><a href="https://wa.me/' + whatsapp + '" style="color:#c9a96e;font-size:13px;text-decoration:none;">' + (data.whatsapp || 'Non renseigne') + '</a></td></tr>',
+      '<tr><td style="color:#7a7a85;font-size:13px;padding:4px 0;">WhatsApp</td><td><a href="https://wa.me/' + whatsapp + '" style="color:#c9a96e;font-size:13px;text-decoration:none;">' + (data.whatsapp || 'Non renseign&eacute;') + '</a></td></tr>',
       '<tr><td style="color:#7a7a85;font-size:13px;padding:4px 0;">Email</td><td style="color:#edeae3;font-size:13px;">' + email + '</td></tr>',
-      '<tr><td style="color:#7a7a85;font-size:13px;padding:4px 0;">Entreprise</td><td style="color:#edeae3;font-size:13px;">' + (data.entreprise || 'Non renseigne') + '</td></tr>',
-      '<tr><td style="color:#7a7a85;font-size:13px;padding:4px 0;">Secteur</td><td style="color:#edeae3;font-size:13px;">' + (data.secteur || 'Non renseigne') + '</td></tr>',
-      '<tr><td style="color:#7a7a85;font-size:13px;padding:4px 0;">Experience conseil</td><td style="color:#edeae3;font-size:13px;">' + (data.experience_conseil || 'Non renseigne') + '</td></tr>',
+      '<tr><td style="color:#7a7a85;font-size:13px;padding:4px 0;">Entreprise</td><td style="color:#edeae3;font-size:13px;">' + (data.entreprise || 'Non renseign&eacute;') + '</td></tr>',
+      '<tr><td style="color:#7a7a85;font-size:13px;padding:4px 0;">Secteur</td><td style="color:#edeae3;font-size:13px;">' + (data.secteur || 'Non renseign&eacute;') + '</td></tr>',
+      '<tr><td style="color:#7a7a85;font-size:13px;padding:4px 0;">Experience conseil</td><td style="color:#edeae3;font-size:13px;">' + (data.experience_conseil || 'Non renseign&eacute;') + '</td></tr>',
       '</table></td></tr></table></td></tr>',
 
       '<tr><td style="padding:0 0 12px 0;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#101014;border:1px solid #1c1c22;border-radius:12px;padding:20px;">',
@@ -332,7 +332,7 @@ exports.handler = async (event) => {
       '<tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;">Sources</td><td style="color:#edeae3;font-size:12px;">' + sourcesDisplay + '</td></tr>',
       '<tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;">Site web</td><td style="color:#edeae3;font-size:12px;">' + (data.site_web || 'non') + '</td></tr>',
       '<tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;">WhatsApp relance</td><td style="color:#edeae3;font-size:12px;">' + whatsappRelance + '</td></tr>',
-      '<tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;">Budget accomp.</td><td style="color:#edeae3;font-size:12px;">' + (budgetLabel[data.budget_accompagnement] || 'Non renseigne') + '</td></tr>',
+      '<tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;">Budget accomp.</td><td style="color:#edeae3;font-size:12px;">' + (budgetLabel[data.budget_accompagnement] || 'Non renseign&eacute;') + '</td></tr>',
       '<tr><td style="color:#7a7a85;font-size:12px;padding:3px 0;">Blocage principal</td><td style="color:#edeae3;font-size:12px;">' + blocage + '</td></tr>',
       '</table></td></tr></table></td></tr>',
 
