@@ -726,19 +726,27 @@ async function submitForm(){
     sv.classList.add('show');
     sv.scrollIntoView({behavior:'smooth',block:'center'});
   },7200);
-  fetch('/.netlify/functions/diagnostic',{
+    fetch('https://api.eperformance.pro/send_diag.php',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({
       _subject:'Nouveau diagnostic — '+d.nom+' ('+d.secteur+')',
-      nom:d.nom,whatsapp:d.whatsapp,email:d.email,
-      entreprise:d.entreprise,secteur:d.secteur,
-      CA_mensuel:d.ca_mensuel+' FCFA',clients_par_mois:d.clients_par_mois,
-      vente_moyenne:d.panier_moyen+' FCFA',marge:ratios.marge+'%',
-      duree_vie_client:d.duree_vie_client,pub_active:d.pub_active,
+      nom:d.nom,
+      whatsapp:d.whatsapp,
+      email:d.email,
+      entreprise:d.entreprise,
+      secteur:d.secteur,
+      CA_mensuel:d.ca_mensuel+' FCFA',
+      clients_par_mois:d.clients_par_mois,
+      vente_moyenne:d.panier_moyen+' FCFA',
+      marge:ratios.marge+'%',
+      duree_vie_client:d.duree_vie_client,
+      pub_active:d.pub_active,
       budget_pub:d.budget_pub?d.budget_pub+' FCFA':'Pas de pub',
-      sources:d.sources_acquisition,site_web:d.site_web,
-      relance_whatsapp:d.usage_whatsapp,blocage:d.blocage_principal,
+      sources:d.sources_acquisition,
+      site_web:d.site_web,
+      relance_whatsapp:d.usage_whatsapp,
+      blocage:d.blocage_principal,
       budget_accompagnement:d.budget_accompagnement,
       experience_conseil:d.experience_conseil,
       SCORE_MATURITE:ratios.score+'/100',
@@ -752,7 +760,8 @@ async function submitForm(){
       Faille_3:failles[2]?failles[2].t+' : '+failles[2].d:'—',
       WhatsApp_direct:'https://wa.me/'+d.whatsapp.replace(/\D/g,'')
     })
-  }).catch(e=>console.warn('Formspree:',e));
+  }).catch(e=>console.warn('Erreur LWS:',e));
+
 }
 
 updateUI(1);
