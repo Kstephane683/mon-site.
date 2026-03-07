@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
@@ -10,82 +10,344 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z7QW8BCYQ1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z7QW8BCYQ1');</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config={theme:{extend:{colors:{brand:{50:'#f0f7ff',100:'#e0effe',200:'#bae0fd',300:'#7cc8fb',400:'#38abf7',500:'#0e91e9',600:'#0274c7',700:'#035da1',800:'#074e84',900:'#0c426e',950:'#082a4a'}},fontFamily:{serif:['Cormorant Garamond','serif'],sans:['DM Sans','sans-serif']}}}}
 </script>
 <style>
-body{font-family:'DM Sans',sans-serif;background-color:#020617;color:#f8fafc;scroll-behavior:smooth}
-.glass-card{background:rgba(15,23,42,0.6);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08)}
+body{font-family:'DM Sans',sans-serif;background-color:#020617;color:#f8fafc;scroll-behavior:smooth;overflow-x:hidden}
+.glass-card{background:rgba(15,23,42,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08);box-shadow:0 25px 50px -12px rgba(0,0,0,0.5)}
 .step-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:all .3s}
 .step-dot.active{background:#38abf7;box-shadow:0 0 12px #38abf7;transform:scale(1.2)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#38abf7;box-shadow:0 0 0 4px rgba(56,171,247,0.1)}
+.btn-grad{background:linear-gradient(135deg,#38abf7 0%,#0e91e9 100%);transition:all .3s ease}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(14,145,233,0.4)}
+.btn-grad:disabled{opacity:0.5;transform:none;cursor:not-allowed}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.animate-fade{animation:fadeIn 0.5s ease-out forwards}
+.hide-scroll::-webkit-scrollbar{display:none}
+.hide-scroll{-ms-overflow-style:none;scrollbar-width:none}
 </style>
 </head>
-<body>
-
-<div class="min-h-screen flex flex-col items-center justify-center p-4">
-    <div id="diag-container" class="w-full max-w-2xl glass-card rounded-3xl p-8 md:p-12 relative overflow-hidden">
-        <form id="diag-form" class="space-y-8">
-            <div id="step-1">
-                <h1 class="text-3xl font-serif font-bold mb-2">Identité</h1>
-                <input type="text" name="nom" placeholder="Nom Complet" required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-brand-400">
-                <input type="tel" name="whatsapp" placeholder="WhatsApp" required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 mt-4 outline-none focus:border-brand-400">
-                <button type="button" onclick="nextStep(2)" class="w-full bg-brand-500 py-4 rounded-xl font-bold mt-6">Continuer</button>
-            </div>
-            
-            </form>
-
-        <div id="result-area" class="hidden text-center space-y-6">
-            <h2 class="text-4xl font-serif font-bold text-brand-400">Analyse Terminée</h2>
-            <div id="display-score" class="text-6xl font-bold">--/100</div>
-            <div id="ai-analysis" class="text-left bg-white/5 p-6 rounded-2xl border border-white/10 italic text-slate-300">
-                L'IA analyse vos résultats...
-            </div>
-        </div>
-    </div>
+<body class="selection:bg-brand-500/30">
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-900/20 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-900/20 rounded-full blur-[120px]"></div>
 </div>
-
+<header class="relative z-10 pt-8 px-6 text-center">
+<div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
+<span class="flex h-2 w-2 rounded-full bg-brand-400 animate-pulse"></span>
+<span class="text-xs font-medium uppercase tracking-widest text-brand-200">Diagnostic Business v2.0</span>
+</div>
+</header>
+<main class="relative z-10 max-w-2xl mx-auto px-4 pb-20">
+<div id="diag-container" class="glass-card rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
+<div class="flex justify-between items-center mb-10">
+<div class="flex space-x-2" id="step-dots">
+<div class="step-dot active"></div>
+<div class="step-dot"></div>
+<div class="step-dot"></div>
+<div class="step-dot"></div>
+</div>
+<span id="step-counter" class="text-xs font-bold text-slate-500 tracking-widest uppercase">Étape 1/4</span>
+</div>
+<form id="diag-form" class="space-y-8">
+<div id="step-1" class="step-content space-y-8">
+<div class="space-y-3">
+<h1 class="text-4xl md:text-5xl font-serif font-bold text-white leading-tight">Commençons par <span class="text-brand-400">vous</span>.</h1>
+<p class="text-slate-400 text-lg">Ces informations nous permettent de personnaliser votre rapport final.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Nom Complet</label>
+<input type="text" name="nom" required placeholder="Stéphane K." class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 transition-all"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">WhatsApp</label>
+<input type="tel" name="whatsapp" required placeholder="+225 ..." class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 transition-all"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">E-mail Professionnel</label>
+<input type="email" name="email" required placeholder="contact@votreentreprise.com" class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 transition-all"/>
+</div>
+<button type="button" onclick="nextStep(2)" class="w-full btn-grad py-5 rounded-2xl font-bold text-white shadow-lg flex items-center justify-center space-x-2">
+<span>Analyser mon profil</span>
+<i class="fa-solid fa-arrow-right text-xs"></i>
+</button>
+</div>
+<div id="step-2" class="step-content hidden space-y-8 animate-fade">
+<div class="space-y-3">
+<h2 class="text-4xl font-serif font-bold text-white">Votre <span class="text-brand-400">Activité</span>.</h2>
+<p class="text-slate-400 text-lg">Décrivez-nous la structure actuelle de votre business.</p>
+</div>
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Nom de l'entreprise / Projet</label>
+<input type="text" name="entreprise" placeholder="ePerformance Ltd" class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 transition-all"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Secteur</label>
+<select name="secteur" class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white appearance-none transition-all">
+<option value="ecommerce" class="bg-slate-900">E-commerce / Vente</option>
+<option value="service" class="bg-slate-900">Services / B2B</option>
+<option value="formation" class="bg-slate-900">Formation / Coaching</option>
+<option value="immobilier" class="bg-slate-900">Immobilier</option>
+<option value="autre" class="bg-slate-900">Autre</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">CA Mensuel Moyen (FCFA)</label>
+<input type="number" name="ca_mensuel" placeholder="Ex: 2000000" class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 transition-all"/>
+</div>
+</div>
+</div>
+<div class="flex space-x-3">
+<button type="button" onclick="prevStep(1)" class="w-1/3 bg-white/5 hover:bg-white/10 text-slate-400 py-5 rounded-2xl font-bold transition-all">Retour</button>
+<button type="button" onclick="nextStep(3)" class="w-2/3 btn-grad py-5 rounded-2xl font-bold text-white flex items-center justify-center space-x-2">
+<span>Suivant</span>
+<i class="fa-solid fa-arrow-right text-xs"></i>
+</button>
+</div>
+</div>
+<div id="step-3" class="step-content hidden space-y-8 animate-fade">
+<div class="space-y-3">
+<h2 class="text-4xl font-serif font-bold text-white">Vos <span class="text-brand-400">Chiffres</span> Clés.</h2>
+<p class="text-slate-400 text-lg">Ces données sont essentielles pour calculer vos ratios de rentabilité.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Nouveaux Clients / mois</label>
+<input type="number" name="clients_par_mois" placeholder="Ex: 50" class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 transition-all"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Panier Moyen (FCFA)</label>
+<input type="number" name="panier_moyen" placeholder="Ex: 25000" class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 transition-all"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Taux de Marge (%)</label>
+<input type="number" name="marge_pourcentage" placeholder="Ex: 40" class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 transition-all"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Durée de vie client (mois)</label>
+<input type="number" name="duree_vie_client" placeholder="Ex: 6" class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 transition-all"/>
+</div>
+</div>
+<div class="flex space-x-3">
+<button type="button" onclick="prevStep(2)" class="w-1/3 bg-white/5 hover:bg-white/10 text-slate-400 py-5 rounded-2xl font-bold transition-all">Retour</button>
+<button type="button" onclick="nextStep(4)" class="w-2/3 btn-grad py-5 rounded-2xl font-bold text-white flex items-center justify-center space-x-2">
+<span>Calculer mes ratios</span>
+<i class="fa-solid fa-arrow-right text-xs"></i>
+</button>
+</div>
+</div>
+<div id="step-4" class="step-content hidden space-y-8 animate-fade">
+<div class="space-y-3">
+<h2 class="text-4xl font-serif font-bold text-white">Acquisition & <span class="text-brand-400">Investissement</span>.</h2>
+<p class="text-slate-400 text-lg">Finalisons l'analyse de votre système marketing.</p>
+</div>
+<div class="space-y-6">
+<div class="space-y-3">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Utilisez-vous la publicité payante ?</label>
+<div class="flex space-x-4">
+<button type="button" onclick="setPub(true)" id="pub-yes" class="flex-1 bg-white/5 border border-white/10 rounded-2xl py-4 text-slate-400 font-medium transition-all">Oui</button>
+<button type="button" onclick="setPub(false)" id="pub-no" class="flex-1 bg-white/5 border border-white/10 rounded-2xl py-4 text-slate-400 font-medium transition-all">Non</button>
+</div>
+<input type="hidden" name="pub_active" value="false"/>
+</div>
+<div id="pub-fields" class="hidden animate-fade space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Budget Publicitaire / mois (FCFA)</label>
+<input type="number" name="budget_pub" placeholder="Ex: 150000" class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 transition-all"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Quel est votre blocage principal ?</label>
+<select name="blocage_principal" class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white appearance-none">
+<option value="acquisition" class="bg-slate-900">Pas assez de leads / prospects</option>
+<option value="conversion" class="bg-slate-900">Leads de mauvaise qualité (curieux)</option>
+<option value="process" class="bg-slate-900">Manque de temps / pas de système</option>
+<option value="scaling" class="bg-slate-900">Je stagne à un certain palier</option>
+</select>
+</div>
+</div>
+<button type="submit" id="submit-btn" class="w-full btn-grad py-6 rounded-2xl font-bold text-white shadow-xl flex items-center justify-center space-x-3 text-lg">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+<span>Générer mon Diagnostic</span>
+</button>
+<p class="text-center text-[10px] text-slate-600 uppercase tracking-widest font-bold">Analyse instantanée par IA ePerformance</p>
+</div>
+</form>
+<div id="results" class="hidden space-y-10 animate-fade">
+<div class="text-center space-y-4">
+<div class="inline-block relative">
+<svg class="w-48 h-48 transform -rotate-90">
+<circle cx="96" cy="96" r="88" stroke="rgba(255,255,255,0.05)" stroke-width="12" fill="transparent"></circle>
+<circle id="score-circle" cx="96" cy="96" r="88" stroke="#38abf7" stroke-width="12" fill="transparent" stroke-dasharray="553" stroke-dashoffset="553" stroke-linecap="round" class="transition-all duration-1000 ease-out"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span id="res-score" class="text-6xl font-serif font-bold text-white">0</span>
+<span class="text-[10px] font-bold text-brand-400 uppercase tracking-widest">Score Maturité</span>
+</div>
+</div>
+<h2 id="res-status" class="text-2xl font-serif font-bold text-white">Analyse en cours...</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-white/5 border border-white/10 rounded-[2rem] p-6 text-center space-y-1">
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">CAC Réel</p>
+<p id="res-cac" class="text-xl font-bold text-white">--</p>
+<p class="text-[9px] text-slate-600 italic">Coût d'acquisition</p>
+</div>
+<div class="bg-white/5 border border-white/10 rounded-[2rem] p-6 text-center space-y-1">
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">LTV (6 mois)</p>
+<p id="res-ltv" class="text-xl font-bold text-white">--</p>
+<p class="text-[9px] text-slate-600 italic">Valeur vie client</p>
+</div>
+<div class="bg-white/5 border border-white/10 rounded-[2rem] p-6 text-center space-y-1 border-brand-500/30 bg-brand-500/5">
+<p class="text-[10px] font-bold text-brand-400 uppercase tracking-widest">ROI Potentiel</p>
+<p id="res-payback" class="text-xl font-bold text-white">--</p>
+<p class="text-[9px] text-brand-400/60 italic">Délai de rentabilité</p>
+</div>
+</div>
+<div class="bg-brand-500/10 border border-brand-500/20 rounded-[2.5rem] p-8 space-y-6">
+<div class="flex items-center space-x-3">
+<div class="bg-brand-500 p-2 rounded-lg text-white text-xs">
+<i class="fa-solid fa-lightbulb"></i>
+</div>
+<h3 class="text-lg font-serif font-bold text-white">Analyse Stratégique IA</h3>
+</div>
+<div id="res-advice" class="space-y-4 text-brand-100 text-sm leading-relaxed">
+<div class="h-4 bg-white/5 rounded-full w-full animate-pulse"></div>
+<div class="h-4 bg-white/5 rounded-full w-5/6 animate-pulse"></div>
+<div class="h-4 bg-white/5 rounded-full w-4/6 animate-pulse"></div>
+</div>
+</div>
+<div class="pt-4">
+<a href="https://wa.me/2250702844111?text=Bonjour,%20je%20viens%20de%20terminer%20mon%20diagnostic%20sur%20ePerformance." class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-5 rounded-2xl font-bold flex items-center justify-center space-x-3 transition-all shadow-xl shadow-emerald-900/20">
+<i class="fa-brands fa-whatsapp text-xl"></i>
+<span>Discuter de mon scaling sur WhatsApp</span>
+</a>
+<p class="text-[10px] text-center text-slate-600 mt-4 uppercase tracking-[0.2em] font-medium">Session de consultation offerte pour les scores > 60</p>
+</div>
+</div>
+</div>
+<footer class="mt-12 text-center space-y-6">
+<div class="flex justify-center space-x-8 opacity-40 grayscale contrast-125">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/600px-Facebook_Logo_%282019%29.png" alt="Meta" class="h-5"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png" alt="Instagram" class="h-5"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/2048px-LinkedIn_icon.svg.png" alt="LinkedIn" class="h-5"/>
+</div>
+<p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest">© 2024 ePerformance — Accélération Business & Systèmes Acquisition</p>
+</footer>
+</main>
 <script>
-// --- LA MODIFICATION CRUCIALE EST ICI ---
-const API_URL = 'https://api.eperformance.pro/send_diag.php';
+let currentStep=1;
+const totalSteps=4;
+function updateStepUI(){
+document.querySelectorAll('.step-content').forEach(el=>el.classList.add('hidden'));
+document.getElementById(`step-${currentStep}`).classList.remove('hidden');
+const dots=document.querySelectorAll('.step-dot');
+dots.forEach((dot,idx)=>{
+if(idx<currentStep)dot.classList.add('active');
+else dot.classList.remove('active');
+});
+document.getElementById('step-counter').innerText=`Étape ${currentStep}/${totalSteps}`;
+window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextStep(step){
+const inputs=document.getElementById(`step-${currentStep}`).querySelectorAll('input[required]');
+let valid=true;
+inputs.forEach(input=>{if(!input.value)valid=false;});
+if(!valid){alert('Veuillez remplir les champs obligatoires.');return;}
+currentStep=step;
+updateStepUI();
+}
+function prevStep(step){
+currentStep=step;
+updateStepUI();
+}
+function setPub(active){
+const input=document.querySelector('input[name="pub_active"]');
+input.value=active;
+const fields=document.getElementById('pub-fields');
+const yesBtn=document.getElementById('pub-yes');
+const noBtn=document.getElementById('pub-no');
+if(active){
+fields.classList.remove('hidden');
+yesBtn.classList.add('bg-brand-500/20','border-brand-500','text-brand-400');
+noBtn.classList.remove('bg-brand-500/20','border-brand-500','text-brand-400');
+}else{
+fields.classList.add('hidden');
+noBtn.classList.add('bg-brand-500/20','border-brand-500','text-brand-400');
+yesBtn.classList.remove('bg-brand-500/20','border-brand-500','text-brand-400');
+}
+}
+document.getElementById('diag-form').addEventListener('submit',async function(e){
+e.preventDefault();
+const btn=document.getElementById('submit-btn');
+btn.disabled=true;
+btn.innerHTML='<i class="fa-solid fa-circle-notch animate-spin"></i> <span>Analyse IA en cours...</span>';
+const formData=new FormData(this);
+const d=Object.fromEntries(formData.entries());
+const pm=parseFloat(d.panier_moyen)||0;
+const cm=parseFloat(d.ca_mensuel)||0;
+const cp=parseFloat(d.clients_par_mois)||1;
+const m=parseFloat(d.marge_pourcentage)||0;
+const bp=parseFloat(d.budget_pub)||0;
+const ltv_m=parseFloat(d.duree_vie_client)||1;
+const ratios={
+cac:d.pub_active==='true'?(bp/cp):0,
+ltv:pm*(m/100)*ltv_m,
+score:0,
+payback:0
+};
+ratios.score=Math.round((pm/50000)*15+(m/100)*25+(ltv_m/12)*20+(d.pub_active==='true'?20:5));
+if(ratios.score>100)ratios.score=100;
+if(ratios.cac>0)ratios.payback=Math.ceil(ratios.cac/(pm*(m/100)));
+document.getElementById('diag-form').classList.add('hidden');
+document.getElementById('results').classList.remove('hidden');
+document.getElementById('res-score').innerText=ratios.score;
+document.getElementById('score-circle').style.strokeDashoffset=553-(553*ratios.score/100);
+document.getElementById('res-cac').innerText=ratios.cac>0?Math.round(ratios.cac).toLocaleString()+' F':'N/A';
+document.getElementById('res-ltv').innerText=Math.round(ratios.ltv).toLocaleString()+' F';
+document.getElementById('res-payback').innerText=ratios.payback>0?ratios.payback+' mois':'Immédiat';
+if(ratios.score<40)document.getElementById('res-status').innerText="Maturité Faible — Risque Élevé";
+else if(ratios.score<70)document.getElementById('res-status').innerText="Maturité Moyenne — Optimisation Requise";
+else document.getElementById('res-status').innerText="Maturité Élevée — Prêt pour le Scaling";
 
-async function finalSubmit() {
-    const form = document.getElementById('diag-form');
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-
-    // On prépare l'affichage du chargement
-    document.getElementById('diag-form').classList.add('opacity-50', 'pointer-events-none');
-    
-    try {
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            mode: 'cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            document.getElementById('diag-form').classList.add('hidden');
-            document.getElementById('result-area').classList.remove('hidden');
-            document.getElementById('display-score').textContent = result.score + '/100';
-            document.getElementById('ai-analysis').innerHTML = result.analyse.replace(/\n/g, '<br>');
-        } else {
-            alert("Erreur : " + result.error);
-        }
-    } catch (e) {
-        alert("Erreur de connexion avec le moteur LWS. Vérifiez le HTTPS sur api.eperformance.pro");
+// REMPLACEMENT NETLIFY PAR LWS CI-DESSOUS
+fetch('https://api.eperformance.pro/send_diag.php',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      _subject:'Nouveau diagnostic — '+d.nom+' ('+d.secteur+')',
+      nom:d.nom,whatsapp:d.whatsapp,email:d.email,
+      entreprise:d.entreprise,secteur:d.secteur,
+      CA_mensuel:d.ca_mensuel+' FCFA',clients_par_mois:d.clients_par_mois,
+      vente_moyenne:d.panier_moyen+' FCFA',marge:d.marge_pourcentage+'%',
+      duree_vie_client:d.duree_vie_client,pub_active:d.pub_active,
+      budget_pub:d.budget_pub?d.budget_pub+' FCFA':'Pas de pub',
+      blocage:d.blocage_principal,
+      SCORE_MATURITE:ratios.score+'/100',
+      CAC_Cout_Acquisition_Client:ratios.cac>0?ratios.cac+' FCFA':'N/A',
+      LTV_Valeur_Vie_Client:ratios.ltv>0?ratios.ltv+' FCFA':'N/A',
+      Payback:ratios.payback>0?ratios.payback+' mois':'N/A'
+    })
+})
+.then(response=>response.json())
+.then(result=>{
+    if(result.success && result.analyse){
+        document.getElementById('res-advice').innerHTML = result.analyse.split('\n').filter(t=>t.trim()!=='').map(p=>`<p>${p}</p>`).join('');
+    } else {
+        document.getElementById('res-advice').innerText = "Analyse personnalisée envoyée par email.";
     }
-}
-
-// Fonction pour passer d'une étape à l'autre (à adapter selon ton code)
-function nextStep(n) {
-    if(n > 1) { /* Logique de validation */ }
-    // Si c'est la dernière étape, appeler finalSubmit() au lieu de l'ancien fetch Netlify
-}
+})
+.catch(err=>{
+    console.error("Erreur LWS:", err);
+    document.getElementById('res-advice').innerText = "Nos experts analysent vos données et reviendront vers vous.";
+});
+});
 </script>
-
 </body>
 </html>
