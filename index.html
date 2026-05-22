@@ -199,15 +199,19 @@
     .callout{padding:1.3rem 1.5rem;border:1px solid var(--gold-border);border-left:3px solid var(--gold);border-radius:14px;background:var(--gold-bg);font-size:.93rem;color:var(--soft);line-height:1.7}
     .callout strong{color:var(--gold2)}
 
-    /* GUIDE */
+    /* GUIDE EBOOKS */
     .guide-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
     @media(max-width:760px){.guide-wrap{grid-template-columns:1fr}}
-    .guide-cover{position:relative;display:flex;justify-content:center}
-    .guide-cover img{width:100%;max-width:260px;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.65),0 0 0 1px rgba(201,169,110,.2)}
+    .guide-cover{position:relative;display:flex;flex-direction:column;align-items:center;gap:1rem}
+    .guide-cover img{width:100%;max-width:200px;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.65),0 0 0 1px rgba(201,169,110,.2)}
+    .guide-cover img:first-child{margin-bottom:.5rem}
     .guide-cover::before{content:"";position:absolute;inset:-30px;background:radial-gradient(ellipse at center,rgba(201,169,110,.1),transparent 70%);pointer-events:none}
     .guide-points{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.8rem}
     .guide-point{display:flex;gap:.75rem;align-items:flex-start;font-size:.92rem;color:var(--soft)}
     .guide-point i{color:var(--gold);margin-top:.1rem;flex-shrink:0;width:16px}
+    .ebook-card-mini{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem;margin-bottom:.8rem}
+    .ebook-card-mini:last-child{margin-bottom:0}
+    .ebook-duo{background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:var(--r);padding:1rem;text-align:center;margin-top:.8rem}
 
     /* FAQ */
     .faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
@@ -232,7 +236,6 @@
     .wa{position:fixed;right:22px;bottom:22px;z-index:1000;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--wa);box-shadow:0 8px 28px rgba(0,0,0,.55);transition:transform .2s}
     .wa:hover{transform:scale(1.07)}
     .wa i{font-size:2.1rem;color:#fff}
-
 
     /* TEMOIGNAGES */
     .tem-section{background:var(--bg2)}
@@ -680,29 +683,60 @@
 
 <div class="divider"></div>
 
-<!-- GUIDE -->
+<!-- GUIDE (EBOOKS) -->
 <section id="guide">
   <div class="container">
     <div class="guide-wrap">
       <div class="guide-cover reveal">
-        <img src="https://i.ibb.co/hRfjtF6Z/a0eb9bad-c1ba-4bf0-b2dc-2d34d2432cfb.jpg" alt="Guide ePerformance — Pourquoi votre publicité n'est pas rentable" loading="lazy" />
+        <img src="couverture-ebook-ads-2026.webp" alt="Facebook & Instagram Ads – Version 2026" loading="lazy" />
+        <img src="couverture-ebook-rentable.webp" alt="Pourquoi votre publicité n'est pas rentable" loading="lazy" />
       </div>
       <div class="reveal">
-        <span class="s-eyebrow">Guide gratuit</span>
-        <h2 class="s-title" style="margin-bottom:1rem">Pourquoi votre publicité<br>n'est pas rentable</h2>
-        <p style="color:var(--soft);font-size:.97rem;line-height:1.75;margin-bottom:1.5rem">Un diagnostic stratégique complet pour comprendre ce qui bloque réellement votre acquisition — et quoi corriger en premier. Les 4 ratios, les 5 erreurs structurelles, le mini-audit express en 30 minutes.</p>
-        <div class="guide-points">
-          <div class="guide-point"><i class="fa-solid fa-check"></i><span>Les 4 ratios que tout entrepreneur doit maîtriser (CAC, LTV, Payback, marge nette)</span></div>
-          <div class="guide-point"><i class="fa-solid fa-check"></i><span>Les 5 erreurs structurelles qui rendent l'acquisition déficitaire</span></div>
-          <div class="guide-point"><i class="fa-solid fa-check"></i><span>Le mini-audit express — calculez vos propres ratios en 30 minutes</span></div>
-          <div class="guide-point"><i class="fa-solid fa-check"></i><span>La différence entre réagir à ses chiffres et vraiment piloter</span></div>
+        <span class="s-eyebrow">Ebooks ePerformance</span>
+        <h2 class="s-title" style="margin-bottom:1rem">Deux guides complets<br>pour maîtriser votre acquisition</h2>
+        <p style="color:var(--soft);font-size:.97rem;line-height:1.75;margin-bottom:1.5rem">Des guides concrets, sans jargon, à jour des dernières évolutions Meta. Technique + stratégique : le duo gagnant.</p>
+        
+        <!-- Ebook 1 -->
+        <div class="ebook-card-mini">
+          <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;justify-content:space-between">
+            <div>
+              <span class="badge" style="margin-bottom:.3rem"><i class="fa-brands fa-meta"></i> Ebook technique</span>
+              <h3 style="font-size:1.1rem;margin:.3rem 0">Facebook & Instagram Ads – Version 2026</h3>
+              <p style="font-size:.8rem;color:var(--muted)">Andromeda · WhatsApp Business · Checklist · 49 pages</p>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:1.3rem;font-weight:700;color:var(--gold)">9 900 FCFA</div>
+              <a href="ebook.html" class="btn btn-outline" style="padding:.4rem 1rem;font-size:.75rem"><i class="fa-regular fa-eye"></i> Voir</a>
+            </div>
+          </div>
         </div>
-  <div style="text-align:left;margin-top:1rem">
-    <a class="btn btn-gold" href="ebook.html" style="padding:1rem 2rem;font-size:1rem">
-        <i class="fa-solid fa-book"></i> Acheter l'ebook — 3 000 FCFA
-    </a>
-    <p style="font-size:.85rem;color:var(--muted);margin-top:.8rem">Les 4 ratios fondamentaux · Les 5 erreurs structurelles · Le mini-audit express en 30 minutes</p>
-</div>
+
+        <!-- Ebook 2 -->
+        <div class="ebook-card-mini">
+          <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;justify-content:space-between">
+            <div>
+              <span class="badge" style="margin-bottom:.3rem"><i class="fa-solid fa-chart-line"></i> Ebook stratégique</span>
+              <h3 style="font-size:1.1rem;margin:.3rem 0">Pourquoi votre publicité n'est pas rentable</h3>
+              <p style="font-size:.8rem;color:var(--muted)">CAC · LTV · Payback · Mini-audit · Diagnostic</p>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:1.3rem;font-weight:700;color:var(--gold)">14 900 FCFA</div>
+              <a href="ebook.html" class="btn btn-outline" style="padding:.4rem 1rem;font-size:.75rem"><i class="fa-regular fa-eye"></i> Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offre duo -->
+        <div class="ebook-duo">
+          <span class="badge" style="background:var(--gold);color:#08080c;border-color:var(--gold);margin-bottom:.3rem"><i class="fa-solid fa-star"></i> Offre duo</span>
+          <h3 style="font-size:1.2rem;margin:.4rem 0">Les deux ebooks</h3>
+          <div style="font-size:1.5rem;font-weight:700;color:var(--gold)">15 000 FCFA</div>
+          <div style="font-size:.75rem;color:var(--muted);margin-bottom:.8rem">au lieu de 24 800 FCFA (économie 9 800 FCFA)</div>
+          <a href="ebook.html" class="btn btn-gold" style="padding:.6rem 1.5rem;font-size:.85rem"><i class="fa-solid fa-cart-shopping"></i> Découvrir l'offre</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -738,9 +772,7 @@
     </div>
     <div class="reveal" style="max-width:760px;margin:0 auto">
       <div style="background:var(--card);border:1px solid var(--gold-border);border-radius:var(--r2);padding:2rem;position:relative;overflow:hidden">
-        <!-- Fond décoratif -->
         <div style="position:absolute;top:-40px;right:-40px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.07),transparent 70%);pointer-events:none"></div>
-
         <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1.2rem;margin-bottom:1.5rem">
           <div>
             <span class="badge" style="margin-bottom:.7rem"><i class="fa-solid fa-store"></i> Cas client — Distribution MLM · Côte d'Ivoire</span>
@@ -751,8 +783,6 @@
             Voir le site <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.7rem"></i>
           </a>
         </div>
-
-        <!-- Métriques -->
         <div class="cas-metrics-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-bottom:1.5rem">
           <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:.9rem;text-align:center">
             <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--gold);line-height:1">15 600+</div>
@@ -771,8 +801,6 @@
             <div style="font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem">Pub Google</div>
           </div>
         </div>
-
-        <!-- Description et CTA -->
         <p style="font-size:.9rem;color:var(--soft);line-height:1.7;margin-bottom:1.2rem">
           En 16 mois, un système d'acquisition complet construit de zéro : boutique mobile-first, 5 pages produits SEO, 11 articles de blog, tracking CAPI Facebook, Google Merchant Center et GMB. Trafic organique actif dans 30+ pays — sans dépense publicitaire Google.
         </p>
@@ -844,7 +872,7 @@
     <div>
       <div class="brand"><strong style="font-size:1.3rem">ePerformance</strong><span style="font-size:.72rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase">par K. STEPHANE</span></div>
       <p style="margin-top:1rem;font-size:.9rem">Acquisition rentable — 100% en ligne</p>
-      <p style="margin-top:.4rem;font-size:.9rem"><i class="fa-solid fa-envelope" style="color:var(--gold);margin-right:.45rem"></i><a href="/cdn-cgi/l/email-protection#c9aba6a7a3a6bcbb89acb9acbbafa6bba4a8a7aaace7b9bba6"><span class="__cf_email__" data-cfemail="73111c1d191c06013316031601151c011e121d10165d03011c">[email&#160;protected]</span></a></p>
+      <p style="margin-top:.4rem;font-size:.9rem"><i class="fa-solid fa-envelope" style="color:var(--gold);margin-right:.45rem"></i><a href="/cdn-cgi/l/email-protection#9af8f5f4f0f5efe8daffeadffec8efe7faf9daefe8e4e9eff4efe2b4ea">[email&#160;protected]</a></p>
       <p style="font-size:.9rem"><i class="fa-brands fa-whatsapp" style="color:var(--gold);margin-right:.45rem"></i><a href="tel:+2250151170666">+225 01 51 17 06 66</a></p>
     </div>
     <div style="display:flex;flex-direction:column;gap:.5rem;font-size:.9rem">
@@ -885,7 +913,6 @@
       var grid = document.getElementById('tems-grid');
       if (!res.ok || !res.data || res.data.length === 0) {
         document.getElementById('resultats').style.display='none';
-        // Masquer aussi le divider précédent
         var prev = document.getElementById('resultats').previousElementSibling;
         if (prev && prev.className === 'divider') prev.style.display='none';
         return;
@@ -926,7 +953,6 @@
   if (ref) sessionStorage.setItem('ep_ref', ref);
 })();
 </script>
-
 
 <script>
 // FORMULAIRE EBOOK
