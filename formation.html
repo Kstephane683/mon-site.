@@ -132,12 +132,28 @@
     .fc-sub{font-size:.87rem;color:var(--muted);line-height:1.6}
     .fc-body{padding:1.6rem 2rem 2rem;display:flex;flex-direction:column;flex:1}
     .fc-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:.9rem;display:block}
-    .fc-outcomes{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.8rem}
+    .fc-outcomes{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.5rem}
     .fc-outcomes li{font-size:.9rem;color:var(--soft);display:flex;gap:.7rem;align-items:flex-start;line-height:1.5}
     .fc-outcomes li::before{content:"✦";color:var(--gold);flex-shrink:0;font-size:.65rem;margin-top:.25rem}
+
+    /* EBOOK OFFERT */
+    .ebook-offer{background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:12px;padding:.8rem 1rem;margin-bottom:1rem}
+    .ebook-offer-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+    .ebook-offer-link{margin-left:auto;font-size:.75rem;color:var(--soft);transition:color .2s}
+    .ebook-offer-link:hover{color:var(--gold)}
+
+    /* PLAN REMISE À NIVEAU */
+    .plan-toggle{width:100%;background:transparent;border:1px solid var(--border);border-radius:12px;padding:.7rem .9rem;font-size:.8rem;color:var(--soft);cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;transition:border-color .2s}
+    .plan-toggle:hover{border-color:var(--gold-border)}
+    .plan-toggle i{transition:transform .3s;font-size:.7rem}
+    .plan-content{display:none;margin-top:.7rem;padding:.8rem 1rem;background:var(--card2);border-radius:12px;font-size:.8rem;color:var(--muted);line-height:1.6}
+    .plan-content ul{margin-left:1.2rem;padding:.3rem 0}
+    .plan-content li{margin-bottom:.3rem}
+    .plan-content li:last-child{margin-bottom:0}
+
     .fc-cta{margin-top:auto}
     .fc-badge-new{position:absolute;top:1.2rem;right:1.2rem;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.25);color:var(--green);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;padding:.28rem .7rem;border-radius:999px}
-    .fc-price{background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:12px;padding:.9rem 1rem;margin-bottom:1.2rem;text-align:center}
+    .fc-price{background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:12px;padding:.9rem 1rem;margin:1rem 0}
     .fc-price-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);display:block;margin-bottom:.2rem}
     .fc-price-amount{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--gold)}
     .fc-price-sub{font-size:.7rem;color:var(--muted);display:block;margin-top:.15rem}
@@ -297,6 +313,34 @@
             <li>Distinguer ce qui fonctionne de ce qui consomme votre budget</li>
             <li>Ne plus booster une publication sans objectif mesurable</li>
           </ul>
+
+          <!-- EBOOK OFFERT -->
+          <div class="ebook-offer">
+            <div class="ebook-offer-row">
+              <span class="badge" style="margin:0"><i class="fa-regular fa-book-open"></i> Ebook offert</span>
+              <span style="font-size:.85rem;color:var(--gold)">Facebook & Instagram Ads – Version 2026</span>
+              <a href="ebook.html" class="ebook-offer-link"><i class="fa-regular fa-eye"></i> Voir</a>
+            </div>
+          </div>
+
+          <!-- PLAN REMISE À NIVEAU -->
+          <div>
+            <button class="plan-toggle">
+              <span><i class="fa-regular fa-clock"></i> Plan de remise à niveau (6 modules)</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="plan-content">
+              <ul>
+                <li><strong>Module 0</strong> — Les bases : vocabulaire essentiel, prérequis</li>
+                <li><strong>Module 1</strong> — Revoir la création de page professionnelle</li>
+                <li><strong>Module 2</strong> — Maîtriser l'Assistant de création (nouvelle méthode)</li>
+                <li><strong>Module 3</strong> — Comprendre Andromeda (mise à jour 2026)</li>
+                <li><strong>Module 4</strong> — Installer le Pixel Meta sans code</li>
+                <li><strong>Module 5</strong> — Éviter les blocages de compte publicitaire</li>
+              </ul>
+            </div>
+          </div>
+
           <div class="fc-price">
             <span class="fc-price-label">Tarif</span>
             <span class="fc-price-amount">À partir de 50 000 FCFA</span>
@@ -329,6 +373,34 @@
             <li>Lire un ratio LTV:CAC et savoir quand scaler ou couper</li>
             <li>Préparer votre structure pour un accompagnement ePerformance</li>
           </ul>
+
+          <!-- EBOOK OFFERT -->
+          <div class="ebook-offer">
+            <div class="ebook-offer-row">
+              <span class="badge" style="margin:0"><i class="fa-regular fa-book-open"></i> Ebook offert</span>
+              <span style="font-size:.85rem;color:var(--gold)">Pourquoi votre publicité n'est pas rentable</span>
+              <a href="ebook.html" class="ebook-offer-link"><i class="fa-regular fa-eye"></i> Voir</a>
+            </div>
+          </div>
+
+          <!-- PLAN REMISE À NIVEAU -->
+          <div>
+            <button class="plan-toggle">
+              <span><i class="fa-regular fa-clock"></i> Plan de remise à niveau (6 modules)</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="plan-content">
+              <ul>
+                <li><strong>Module 0</strong> — Audit rapide : collecter ses données</li>
+                <li><strong>Module 1</strong> — Revoir le calcul du CAC réel</li>
+                <li><strong>Module 2</strong> — Calculer sa LTV (valeur vie client)</li>
+                <li><strong>Module 3</strong> — Comprendre son Payback (délai de récupération)</li>
+                <li><strong>Module 4</strong> — Définir ses seuils de rentabilité</li>
+                <li><strong>Module 5</strong> — Mettre en place son tableau de bord simplifié</li>
+              </ul>
+            </div>
+          </div>
+
           <div class="fc-price">
             <span class="fc-price-label">Tarif</span>
             <span class="fc-price-amount">À partir de 75 000 FCFA</span>
@@ -350,6 +422,9 @@
         <span class="badge" style="margin-bottom:.8rem"><i class="fa-solid fa-star"></i> Pack complet</span>
         <h3 style="font-size:1.4rem;margin-bottom:.5rem">Les deux formations</h3>
         <p style="color:var(--soft);font-size:.9rem;margin-bottom:1.2rem">Économisez 25 000 FCFA en prenant les deux formations ensemble.</p>
+        <div style="margin-bottom:1rem;background:var(--gold-bg);border-radius:12px;padding:.6rem 1rem">
+          <span style="font-size:.75rem;color:var(--gold)"><i class="fa-regular fa-book-open"></i> Les deux ebooks offerts</span>
+        </div>
         <div class="fc-price" style="margin-bottom:1.2rem">
           <span class="fc-price-label">Tarif pack</span>
           <span class="fc-price-amount">À partir de 100 000 FCFA</span>
@@ -388,6 +463,7 @@
           <tr><td>Pratique incluse</td><td>Oui</td><td>Oui</td></tr>
           <tr><td>Espace apprenant</td><td>Oui</td><td>Oui</td></tr>
           <tr><td>Support post-session</td><td>Oui</td><td>Oui</td></tr>
+          <tr><td>Ebook offert</td><td style="color:var(--gold)">Facebook & Instagram Ads – 2026</td><td style="color:#6b9ef8">Pourquoi votre pub n'est pas rentable</td></tr>
           <tr><td>Tarif</td><td style="color:var(--gold);font-weight:700">50 000 FCFA</td><td style="color:#6b9ef8;font-weight:700">75 000 FCFA</td></tr>
         </tbody>
       </table>
@@ -512,9 +588,9 @@
             <label class="field-label" for="f_formation">Formation souhaitée *</label>
             <select class="field-input" id="f_formation" name="formation" required>
               <option value="">— Sélectionner —</option>
-              <option value="Formation 1 — Facebook & Instagram">Formation 1 — Facebook &amp; Instagram (50 000 FCFA)</option>
-              <option value="Formation 2 — Structurer son acquisition">Formation 2 — Structurer son acquisition (75 000 FCFA)</option>
-              <option value="Les deux formations">Les deux formations (100 000 FCFA)</option>
+              <option value="Formation 1 — Facebook & Instagram">Formation 1 — Facebook &amp; Instagram (50 000 FCFA) + ebook technique offert</option>
+              <option value="Formation 2 — Structurer son acquisition">Formation 2 — Structurer son acquisition (75 000 FCFA) + ebook stratégique offert</option>
+              <option value="Les deux formations">Les deux formations (100 000 FCFA) + les deux ebooks offerts</option>
             </select>
           </div>
           <div class="field-group full">
@@ -546,6 +622,10 @@
       <div class="faq-item">
         <button class="faq-q"><span>Quelle est la différence entre les deux formations ?</span><i class="fa-solid fa-plus"></i></button>
         <div class="faq-a">La Formation 1 vous apprend à créer et gérer vos campagnes Facebook et Instagram. La Formation 2 vous apprend à lire vos chiffres d&#39;acquisition — CAC, LTV, Payback — pour décider avec méthode avant d&#39;investir. Elles sont complémentaires. Certains font les deux.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Est-ce que j'ai accès à un ebook offert ?</span><i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a">Oui. Chaque formation inclut un ebook offert. Pour la Formation 1, vous recevez le guide "Facebook & Instagram Ads – Version 2026". Pour la Formation 2, vous recevez "Pourquoi votre publicité n'est pas rentable". Le pack des deux formations vous donne accès aux deux ebooks.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>Combien de temps dure une session ?</span><i class="fa-solid fa-plus"></i></button>
@@ -618,6 +698,7 @@ closeBtn?.addEventListener('click',closeMenu);
 overlay?.addEventListener('click',e=>{if(e.target===overlay)closeMenu()});
 mLinks.forEach(l=>l.addEventListener('click',closeMenu));
 
+// Animation reveal
 const reveals=document.querySelectorAll('.reveal');
 if('IntersectionObserver' in window){
   const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}})},{threshold:.1});
@@ -625,6 +706,7 @@ if('IntersectionObserver' in window){
 }else{reveals.forEach(el=>el.classList.add('show'))}
 setTimeout(()=>{reveals.forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight)el.classList.add('show')});},80);
 
+// FAQ accordéon
 document.querySelectorAll('.faq-q').forEach(btn=>{
   btn.addEventListener('click',()=>{
     const answer=btn.nextElementSibling;
@@ -635,6 +717,18 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
   })
 });
 
+// Plan de remise à niveau accordéon
+document.querySelectorAll('.plan-toggle').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const content=btn.nextElementSibling;
+    const icon=btn.querySelector('i.fa-chevron-down');
+    const isOpen=content.style.display==='block';
+    content.style.display=isOpen?'none':'block';
+    icon.style.transform=isOpen?'rotate(0deg)':'rotate(180deg)';
+  })
+});
+
+// Formulaire
 const form=document.getElementById('inscriptionForm');
 const successBox=document.getElementById('formSuccess');
 form?.addEventListener('submit',async(e)=>{
@@ -664,7 +758,8 @@ form?.addEventListener('submit',async(e)=>{
   successBox.scrollIntoView({behavior:'smooth',block:'center'});
 });
 </script>
-  <div class="cta-bar-mobile">
+
+<div class="cta-bar-mobile">
   <div style="flex:1;min-width:0">
     <span style="font-size:.72rem;color:var(--muted);display:block">Formation ePerformance</span>
     <span style="font-weight:700;color:var(--gold);font-size:.85rem">Dès 50 000 FCFA</span>
