@@ -179,6 +179,63 @@
 
     .reveal{opacity:1;transform:translateY(0);transition:.6s ease}
     @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+    /* Toast premium — sans émoji */
+    .toast-premium {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(16, 16, 20, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201, 169, 110, 0.2);
+      border-radius: 12px;
+      padding: 14px 28px;
+      color: #edeae3;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      z-index: 99999;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+      max-width: 90%;
+      text-align: center;
+      animation: toastSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: 0.01em;
+    }
+
+    .toast-premium .toast-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #6fcf8a;
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+
+    .toast-premium .toast-close {
+      background: none;
+      border: none;
+      color: #7a7a85;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 16px;
+      vertical-align: middle;
+      pointer-events: auto;
+    }
+
+    @keyframes toastSlideUp {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+    }
   </style>
 </head>
 <body>
@@ -202,7 +259,7 @@
 <section class="hero">
   <div class="container">
     <div class="hero-inner reveal">
-      <span class="badge"><i class="fa-solid fa-bolt"></i> Offre limitée · Places restreintes</span>
+      <span class="badge">Offre limitée</span>
       <h1 class="hero-title">Votre site web professionnel,<br>prêt à vendre, pour <em>75 000 FCFA</em></h1>
       <p class="hero-lead">Design sur mesure, optimisé mobile et Google, bouton WhatsApp intégré pour recevoir vos clients directement. Nom de domaine inclus pendant 1 an. Aucune compétence technique requise de votre côté.</p>
       <div class="hero-cta">
@@ -212,9 +269,9 @@
       <div class="hero-callout">
         <strong>Comment ça se passe :</strong> un acompte de 30 000 FCFA à la commande (couvre l'achat de votre domaine et lance la production), le solde de 45 000 FCFA à la livraison — une fois votre site en ligne et validé par vous.
       </div>
-      <div class="scarcity-badge">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        Plus que <strong>4 places</strong> disponibles ce mois-ci
+      <div class="scarcity-badge" id="scarcityBadge">
+        <i class="fa-solid fa-circle" style="font-size:0.5rem;color:#6fcf8a;"></i>
+        <span id="scarcityText">Chargement des places disponibles...</span>
       </div>
     </div>
   </div>
@@ -246,7 +303,7 @@
     <div class="cas-grid reveal">
       <!-- Carte 1 : Superlife CI -->
       <div class="cas-card">
-        <span class="badge"><i class="fa-solid fa-store"></i> Boutique MLM · CI</span>
+        <span class="badge">Boutique MLM · CI</span>
         <h3>Superlife CI</h3>
         <p class="cas-sub">Vente de produits bien-être · Paiement à la livraison</p>
         <div class="cas-metrics">
@@ -260,7 +317,7 @@
 
       <!-- Carte 2 : Longrich Santé Bio -->
       <div class="cas-card">
-        <span class="badge"><i class="fa-solid fa-globe"></i> E-commerce · International</span>
+        <span class="badge">E-commerce · International</span>
         <h3>Longrich Santé Bio</h3>
         <p class="cas-sub">Catalogue produits · Livraison dans +50 pays</p>
         <div class="cas-metrics">
@@ -274,12 +331,12 @@
 
       <!-- Carte 3 : ePerformance.pro -->
       <div class="cas-card cas-highlight">
-        <span class="badge"><i class="fa-solid fa-star" style="color:var(--gold)"></i> Mon propre site</span>
+        <span class="badge">Mon propre site</span>
         <h3>ePerformance.pro</h3>
         <p class="cas-sub">Lead gen · Vente de formations · Diagnostic</p>
         <div class="cas-metrics">
           <div class="cas-metric"><div class="cas-metric-num">100%</div><div class="cas-metric-label">Mon outil de vente</div></div>
-          <div class="cas-metric"><div class="cas-metric-num">✅</div><div class="cas-metric-label">Je fais ce que je vends</div></div>
+          <div class="cas-metric"><div class="cas-metric-num">✓</div><div class="cas-metric-label">Je fais ce que je vends</div></div>
         </div>
         <a href="https://eperformance.pro" target="_blank" rel="noopener" class="btn btn-gold">
           Voir mon site <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.6rem"></i>
@@ -416,7 +473,7 @@
 
 <div class="divider"></div>
 
-<!-- FORMULAIRE DE COMMANDE — VERSION EXPRESS AVEC CHAMPS CACHÉS -->
+<!-- FORMULAIRE DE COMMANDE — 2 CHAMPS OBLIGATOIRES -->
 <section id="commande">
   <div class="container">
     <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 2rem">
@@ -425,21 +482,19 @@
       <p class="s-sub" style="margin:0 auto">Formulaire express pour les visiteurs de la pub. Je vous contacte sous 24h pour le reste.</p>
     </div>
 
-    <form id="cmdForm" class="reveal cmd-box">
-      <!-- NOTICE EXPRESS -->
+    <form id="cmdForm" class="reveal cmd-box" novalidate>
       <div class="express-note">
-        <i class="fa-solid fa-bolt"></i>
-        <span><strong>Offre Pub :</strong> On ne vous demande que l'essentiel pour démarrer. Les détails (produits, photos, style) se feront ensemble sur WhatsApp après validation.</span>
+        <i class="fa-solid fa-info-circle"></i>
+        <span><strong>2 champs obligatoires</strong> — Le reste se fera ensemble sur WhatsApp.</span>
       </div>
 
-      <!-- CHAMPS EXPRESS (affichés) -->
       <div class="f-grid2">
         <div class="f-row">
-          <label for="c_whatsapp">📱 Votre numéro WhatsApp</label>
+          <label for="c_whatsapp">WhatsApp</label>
           <input type="tel" id="c_whatsapp" name="whatsapp" placeholder="+225 XX XX XX XX XX" required>
         </div>
         <div class="f-row">
-          <label for="c_secteur_express">🏢 Secteur d'activité</label>
+          <label for="c_secteur_express">Secteur d'activité</label>
           <select id="c_secteur_express" name="secteur_activite" required>
             <option value="">Sélectionnez...</option>
             <option value="MLM / Vente directe / Bien-être">MLM / Vente directe / Bien-être</option>
@@ -451,7 +506,7 @@
         </div>
       </div>
 
-      <!-- CHAMPS CACHÉS POUR LA COMPATIBILITÉ SQL — NOMS IDENTIQUES À L'ORIGINAL -->
+      <!-- CHAMPS CACHÉS POUR LA COMPATIBILITÉ SQL -->
       <div class="f-hidden">
         <input type="text" name="nom" value="">
         <input type="text" name="ville" value="">
@@ -476,8 +531,8 @@
 
     <div id="cmdSuccess" class="reveal cmd-box" style="display:none;text-align:center">
       <i class="fa-solid fa-circle-check" style="font-size:2.4rem;color:var(--green-text);margin-bottom:1rem;display:block"></i>
-      <h3 style="font-size:1.3rem;margin-bottom:.6rem">Demande reçue !</h3>
-      <p style="color:var(--soft);font-size:.92rem;line-height:1.7">Je vous contacte sur WhatsApp sous 24-48h pour récupérer vos photos et démarrer votre site. En attendant, vous pouvez m'écrire directement si vous avez une question.</p>
+      <h3 style="font-size:1.3rem;margin-bottom:.6rem">Demande reçue</h3>
+      <p style="color:var(--soft);font-size:.92rem;line-height:1.7">Je vous contacte sur WhatsApp sous 24-48h pour récupérer vos photos et démarrer votre site.</p>
       <a href="https://wa.me/2250151170666" target="_blank" rel="noopener" class="btn btn-wa" style="margin-top:1.2rem">
         <i class="fa-brands fa-whatsapp"></i> M'écrire sur WhatsApp
       </a>
@@ -508,15 +563,16 @@
 
 <div class="divider"></div>
 
-<!-- CTA FINAL AVEC SCARCITY -->
+<!-- CTA FINAL -->
 <section>
   <div class="container">
     <div class="reveal callout" style="max-width:700px;margin:0 auto;text-align:center;padding:2.4rem">
       <p style="font-size:1.05rem;color:var(--text);margin-bottom:1.4rem">
         Votre site professionnel pour <strong style="color:var(--gold)">75 000 FCFA</strong>, domaine inclus.
         <br>
-        <span style="color:var(--red-text);font-size:.85rem;">
-          <i class="fa-solid fa-triangle-exclamation"></i> Plus que 4 places ce mois-ci
+        <span id="scarcityFooter" style="color:var(--red-text);font-size:.85rem;">
+          <i class="fa-solid fa-circle" style="font-size:0.4rem;color:#6fcf8a;vertical-align:middle;"></i>
+          <span id="scarcityFooterText">Chargement des places disponibles...</span>
         </span>
       </p>
       <a class="btn btn-gold" href="#commande" style="font-size:1rem;padding:1.05rem 2.2rem">
@@ -544,14 +600,14 @@
 </footer>
 
 <script>
-  // Reveal au scroll
+  // --- REVEAL AU SCROLL ---
   const reveals = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.opacity='1'; io.unobserve(e.target);} })
-  },{threshold:.1});
-  reveals.forEach(r=>io.observe(r));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; io.unobserve(e.target); } })
+  }, { threshold: .1 });
+  reveals.forEach(r => io.observe(r));
 
-  // Capture des paramètres publicitaires (utm + fbclid)
+  // --- PARAMÈTRES PUBLICITAIRES ---
   const _params = new URLSearchParams(window.location.search);
   const _tracking = {
     utm_source: _params.get('utm_source') || '',
@@ -560,39 +616,141 @@
     fbclid: _params.get('fbclid') || ''
   };
 
-  // FORMULAIRE DE COMMANDE — VERSION ORIGINALE RESTAURÉE (NOTIFICATIONS TELEGRAM + EMAIL)
-  document.getElementById('cmdForm').addEventListener('submit', async function(e){
+  // --- SCARCITY DYNAMIQUE ---
+  async function getScarcityData() {
+    try {
+      const response = await fetch('https://api.eperformance.pro/get_scarcity.php');
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.warn('Erreur récupération scarcity:', err);
+      return { places_restantes: 4 };
+    }
+  }
+
+  async function updateScarcityDisplay() {
+    const data = await getScarcityData();
+    const places = data.places_restantes || 4;
+    
+    const texts = document.querySelectorAll('#scarcityText, #scarcityFooterText');
+    texts.forEach(el => {
+      el.textContent = places === 1 ? 'Plus que 1 place disponible cette semaine' : 'Plus que ' + places + ' places disponibles cette semaine';
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', updateScarcityDisplay);
+  setInterval(updateScarcityDisplay, 30000);
+
+  // --- NOTIFICATIONS EN TEMPS RÉEL (SSE) ---
+  function initNotifications() {
+    if (!window.EventSource) return;
+    
+    const eventSource = new EventSource('https://api.eperformance.pro/notifications.php');
+    
+    eventSource.addEventListener('notification', function(event) {
+      try {
+        const data = JSON.parse(event.data);
+        showToast(data.message);
+      } catch (err) {
+        console.warn('Erreur parsing notification:', err);
+      }
+    });
+    
+    eventSource.onerror = function() {
+      console.warn('Connexion SSE perdue, reconnexion...');
+      setTimeout(initNotifications, 5000);
+    };
+  }
+
+  // --- TOAST PREMIUM (SANS ÉMOJI) ---
+  function showToast(message) {
+    const lastNotif = sessionStorage.getItem('last_notification');
+    if (lastNotif === message) return;
+    sessionStorage.setItem('last_notification', message);
+
+    const toast = document.createElement('div');
+    toast.className = 'toast-premium';
+    toast.innerHTML = `
+      <span class="toast-dot"></span>
+      <span>${message}</span>
+      <button class="toast-close" onclick="this.parentElement.remove()">✕</button>
+    `;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.transition = 'opacity 0.4s, transform 0.4s';
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(-50%) translateY(20px)';
+      setTimeout(() => { if (toast.parentElement) toast.remove(); }, 400);
+    }, 5000);
+
+    setTimeout(() => sessionStorage.removeItem('last_notification'), 6000);
+  }
+
+  document.addEventListener('DOMContentLoaded', initNotifications);
+
+  // --- FORMULAIRE (2 CHAMPS OBLIGATOIRES) ---
+  document.getElementById('cmdForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+    
+    const whatsapp = document.getElementById('c_whatsapp').value.trim();
+    const secteur = document.getElementById('c_secteur_express').value;
+    
+    // Validation des 2 champs obligatoires
+    if (!whatsapp) {
+      document.getElementById('c_whatsapp').style.borderColor = '#e07070';
+      document.getElementById('c_whatsapp').focus();
+      return;
+    }
+    if (!secteur) {
+      document.getElementById('c_secteur_express').style.borderColor = '#e07070';
+      document.getElementById('c_secteur_express').focus();
+      return;
+    }
+    
+    // Réinitialiser les styles
+    document.getElementById('c_whatsapp').style.borderColor = '';
+    document.getElementById('c_secteur_express').style.borderColor = '';
+
     const btn = document.getElementById('cmdBtn');
     btn.disabled = true;
     btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Envoi...';
 
-    // Récupération de TOUTES les données du formulaire (y compris les champs cachés)
     const formData = new FormData(e.target);
+    formData.set('nom', 'Client Pub - ' + secteur);
+    formData.set('ville', 'À définir avec le client');
+    formData.set('email', 'client-' + Date.now() + '@temp.com');
+    formData.set('type_site', 'À définir avec le client');
+    formData.set('presentation', 'Secteur : ' + secteur + '. Client issu d\'une campagne publicitaire. Plus d\'infos sur WhatsApp.');
+    formData.set('adresse', 'À définir');
+    formData.set('horaires', 'À définir');
+    formData.set('nb_produits', 'À définir');
+    formData.set('style_souhaite', 'À définir');
+    formData.set('domaine_souhaite', 'À définir');
+
     const data = Object.fromEntries(formData.entries());
 
-    // Envoi vers votre API proxy (qui gère les notifications Telegram + Email)
     try {
       const response = await fetch('https://api.eperformance.pro/proxy.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'commande_site_web', ..._tracking, ...data })
       });
-      // Si votre API renvoie une réponse, vous pouvez la traiter ici
-      // const result = await response.json();
-      // console.log('Réponse API:', result);
+      const result = await response.json();
+      console.log('API response:', result);
     } catch (err) {
-      console.warn('Commande API:', err);
+      console.warn('Erreur réseau:', err);
     }
 
-    // Conversion Meta Ads + GA4
-    if (window.fbq) fbq('track', 'Lead', { content_name: 'Commande site web 75k - Express' });
+    if (window.fbq) fbq('track', 'Lead', { content_name: 'Commande site web 75k' });
     if (window.gtag) gtag('event', 'generate_lead', { value: 75000, currency: 'XOF' });
 
-    // Affichage du message de succès
     document.getElementById('cmdForm').style.display = 'none';
     document.getElementById('cmdSuccess').style.display = 'block';
     document.getElementById('cmdSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    // Mettre à jour la scarcity après la commande
+    setTimeout(updateScarcityDisplay, 2000);
   });
 </script>
 </body>
