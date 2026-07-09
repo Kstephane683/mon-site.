@@ -579,7 +579,7 @@
     // Remplir les champs obligatoires avec valeurs par défaut
     formData.set('nom', 'Client Pub - ' + secteur);
     formData.set('ville', 'À définir avec le client');
-    formData.set('email', '');  // ← Envoyé vide (pas de pollution CRM)
+    formData.set('email', 'client-' + Date.now() + '@temp.com');
     formData.set('type_site', 'À définir avec le client');
     formData.set('presentation', 'Secteur : ' + secteur + '. Client issu d\'une campagne publicitaire.');
     formData.set('adresse', '');
