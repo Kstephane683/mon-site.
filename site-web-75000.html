@@ -55,7 +55,6 @@
     section{padding:6rem 0}
     @media(max-width:700px){section{padding:4rem 0}}
 
-    /* NAV — volontairement minimale : trafic publicitaire, pas de lien qui fait sortir de la page */
     .sticky{position:sticky;top:0;z-index:100;background:rgba(8,8,12,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0;gap:1rem}
     .brand{flex-shrink:0}
@@ -64,7 +63,6 @@
     @media(max-width:480px){.brand strong{font-size:1.15rem}.brand span{font-size:.6rem}.container{padding:0 1rem}}
     @media(max-width:360px){.brand span{display:none}}
 
-    /* BUTTONS */
     .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;border:1px solid transparent;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.93rem;cursor:pointer;transition:all .2s;white-space:nowrap;user-select:none}
     .btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
     .btn-primary:hover{background:var(--blue2);border-color:var(--blue2)}
@@ -79,10 +77,8 @@
     .btn-wa{background:var(--wa);color:#fff;border-color:var(--wa)}
     .btn-wa:hover{background:#1ebe5a;border-color:#1ebe5a}
 
-    /* BADGE */
     .badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);border:1px solid var(--gold-border);background:var(--gold-bg);padding:.38rem .9rem;border-radius:999px}
 
-    /* HERO */
     .hero{min-height:80vh;display:flex;align-items:center;position:relative;padding:5rem 0;overflow:hidden}
     .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 75% 55% at 8% 55%,rgba(26,66,192,.14) 0%,transparent 60%),radial-gradient(ellipse 55% 45% at 88% 18%,rgba(201,169,110,.11) 0%,transparent 55%);pointer-events:none}
     .hero-inner{position:relative;max-width:860px}
@@ -93,23 +89,19 @@
     .hero-callout{padding:1.1rem 1.4rem;border:1px solid var(--gold-border);border-left:3px solid var(--gold);border-radius:14px;background:var(--gold-bg);max-width:640px;font-size:.9rem;color:var(--soft);line-height:1.7}
     .hero-callout strong{color:var(--gold2)}
 
-    /* SCARCITY BADGE */
     .scarcity-badge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(220,60,60,.12);border:1px solid rgba(220,60,60,.3);border-radius:999px;padding:.4rem 1rem;font-size:.75rem;color:#e07070;margin-top:.8rem}
     .scarcity-badge i{font-size:.85rem}
 
-    /* STATS BAND */
     .stats-band{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.3rem 0}
     .stats-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center}
     @media(max-width:700px){.stats-inner{grid-template-columns:repeat(2,1fr)}}
     .stat-num{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:700;color:var(--gold);line-height:1}
     .stat-label{font-size:.8rem;color:var(--muted);margin-top:.3rem;text-transform:uppercase;letter-spacing:.08em}
 
-    /* SECTION HEADER */
     .s-eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);display:block;margin-bottom:.55rem}
     .s-title{font-size:clamp(1.9rem,4vw,2.6rem);line-height:1.15;font-weight:700;margin-bottom:.8rem}
     .s-sub{font-size:1rem;color:var(--muted);max-width:700px;line-height:1.75;margin-bottom:2.3rem}
 
-    /* GRID / CARDS */
     .grid{display:grid;gap:1.2rem}
     .g3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:960px){.g3{grid-template-columns:repeat(2,1fr)}}
@@ -120,7 +112,6 @@
     .card h3{font-size:1.02rem;font-weight:600;margin-bottom:.45rem}
     .card p{color:var(--soft);font-size:.9rem;line-height:1.6}
 
-    /* CAS CLIENT — VERSION AMÉLIORÉE AVEC 3 SITES */
     .cas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
     @media(max-width:960px){.cas-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:560px){.cas-grid{grid-template-columns:1fr}}
@@ -137,7 +128,6 @@
     .cas-highlight{border-color:var(--gold)}
     .cas-highlight .cas-metric-num{color:var(--gold2)}
 
-    /* VALEUR / PRIX */
     .valeur-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:2rem;max-width:520px;margin:0 auto}
     .valeur-row{display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid var(--border);font-size:.92rem}
     .valeur-row:last-of-type{border-bottom:none}
@@ -148,7 +138,6 @@
     .valeur-total-price{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;color:var(--gold);line-height:1}
     .valeur-note{font-size:.78rem;color:var(--muted);margin-top:.6rem;line-height:1.6}
 
-    /* STEPS */
     .steps{display:flex;flex-direction:column;gap:0}
     .step{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;align-items:flex-start;padding:1.7rem 0;border-bottom:1px solid var(--border)}
     .step:last-child{border-bottom:none}
@@ -159,7 +148,6 @@
     .callout{padding:1.2rem 1.4rem;border:1px solid var(--gold-border);border-left:3px solid var(--gold);border-radius:14px;background:var(--gold-bg);font-size:.9rem;color:var(--soft);line-height:1.7}
     .callout strong{color:var(--gold2)}
 
-    /* FORMULAIRE DE COMMANDE — VERSION EXPRESS + HIDDEN FIELDS POUR SQL */
     .cmd-box{background:var(--card);border:1px solid var(--gold-border);border-radius:var(--r2);padding:2.2rem 2rem;max-width:640px;margin:0 auto}
     .cmd-box .express-note{font-size:.8rem;color:var(--muted);background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:10px;padding:.6rem 1rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem}
     .cmd-box .express-note i{color:var(--gold)}
@@ -171,10 +159,8 @@
     .f-row textarea{resize:vertical;min-height:90px}
     .f-grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     @media(max-width:560px){.f-grid2{grid-template-columns:1fr}}
-    /* Champs cachés pour la compatibilité SQL */
     .f-hidden{display:none !important}
 
-    /* FAQ */
     .faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
     @media(max-width:700px){.faq-grid{grid-template-columns:1fr}}
     details{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.2rem;transition:border-color .2s}
@@ -187,7 +173,6 @@
 
     .divider{height:1px;background:linear-gradient(to right,transparent,var(--border2),transparent)}
 
-    /* WA FLOAT */
     .wa{position:fixed;right:22px;bottom:22px;z-index:1000;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--wa);box-shadow:0 8px 28px rgba(0,0,0,.55);transition:transform .2s}
     .wa:hover{transform:scale(1.07)}
     .wa i{font-size:2.1rem;color:#fff}
@@ -203,7 +188,7 @@
   <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<!-- NAV minimale -->
+<!-- NAV -->
 <header class="sticky">
   <div class="container nav">
     <a href="https://eperformance.pro" class="brand"><strong>ePerformance</strong><span>par K. STEPHANE</span></a>
@@ -227,7 +212,6 @@
       <div class="hero-callout">
         <strong>Comment ça se passe :</strong> un acompte de 30 000 FCFA à la commande (couvre l'achat de votre domaine et lance la production), le solde de 45 000 FCFA à la livraison — une fois votre site en ligne et validé par vous.
       </div>
-      <!-- SCARCITY QUANTIFIÉE -->
       <div class="scarcity-badge">
         <i class="fa-solid fa-triangle-exclamation"></i>
         Plus que <strong>4 places</strong> disponibles ce mois-ci
@@ -250,7 +234,7 @@
 
 <div class="divider"></div>
 
-<!-- RÉALISATIONS — VERSION 3 SITES -->
+<!-- RÉALISATIONS — 3 SITES -->
 <section id="realisations">
   <div class="container">
     <div class="reveal" style="text-align:center;margin-bottom:2rem">
@@ -288,7 +272,7 @@
         </a>
       </div>
 
-      <!-- Carte 3 : ePerformance.pro (VOTRE SITE) -->
+      <!-- Carte 3 : ePerformance.pro -->
       <div class="cas-card cas-highlight">
         <span class="badge"><i class="fa-solid fa-star" style="color:var(--gold)"></i> Mon propre site</span>
         <h3>ePerformance.pro</h3>
@@ -304,7 +288,6 @@
       </div>
     </div>
 
-    <!-- Message de synthèse sous les 3 cartes -->
     <div class="reveal callout" style="max-width:760px;margin:1.8rem auto 0;text-align:center">
       <p style="font-size:.95rem;">
         <strong style="color:var(--gold2);">Superlife</strong> (15 600 clics) · 
@@ -331,7 +314,7 @@
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-globe"></i></div>
         <h3>Nom de domaine inclus</h3>
-        <p>Votre adresse .com ou .ci, réservée à votre nom pour 1 an. Renouvellement ensuite à votre charge (~12 000 FCFA/an) — comme pour n'importe quel site.</p>
+        <p>Votre adresse .com ou .ci, réservée à votre nom pour 1 an. Renouvellement ensuite à votre charge (~12 000 FCFA/an).</p>
       </div>
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-palette"></i></div>
@@ -346,7 +329,7 @@
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
         <h3>Optimisé pour Google</h3>
-        <p>Structure technique propre, référencement de base fait dès la construction — pas ajouté après coup.</p>
+        <p>Structure technique propre, référencement de base fait dès la construction.</p>
       </div>
       <div class="card">
         <div class="card-icon"><i class="fa-brands fa-whatsapp"></i></div>
@@ -433,7 +416,7 @@
 
 <div class="divider"></div>
 
-<!-- FORMULAIRE DE COMMANDE — VERSION EXPRESS 2 CHAMPS AVEC FALLBACK SQL -->
+<!-- FORMULAIRE DE COMMANDE — VERSION EXPRESS AVEC CHAMPS CACHÉS -->
 <section id="commande">
   <div class="container">
     <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 2rem">
@@ -468,7 +451,7 @@
         </div>
       </div>
 
-      <!-- CHAMPS CACHÉS POUR LA COMPATIBILITÉ SQL (envoyés vides = NULL en base) -->
+      <!-- CHAMPS CACHÉS POUR LA COMPATIBILITÉ SQL — NOMS IDENTIQUES À L'ORIGINAL -->
       <div class="f-hidden">
         <input type="text" name="nom" value="">
         <input type="text" name="ville" value="">
@@ -568,7 +551,7 @@
   },{threshold:.1});
   reveals.forEach(r=>io.observe(r));
 
-  // Capture des paramètres publicitaires (utm + fbclid) dès l'arrivée sur la page
+  // Capture des paramètres publicitaires (utm + fbclid)
   const _params = new URLSearchParams(window.location.search);
   const _tracking = {
     utm_source: _params.get('utm_source') || '',
@@ -577,35 +560,39 @@
     fbclid: _params.get('fbclid') || ''
   };
 
-  // FORMULAIRE DE COMMANDE
+  // FORMULAIRE DE COMMANDE — VERSION ORIGINALE RESTAURÉE (NOTIFICATIONS TELEGRAM + EMAIL)
   document.getElementById('cmdForm').addEventListener('submit', async function(e){
     e.preventDefault();
     const btn = document.getElementById('cmdBtn');
     btn.disabled = true;
     btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Envoi...';
 
-    // Récupération des données du formulaire (y compris les champs cachés)
+    // Récupération de TOUTES les données du formulaire (y compris les champs cachés)
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
-    // Nettoyage : les champs vides restent vides → la base SQL reçoit NULL ou chaîne vide
-    // Aucun champ obligatoire n'est retiré, donc la structure SQL est préservée
-
+    // Envoi vers votre API proxy (qui gère les notifications Telegram + Email)
     try {
-      await fetch('https://api.eperformance.pro/proxy.php', {
+      const response = await fetch('https://api.eperformance.pro/proxy.php', {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'commande_site_web', ..._tracking, ...data })
       });
-    } catch(err){ console.warn('Commande API:', err); }
+      // Si votre API renvoie une réponse, vous pouvez la traiter ici
+      // const result = await response.json();
+      // console.log('Réponse API:', result);
+    } catch (err) {
+      console.warn('Commande API:', err);
+    }
 
     // Conversion Meta Ads + GA4
-    if (window.fbq) fbq('track', 'Lead', {content_name: 'Commande site web 75k - Express'});
-    if (window.gtag) gtag('event', 'generate_lead', {value: 75000, currency: 'XOF'});
+    if (window.fbq) fbq('track', 'Lead', { content_name: 'Commande site web 75k - Express' });
+    if (window.gtag) gtag('event', 'generate_lead', { value: 75000, currency: 'XOF' });
 
+    // Affichage du message de succès
     document.getElementById('cmdForm').style.display = 'none';
     document.getElementById('cmdSuccess').style.display = 'block';
-    document.getElementById('cmdSuccess').scrollIntoView({behavior:'smooth', block:'center'});
+    document.getElementById('cmdSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 </script>
 </body>
