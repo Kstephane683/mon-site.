@@ -340,6 +340,29 @@
     .diag-box{background:var(--card);border:1px solid var(--gold-border);border-radius:var(--r2);padding:2.5rem 2rem;max-width:700px;margin:0 auto}
     .diag-step{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
     .diag-step-icon{width:40px;height:40px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
+    
+    /* EXIT INTENT POPUP */
+    .ep-exit-overlay{display:none;position:fixed;inset:0;background:rgba(8,8,12,.85);backdrop-filter:blur(8px);z-index:5000;opacity:0;transition:opacity .3s ease}
+    .ep-exit-overlay.show{display:flex;opacity:1;align-items:center;justify-content:center;padding:1rem}
+    .ep-exit-box{background:#101014;border:1px solid var(--gold-border);border-radius:24px;max-width:640px;width:100%;padding:2.5rem 2rem;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 40px rgba(201,169,110,.1);transform:scale(0.9);transition:transform .3s cubic-bezier(0.34, 1.56, 0.64, 1)}
+    .ep-exit-overlay.show .ep-exit-box{transform:scale(1)}
+    .ep-exit-close{position:absolute;top:1rem;right:1rem;width:36px;height:36px;background:transparent;border:1px solid var(--border2);border-radius:10px;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .2s}
+    .ep-exit-close:hover{border-color:var(--red-text);color:var(--red-text)}
+    .ep-exit-step{display:none;flex-direction:column;align-items:center;text-align:center}
+    .ep-exit-step.active{display:flex}
+    .ep-exit-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--gold);margin:.5rem 0 1rem;line-height:1.2}
+    .ep-exit-sub{color:var(--soft);font-size:.9rem;margin-bottom:2rem;max-width:450px;line-height:1.6}
+    .ep-choices{display:grid;grid-template-columns:1fr 1fr;gap:1rem;width:100%}
+    @media(max-width:500px){.ep-choices{grid-template-columns:1fr}}
+    .ep-choice{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.5rem 1rem;cursor:pointer;transition:all .2s;text-align:center}
+    .ep-choice:hover{border-color:var(--gold);background:var(--gold-bg);transform:translateY(-3px)}
+    .ep-choice i{font-size:1.5rem;color:var(--gold);margin-bottom:.8rem}
+    .ep-choice strong{display:block;color:var(--text);font-size:.9rem;margin-bottom:.3rem}
+    .ep-choice span{font-size:.75rem;color:var(--muted)}
+    .ep-exit-form{width:100%;display:flex;flex-direction:column;gap:.8rem;max-width:400px;margin:0 auto}
+    .ep-exit-input{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:12px;padding:.85rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;transition:border-color .2s}
+    .ep-exit-input:focus{border-color:var(--gold)}
+    .ep-back{margin-top:1rem;background:transparent;border:none;color:var(--muted);font-size:.8rem;cursor:pointer;text-decoration:underline}
   </style>
 </head>
 <body>
@@ -949,6 +972,53 @@
 
 </main>
 
+<!-- EXIT INTENT POPUP -->
+<div class="ep-exit-overlay" id="epExitOverlay">
+  <div class="ep-exit-box">
+    <button class="ep-exit-close" id="epExitClose"><i class="fa-solid fa-xmark"></i></button>
+    
+    <!-- ÉTAPE 1 : LE CHOIX -->
+    <div class="ep-exit-step active" id="epStep1">
+      <span class="badge"><i class="fa-solid fa-gift"></i> Cadeau ePerformance</span>
+      <h3 class="ep-exit-title">Pilotez-vous à l'aveugle ?</h3>
+      <p class="ep-exit-sub">Débloquez l'outil gratuit qui correspond EXACTEMENT à votre situation actuelle avant de quitter cette page.</p>
+      <div class="ep-choices">
+        <div class="ep-choice" onclick="epChooseGift('debutant')">
+          <i class="fa-solid fa-seedling"></i>
+          <strong>Audit-Éclair Publicité</strong>
+          <span>Le guide de démarrage en 7 jours pour lancer votre 1ère pub Meta Ads sans vous tromper.</span>
+        </div>
+        <div class="ep-choice" onclick="epChooseGift('avance')">
+          <i class="fa-solid fa-chart-pie"></i>
+          <strong>Diagnostic de Rentabilité</strong>
+          <span>Calculez votre VRAI Coût d'Acquisition Client (CAC) en 10 minutes.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 2 : CAPTURE EMAIL -->
+    <div class="ep-exit-step" id="epStep2">
+      <span class="badge" id="epGiftBadge"><i class="fa-solid fa-unlock"></i> Cadeau débloqué</span>
+      <h3 class="ep-exit-title" id="epGiftTitle">Presque fini !</h3>
+      <p class="ep-exit-sub" id="epGiftDesc">Entrez votre e-mail pour recevoir immédiatement votre guide gratuit.</p>
+      <form class="ep-exit-form" id="epExitForm">
+        <input type="email" class="ep-exit-input" placeholder="Votre meilleure adresse e-mail" required id="epEmailInput">
+        <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;padding:.9rem"><i class="fa-solid fa-paper-plane"></i> Recevoir mon guide</button>
+      </form>
+      <button class="ep-back" onclick="epBackToStep1()">← Changer de choix</button>
+    </div>
+
+    <!-- ÉTAPE 3 : SUCCESS -->
+    <div class="ep-exit-step" id="epStep3">
+      <i class="fa-solid fa-circle-check" style="font-size:3rem;color:var(--green-text);margin-bottom:1rem"></i>
+      <h3 class="ep-exit-title">Vérifiez votre boîte mail !</h3>
+      <p class="ep-exit-sub">Votre guide vient de vous être envoyé. Pensez à vérifier vos spams si vous ne le voyez pas d'ici 5 minutes.</p>
+      <button class="btn btn-ghost" onclick="epClosePopup()">Fermer</button>
+    </div>
+
+  </div>
+</div>
+
 <footer>
   <div class="container foot">
     <div>
@@ -1012,6 +1082,85 @@
     });
   }, { threshold: 0.5 });
   stats.forEach(stat => statsObserver.observe(stat));
+
+  // --- EXIT INTENT LOGIC ---
+  const epOverlay = document.getElementById('epExitOverlay');
+  const epStep1 = document.getElementById('epStep1');
+  const epStep2 = document.getElementById('epStep2');
+  const epStep3 = document.getElementById('epStep3');
+  let epSelectedGift = '';
+  let epShown = false;
+
+  document.addEventListener('mouseout', (e) => {
+    if (!e.toElement && !e.relatedTarget && e.clientY < 10 && !epShown) {
+      epShowPopup();
+    }
+  });
+
+  let lastScrollTop = 0;
+  window.addEventListener('scroll', () => {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st < lastScrollTop && (lastScrollTop - st) > 50 && !epShown && st > 500) {
+      epShowPopup();
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+  }, false);
+
+  function epShowPopup() {
+    if (localStorage.getItem('ep_exit_seen') === 'true') return;
+    epShown = true;
+    epOverlay.classList.add('show');
+    localStorage.setItem('ep_exit_seen', 'true');
+  }
+
+  function epClosePopup() {
+    epOverlay.classList.remove('show');
+  }
+
+  document.getElementById('epExitClose').addEventListener('click', epClosePopup);
+  epOverlay.addEventListener('click', (e) => { if (e.target === epOverlay) epClosePopup(); });
+
+  function epChooseGift(type) {
+    epSelectedGift = type;
+    const title = document.getElementById('epGiftTitle');
+    const desc = document.getElementById('epGiftDesc');
+    const badge = document.getElementById('epGiftBadge');
+
+    if (type === 'debutant') {
+      title.textContent = "Recevez l'Audit-Éclair";
+      desc.innerHTML = "Découvrez comment l’IA de Meta peut trouver vos clients pour vous, même si vous n’y connaissez rien. Entrez votre e-mail pour le recevoir gratuitement.";
+      badge.innerHTML = '<i class="fa-solid fa-seedling"></i> Guide Débutant';
+    } else {
+      title.textContent = "Recevez le Diagnostic Express";
+      desc.innerHTML = "Oubliez le nombre de clics. Calculez votre VRAI Coût d'Acquisition Client en 10 minutes. Entrez votre e-mail pour le recevoir gratuitement.";
+      badge.innerHTML = '<i class="fa-solid fa-chart-pie"></i> Outil Avancé';
+    }
+
+    epStep1.classList.remove('active');
+    epStep2.classList.add('active');
+  }
+
+  function epBackToStep1() {
+    epStep2.classList.remove('active');
+    epStep1.classList.add('active');
+  }
+
+  document.getElementById('epExitForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('epEmailInput').value.trim();
+    if (!email) return;
+
+    try {
+      await fetch('https://api.eperformance.pro/proxy.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'capture_lead_exit', email: email, segment: epSelectedGift })
+      });
+    } catch (err) { console.warn('Erreur capture lead:', err); }
+
+    epStep2.classList.remove('active');
+    epStep3.classList.add('active');
+  });
 </script>
 
 <script>
