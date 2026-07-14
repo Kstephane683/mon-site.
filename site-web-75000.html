@@ -430,15 +430,8 @@
           <input type="tel" id="c_whatsapp" name="whatsapp" placeholder="+225 XX XX XX XX XX" required>
         </div>
         <div class="f-row">
-          <label for="c_secteur_express">Secteur d'activité</label>
-          <select id="c_secteur_express" name="secteur_activite" required>
-            <option value="">Sélectionnez...</option>
-            <option value="MLM / Vente directe / Bien-être">MLM / Vente directe / Bien-être</option>
-            <option value="Boutique en ligne">Boutique en ligne</option>
-            <option value="Restaurant / Artisanat">Restaurant / Artisanat</option>
-            <option value="Service (coaching, consulting...)">Service (coaching, consulting...)</option>
-            <option value="Autre">Autre</option>
-          </select>
+          <label for="c_secteur_express">Décrivez votre activité en une phrase</label>
+          <input type="text" id="c_secteur_express" name="secteur_activite" placeholder="Ex: Vente de motos et pièces détachées à Ouagadougou" required>
         </div>
       </div>
 
@@ -551,24 +544,32 @@
   document.getElementById('cmdForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    const whatsapp = document.getElementById('c_whatsapp').value.trim();
-    const secteur = document.getElementById('c_secteur_express').value;
+    // Récupération et nettoyage du numéro WhatsApp
+    let whatsapp_raw = document.getElementById('c_whatsapp').value.trim();
+    let whatsapp = whatsapp_raw.replace(/[^0-9+]/g, ''); // Ne garde que les chiffres et le +
+    if (whatsapp.startsWith('00')) whatsapp = '+' + whatsapp.substring(2);
+    if (!whatsapp.startsWith('+') && whatsapp.length === 10) whatsapp = '+225' + whatsapp; // Ajoute l'indicatif CI si oublié
     
-    // Validation des 2 champs obligatoires
+    const secteur = document.getElementById('c_secteur_express').value.trim();
+    
+    // Validation visuelle des 2 champs obligatoires
+    let isValid = true;
     if (!whatsapp) {
       document.getElementById('c_whatsapp').style.borderColor = '#e07070';
       document.getElementById('c_whatsapp').focus();
-      return;
+      isValid = false;
+    } else {
+      document.getElementById('c_whatsapp').style.borderColor = '';
     }
     if (!secteur) {
       document.getElementById('c_secteur_express').style.borderColor = '#e07070';
-      document.getElementById('c_secteur_express').focus();
-      return;
+      if (isValid) document.getElementById('c_secteur_express').focus();
+      isValid = false;
+    } else {
+      document.getElementById('c_secteur_express').style.borderColor = '';
     }
     
-    // Réinitialiser les styles
-    document.getElementById('c_whatsapp').style.borderColor = '';
-    document.getElementById('c_secteur_express').style.borderColor = '';
+    if (!isValid) return;
 
     const btn = document.getElementById('cmdBtn');
     btn.disabled = true;
@@ -576,12 +577,14 @@
 
     const formData = new FormData(e.target);
     
-    // Remplir les champs obligatoires avec valeurs par défaut
-    formData.set('nom', 'Client Pub - ' + secteur);
+    // Remplir les champs obligatoires cachés avec valeurs par défaut dérivées
+    formData.set('whatsapp', whatsapp);
+    formData.set('telephone', whatsapp);
+    formData.set('nom', 'Client Pub - ' + secteur.substring(0, 30)); // Tronque à 30 caractères pour la sécurité SQL
     formData.set('ville', 'À définir avec le client');
     formData.set('email', 'client-' + Date.now() + '@temp.com');
     formData.set('type_site', 'À définir avec le client');
-    formData.set('presentation', 'Secteur : ' + secteur + '. Client issu d\'une campagne publicitaire.');
+    formData.set('presentation', 'Description client : ' + secteur + '. Client issu d\'une campagne publicitaire.');
     formData.set('adresse', '');
     formData.set('horaires', '');
     formData.set('nb_produits', '');
