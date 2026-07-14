@@ -48,7 +48,8 @@
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;overflow-x:hidden;padding-bottom:60px /* Espace pour sticky mobile */}
+    @media(min-width:701px){body{padding-bottom:0}}
     h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,serif}
     a{color:inherit;text-decoration:none}
     .container{max-width:1160px;margin:0 auto;padding:0 1.5rem}
@@ -99,7 +100,40 @@
     .s-title{font-size:clamp(1.9rem,4vw,2.6rem);line-height:1.15;font-weight:700;margin-bottom:.8rem}
     .s-sub{font-size:1rem;color:var(--muted);max-width:700px;line-height:1.75;margin-bottom:2.3rem}
 
+    /* PORTFOLIO INTERACTIF */
+    .studio-tabs { display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .studio-tab { padding:.6rem 1.2rem; border-radius:999px; border:1px solid var(--border); color:var(--muted); cursor:pointer; font-size:.82rem; font-weight:600; transition:all .2s; background:transparent; font-family:'DM Sans',sans-serif; }
+    .studio-tab:hover { border-color:var(--gold-border); color:var(--text); }
+    .studio-tab.active { background:var(--gold); color:#08080c; border-color:var(--gold); }
+    .studio-devices { display:flex; gap:.5rem; justify-content:center; margin-bottom:2rem; }
+    .device-btn { width:40px; height:40px; border-radius:10px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+    .device-btn:hover { border-color:var(--gold-border); color:var(--text); }
+    .device-btn.active { background:var(--gold-bg); border-color:var(--gold-border); color:var(--gold); }
+    .mockup-wrapper { position:relative; width:100%; display:flex; justify-content:center; overflow:hidden; padding:1rem 0; }
+    .mockup-container { transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1); overflow:hidden; background:#0c0c10; box-shadow:0 20px 60px rgba(0,0,0,.6); border:1px solid var(--border2); position:relative; }
+    .mockup-container.device-desktop { width:100%; max-width:900px; height:520px; border-radius:12px; }
+    .mockup-container.device-desktop .mockup-toolbar { display:flex; }
+    .mockup-container.device-tablet { width:500px; height:680px; border-radius:20px; border:8px solid #1c1c22; }
+    .mockup-container.device-tablet .mockup-toolbar { display:none; }
+    .mockup-container.device-mobile { width:300px; height:600px; border-radius:28px; border:10px solid #1c1c22; }
+    .mockup-container.device-mobile .mockup-toolbar { display:none; }
+    .mockup-toolbar { display:flex; align-items:center; gap:.5rem; padding:.6rem 1rem; background:var(--bg2); border-bottom:1px solid var(--border); }
+    .mockup-toolbar .dots { display:flex; gap:.4rem; }
+    .mockup-toolbar .dots span { width:10px; height:10px; border-radius:50%; background:var(--border2); }
+    .mockup-toolbar .url-bar { flex:1; background:var(--bg); border-radius:6px; padding:.35rem .8rem; font-size:.75rem; color:var(--gold); text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .mockup-frame { width:100%; height:100%; border:none; background:#fff; }
+
+    /* TÉMOIGNAGES */
     .grid{display:grid;gap:1.2rem}
+    .g2{grid-template-columns:repeat(2,1fr)}
+    @media(max-width:700px){.g2{grid-template-columns:1fr}}
+    .t-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;position:relative}
+    .t-card::before{content:'"';position:absolute;top:-10px;left:20px;font-size:5rem;color:var(--gold);opacity:.2;font-family:Georgia,serif}
+    .t-text{font-style:italic;color:var(--soft);font-size:1rem;line-height:1.7;margin-bottom:1.5rem}
+    .t-author{display:flex;align-items:center;gap:1rem;border-top:1px solid var(--border);padding-top:1rem}
+    .t-info strong{display:block;color:var(--text);font-size:.95rem}
+    .t-info span{color:var(--gold);font-size:.8rem}
+
     .g3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:960px){.g3{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:560px){.g3{grid-template-columns:1fr}}
@@ -108,22 +142,8 @@
     .card-icon{width:42px;height:42px;border-radius:12px;background:var(--gold-bg);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;margin-bottom:1rem}
     .card h3{font-size:1.02rem;font-weight:600;margin-bottom:.45rem}
     .card p{color:var(--soft);font-size:.9rem;line-height:1.6}
-
-    .cas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-    @media(max-width:960px){.cas-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:560px){.cas-grid{grid-template-columns:1fr}}
-    .cas-card{background:var(--card);border:1px solid var(--gold-border);border-radius:var(--r2);padding:1.7rem 1.5rem;transition:border-color .25s,transform .25s}
-    .cas-card:hover{border-color:var(--gold);transform:translateY(-2px)}
-    .cas-card .badge{margin-bottom:.6rem}
-    .cas-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;margin-bottom:.2rem}
-    .cas-card .cas-sub{font-size:.78rem;color:var(--muted);margin-bottom:.8rem}
-    .cas-card .cas-metrics{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:.8rem 0 1rem}
-    .cas-card .cas-metric{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.6rem .4rem;text-align:center}
-    .cas-card .cas-metric-num{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--gold);line-height:1}
-    .cas-card .cas-metric-label{font-size:.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:.1rem}
-    .cas-card .btn{font-size:.78rem;padding:.5rem 1rem;width:100%;justify-content:center}
-    .cas-highlight{border-color:var(--gold)}
-    .cas-highlight .cas-metric-num{color:var(--gold2)}
+    .bonus-card{border-color:var(--gold-border);background:var(--gold-bg)}
+    .bonus-card .card-icon{background:var(--gold);color:#08080c}
 
     .valeur-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:2rem;max-width:520px;margin:0 auto}
     .valeur-row{display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid var(--border);font-size:.92rem}
@@ -146,14 +166,13 @@
     .callout strong{color:var(--gold2)}
 
     .cmd-box{background:var(--card);border:1px solid var(--gold-border);border-radius:var(--r2);padding:2.2rem 2rem;max-width:640px;margin:0 auto}
-    .cmd-box .express-note{font-size:.8rem;color:var(--muted);background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:10px;padding:.6rem 1rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem}
-    .cmd-box .express-note i{color:var(--gold)}
+    .scarcity-banner{background:rgba(220,60,60,.08);border:1px solid rgba(220,60,60,.3);color:var(--red-text);padding:.8rem 1rem;border-radius:12px;text-align:center;font-size:.82rem;font-weight:600;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+    .express-note{font-size:.8rem;color:var(--muted);background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:10px;padding:.6rem 1rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem}
+    .express-note i{color:var(--gold)}
     .f-row{margin-bottom:1.1rem}
     .f-row label{display:block;font-size:.82rem;color:var(--soft);margin-bottom:.4rem;font-weight:500}
-    .f-row label .opt{color:var(--muted);font-weight:400}
-    .f-row input,.f-row select,.f-row textarea{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:12px;padding:.75rem .9rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.92rem}
-    .f-row input:focus,.f-row select:focus,.f-row textarea:focus{outline:none;border-color:var(--gold-border)}
-    .f-row textarea{resize:vertical;min-height:90px}
+    .f-row input{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:12px;padding:.75rem .9rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.92rem}
+    .f-row input:focus{outline:none;border-color:var(--gold-border)}
     .f-grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     @media(max-width:560px){.f-grid2{grid-template-columns:1fr}}
     .f-hidden{display:none !important}
@@ -174,6 +193,11 @@
     .wa:hover{transform:scale(1.07)}
     .wa i{font-size:2.1rem;color:#fff}
 
+    /* STICKY CTA MOBILE */
+    .sticky-cta-mobile{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(8,8,12,.98);backdrop-filter:blur(12px);border-top:1px solid var(--gold-border);padding:.7rem 1rem;z-index:999;box-shadow:0 -4px 20px rgba(0,0,0,.1)}
+    @media(max-width:700px){.sticky-cta-mobile{display:block}}
+    .sticky-cta-mobile a{display:block;text-align:center;background:var(--gold);color:#08080c;font-weight:700;padding:.9rem;border-radius:999px;text-decoration:none;font-size:.9rem}
+
     .reveal{opacity:1;transform:translateY(0);transition:.6s ease}
     @media(prefers-reduced-motion:reduce){*{transition:none!important}}
   </style>
@@ -184,6 +208,11 @@
 <a class="wa" target="_blank" rel="noopener" href="https://wa.me/2250151170666?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27offre%20site%20web%20%C3%A0%2075%20000%20FCFA.">
   <i class="fa-brands fa-whatsapp"></i>
 </a>
+
+<!-- STICKY CTA MOBILE -->
+<div class="sticky-cta-mobile">
+  <a href="#commande">🛒 Commander mon site (75k FCFA)</a>
+</div>
 
 <!-- NAV -->
 <header class="sticky">
@@ -207,7 +236,7 @@
         <a class="btn btn-outline" href="#realisations"><i class="fa-solid fa-eye"></i> Voir des sites déjà livrés</a>
       </div>
       <div class="hero-callout">
-        <strong>Comment ça se passe :</strong> un acompte de 30 000 FCFA à la commande (couvre l'achat de votre domaine et lance la production), le solde de 45 000 FCFA à la livraison — une fois votre site en ligne et validé par vous.
+        <strong>Comment ça se passe :</strong> un acompte de 30 000 FCFA à la commande (sert à acheter votre nom de domaine, vous en êtes propriétaire), le solde de 45 000 FCFA à la livraison — une fois votre site en ligne et validé par vous.
       </div>
     </div>
   </div>
@@ -227,68 +256,70 @@
 
 <div class="divider"></div>
 
-<!-- RÉALISATIONS — 3 SITES -->
+<!-- PORTFOLIO INTERACTIF -->
 <section id="realisations">
   <div class="container">
     <div class="reveal" style="text-align:center;margin-bottom:2rem">
-      <span class="s-eyebrow">Références</span>
-      <h2 class="s-title">Trois sites. Trois succès.<br><em style="color:var(--gold);font-style:italic">Un seul expert.</em></h2>
-      <p class="s-sub" style="margin:0 auto">Je ne vends pas un site. Je reproduis ce qui marche déjà pour moi et pour mes clients.</p>
+      <span class="s-eyebrow">Démonstration live</span>
+      <h2 class="s-title">Voyez par vous-même.<br><em style="color:var(--gold);font-style:italic">Le rendu réel de mes sites.</em></h2>
+      <p class="s-sub" style="margin:0 auto">Sélectionnez un site, puis changez d'écran (Mobile, Tablette, Desktop) pour constater la qualité d'adaptation. Aucune sortie de cette page.</p>
     </div>
 
-    <div class="cas-grid reveal">
-      <!-- Carte 1 : Superlife CI -->
-      <div class="cas-card">
-        <span class="badge">Boutique MLM · CI</span>
-        <h3>Superlife CI</h3>
-        <p class="cas-sub">Vente de produits bien-être · Paiement à la livraison</p>
-        <div class="cas-metrics">
-          <div class="cas-metric"><div class="cas-metric-num">15 600+</div><div class="cas-metric-label">Clics Google</div></div>
-          <div class="cas-metric"><div class="cas-metric-num">0 FCFA</div><div class="cas-metric-label">Pub payée</div></div>
-        </div>
-        <a href="https://superlifeofficiel.com" target="_blank" rel="noopener" class="btn btn-outline">
-          Voir le site <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.6rem"></i>
-        </a>
-      </div>
-
-      <!-- Carte 2 : Longrich Santé Bio -->
-      <div class="cas-card">
-        <span class="badge">E-commerce · International</span>
-        <h3>Longrich Santé Bio</h3>
-        <p class="cas-sub">Catalogue produits · Livraison dans +50 pays</p>
-        <div class="cas-metrics">
-          <div class="cas-metric"><div class="cas-metric-num">50+</div><div class="cas-metric-label">Pays desservis</div></div>
-          <div class="cas-metric"><div class="cas-metric-num">24-48h</div><div class="cas-metric-label">Livraison express</div></div>
-        </div>
-        <a href="https://longrichsantebio.com" target="_blank" rel="noopener" class="btn btn-outline">
-          Voir le site <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.6rem"></i>
-        </a>
-      </div>
-
-      <!-- Carte 3 : ePerformance.pro -->
-      <div class="cas-card cas-highlight">
-        <span class="badge">Mon propre site</span>
-        <h3>ePerformance.pro</h3>
-        <p class="cas-sub">Lead gen · Vente de formations · Diagnostic</p>
-        <div class="cas-metrics">
-          <div class="cas-metric"><div class="cas-metric-num">100%</div><div class="cas-metric-label">Mon outil de vente</div></div>
-          <div class="cas-metric"><div class="cas-metric-num">✓</div><div class="cas-metric-label">Je fais ce que je vends</div></div>
-        </div>
-        <a href="https://eperformance.pro" target="_blank" rel="noopener" class="btn btn-gold">
-          Voir mon site <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.6rem"></i>
-        </a>
-        <p style="font-size:.7rem;color:var(--muted);margin-top:.5rem;text-align:center">Le site sur lequel vous êtes — il me rapporte des clients.</p>
-      </div>
+    <div class="studio-tabs reveal">
+      <button class="studio-tab active" onclick="changeSite('superlife', 'https://superlifeofficiel.com', 'superlifeofficiel.com', this)">Superlife CI (MLM)</button>
+      <button class="studio-tab" onclick="changeSite('longrich', 'https://longrichsantebio.com', 'longrichsantebio.com', this)">Longrich (E-commerce)</button>
+      <button class="studio-tab" onclick="changeSite('eperf', 'https://eperformance.pro', 'eperformance.pro', this)">ePerformance (Vitrine)</button>
     </div>
 
-    <div class="reveal callout" style="max-width:760px;margin:1.8rem auto 0;text-align:center">
-      <p style="font-size:.95rem;">
-        <strong style="color:var(--gold2);">Superlife</strong> (15 600 clics) · 
-        <strong style="color:var(--gold2);">Longrich</strong> (e-commerce international) · 
-        <strong style="color:var(--gold2);">ePerformance</strong> (mon propre site)
-        <br>
-        <span style="color:var(--soft);">Trois sites, trois secteurs, un seul standard : le vôtre sera le prochain sur cette liste.</span>
-      </p>
+    <div class="studio-devices reveal">
+      <button class="device-btn active" onclick="changeDevice('desktop', this)" title="Vue Ordinateur"><i class="fa-solid fa-desktop"></i></button>
+      <button class="device-btn" onclick="changeDevice('tablet', this)" title="Vue Tablette"><i class="fa-solid fa-tablet-screen-button"></i></button>
+      <button class="device-btn" onclick="changeDevice('mobile', this)" title="Vue Mobile"><i class="fa-solid fa-mobile-screen"></i></button>
+    </div>
+
+    <div class="mockup-wrapper reveal">
+      <div class="mockup-container device-desktop" id="mockupContainer">
+        <div class="mockup-toolbar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="url-bar" id="urlBar">superlifeofficiel.com</div>
+        </div>
+        <iframe id="mockupFrame" class="mockup-frame" src="https://superlifeofficiel.com" loading="lazy" title="Aperçu du site"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TÉMOIGNAGES -->
+<section style="background:var(--bg2)">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:2rem">
+      <span class="s-eyebrow">Preuve sociale</span>
+      <h2 class="s-title">Ils ont déjà franchi le pas</h2>
+      <p class="s-sub" style="margin:0 auto">Des entrepreneurs comme vous qui ont choisi de professionnaliser leur présence en ligne.</p>
+    </div>
+    <div class="grid g2">
+      <div class="t-card reveal">
+        <p class="t-text">"Depuis la mise en ligne de mon site, je reçois en moyenne 5 commandes WhatsApp par jour sans payer de pub. C'est un outil de vente indispensable qui a vraiment boosté mon activité."</p>
+        <div class="t-author">
+          <div class="card-icon" style="margin-bottom:0"><i class="fa-solid fa-user"></i></div>
+          <div class="t-info">
+            <strong>Responsable Superlife CI</strong>
+            <span>Distributeur MLM - Abidjan</span>
+          </div>
+        </div>
+      </div>
+      <div class="t-card reveal">
+        <p class="t-text">"Grâce à mon site Longrichsantebio.com, j'ai des ventes en Europe. Une cliente vivant en Allemagne a d'abord acheté mes produits, puis a finalement rejoint mon réseau en tant que partenaire Longrich !"</p>
+        <div class="t-author">
+          <div class="card-icon" style="margin-bottom:0"><i class="fa-solid fa-user"></i></div>
+          <div class="t-info">
+            <strong>Fondatrice de Longrichsantebio.com</strong>
+            <span>E-commerce International - Côte d'Ivoire</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -296,7 +327,7 @@
 <div class="divider"></div>
 
 <!-- CE QUI EST INCLUS -->
-<section style="background:var(--bg2)">
+<section>
   <div class="container">
     <div class="reveal">
       <span class="s-eyebrow">L'offre</span>
@@ -329,10 +360,10 @@
         <h3>WhatsApp intégré</h3>
         <p>Un bouton direct pour que vos visiteurs vous contactent en un clic, sans détour par un formulaire compliqué.</p>
       </div>
-      <div class="card">
-        <div class="card-icon"><i class="fa-solid fa-shield-heart"></i></div>
-        <h3>7 jours de support inclus</h3>
-        <p>Un bug, un lien cassé, un souci technique ? Corrigé gratuitement dans la semaine suivant la livraison.</p>
+      <div class="card bonus-card">
+        <div class="card-icon"><i class="fa-solid fa-gift"></i></div>
+        <h3>BONUS : Google My Business</h3>
+        <p>Si vous commandez aujourd'hui, je vous offre la configuration de votre fiche Google My Business (valeur 15 000 FCFA) pour apparaître sur Google Maps.</p>
       </div>
     </div>
   </div>
@@ -341,7 +372,7 @@
 <div class="divider"></div>
 
 <!-- VALEUR / PRIX -->
-<section>
+<section style="background:var(--bg2)">
   <div class="container">
     <div class="reveal" style="text-align:center;margin-bottom:2rem">
       <span class="s-eyebrow">Le prix</span>
@@ -359,7 +390,7 @@
         <span class="valeur-total-label">Prix aujourd'hui</span>
         <span class="valeur-total-price">75 000 FCFA</span>
       </div>
-      <p class="valeur-note">Soit 122 000 FCFA d'économie par rapport à une prestation équivalente à l'unité. Acompte 30 000 FCFA à la commande, solde 45 000 FCFA à la livraison.</p>
+      <p class="valeur-note">Soit 122 000 FCFA d'économie par rapport à une prestation équivalente à l'unité. Acompte 30 000 FCFA (achat du domaine, vous en êtes propriétaire) · Solde 45 000 FCFA à la livraison du site.</p>
     </div>
   </div>
 </section>
@@ -367,7 +398,7 @@
 <div class="divider"></div>
 
 <!-- COMMENT ÇA MARCHE -->
-<section style="background:var(--bg2)">
+<section>
   <div class="container">
     <div class="reveal">
       <span class="s-eyebrow">Le process</span>
@@ -409,8 +440,8 @@
 
 <div class="divider"></div>
 
-<!-- FORMULAIRE DE COMMANDE — 2 CHAMPS OBLIGATOIRES -->
-<section id="commande">
+<!-- FORMULAIRE DE COMMANDE -->
+<section id="commande" style="background:var(--bg2)">
   <div class="container">
     <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 2rem">
       <span class="s-eyebrow">Passer commande</span>
@@ -419,6 +450,10 @@
     </div>
 
     <form id="cmdForm" class="reveal cmd-box" novalidate>
+      <div class="scarcity-banner">
+        <i class="fa-solid fa-fire"></i> Je ne prends que 10 clients par mois pour garantir la qualité. Places restantes : 4
+      </div>
+
       <div class="express-note">
         <i class="fa-solid fa-info-circle"></i>
         <span><strong>2 champs obligatoires</strong> — Le reste se fera ensemble sur WhatsApp.</span>
@@ -435,7 +470,6 @@
         </div>
       </div>
 
-      <!-- CHAMPS CACHÉS POUR LA COMPATIBILITÉ SQL -->
       <div class="f-hidden">
         <input type="text" name="nom" value="">
         <input type="text" name="ville" value="">
@@ -472,7 +506,7 @@
 <div class="divider"></div>
 
 <!-- FAQ -->
-<section id="faq" style="background:var(--bg2)">
+<section id="faq">
   <div class="container">
     <div class="reveal">
       <span class="s-eyebrow">Questions fréquentes</span>
@@ -493,7 +527,7 @@
 <div class="divider"></div>
 
 <!-- CTA FINAL -->
-<section>
+<section style="background:var(--bg2)">
   <div class="container">
     <div class="reveal callout" style="max-width:700px;margin:0 auto;text-align:center;padding:2.4rem">
       <p style="font-size:1.05rem;color:var(--text);margin-bottom:1.4rem">
@@ -540,19 +574,35 @@
     fbclid: _params.get('fbclid') || ''
   };
 
+  // --- PORTFOLIO INTERACTIF LOGIC ---
+  function changeSite(name, url, displayUrl, btn) {
+    document.getElementById('mockupFrame').src = url;
+    document.getElementById('urlBar').textContent = displayUrl;
+    document.querySelectorAll('.studio-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function changeDevice(device, btn) {
+    const container = document.getElementById('mockupContainer');
+    container.classList.remove('device-desktop', 'device-tablet', 'device-mobile');
+    container.classList.add('device-' + device);
+    document.querySelectorAll('.device-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
   // --- FORMULAIRE (2 CHAMPS OBLIGATOIRES) ---
   document.getElementById('cmdForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    // Récupération et nettoyage du numéro WhatsApp
+    // Nettoyage du numéro WhatsApp
     let whatsapp_raw = document.getElementById('c_whatsapp').value.trim();
-    let whatsapp = whatsapp_raw.replace(/[^0-9+]/g, ''); // Ne garde que les chiffres et le +
+    let whatsapp = whatsapp_raw.replace(/[^0-9+]/g, '');
     if (whatsapp.startsWith('00')) whatsapp = '+' + whatsapp.substring(2);
-    if (!whatsapp.startsWith('+') && whatsapp.length === 10) whatsapp = '+225' + whatsapp; // Ajoute l'indicatif CI si oublié
+    if (!whatsapp.startsWith('+') && whatsapp.length === 10) whatsapp = '+225' + whatsapp;
     
     const secteur = document.getElementById('c_secteur_express').value.trim();
     
-    // Validation visuelle des 2 champs obligatoires
+    // Validation
     let isValid = true;
     if (!whatsapp) {
       document.getElementById('c_whatsapp').style.borderColor = '#e07070';
@@ -577,10 +627,10 @@
 
     const formData = new FormData(e.target);
     
-    // Remplir les champs obligatoires cachés avec valeurs par défaut dérivées
+    // Remplir les champs cachés
     formData.set('whatsapp', whatsapp);
     formData.set('telephone', whatsapp);
-    formData.set('nom', 'Client Pub - ' + secteur.substring(0, 30)); // Tronque à 30 caractères pour la sécurité SQL
+    formData.set('nom', 'Client Pub - ' + secteur.substring(0, 30));
     formData.set('ville', 'À définir avec le client');
     formData.set('email', 'client-' + Date.now() + '@temp.com');
     formData.set('type_site', 'À définir avec le client');
