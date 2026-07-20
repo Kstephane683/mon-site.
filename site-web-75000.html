@@ -34,7 +34,7 @@
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1592627695615531');fbq('track','PageView');</script>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1592627695615531&ev=PageView&noscript=1"/></noscript>
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Création de site web","provider":{"@type":"Organization","name":"ePerformance","url":"https://eperformance.pro"},"areaServed":"CI","offers":{"@type":"Offer","price":"75000","priceCurrency":"XOF","description":"Site web professionnel sur mesure, nom de domaine inclus 1 an"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Création de site web","provider":{"@type":"Organization","name":"ePerformance","url":"https://eperformance.pro"},"areaServed":"CI","offers":[{"@type":"Offer","name":"Site Web Professionnel","price":"75000","priceCurrency":"XOF","description":"Site web professionnel sur mesure, nom de domaine inclus 1 an"},{"@type":"Offer","name":"Site Web + Accompagnement Croissance 12 mois","price":"250000","priceCurrency":"XOF","description":"Site web professionnel + 12 mois d'accompagnement stratégique acquisition, nom de domaine inclus 2 ans"}]}</script>
 
   <style>
     :root{
@@ -48,7 +48,7 @@
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;overflow-x:hidden;padding-bottom:60px /* Espace pour sticky mobile */}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;overflow-x:hidden;padding-bottom:60px}
     @media(min-width:701px){body{padding-bottom:0}}
     h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,serif}
     a{color:inherit;text-decoration:none}
@@ -123,16 +123,41 @@
     .mockup-toolbar .url-bar { flex:1; background:var(--bg); border-radius:6px; padding:.35rem .8rem; font-size:.75rem; color:var(--gold); text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .mockup-frame { width:100%; height:100%; border:none; background:#fff; }
 
-    /* TÉMOIGNAGES */
+    /* PREUVE SOCIALE / CASE STUDY */
     .grid{display:grid;gap:1.2rem}
     .g2{grid-template-columns:repeat(2,1fr)}
     @media(max-width:700px){.g2{grid-template-columns:1fr}}
+    .case-study{background:var(--card);border:1px solid var(--gold-border);border-radius:var(--r2);padding:2.4rem;display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:center}
+    @media(max-width:800px){.case-study{grid-template-columns:1fr}}
+    .case-study-tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:.6rem;display:block}
+    .case-study h3{font-size:1.4rem;margin-bottom:.8rem}
+    .case-study p{color:var(--soft);font-size:.92rem;line-height:1.7;margin-bottom:1rem}
+    .case-study a{color:var(--gold2);font-size:.85rem;font-weight:600}
+    .case-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+    .case-stat{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center}
+    .case-stat-num{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--gold)}
+    .case-stat-label{font-size:.72rem;color:var(--muted);margin-top:.2rem;text-transform:uppercase;letter-spacing:.05em}
     .t-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;position:relative}
     .t-card::before{content:'"';position:absolute;top:-10px;left:20px;font-size:5rem;color:var(--gold);opacity:.2;font-family:Georgia,serif}
     .t-text{font-style:italic;color:var(--soft);font-size:1rem;line-height:1.7;margin-bottom:1.5rem}
     .t-author{display:flex;align-items:center;gap:1rem;border-top:1px solid var(--border);padding-top:1rem}
     .t-info strong{display:block;color:var(--text);font-size:.95rem}
     .t-info span{color:var(--gold);font-size:.8rem}
+
+    /* FILTRE INVERSÉ */
+    .filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+    @media(max-width:700px){.filter-grid{grid-template-columns:1fr}}
+    .filter-card{border-radius:var(--r);padding:1.8rem;border:1px solid var(--border)}
+    .filter-card.yes{background:var(--green);border-color:var(--green-border)}
+    .filter-card.no{background:var(--red);border-color:var(--red-border)}
+    .filter-card h3{font-size:1rem;margin-bottom:1rem;font-family:'DM Sans',sans-serif;font-weight:700}
+    .filter-card.yes h3{color:var(--green-text)}
+    .filter-card.no h3{color:var(--red-text)}
+    .filter-card ul{list-style:none}
+    .filter-card li{display:flex;align-items:flex-start;gap:.6rem;font-size:.87rem;color:var(--soft);padding:.45rem 0}
+    .filter-card li i{margin-top:.2rem;flex-shrink:0}
+    .filter-card.yes li i{color:var(--green-text)}
+    .filter-card.no li i{color:var(--red-text)}
 
     .g3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:960px){.g3{grid-template-columns:repeat(2,1fr)}}
@@ -145,15 +170,24 @@
     .bonus-card{border-color:var(--gold-border);background:var(--gold-bg)}
     .bonus-card .card-icon{background:var(--gold);color:#08080c}
 
-    .valeur-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:2rem;max-width:520px;margin:0 auto}
-    .valeur-row{display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid var(--border);font-size:.92rem}
-    .valeur-row:last-of-type{border-bottom:none}
-    .valeur-row span:first-child{color:var(--soft)}
-    .valeur-row span:last-child{color:var(--muted);text-decoration:line-through}
-    .valeur-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--gold-border)}
-    .valeur-total-label{font-size:.95rem;color:var(--soft)}
-    .valeur-total-price{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;color:var(--gold);line-height:1}
-    .valeur-note{font-size:.78rem;color:var(--muted);margin-top:.6rem;line-height:1.6}
+    /* PRICING (2 offres) */
+    .anchor-line{text-align:center;max-width:680px;margin:0 auto 2.4rem;font-size:.95rem;color:var(--soft);line-height:1.8}
+    .anchor-line strong{color:var(--gold2)}
+    .pricing-grid{align-items:stretch;grid-template-columns:1fr 1.15fr;gap:1.6rem}
+    @media(max-width:800px){.pricing-grid{grid-template-columns:1fr}}
+    .price-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:2.2rem 1.8rem;display:flex;flex-direction:column;position:relative;transition:transform .25s,border-color .25s}
+    .price-card--anchor{opacity:.92}
+    .price-card--featured{border-color:var(--gold);background:linear-gradient(180deg,var(--gold-bg),var(--card) 60%);transform:scale(1.035);box-shadow:0 20px 50px rgba(201,169,110,.14)}
+    @media(max-width:800px){.price-card--featured{transform:none;order:-1}}
+    .price-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:#08080c;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:.4rem 1rem;border-radius:999px;white-space:nowrap}
+    .price-card h3{font-size:1.3rem;font-weight:700;margin-bottom:.3rem}
+    .price-tagline{font-size:.84rem;color:var(--muted);margin-bottom:1.2rem;min-height:2.2em}
+    .price-amount{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:1.4rem}
+    .price-amount span{font-size:1.1rem;font-weight:600;color:var(--soft)}
+    .price-features{list-style:none;margin-bottom:1.6rem;flex:1}
+    .price-features li{display:flex;align-items:flex-start;gap:.6rem;font-size:.87rem;color:var(--soft);padding:.5rem 0;border-bottom:1px solid var(--border)}
+    .price-features li:last-child{border-bottom:none}
+    .price-features li i{color:var(--gold);margin-top:.2rem;flex-shrink:0}
 
     .steps{display:flex;flex-direction:column;gap:0}
     .step{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;align-items:flex-start;padding:1.7rem 0;border-bottom:1px solid var(--border)}
@@ -169,6 +203,7 @@
     .scarcity-banner{background:rgba(220,60,60,.08);border:1px solid rgba(220,60,60,.3);color:var(--red-text);padding:.8rem 1rem;border-radius:12px;text-align:center;font-size:.82rem;font-weight:600;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
     .express-note{font-size:.8rem;color:var(--muted);background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:10px;padding:.6rem 1rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem}
     .express-note i{color:var(--gold)}
+    .offer-selected-note{font-size:.8rem;color:var(--gold2);background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:10px;padding:.6rem 1rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem}
     .f-row{margin-bottom:1.1rem}
     .f-row label{display:block;font-size:.82rem;color:var(--soft);margin-bottom:.4rem;font-weight:500}
     .f-row input{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:12px;padding:.75rem .9rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.92rem}
@@ -193,7 +228,6 @@
     .wa:hover{transform:scale(1.07)}
     .wa i{font-size:2.1rem;color:#fff}
 
-    /* STICKY CTA MOBILE */
     .sticky-cta-mobile{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(8,8,12,.98);backdrop-filter:blur(12px);border-top:1px solid var(--gold-border);padding:.7rem 1rem;z-index:999;box-shadow:0 -4px 20px rgba(0,0,0,.1)}
     @media(max-width:700px){.sticky-cta-mobile{display:block}}
     .sticky-cta-mobile a{display:block;text-align:center;background:var(--gold);color:#08080c;font-weight:700;padding:.9rem;border-radius:999px;text-decoration:none;font-size:.9rem}
@@ -236,7 +270,7 @@
         <a class="btn btn-outline" href="#realisations"><i class="fa-solid fa-eye"></i> Voir des sites déjà livrés</a>
       </div>
       <div class="hero-callout">
-        <strong>Comment ça se passe :</strong> un acompte de 30 000 FCFA à la commande (sert à acheter votre nom de domaine, vous en êtes propriétaire), le solde de 45 000 FCFA à la livraison — une fois votre site en ligne et validé par vous.
+        <strong>Comment ça se passe :</strong> un acompte de 30 000 FCFA à la commande (sert à acheter votre nom de domaine, vous en êtes propriétaire), le solde de 45 000 FCFA à la livraison — une fois votre site en ligne et validé par vous. <em>Certains clients choisissent d'aller plus loin avec un accompagnement complet sur 12 mois (250 000 FCFA) — on y revient plus bas, mais pour démarrer, le site seul suffit largement.</em>
       </div>
     </div>
   </div>
@@ -291,14 +325,30 @@
 
 <div class="divider"></div>
 
-<!-- TÉMOIGNAGES -->
+<!-- PREUVE SOCIALE : CASE STUDY CHIFFRÉ + TÉMOIGNAGES -->
 <section style="background:var(--bg2)">
   <div class="container">
     <div class="reveal" style="text-align:center;margin-bottom:2rem">
       <span class="s-eyebrow">Preuve sociale</span>
-      <h2 class="s-title">Ils ont déjà franchi le pas</h2>
-      <p class="s-sub" style="margin:0 auto">Des entrepreneurs comme vous qui ont choisi de professionnaliser leur présence en ligne.</p>
+      <h2 class="s-title">Pas des promesses. Des chiffres réels.</h2>
+      <p class="s-sub" style="margin:0 auto">Ce qu'un site bien construit peut produire quand il est pensé pour convertir, pas juste pour "exister".</p>
     </div>
+
+    <div class="case-study reveal" style="margin-bottom:1.2rem">
+      <div>
+        <span class="case-study-tag">Cas client — Distribution MLM · Côte d'Ivoire</span>
+        <h3>Superlife CI — Système d'acquisition complet</h3>
+        <p>Boutique e-commerce, SEO, tracking et fiche Google My Business construits de zéro. Trafic organique actif dans plus de 30 pays, sans dépenser un franc en publicité Google.</p>
+        <a href="https://eperformance.pro/cas-client-mlm.html" target="_blank" rel="noopener">Voir l'étude de cas complète →</a>
+      </div>
+      <div class="case-stats">
+        <div class="case-stat"><div class="case-stat-num">15 600+</div><div class="case-stat-label">Clics Google</div></div>
+        <div class="case-stat"><div class="case-stat-num">10,4%</div><div class="case-stat-label">CTR moyen</div></div>
+        <div class="case-stat"><div class="case-stat-num">30+</div><div class="case-stat-label">Pays couverts</div></div>
+        <div class="case-stat"><div class="case-stat-num">0 FCFA</div><div class="case-stat-label">Pub Google dépensée</div></div>
+      </div>
+    </div>
+
     <div class="grid g2">
       <div class="t-card reveal">
         <p class="t-text">"Depuis la mise en ligne de mon site, je reçois en moyenne 5 commandes WhatsApp par jour sans payer de pub. C'est un outil de vente indispensable qui a vraiment boosté mon activité."</p>
@@ -326,8 +376,39 @@
 
 <div class="divider"></div>
 
-<!-- CE QUI EST INCLUS -->
+<!-- FILTRE INVERSÉ -->
 <section>
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:2rem">
+      <span class="s-eyebrow">Avant d'aller plus loin</span>
+      <h2 class="s-title">C'est fait pour vous — ou pas</h2>
+      <p class="s-sub" style="margin:0 auto">Je préfère être direct plutôt que de vous faire perdre votre temps.</p>
+    </div>
+    <div class="filter-grid reveal">
+      <div class="filter-card yes">
+        <h3><i class="fa-solid fa-circle-check"></i> C'est pour vous si…</h3>
+        <ul>
+          <li><i class="fa-solid fa-check"></i> Vous vendez déjà (produits, services, réseau) mais vous n'avez pas de vitrine professionnelle</li>
+          <li><i class="fa-solid fa-check"></i> Vous voulez un outil que vous possédez, pas un abonnement à vie</li>
+          <li><i class="fa-solid fa-check"></i> Vous êtes prêt à envoyer vos infos et photos sous quelques jours</li>
+        </ul>
+      </div>
+      <div class="filter-card no">
+        <h3><i class="fa-solid fa-circle-xmark"></i> Ce n'est pas pour vous si…</h3>
+        <ul>
+          <li><i class="fa-solid fa-xmark"></i> Vous cherchez le prix le plus bas possible, sans considération de qualité</li>
+          <li><i class="fa-solid fa-xmark"></i> Vous n'avez pas encore d'activité ni de produit à présenter</li>
+          <li><i class="fa-solid fa-xmark"></i> Vous voulez qu'on gère tout à votre place pendant un an sans jamais y penser → regardez plutôt l'accompagnement Croissance plus bas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CE QUI EST INCLUS -->
+<section style="background:var(--bg2)">
   <div class="container">
     <div class="reveal">
       <span class="s-eyebrow">L'offre</span>
@@ -371,34 +452,62 @@
 
 <div class="divider"></div>
 
-<!-- VALEUR / PRIX -->
-<section style="background:var(--bg2)">
+<!-- OFFRES / PRIX (2 formules) -->
+<section id="offres">
   <div class="container">
-    <div class="reveal" style="text-align:center;margin-bottom:2rem">
-      <span class="s-eyebrow">Le prix</span>
-      <h2 class="s-title">Ce que ça vaut, ce que vous payez</h2>
-      <p class="s-sub" style="margin:0 auto">Un détail transparent, poste par poste — pas un chiffre sorti de nulle part.</p>
+    <div class="reveal" style="text-align:center;margin-bottom:1.4rem">
+      <span class="s-eyebrow">Deux façons de démarrer</span>
+      <h2 class="s-title">Le site seul, ou le site accompagné</h2>
     </div>
-    <div class="reveal valeur-box">
-      <div class="valeur-row"><span>Site web professionnel sur mesure</span><span>150 000 FCFA</span></div>
-      <div class="valeur-row"><span>Nom de domaine (1 an)</span><span>12 000 FCFA</span></div>
-      <div class="valeur-row"><span>Hébergement (1 an)</span><span>15 000 FCFA</span></div>
-      <div class="valeur-row"><span>Optimisation SEO de base</span><span>10 000 FCFA</span></div>
-      <div class="valeur-row"><span>Intégration WhatsApp</span><span>5 000 FCFA</span></div>
-      <div class="valeur-row"><span>Badge certifié + guide d'utilisation</span><span>5 000 FCFA</span></div>
-      <div class="valeur-total">
-        <span class="valeur-total-label">Prix aujourd'hui</span>
-        <span class="valeur-total-price">75 000 FCFA</span>
+    <p class="anchor-line reveal">Certains clients veulent qu'on les accompagne toute l'année pour transformer leur site en vraie machine à vendre — c'est l'offre <strong>Croissance à 250 000 FCFA</strong>. Pour la grande majorité, le site seul à <strong>75 000 FCFA</strong> suffit amplement pour démarrer et commencer à vendre dès sa mise en ligne.</p>
+
+    <div class="grid pricing-grid reveal">
+
+      <!-- OFFRE ANCRE : CROISSANCE 12 MOIS -->
+      <div class="price-card price-card--anchor">
+        <h3>Croissance</h3>
+        <p class="price-tagline">Le site + 12 mois à vos côtés pour le faire vendre</p>
+        <div class="price-amount">250 000 <span>FCFA</span></div>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check"></i> Le même site professionnel sur mesure</li>
+          <li><i class="fa-solid fa-check"></i> Nom de domaine inclus (2 ans)</li>
+          <li><i class="fa-solid fa-check"></i> 12 mois d'accompagnement stratégique acquisition</li>
+          <li><i class="fa-solid fa-check"></i> Accès direct à moi sur WhatsApp toute l'année, dès que vous avez besoin d'un ajustement ou d'un conseil</li>
+          <li><i class="fa-solid fa-check"></i> Optimisation continue du site et du référencement</li>
+          <li><i class="fa-solid fa-check"></i> Bonus : Google My Business offert</li>
+        </ul>
+        <a href="#commande" class="btn btn-outline btn-block" onclick="selectOffer('Croissance — 250 000 FCFA', this)">Choisir Croissance</a>
       </div>
-      <p class="valeur-note">Soit 122 000 FCFA d'économie par rapport à une prestation équivalente à l'unité. Acompte 30 000 FCFA (achat du domaine, vous en êtes propriétaire) · Solde 45 000 FCFA à la livraison du site.</p>
+
+      <!-- OFFRE CIBLE : PROFESSIONNEL (mise en avant) -->
+      <div class="price-card price-card--featured">
+        <div class="price-badge">⭐ Le plus choisi</div>
+        <h3>Professionnel</h3>
+        <p class="price-tagline">Votre site, prêt à l'emploi, vous êtes autonome dès la livraison</p>
+        <div class="price-amount">75 000 <span>FCFA</span></div>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check"></i> Site complet multi-pages, sur mesure</li>
+          <li><i class="fa-solid fa-check"></i> Nom de domaine inclus (1 an)</li>
+          <li><i class="fa-solid fa-check"></i> 100% responsive + optimisé Google (SEO)</li>
+          <li><i class="fa-solid fa-check"></i> Bouton WhatsApp intégré</li>
+          <li><i class="fa-solid fa-check"></i> Badge certifié + guide d'utilisation + 7j de support</li>
+          <li><i class="fa-solid fa-check"></i> Bonus : Google My Business offert</li>
+        </ul>
+        <a href="#commande" class="btn btn-gold btn-block" onclick="selectOffer('Professionnel — 75 000 FCFA', this)">Choisir Professionnel</a>
+      </div>
+
     </div>
+
+    <p style="text-align:center;font-size:.8rem;color:var(--muted);margin-top:1.6rem">
+      Aucun abonnement caché sur l'offre Professionnel : le site vous appartient, sans engagement au-delà de la livraison.
+    </p>
   </div>
 </section>
 
 <div class="divider"></div>
 
 <!-- COMMENT ÇA MARCHE -->
-<section>
+<section style="background:var(--bg2)">
   <div class="container">
     <div class="reveal">
       <span class="s-eyebrow">Le process</span>
@@ -431,7 +540,7 @@
         <div class="step-num">4</div>
         <div class="step-body">
           <h3>Vous validez, vous réglez le solde, c'est en ligne</h3>
-          <p>Vous recevez votre lien, votre guide d'utilisation, et vous pouvez commencer à le partager à vos clients.</p>
+          <p>Vous recevez votre lien, votre guide d'utilisation. Avec l'offre Croissance, notre relation continue ensuite sur WhatsApp pendant 12 mois — sans rendez-vous fixe, dès que vous en avez besoin.</p>
         </div>
       </div>
     </div>
@@ -441,7 +550,7 @@
 <div class="divider"></div>
 
 <!-- FORMULAIRE DE COMMANDE -->
-<section id="commande" style="background:var(--bg2)">
+<section id="commande">
   <div class="container">
     <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 2rem">
       <span class="s-eyebrow">Passer commande</span>
@@ -452,6 +561,11 @@
     <form id="cmdForm" class="reveal cmd-box" novalidate>
       <div class="scarcity-banner">
         <i class="fa-solid fa-fire"></i> Je ne prends que 10 clients par mois pour garantir la qualité. Places restantes : 4
+      </div>
+
+      <div class="offer-selected-note">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>Formule sélectionnée : <strong id="offerLabel">Professionnel — 75 000 FCFA</strong></span>
       </div>
 
       <div class="express-note">
@@ -476,7 +590,7 @@
         <input type="text" name="adresse" value="">
         <input type="email" name="email" value="">
         <input type="text" name="horaires" value="">
-        <input type="text" name="type_site" value="À définir avec le client">
+        <input type="text" id="offre_choisie" name="type_site" value="Professionnel — 75 000 FCFA">
         <input type="text" name="nb_produits" value="">
         <textarea name="presentation"></textarea>
         <input type="text" name="style_souhaite" value="">
@@ -484,11 +598,11 @@
       </div>
 
       <button type="submit" id="cmdBtn" class="btn btn-gold btn-block" style="margin-top:.5rem">
-        <i class="fa-solid fa-paper-plane"></i> Je réserve mon site à 75 000 FCFA
+        <i class="fa-solid fa-paper-plane"></i> Je réserve mon site
       </button>
 
       <p style="margin-top:.9rem;font-size:.78rem;color:var(--muted);text-align:center">
-        Acompte 30 000 FCFA à la commande · Solde 45 000 FCFA à la livraison
+        Acompte à la commande · Solde à la livraison — détail précisé sur WhatsApp selon la formule choisie
       </p>
     </form>
 
@@ -506,7 +620,7 @@
 <div class="divider"></div>
 
 <!-- FAQ -->
-<section id="faq">
+<section style="background:var(--bg2)" id="faq">
   <div class="container">
     <div class="reveal">
       <span class="s-eyebrow">Questions fréquentes</span>
@@ -514,12 +628,12 @@
       <p class="s-sub">Réponses directes. Sans blabla.</p>
     </div>
     <div class="faq-grid">
-      <details class="reveal"><summary>Le nom de domaine est vraiment inclus ?</summary><p>Oui, la première année est comprise dans les 75 000 FCFA. À partir de la 2e année, le renouvellement du domaine (environ 12 000 FCFA/an) est à votre charge, comme pour n'importe quel site web dans le monde.</p></details>
+      <details class="reveal"><summary>Le nom de domaine est vraiment inclus ?</summary><p>Oui, la première année est comprise dans le prix (2 ans pour l'offre Croissance). Au-delà, le renouvellement du domaine (environ 12 000 FCFA/an) est à votre charge, comme pour n'importe quel site web dans le monde.</p></details>
       <details class="reveal"><summary>Combien de temps pour recevoir mon site ?</summary><p>Une fois vos photos et informations reçues sur WhatsApp, comptez quelques jours pour la construction et la mise en ligne. Le délai exact vous sera confirmé dès notre échange WhatsApp.</p></details>
       <details class="reveal"><summary>Je n'ai pas de photos professionnelles, c'est un problème ?</summary><p>Non. Envoyez-moi ce que vous avez, même prises au téléphone — on les optimise pour le web. Si vraiment vous n'avez rien, on en discute ensemble sur WhatsApp.</p></details>
       <details class="reveal"><summary>Le site est vraiment à moi ?</summary><p>Oui. Ce n'est pas un abonnement : une fois livré, le site et le domaine (pendant sa durée) vous appartiennent. Aucun frais mensuel obligatoire.</p></details>
-      <details class="reveal"><summary>Et si je veux modifier mon site après ?</summary><p>Les 7 premiers jours, toute correction technique (bug, lien cassé) est gratuite. Pour des modifications de contenu (changer un texte, un prix, ajouter un produit), un petit tarif fixe s'applique — je vous donne le détail après livraison.</p></details>
-      <details class="reveal"><summary>Ça marche pour mon secteur d'activité ?</summary><p>Oui — vitrine, boutique en ligne ou blog, le site est conçu spécifiquement pour votre activité, pas un template recyclé.</p></details>
+      <details class="reveal"><summary>Et si je veux modifier mon site après ?</summary><p>Les 7 premiers jours, toute correction technique (bug, lien cassé) est gratuite. Pour des modifications de contenu (changer un texte, un prix, ajouter un produit), un petit tarif fixe s'applique — sauf avec l'offre Croissance, où l'accompagnement couvre ce suivi pendant 12 mois.</p></details>
+      <details class="reveal"><summary>En quoi consiste concrètement l'accompagnement de l'offre Croissance ?</summary><p>Vous avez un accès direct à moi sur WhatsApp pendant 12 mois : questions, ajustements du site, conseils sur votre acquisition. Ce n'est pas des rendez-vous imposés à date fixe — vous me sollicitez quand vous en avez besoin.</p></details>
     </div>
   </div>
 </section>
@@ -527,7 +641,7 @@
 <div class="divider"></div>
 
 <!-- CTA FINAL -->
-<section style="background:var(--bg2)">
+<section>
   <div class="container">
     <div class="reveal callout" style="max-width:700px;margin:0 auto;text-align:center;padding:2.4rem">
       <p style="font-size:1.05rem;color:var(--text);margin-bottom:1.4rem">
@@ -590,11 +704,18 @@
     btn.classList.add('active');
   }
 
+  // --- SÉLECTION DE FORMULE (2 offres) ---
+  function selectOffer(label, btn) {
+    document.getElementById('offre_choisie').value = label;
+    document.getElementById('offerLabel').textContent = label;
+    if (window.fbq) fbq('trackCustom', 'OffreSelectionnee', { offre: label });
+    if (window.gtag) gtag('event', 'select_item', { item_name: label });
+  }
+
   // --- FORMULAIRE (2 CHAMPS OBLIGATOIRES) ---
   document.getElementById('cmdForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    // Nettoyage du numéro WhatsApp
     let whatsapp_raw = document.getElementById('c_whatsapp').value.trim();
     let whatsapp = whatsapp_raw.replace(/[^0-9+]/g, '');
     if (whatsapp.startsWith('00')) whatsapp = '+' + whatsapp.substring(2);
@@ -602,7 +723,6 @@
     
     const secteur = document.getElementById('c_secteur_express').value.trim();
     
-    // Validation
     let isValid = true;
     if (!whatsapp) {
       document.getElementById('c_whatsapp').style.borderColor = '#e07070';
@@ -627,14 +747,12 @@
 
     const formData = new FormData(e.target);
     
-    // Remplir les champs cachés
     formData.set('whatsapp', whatsapp);
     formData.set('telephone', whatsapp);
     formData.set('nom', 'Client Pub - ' + secteur.substring(0, 30));
     formData.set('ville', 'À définir avec le client');
     formData.set('email', 'client-' + Date.now() + '@temp.com');
-    formData.set('type_site', 'À définir avec le client');
-    formData.set('presentation', 'Description client : ' + secteur + '. Client issu d\'une campagne publicitaire.');
+    formData.set('presentation', 'Description client : ' + secteur + '. Formule choisie : ' + document.getElementById('offre_choisie').value + '. Client issu d\'une campagne publicitaire.');
     formData.set('adresse', '');
     formData.set('horaires', '');
     formData.set('nb_produits', '');
@@ -655,7 +773,7 @@
       console.warn('Erreur réseau:', err);
     }
 
-    if (window.fbq) fbq('track', 'Lead', { content_name: 'Commande site web 75k' });
+    if (window.fbq) fbq('track', 'Lead', { content_name: 'Commande site web', value: 75000, currency: 'XOF' });
     if (window.gtag) gtag('event', 'generate_lead', { value: 75000, currency: 'XOF' });
 
     document.getElementById('cmdForm').style.display = 'none';
