@@ -5,9 +5,15 @@ import ChatWidget from './ChatWidget';
 // Fonction d'initialisation du widget
 window.EperfChatWidget = {
   init: function(config = {}) {
+    // Auto-détection environnement
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const defaultApiUrl = isLocalhost 
+      ? 'http://localhost:8000'
+      : 'https://api.eperformance.pro';
+    
     // Config par défaut
     const defaultConfig = {
-      apiUrl: 'http://localhost:8000',
+      apiUrl: defaultApiUrl,
       theme: 'gold',
       position: 'bottom-right'
     };
