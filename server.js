@@ -2,11 +2,15 @@
 // Adaptation de diagnostic.js pour Render (Express)
 
 const express = require('express');
+const path = require('path');
 const app = express();
 app.use(express.json());
 
 const ANTHROPIC_KEY = process.env.ANTHROPICAPIKEY;
 const BREVO_KEY = process.env.BREVOAPIKEY;
+
+// Servir les fichiers statiques
+app.use(express.static(path.join(__dirname)));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://eperformance.pro');

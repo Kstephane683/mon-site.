@@ -1,0 +1,10 @@
+export declare const DOWNWARDS_MODE_CLASS = "deep-chat-downwards-mode";
+export declare const UPWARDS_MODE_CLASS = "deep-chat-upwards-mode";
+export declare const SUBMIT_CLASS = "submit-button";
+export declare const LOADING_CLASS = "loading-button";
+export declare const DISABLED_CLASS = "disabled-button";
+export declare const INPUT_OUTSIDE_START_ADJUSTMENT_CLASS = "text-input-container-start-adjustment";
+export declare const INPUT_OUTSIDE_END_ADJUSTMENT_CLASS = "text-input-container-end-adjustment";
+export declare const INPUT_OUTSIDE_START_SMALL_ADJUSTMENT_CLASS = "text-input-container-start-small-adjustment";
+export declare const INPUT_OUTSIDE_END_SMALL_ADJUSTMENT_CLASS = "text-input-container-end-small-adjustment";
+//# sourceMappingURL=classConstants.d.ts.map

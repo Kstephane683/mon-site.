@@ -32,5 +32,25 @@
     <p class="muted">La page que vous cherchez n'existe pas ou a été déplacée.</p>
     <a class="btn btn-primary" href="index.html">↩ Retour à l'accueil</a>
   </div>
+
+<!-- ============================================================
+     CHATBOT WIDGET IA - React + Deep Chat
+     ============================================================ -->
+<div id="eperf-chat-root"></div>
+<link rel="stylesheet" href="/chatbot-widget.css">
+<script src="/chatbot-widget.iife.js"></script>
+<script>
+  // Initialiser le widget après chargement
+  if (window.EperfChatWidget) {
+    window.EperfChatWidget.init({
+      apiUrl: window.location.hostname === 'localhost' 
+        ? 'http://localhost:8000' 
+        : 'https://api.eperformance.pro',
+      theme: 'gold',
+      position: 'bottom-right'
+    });
+  }
+</script>
+
 </body>
 </html>

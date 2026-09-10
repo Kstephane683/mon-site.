@@ -580,5 +580,25 @@
   const chatWidget=document.getElementById('chatWidget');if(chatWidget){chatWidget.addEventListener('click',()=>{window.open('https://wa.me/2250151170666?text='+encodeURIComponent('Bonjour ePerformance, j\'ai une question sur les ebooks.'),'_blank');});}
 })();
 </script>
+
+<!-- ============================================================
+     CHATBOT WIDGET IA - React + Deep Chat
+     ============================================================ -->
+<div id="eperf-chat-root"></div>
+<link rel="stylesheet" href="/chatbot-widget.css">
+<script src="/chatbot-widget.iife.js"></script>
+<script>
+  // Initialiser le widget après chargement
+  if (window.EperfChatWidget) {
+    window.EperfChatWidget.init({
+      apiUrl: window.location.hostname === 'localhost' 
+        ? 'http://localhost:8000' 
+        : 'https://api.eperformance.pro',
+      theme: 'gold',
+      position: 'bottom-right'
+    });
+  }
+</script>
+
 </body>
 </html>

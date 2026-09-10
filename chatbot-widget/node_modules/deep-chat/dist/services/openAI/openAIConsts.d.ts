@@ -1,0 +1,9 @@
+export declare const OPEN_AI_BASE_URL = "https://api.openai.com/v1/";
+export declare const OPEN_AI_KEY_HELP_URL = "https://platform.openai.com/account/api-keys";
+export declare const INPUT_TEXT = "input_text";
+export declare const INPUT_IMAGE = "input_image";
+export declare const OUTPUT_TEXT = "output_text";
+export declare const IMAGE_GENERATION_CALL = "image_generation_call";
+export declare const FUNCTION_CALL_OUTPUT = "function_call_output";
+export declare const RESPONSE = "response";
+//# sourceMappingURL=openAIConsts.d.ts.map
