@@ -511,59 +511,16 @@
     @media(min-width:769px){.sticky-cta-mobile{display:none!important}}
 
     /* ============================================================
-       BOUTON WHATSAPP FLOTTANT + CHATBOT - Gestion responsive
+       BOUTON WHATSAPP FLOTTANT - DÉSACTIVÉ (Remplacé par Chatbot IA)
        ============================================================ */
     .chat-widget{
+      display:none !important; /* WhatsApp complètement désactivé - Le chatbot le remplace */
+    }
+    
+    /* Chatbot IA: Visible sur tous devices */
+    #eperf-chat-root{
       position:fixed;
-      bottom:24px;
-      right:24px;
-      width:60px;
-      height:60px;
-      background:var(--wa);
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      color:#fff;
-      font-size:1.75rem;
-      box-shadow:0 4px 16px rgba(37,211,102,.4);
-      cursor:pointer;
-      z-index:9997; /* En-dessous du chatbot (9998-9999) */
-      transition:all var(--t) var(--ease-out);
-    }
-    .chat-widget:hover{
-      transform:scale(1.1);
-      box-shadow:0 8px 24px rgba(37,211,102,.6);
-    }
-    .chat-widget:focus{
-      outline:2px solid var(--wa);
-      outline-offset:4px;
-    }
-    
-    /* Chatbot: Ajustements responsive */
-    #eperformance-chatbot-root{
-      position:fixed;
-      z-index:9998; /* Au-dessus de WhatsApp */
-    }
-    
-    /* Desktop (>768px): Les deux peuvent coexister, pas de chevauchement */
-    @media(min-width:769px){
-      .chat-widget{
-        display:grid; /* WhatsApp visible sur desktop */
-      }
-      /* Chatbot reste dans son coin (géré par son propre CSS) */
-    }
-    
-    /* Mobile (≤768px): SOIT chatbot SOIT WhatsApp */
-    @media(max-width:768px){
-      .chat-widget{
-        display:none; /* Masquer WhatsApp sur mobile */
-      }
-      /* Le chatbot prend toute la place disponible */
-      #eperformance-chatbot-root{
-        /* Le chatbot reste visible et fonctionnel */
-        bottom:0;
-        right:0;
-      }
+      z-index:9998;
     }
 
     /* ============================================================
@@ -1681,8 +1638,8 @@
      CHATBOT WIDGET IA - 27 Agents DeepSeek + Charte ePerformance
      ============================================================ -->
 <link rel="stylesheet" href="chatbot-widget.css">
-<div id="eperformance-chatbot-root"></div>
-<script src="chatbot-widget.iife.js"></script>
+<div id="eperf-chat-root"></div>
+<script src="chatbot-widget.iife.js" data-auto-init></script>
 
 </body>
 </html>
