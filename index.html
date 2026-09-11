@@ -511,17 +511,12 @@
     @media(min-width:769px){.sticky-cta-mobile{display:none!important}}
 
     /* ============================================================
-       BOUTON WHATSAPP FLOTTANT - DÉSACTIVÉ (Remplacé par Chatbot IA)
+       LIVE CHAT WIDGET
        ============================================================ */
-    .chat-widget{
-      display:none !important; /* WhatsApp complètement désactivé - Le chatbot le remplace */
-    }
-    
-    /* Chatbot IA: Visible sur tous devices */
-    #eperf-chat-root{
-      position:fixed;
-      z-index:9998;
-    }
+    .chat-widget{position:fixed;bottom:24px;right:24px;z-index:95;width:60px;height:60px;border-radius:50%;background:var(--grad-gold);color:#0a0a0e;display:grid;place-items:center;font-size:1.5rem;box-shadow:var(--shadow-gold-hover);cursor:pointer;transition:all var(--t) var(--ease-spring)}
+    .chat-widget:hover{transform:scale(1.08) rotate(4deg)}
+    .chat-widget::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--gold);opacity:0;animation:pulse-ring 2s ease-out infinite}
+    @media(max-width:768px){.chat-widget{bottom:80px;right:16px;width:52px;height:52px;font-size:1.25rem}}
 
     /* ============================================================
        CURSOR CUSTOM
@@ -1362,7 +1357,7 @@
   <button class="btn btn-gold" onclick="window.location.href='diagnostic_eperformance.html'"><i class="fa-solid fa-magnifying-glass"></i> Diagnostic</button>
 </div>
 
-<!-- BOUTON WHATSAPP FLOTTANT (Desktop uniquement) -->
+<!-- LIVE CHAT WIDGET -->
 <div class="chat-widget" id="chatWidget" role="button" aria-label="Discuter sur WhatsApp" tabindex="0">
   <i class="fa-brands fa-whatsapp"></i>
 </div>
@@ -1492,17 +1487,11 @@
     else { stickyCta.classList.remove('show'); }
   }
 
-  // 10. BOUTON WHATSAPP
+  // 10. LIVE CHAT WIDGET
   const chatWidget = document.getElementById('chatWidget');
   if (chatWidget) {
     chatWidget.addEventListener('click', () => {
       window.open('https://wa.me/2250151170666?text=' + encodeURIComponent('Bonjour ePerformance, j\'ai une question.'), '_blank');
-    });
-    chatWidget.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        window.open('https://wa.me/2250151170666?text=' + encodeURIComponent('Bonjour ePerformance, j\'ai une question.'), '_blank');
-      }
     });
   }
 
@@ -1635,11 +1624,23 @@
 </script>
 
 <!-- ============================================================
-     CHATBOT WIDGET IA - 27 Agents DeepSeek + Charte ePerformance
+     CHATBOT WIDGET IA - React + Deep Chat
      ============================================================ -->
-<link rel="stylesheet" href="chatbot-widget.css">
 <div id="eperf-chat-root"></div>
-<script src="chatbot-widget.iife.js" data-auto-init></script>
+<link rel="stylesheet" href="/chatbot-widget.css">
+<script src="/chatbot-widget.iife.js"></script>
+<script>
+  // Initialiser le widget après chargement
+  if (window.EperfChatWidget) {
+    window.EperfChatWidget.init({
+      apiUrl: window.location.hostname === 'localhost' 
+        ? 'http://localhost:8000' 
+        : 'https://web-production-4ab53.up.railway.app',
+      theme: 'gold',
+      position: 'bottom-right'
+    });
+  }
+</script>
 
 </body>
 </html>
