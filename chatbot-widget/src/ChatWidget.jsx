@@ -6,10 +6,10 @@ export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   
-  // Détecter l'environnement (dev ou prod)
+  // Backend Railway URL
   const API_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:8000/api/chatbot/message'
-    : 'https://api.eperformance.pro/api/chatbot/message';
+    : 'https://web-production-4ab53.up.railway.app/api/chatbot/message';
   
   const handleNewMessage = () => {
     if (!isOpen) {
@@ -42,7 +42,11 @@ export default function ChatWidget() {
           <div className="eperf-chat-header">
             <div className="eperf-chat-header-content">
               <div className="eperf-chat-avatar">
-                <span className="avatar-icon">eP</span>
+                <img 
+                  src="/icon-192.png" 
+                  alt="ePerformance" 
+                  style={{width: '40px', height: '40px', borderRadius: '50%'}}
+                />
               </div>
               <div className="eperf-chat-header-text">
                 <h3>Assistant ePerformance</h3>
@@ -64,15 +68,39 @@ export default function ChatWidget() {
           <div className="eperf-chat-body">
             <DeepChat
               style={{width: '100%', height: '100%'}}
+              demo={true}
               request={{
                 url: API_URL,
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
+                },
+                additionalBodyProps: {
+                  site_id: 'eperformance_vitrine'
                 }
               }}
+              requestBodyLimits={{maxMessages: 10}}
+              requestInterceptor={(requestDetails) => {
+                // Format messages pour l'API ePerformance
+                const messages = requestDetails.body.messages || [];
+                requestDetails.body = {
+                  messages: messages.map(msg => ({
+                    role: msg.role === 'user' ? 'user' : 'assistant',
+                    text: msg.text || msg.content || ''
+                  })),
+                  site_id: 'eperformance_vitrine'
+                };
+                return requestDetails;
+              }}
+              responseInterceptor={(response) => {
+                // Transformer la réponse de l'API
+                if (response.html) {
+                  return {html: response.html};
+                }
+                return response;
+              }}
               introMessage={{
-                text: "Bonjour ! Je suis l'assistant ePerformance IA. Je peux vous aider avec :\n\n📊 Diagnostic acquisition\n💰 Calcul CAC, LTV, Payback\n🎯 Stratégies rentables\n🚀 Conseils croissance\n\nComment puis-je vous aider aujourd'hui ?"
+                text: "Bonjour ! 👋\n\nJe suis l'assistant IA ePerformance.\n\nJe peux vous aider à développer votre business avec des stratégies d'acquisition rentables.\n\nComment puis-je vous aider ?"
               }}
               messageStyles={{
                 default: {
@@ -148,9 +176,11 @@ export default function ChatWidget() {
           </div>
           
           <div className="eperf-chat-footer">
-            <span className="eperf-chat-powered">
-              Propulsé par <strong>ePerformance IA</strong>
-            </span>
+            <img 
+              src="/logo-ep-noir.png" 
+              alt="ePerformance" 
+              style={{height: '20px', opacity: '0.7'}}
+            />
           </div>
         </div>
       )}
