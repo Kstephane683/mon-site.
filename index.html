@@ -12,14 +12,14 @@
   <meta property="og:description" content="Site web professionnel livré en 7 jours. Stratégie d'acquisition rentable en 90 jours. 100% en ligne." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://eperformance.pro/" />
-  <meta property="og:image" content="https://api.eperformance.pro/logo-ep-noir.png" />
+  <meta property="og:image" content="https://web-production-4ab53.up.railway.app/logo-ep-noir.png" />
   <meta name="theme-color" content="#08080c" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ePerformance — Site Web & Acquisition rentable" />
   <meta name="twitter:description" content="Site web professionnel livré en 7 jours. Stratégie d'acquisition rentable en 90 jours. 100% en ligne." />
-  <meta name="twitter:image" content="https://api.eperformance.pro/logo-ep-noir.png" />
+  <meta name="twitter:image" content="https://web-production-4ab53.up.railway.app/logo-ep-noir.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -676,7 +676,7 @@
     <a class="mLink" href="ebook.html">Ebook</a>
     <a class="mLink" href="#faq">FAQ</a>
     <a class="mLink" href="cas-client-mlm.html">Références</a>
-    <a class="btn btn-outline mLink" href="https://api.eperformance.pro/connexion.php" style="margin-top:.3rem;justify-content:center"><i class="fa-solid fa-lock"></i> Espace client</a>
+    <a class="btn btn-outline mLink" href="https://web-production-4ab53.up.railway.app/connexion.php" style="margin-top:.3rem;justify-content:center"><i class="fa-solid fa-lock"></i> Espace client</a>
   </div>
 </div>
 
@@ -1299,7 +1299,7 @@
           <li><a href="diagnostic_eperformance.html">Diagnostic gratuit</a></li>
           <li><a href="formation.html">Academy</a></li>
           <li><a href="ebook.html">Ebooks</a></li>
-          <li><a href="https://api.eperformance.pro/connexion.php">Espace client</a></li>
+          <li><a href="https://web-production-4ab53.up.railway.app/connexion.php">Espace client</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1561,7 +1561,7 @@
     const email = document.getElementById('epEmailInput').value.trim();
     if (!email) return;
     try {
-      await fetch('https://api.eperformance.pro/proxy.php', {
+      await fetch('https://web-production-4ab53.up.railway.app/proxy.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'capture_lead_exit', email: email, segment: epSelectedGift })
@@ -1577,7 +1577,7 @@
   window.epClosePopup = epClosePopup;
 
   // 13. TÉMOIGNAGES DYNAMIQUES (API)
-  fetch('https://api.eperformance.pro/temoignages.php')
+  fetch('https://web-production-4ab53.up.railway.app/temoignages.php')
     .then(r => r.json())
     .then(function(res) {
       var grid = document.getElementById('tems-grid');
@@ -1635,7 +1635,7 @@
     window.EperfChatWidget.init({
       apiUrl: window.location.hostname === 'localhost' 
         ? 'http://localhost:8000' 
-        : 'https://api.eperformance.pro',
+        : 'https://web-production-4ab53.up.railway.app',
       theme: 'gold',
       position: 'bottom-right'
     });

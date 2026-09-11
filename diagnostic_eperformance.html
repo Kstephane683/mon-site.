@@ -733,7 +733,7 @@ async function submitForm(){
     sv.classList.add('show');
     sv.scrollIntoView({behavior:'smooth',block:'center'});
   },7200);
-  fetch('https://api.eperformance.pro/proxy.php',{
+  fetch('https://web-production-4ab53.up.railway.app/proxy.php',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({
@@ -777,7 +777,7 @@ updateUI(1);
     window.EperfChatWidget.init({
       apiUrl: window.location.hostname === 'localhost' 
         ? 'http://localhost:8000' 
-        : 'https://api.eperformance.pro',
+        : 'https://web-production-4ab53.up.railway.app',
       theme: 'gold',
       position: 'bottom-right'
     });

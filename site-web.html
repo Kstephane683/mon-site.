@@ -11,14 +11,14 @@
   <meta property="og:description" content="Un site web professionnel avec une IA qui accueille vos visiteurs, prend leurs contacts et répond à leur place. Vous dormez, elle vend. Dès 100 000 FCFA, domaine inclus." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://eperformance.pro/site-web.html" />
-  <meta property="og:image" content="https://api.eperformance.pro/logo-ep-noir.png" />
+  <meta property="og:image" content="https://web-production-4ab53.up.railway.app/logo-ep-noir.png" />
   <meta name="theme-color" content="#08080c" />
 
   <!-- Twitter Card (P2-technical) -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Site web + IA qui vend pour vous, dès 100 000 FCFA" />
   <meta name="twitter:description" content="Un site web professionnel avec une IA qui accueille vos visiteurs, prend leurs contacts et répond à leur place. Dès 100 000 FCFA, domaine inclus." />
-  <meta name="twitter:image" content="https://api.eperformance.pro/logo-ep-noir.png" />
+  <meta name="twitter:image" content="https://web-production-4ab53.up.railway.app/logo-ep-noir.png" />
   <meta name="twitter:creator" content="@eperformancepro" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2950,7 +2950,7 @@
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch('https://api.eperformance.pro/proxy.php', {
+      const response = await fetch('https://web-production-4ab53.up.railway.app/proxy.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'commande_site_web', ..._tracking, ...data })
@@ -3086,7 +3086,7 @@
     window.EperfChatWidget.init({
       apiUrl: window.location.hostname === 'localhost' 
         ? 'http://localhost:8000' 
-        : 'https://api.eperformance.pro',
+        : 'https://web-production-4ab53.up.railway.app',
       theme: 'gold',
       position: 'bottom-right'
     });

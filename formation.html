@@ -12,13 +12,13 @@
   <meta property="og:description" content="Deux formations stratégiques en visio individuelle. Publicité Facebook & Instagram. Structurer son acquisition. Par K. STÉPHANE." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://eperformance.pro/formation.html" />
-  <meta property="og:image" content="https://api.eperformance.pro/logo-ep-noir.png" />
+  <meta property="og:image" content="https://web-production-4ab53.up.railway.app/logo-ep-noir.png" />
   <meta property="og:locale" content="fr_FR" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Formation ePerformance | Facebook Ads & Stratégie d'Acquisition" />
   <meta name="twitter:description" content="Deux formations stratégiques en visio individuelle. Publicité Facebook & Instagram. Structurer son acquisition. Par K. STÉPHANE." />
-  <meta name="twitter:image" content="https://api.eperformance.pro/logo-ep-noir.png" />
+  <meta name="twitter:image" content="https://web-production-4ab53.up.railway.app/logo-ep-noir.png" />
   <meta name="twitter:creator" content="@eperformancepro" />
 
   <meta name="theme-color" content="#08080c" />
@@ -2143,7 +2143,7 @@
       };
 
       try {
-        const response = await fetch('https://api.eperformance.pro/proxy.php', {
+        const response = await fetch('https://web-production-4ab53.up.railway.app/proxy.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -2186,7 +2186,7 @@
     window.EperfChatWidget.init({
       apiUrl: window.location.hostname === 'localhost' 
         ? 'http://localhost:8000' 
-        : 'https://api.eperformance.pro',
+        : 'https://web-production-4ab53.up.railway.app',
       theme: 'gold',
       position: 'bottom-right'
     });
