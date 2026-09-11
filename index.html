@@ -511,9 +511,60 @@
     @media(min-width:769px){.sticky-cta-mobile{display:none!important}}
 
     /* ============================================================
-       LIVE CHAT WIDGET - DÉSACTIVÉ (remplacé par le chatbot IA)
+       BOUTON WHATSAPP FLOTTANT + CHATBOT - Gestion responsive
        ============================================================ */
-    .chat-widget{display:none !important; /* Désactivé pour éviter chevauchement avec chatbot IA */}
+    .chat-widget{
+      position:fixed;
+      bottom:24px;
+      right:24px;
+      width:60px;
+      height:60px;
+      background:var(--wa);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-size:1.75rem;
+      box-shadow:0 4px 16px rgba(37,211,102,.4);
+      cursor:pointer;
+      z-index:9997; /* En-dessous du chatbot (9998-9999) */
+      transition:all var(--t) var(--ease-out);
+    }
+    .chat-widget:hover{
+      transform:scale(1.1);
+      box-shadow:0 8px 24px rgba(37,211,102,.6);
+    }
+    .chat-widget:focus{
+      outline:2px solid var(--wa);
+      outline-offset:4px;
+    }
+    
+    /* Chatbot: Ajustements responsive */
+    #eperformance-chatbot-root{
+      position:fixed;
+      z-index:9998; /* Au-dessus de WhatsApp */
+    }
+    
+    /* Desktop (>768px): Les deux peuvent coexister, pas de chevauchement */
+    @media(min-width:769px){
+      .chat-widget{
+        display:grid; /* WhatsApp visible sur desktop */
+      }
+      /* Chatbot reste dans son coin (géré par son propre CSS) */
+    }
+    
+    /* Mobile (≤768px): SOIT chatbot SOIT WhatsApp */
+    @media(max-width:768px){
+      .chat-widget{
+        display:none; /* Masquer WhatsApp sur mobile */
+      }
+      /* Le chatbot prend toute la place disponible */
+      #eperformance-chatbot-root{
+        /* Le chatbot reste visible et fonctionnel */
+        bottom:0;
+        right:0;
+      }
+    }
 
     /* ============================================================
        CURSOR CUSTOM
@@ -1354,11 +1405,10 @@
   <button class="btn btn-gold" onclick="window.location.href='diagnostic_eperformance.html'"><i class="fa-solid fa-magnifying-glass"></i> Diagnostic</button>
 </div>
 
-<!-- LIVE CHAT WIDGET -->
-<!-- ANCIEN BOUTON WHATSAPP FLOTTANT - DÉSACTIVÉ (remplacé par chatbot IA avec 27 agents) -->
-<!-- <div class="chat-widget" id="chatWidget" role="button" aria-label="Discuter sur WhatsApp" tabindex="0">
+<!-- BOUTON WHATSAPP FLOTTANT (Desktop uniquement) -->
+<div class="chat-widget" id="chatWidget" role="button" aria-label="Discuter sur WhatsApp" tabindex="0">
   <i class="fa-brands fa-whatsapp"></i>
-</div> -->
+</div>
 
 <!-- ============================================================
      SCRIPTS
@@ -1485,13 +1535,19 @@
     else { stickyCta.classList.remove('show'); }
   }
 
-  // 10. LIVE CHAT WIDGET - DÉSACTIVÉ (remplacé par chatbot IA)
-  // const chatWidget = document.getElementById('chatWidget');
-  // if (chatWidget) {
-  //   chatWidget.addEventListener('click', () => {
-  //     window.open('https://wa.me/2250151170666?text=' + encodeURIComponent('Bonjour ePerformance, j\'ai une question.'), '_blank');
-  //   });
-  // }
+  // 10. BOUTON WHATSAPP
+  const chatWidget = document.getElementById('chatWidget');
+  if (chatWidget) {
+    chatWidget.addEventListener('click', () => {
+      window.open('https://wa.me/2250151170666?text=' + encodeURIComponent('Bonjour ePerformance, j\'ai une question.'), '_blank');
+    });
+    chatWidget.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        window.open('https://wa.me/2250151170666?text=' + encodeURIComponent('Bonjour ePerformance, j\'ai une question.'), '_blank');
+      }
+    });
+  }
 
   // 11. MOBILE MENU
   const burger = document.getElementById('burgerBtn');
