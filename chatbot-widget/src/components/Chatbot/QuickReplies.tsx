@@ -42,7 +42,7 @@ export const QuickReplies: React.FC<QuickRepliesProps> = ({ replies }) => {
         <motion.button
           key={reply.id}
           onClick={() => handleClick(reply)}
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-white border-2 border-ep-violet-200 text-ep-violet-700 rounded-full text-sm font-medium hover:bg-ep-violet-50 hover:border-ep-violet-400 transition-all"
+          className="inline-flex items-center gap-1.5 px-4 py-2 bg-gold-bg border-2 border-gold-border text-gold rounded-full text-sm font-medium hover:bg-gold-glow hover:border-gold transition-all"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >

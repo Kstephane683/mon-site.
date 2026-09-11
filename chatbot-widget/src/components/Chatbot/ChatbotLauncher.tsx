@@ -42,18 +42,18 @@ export const ChatbotLauncher: React.FC = () => {
       <AnimatePresence>
         {showTooltip && !isOpen && (
           <motion.div
-            className="fixed bottom-24 right-6 bg-white rounded-lg shadow-ep p-4 max-w-xs z-[9998]"
+            className="fixed bottom-24 right-6 bg-bg-card border border-gold-border rounded-lg shadow-ep p-4 max-w-xs z-[9998]"
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
           >
             <button
               onClick={() => setShowTooltip(false)}
-              className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+              className="absolute top-2 right-2 text-text-muted hover:text-gold"
             >
               <X size={16} />
             </button>
-            <p className="text-sm text-gray-700 pr-4">
+            <p className="text-sm text-text-soft pr-4">
               👋 Besoin d'aide? Je suis là pour vous!
             </p>
           </motion.div>
@@ -63,7 +63,7 @@ export const ChatbotLauncher: React.FC = () => {
       {/* Launcher Button */}
       <motion.button
         onClick={handleClick}
-        className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-br from-ep-violet-500 to-ep-purple-600 text-white shadow-ep hover:shadow-ep-lg flex items-center justify-center z-[9999] ep-pulse"
+        className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-br from-gold to-gold-light text-bg shadow-ep hover:shadow-ep-lg flex items-center justify-center z-[9999]"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label={isOpen ? 'Fermer le chat' : 'Ouvrir le chat'}

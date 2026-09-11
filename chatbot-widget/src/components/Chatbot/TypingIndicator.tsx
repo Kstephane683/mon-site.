@@ -15,11 +15,11 @@ export const TypingIndicator: React.FC = () => {
         size="sm"
         color={currentAgent.color}
       />
-      <div className="bg-gray-100 rounded-2xl rounded-bl-sm px-4 py-3 max-w-[80%]">
+      <div className="bg-bg-card border border-border rounded-2xl rounded-bl-sm px-4 py-3 max-w-[80%]">
         <div className="flex gap-1">
-          <div className="typing-dot w-2 h-2 bg-gray-400 rounded-full"></div>
-          <div className="typing-dot w-2 h-2 bg-gray-400 rounded-full"></div>
-          <div className="typing-dot w-2 h-2 bg-gray-400 rounded-full"></div>
+          <div className="typing-dot w-2 h-2 bg-gold rounded-full"></div>
+          <div className="typing-dot w-2 h-2 bg-gold rounded-full"></div>
+          <div className="typing-dot w-2 h-2 bg-gold rounded-full"></div>
         </div>
       </div>
     </div>

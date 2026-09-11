@@ -21,7 +21,7 @@ export const ChatbotMessage: React.FC<ChatbotMessageProps> = ({ message }) => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <div className="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+        <div className="text-xs text-text-muted bg-bg-card px-3 py-1 rounded-full border border-border">
           {message.content}
         </div>
       </motion.div>
@@ -41,26 +41,33 @@ export const ChatbotMessage: React.FC<ChatbotMessageProps> = ({ message }) => {
           emoji="🤖"
           alt={message.agentName || 'Bot'}
           size="sm"
-          color="#a855f7"
+          color="#c9a96e"
         />
       )}
       
       <div className={`flex flex-col ${isUser ? 'items-end' : 'items-start'} max-w-[80%]`}>
         {!isUser && message.agentName && (
-          <span className="text-xs text-gray-500 mb-1 px-1">{message.agentName}</span>
+          <span className="text-xs text-gold mb-1 px-1 font-semibold">{message.agentName}</span>
         )}
         
         <div
           className={`rounded-2xl px-4 py-3 ${
             isUser
-              ? 'bg-gradient-to-r from-ep-violet-500 to-ep-purple-600 text-white rounded-br-sm'
-              : 'bg-gray-100 text-gray-800 rounded-bl-sm'
+              ? 'bg-gradient-to-r from-gold to-gold-light text-bg rounded-br-sm'
+              : 'bg-bg-card text-text-soft rounded-bl-sm border border-border'
           }`}
+          dangerouslySetInnerHTML={
+            !isUser && message.content.includes('<') 
+              ? { __html: message.content }
+              : undefined
+          }
         >
-          <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+          {!(!isUser && message.content.includes('<')) && (
+            <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+          )}
         </div>
         
-        <span className="text-xs text-gray-400 mt-1 px-1">
+        <span className="text-xs text-text-muted mt-1 px-1">
           {formatDate(message.timestamp)}
         </span>
         

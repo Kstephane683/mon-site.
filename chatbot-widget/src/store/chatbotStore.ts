@@ -132,11 +132,11 @@ export const useChatbotStore = create<ChatbotState & ChatbotActions>()(
       },
 
       sendMessage: async (content: string) => {
-        const { addMessage, currentAgent, setTyping } = get();
+        const { addMessage, currentAgent, setTyping, messages, userContext } = get();
         
         const userMessage: Message = {
           id: generateMessageId(),
-          conversationId: 'current',
+          conversationId: userContext.sessionId,
           type: 'user',
           content,
           timestamp: new Date(),
@@ -144,43 +144,97 @@ export const useChatbotStore = create<ChatbotState & ChatbotActions>()(
         };
 
         addMessage(userMessage);
-
-        // Simuler réponse (à remplacer par vrai appel API)
         setTyping(true);
 
         try {
-          // Update message status
+          // Update message status to sent
           set(state => ({
             messages: state.messages.map(msg =>
               msg.id === userMessage.id ? { ...msg, status: 'sent' } : msg
             ),
           }));
 
-          // Simuler délai réseau
-          await new Promise(resolve => setTimeout(resolve, 1500));
+          // Construire l'historique au format backend
+          const messageHistory = messages.map(msg => ({
+            role: msg.type === 'user' ? 'user' : 'ai',
+            text: msg.content,
+          }));
 
-          // Réponse simulée (à remplacer par appel API réel)
-          const botResponse = getBotResponse(content, currentAgent);
+          // Ajouter le message actuel
+          messageHistory.push({
+            role: 'user',
+            text: content,
+          });
 
+          // Appel API Railway backend
+          const API_URL = 'https://web-production-4ab53.up.railway.app/api/chatbot/message';
+          
+          const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              messages: messageHistory,
+              site_id: 'eperformance_vitrine',
+              conversation_id: userContext.sessionId,
+              visitor_info: {
+                user_agent: navigator.userAgent,
+                referrer: userContext.referrer,
+                current_page: userContext.currentPage,
+                device: userContext.device,
+                browser: userContext.browser,
+                language: userContext.language,
+                timezone: userContext.timezone,
+              },
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`API error: ${response.status}`);
+          }
+
+          const data = await response.json();
+
+          // Extraire la réponse (text ou html)
+          const botContent = data.html || data.text || 'Désolé, je n\'ai pas pu générer de réponse.';
+
+          // Ajouter le message du bot
           addMessage({
             id: generateMessageId(),
-            conversationId: 'current',
+            conversationId: userContext.sessionId,
             type: 'bot',
-            content: botResponse.content,
+            content: botContent,
             agentId: currentAgent.id,
             agentName: currentAgent.displayName,
             avatar: currentAgent.avatar,
             timestamp: new Date(),
             status: 'delivered',
-            quickReplies: botResponse.quickReplies,
+            quickReplies: data.metadata?.suggestions || [],
           });
+
         } catch (error) {
           console.error('Error sending message:', error);
+          
+          // Message status error
           set(state => ({
             messages: state.messages.map(msg =>
               msg.id === userMessage.id ? { ...msg, status: 'error' } : msg
             ),
           }));
+
+          // Message d'erreur pour l'utilisateur
+          addMessage({
+            id: generateMessageId(),
+            conversationId: userContext.sessionId,
+            type: 'bot',
+            content: '⚠️ Désolé, une erreur est survenue. Veuillez réessayer.',
+            agentId: currentAgent.id,
+            agentName: currentAgent.displayName,
+            avatar: currentAgent.avatar,
+            timestamp: new Date(),
+            status: 'delivered',
+          });
         } finally {
           setTyping(false);
         }
@@ -210,26 +264,3 @@ export const useChatbotStore = create<ChatbotState & ChatbotActions>()(
     }
   )
 );
-
-// Fonction de réponse bot simplifiée (à remplacer par IA)
-const getBotResponse = (userMessage: string, agent: Agent) => {
-  // Détection de mots-clés simples
-  const lowerMessage = userMessage.toLowerCase();
-  
-  let response = `Je comprends votre question "${userMessage}". `;
-  
-  if (lowerMessage.includes('prix') || lowerMessage.includes('tarif') || lowerMessage.includes('coût')) {
-    response += `Nos tarifs sont adaptés à chaque projet. Je vous recommande de consulter notre page tarifs ou de demander un devis personnalisé. Voulez-vous que je vous redirige vers notre conseiller facturation?`;
-  } else if (lowerMessage.includes('demo') || lowerMessage.includes('essai')) {
-    response += `Excellente idée! Je peux organiser une démo personnalisée pour vous. Laissez-moi vos coordonnées et notre équipe vous contactera dans les 24h.`;
-  } else if (lowerMessage.includes('lead') || lowerMessage.includes('acquisition')) {
-    response += `L'acquisition de leads est notre spécialité! Nous pouvons augmenter votre génération de leads de +40% en moyenne. Voulez-vous parler à Sarah, notre experte acquisition?`;
-  } else {
-    response += `En tant que ${agent.displayName}, je suis là pour vous aider sur ${agent.specialties.slice(0, 3).join(', ')}. Comment puis-je vous accompagner concrètement?`;
-  }
-
-  return {
-    content: response,
-    quickReplies: agent.quickReplies,
-  };
-};

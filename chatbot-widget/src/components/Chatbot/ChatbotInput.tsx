@@ -22,7 +22,7 @@ export const ChatbotInput: React.FC = () => {
   };
   
   return (
-    <div className="p-4 bg-white border-t border-gray-200">
+    <div className="p-4 bg-bg-card border-t border-gold-border">
       <div className="flex items-end gap-2">
         <textarea
           value={input}
@@ -30,14 +30,14 @@ export const ChatbotInput: React.FC = () => {
           onKeyDown={handleKeyDown}
           placeholder="Écrivez votre message..."
           rows={1}
-          className="flex-1 resize-none px-4 py-3 border-2 border-gray-200 rounded-2xl focus:border-ep-violet-500 focus:outline-none text-sm"
+          className="flex-1 resize-none px-4 py-3 border-2 border-border bg-bg-secondary text-text rounded-2xl focus:border-gold focus:outline-none text-sm placeholder:text-text-muted"
           style={{ maxHeight: '120px' }}
           disabled={isTyping}
         />
         <button
           onClick={handleSubmit}
           disabled={!input.trim() || isTyping}
-          className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-ep-violet-500 to-ep-purple-600 text-white flex items-center justify-center hover:from-ep-violet-600 hover:to-ep-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+          className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-gold to-gold-light text-bg flex items-center justify-center hover:shadow-ep disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           aria-label="Envoyer"
         >
           <Send size={18} />
