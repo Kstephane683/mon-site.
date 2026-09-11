@@ -9,7 +9,7 @@ window.EperfChatWidget = {
     const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const defaultApiUrl = isLocalhost 
       ? 'http://localhost:8000'
-      : 'https://api.eperformance.pro';
+      : 'https://web-production-4ab53.up.railway.app';
     
     // Config par défaut
     const defaultConfig = {
