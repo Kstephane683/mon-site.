@@ -964,22 +964,8 @@
     /* ============================================================
        LIVE CHAT WIDGET
        ============================================================ */
-    .chat-widget{
-      position:fixed; bottom:24px; right:24px; z-index:95;
-      width:60px; height:60px; border-radius:50%;
-      background:var(--grad-gold); color:#0a0a0e;
-      display:grid; place-items:center; font-size:1.5rem;
-      box-shadow:var(--shadow-gold-hover);
-      cursor:pointer; transition:all var(--t) var(--ease-spring);
-    }
-    .chat-widget:hover{transform:scale(1.08) rotate(4deg)}
-    .chat-widget::after{
-      content:''; position:absolute; inset:-4px; border-radius:50%;
-      border:2px solid var(--gold); opacity:0;
-      animation:pulse-ring 2s ease-out infinite;
-    }
     @keyframes pulse-ring{0%{transform:scale(.8); opacity:1} 100%{transform:scale(1.4); opacity:0}}
-    @media (max-width:768px){.chat-widget{bottom:84px; right:16px; width:52px; height:52px; font-size:1.25rem}}
+    @media (max-width:768px){}
 
     /* ============================================================
        CURSOR CUSTOM
@@ -1879,9 +1865,7 @@
 </div>
 
 <!-- LIVE CHAT WIDGET -->
-<div class="chat-widget" id="chatWidget" role="button" aria-label="Discuter sur WhatsApp" tabindex="0">
-  <i class="fa-brands fa-whatsapp"></i>
-</div>
+<!-- LIVE CHAT WIDGET WhatsApp retiré : remplacé par le chatbot IA ePerformance (SDK en bas de page) -->
 
 <!-- ============================================================
      SCRIPTS - Vanilla JS
@@ -1996,16 +1980,7 @@
   }
 
   // ----- 8. LIVE CHAT WIDGET -----
-  const chatWidget = document.getElementById('chatWidget');
-  if (chatWidget) {
-    const openWA = () => {
-      window.open('https://wa.me/2250151170666?text=' + encodeURIComponent('Bonjour, j\'ai une question sur les formations ePerformance'), '_blank');
-    };
-    chatWidget.addEventListener('click', openWA);
-    chatWidget.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openWA(); }
-    });
-  }
+  // LIVE CHAT — géré par le chatbot IA ePerformance (SDK bas de page)
 
   // ----- 9. MOBILE MENU (burger + overlay + panel slide-in) -----
   const burger = document.getElementById('burger');
