@@ -733,33 +733,29 @@ async function submitForm(){
     sv.classList.add('show');
     sv.scrollIntoView({behavior:'smooth',block:'center'});
   },7200);
-  fetch('https://web-production-4ab53.up.railway.app/proxy.php',{
+  fetch('https://web-production-4ab53.up.railway.app/api/diagnostic/submit',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({
       nom:d.nom,
-      whatsapp:d.whatsapp,
       email:d.email,
-      entreprise:d.entreprise,
+      whatsapp:d.whatsapp,
+      entreprise:d.entreprise||undefined,
       secteur:d.secteur,
-      ca_mensuel:parseFloat(d.ca_mensuel)||0,
-      clients_par_mois:parseFloat(d.clients_par_mois)||0,
-      vente_moyenne:parseFloat(d.panier_moyen)||0,
-      panier_moyen:parseFloat(d.panier_moyen)||0,
-      marge:parseFloat(d.marge_pct)||30,
+      ca_mensuel:Math.round(parseFloat(d.ca_mensuel)||0),
+      clients_par_mois:Math.round(parseFloat(d.clients_par_mois)||0),
+      budget_pub_mensuel:Math.round(parseFloat(d.budget_pub)||0),
+      budget_disponible:Math.round(parseFloat(d.budget_accompagnement)||0),
+      duree_vie_client_mois:({moins_1:1,'1_3':2,'3_6':4.5,'6_12':9,plus_12:14})[d.duree_vie_client]||12,
       marge_pct:parseFloat(d.marge_pct)||30,
-      duree_vie_client:d.duree_vie_client,
-      pub_active:d.pub_active,
-      budget_pub:parseFloat(d.budget_pub)||0,
+      has_website:d.site_web==='oui',
+      uses_digital_tools:d.usage_whatsapp!=='non',
+      tracks_metrics:false,
+      objectif:('Blocage: '+(d.blocage_principal||'non precis')+'. Accompagnement envisage: '+(d.budget_accompagnement||'non precis')+'. Experience conseil: '+(d.experience_conseil||'non precise')+'. Sources: '+(d.sources_acquisition||'non precis')+'.').slice(0,500),
       sources_acquisition:d.sources_acquisition,
-      site_web:d.site_web,
-      usage_whatsapp:d.usage_whatsapp,
-      blocage_principal:d.blocage_principal,
-      budget_accompagnement:d.budget_accompagnement,
-      experience_conseil:d.experience_conseil,
       ref_parrainage:(sessionStorage.getItem('ep_ref')||'')
     })
-  }).catch(e=>console.warn('Proxy error:',e));
+  }).then(r=>{if(!r.ok)console.warn('Diagnostic submit HTTP',r.status);return r.json()}).then(res=>{if(res&&res.score!=null)console.info('Diagnostic enregistre — score',res.score)}).catch(e=>console.warn('Diagnostic error:',e));
 }
 
 updateUI(1);
@@ -768,21 +764,7 @@ updateUI(1);
 <!-- ============================================================
      CHATBOT WIDGET IA - React + Deep Chat
      ============================================================ -->
-<div id="eperf-chat-root"></div>
-<link rel="stylesheet" href="/chatbot-widget.css">
-<script src="/chatbot-widget.iife.js"></script>
-<script>
-  // Initialiser le widget après chargement
-  if (window.EperfChatWidget) {
-    window.EperfChatWidget.init({
-      apiUrl: window.location.hostname === 'localhost' 
-        ? 'http://localhost:8000' 
-        : 'https://web-production-4ab53.up.railway.app',
-      theme: 'gold',
-      position: 'bottom-right'
-    });
-  }
-</script>
+<!-- Chatbot IA ePerformance: injecté via SDK en bas de page -->
 
 <!-- ============================================================
      CHATBOT IA ePERFORMANCE — Widget Vue (backend Railway 27 agents)
