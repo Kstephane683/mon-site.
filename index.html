@@ -1624,23 +1624,19 @@
 </script>
 
 <!-- ============================================================
-     CHATBOT WIDGET IA - React + Deep Chat
+     CHATBOT IA ePERFORMANCE — Widget Vue (backend Railway 27 agents)
+     Source: github.com/Kstephane683/eperformance-widget
+     API: window.ePerformance.open()/close()/identify(userId, data)
      ============================================================ -->
-<div id="eperf-chat-root"></div>
-<link rel="stylesheet" href="/chatbot-widget.css">
-<script src="/chatbot-widget.iife.js"></script>
 <script>
-  // Initialiser le widget après chargement
-  if (window.EperfChatWidget) {
-    window.EperfChatWidget.init({
-      apiUrl: window.location.hostname === 'localhost' 
-        ? 'http://localhost:8000' 
-        : 'https://web-production-4ab53.up.railway.app',
-      theme: 'gold',
-      position: 'bottom-right'
-    });
-  }
+  window.ePerformanceConfig = {
+    widgetUrl: 'https://kstephane683.github.io/eperformance-widget/',
+    apiUrl: 'https://web-production-4ab53.up.railway.app',
+    siteId: 'eperformance_vitrine',
+    position: 'right'
+  };
 </script>
+<script src="https://kstephane683.github.io/eperformance-widget/eperformance-sdk.js" defer></script>
 
 </body>
 </html>
