@@ -1233,6 +1233,18 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
     })
     .then(function (res) {
       if (res && res.score != null) console.info('Diagnostic enregistre — score', res.score);
+
+      /* Conversion principale. Elle part sur la réponse du serveur, pas sur le
+         clic : un envoi qui échoue n'est pas un prospect. C'est ce qui rend le
+         chiffre exploitable en réunion. */
+      if (typeof window.eperfTrack === 'function') {
+        window.eperfTrack('generate_lead', {
+          value: 0,
+          currency: 'USD',
+          form_id: 'diagnostic',
+          event_id: (res && res.diagnosticId) || undefined
+        }, 'Lead');
+      }
     })
     .catch(function (e) { console.warn('Diagnostic error:', e); });
   }
@@ -1425,5 +1437,6 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 
 <script src="assets/js/consent.js" defer></script>
 <script src="assets/js/eperf.js" defer></script>
+<script src="assets/js/tracking.js" defer></script>
 </body>
 </html>

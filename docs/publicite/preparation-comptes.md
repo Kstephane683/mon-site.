@@ -111,13 +111,24 @@ jamais**. Une erreur impose de recréer le compte et de perdre l'historique.
 
 | Réglage | Valeur | Pourquoi |
 |---|---|---|
-| **Devise** | XOF (franc CFA) | La devise est définitive. Un compte en euros obligerait à convertir mentalement chaque seuil, chaque enchère, chaque rapport. |
+| **Devise** | **USD** (dollar américain) | La devise est définitive et ne se corrige jamais. Les publicités sont payées en dollars : le compte doit être en dollars, sinon chaque montant affiché doit être reconverti mentalement. |
 | **Fuseau horaire** | (UTC+00:00) Abidjan | Détermine les frontières de journée. Un fuseau décalé coupe les journées en deux. |
 | **Pays de facturation** | À choisir dans la liste proposée | Conditionne les moyens de paiement acceptés. |
 
 **Procédure :** `ads.google.com` > Créer un compte > **Mode expert**, pas le mode
 simplifié. Le mode simplifié crée une campagne automatique qu'il faut ensuite
 démanteler.
+
+⚠️ **Réserve sur la devise USD.** Google Ads ne propose pas toutes les devises
+pour tous les pays de facturation. Si le pays de facturation choisi ne propose
+pas l'USD, l'alternative est de choisir un pays de facturation qui le propose —
+mais cela change les moyens de paiement acceptés. **À vérifier à l'écran avant
+de valider**, puisque la devise est irréversible : une erreur impose de
+recréer le compte et de perdre l'historique.
+
+Si l'USD n'est finalement pas disponible, prendre EUR et convertir :
+100 000 FCFA = 152,45 €. Les seuils de ce document restent exprimés en USD
+comme référence de travail.
 
 À la question « Quel est votre objectif principal ? », choisir **« Créer un
 compte sans campagne »** (l'option est proposée en bas de la liste). On veut le
@@ -135,8 +146,9 @@ immédiat, voir B.6.
 | `clic_whatsapp` | Import GA4 | Action | Vide | Une par clic |
 | `diagnostic_debut` | Import GA4 | Action | Vide | Une par clic |
 
-**Valeur vide, et c'est un choix.** Attribuer une valeur en FCFA à un
-diagnostic suppose de connaître le taux diagnostic → client et le panier moyen.
+**Valeur vide, et c'est un choix.** Attribuer une valeur à un diagnostic
+— en USD puisque c'est la devise du compte — suppose de connaître le taux
+diagnostic → client et le panier moyen.
 Ces deux chiffres ne sont pas mesurés. Une valeur inventée fausse l'optimisation
 plus qu'elle ne l'aide : l'algorithme chasserait les conversions faciles qu'on
 aurait surévaluées. On posera la valeur au deuxième mois, avec des données
@@ -226,9 +238,21 @@ C'est ce chiffre qui tranche la décision n°3 laissée en suspens. Il n'est
 consultable qu'avec un compte Ads : la création du compte est ce qui débloque la
 seule donnée qui manque.
 
-Noter aussi le **CPC estimé** par mot-clé : au Burkina comme en Côte d'Ivoire,
-attendre quelques centimes à quelques dizaines de centimes d'euro. Un CPC élevé
-sur un marché africain signalerait une concurrence inattendue.
+Noter aussi le **CPC estimé** par mot-clé. Comme le compte est en USD, le
+Planificateur affichera **tous les CPC et tous les volumes de budget en
+dollars** :
+
+```
+Budget mensuel   : 175 USD   (100 000 FCFA)
+Budget quotidien : 5,80 USD  (3 333 FCFA)
+CPC attendu BF   : 0,05 à 0,30 USD
+CPC attendu CI   : 0,10 à 0,60 USD
+```
+
+Au Burkina comme en Côte d'Ivoire, attendre des CPC de quelques centimes à
+quelques dizaines de centimes de dollar. Un CPC supérieur à 1 USD sur un
+marché africain signalerait une concurrence inattendue — à investiguer avant
+de lancer, pas après.
 
 ---
 
@@ -246,8 +270,11 @@ adresse e-mail.
 Puis, dans l'ordre :
 1. Business Manager > Paramètres > **Comptes** > Pages > ajouter la page
    Facebook ePerformance (ou en créer une si elle n'existe pas).
-2. Paramètres > **Comptes** > Comptes publicitaires > en créer un, devise XOF,
-   fuseau Abidjan. Facturation plus tard.
+2. Paramètres > **Comptes** > Comptes publicitaires > en créer un, devise
+   **USD**, fuseau Abidjan. Facturation plus tard.
+   Meta propose une liste de devises plus courte que Google : si USD n'est pas
+   disponible pour le pays de facturation choisi, prendre EUR et le signaler —
+   les seuils de ce document resteront exprimés en USD comme référence.
 3. Paramètres > **Sources de données** > Jeux de données > vérifier que le Pixel
    `1592627695615531` est bien rattaché. **S'il est orphelin** (créé hors BM),
    le réclamer depuis ce même écran.
@@ -515,7 +542,7 @@ en JSON (ligne 1236) :
         if (typeof window.eperfTrack === 'function') {
           window.eperfTrack('generate_lead', {
             value: 0,
-            currency: 'XOF',
+            currency: 'USD',
             form_id: 'diagnostic',
             // Identifiant partagé avec le CAPI pour la déduplication.
             // Nécessite que le backend le renvoie — point 10 de la checklist.
@@ -616,7 +643,7 @@ exact sur ce qu'il fait.
 |---|---|---|---|
 | 1 | GA4 : passer la conservation à 14 mois | Vous | 🔴 |
 | 2 | GA4 : lier Search Console | Vous | Non |
-| 3 | Créer le compte Google Ads (devise XOF, fuseau Abidjan, mode expert) | Vous | 🔴 |
+| 3 | Créer le compte Google Ads (devise **USD**, fuseau Abidjan, mode expert) | Vous | 🔴 |
 | 4 | **Planificateur : mesurer le volume BF et CI** | Vous, je vous guide | 🔴 |
 | 5 | Créer le Business Manager et rattacher le Pixel | Vous | 🔴 |
 

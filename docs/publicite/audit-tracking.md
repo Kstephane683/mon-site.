@@ -133,7 +133,7 @@ ce qu'elle a produit. Ici, les deux manquent.
   remplis, ni lesquels venaient de la publicité.
 
 C'est la raison pour laquelle la Phase 1 est un préalable, pas une formalité.
-Dépenser 200 000 FCFA par mois sans mesure revient à acheter du trafic qu'on ne
+Dépenser 200 000 FCFA (350 USD) par mois sans mesure revient à acheter du trafic qu'on ne
 peut ni juger ni améliorer.
 
 ---

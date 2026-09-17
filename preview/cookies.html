@@ -323,10 +323,19 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 
     <p class="mt-3">
       À votre première visite, un bandeau vous propose trois issues : tout accepter, tout
-      refuser, ou choisir catégorie par catégorie. Tant que vous n'avez pas tranché, aucun
-      traceur autre que les deux éléments nécessaires n'est chargé : ni Google Analytics,
-      ni Microsoft Clarity, ni Meta Pixel. Il n'y a pas d'accord par défaut, et poursuivre
-      la navigation ne vaut pas acceptation.
+      refuser, ou choisir catégorie par catégorie. Tant que vous n'avez pas tranché, <strong>aucun cookie de mesure ni de publicité
+      n'est posé</strong> : ni Google Analytics, ni Microsoft Clarity, ni Meta Pixel.
+      Il n'y a pas d'accord par défaut, et poursuivre la navigation ne vaut pas acceptation.
+    </p>
+
+    <p class="mt-3">
+      Une nuance, énoncée sans détour : même lorsque vous refusez, un
+      <strong>signal anonyme part vers Google</strong>. Il ne contient ni cookie, ni
+      identifiant, ni donnée personnelle — il indique seulement que vous n'avez pas
+      consenti. C'est ce qui permet à ePerformance de savoir combien de visiteurs
+      refusent, au lieu de les ignorer complètement, sans jamais pouvoir les
+      reconnaître. Ce mécanisme s'appelle le Consent Mode, et il est documenté
+      publiquement par Google.
     </p>
 
     <p class="mt-3">
@@ -548,5 +557,6 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 
 <script src="assets/js/consent.js" defer></script>
 <script src="assets/js/eperf.js" defer></script>
+<script src="assets/js/tracking.js" defer></script>
 </body>
 </html>

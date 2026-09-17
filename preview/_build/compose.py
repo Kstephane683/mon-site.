@@ -706,6 +706,7 @@ def compose_page(page_key, meta):
 
 <script src="assets/js/consent.js" defer></script>
 <script src="assets/js/eperf.js" defer></script>
+<script src="assets/js/tracking.js" defer></script>
 </body>
 </html>
 """
@@ -733,6 +734,9 @@ RESSOURCES_CRITIQUES = [
     ('assets/js/eperf.js',
      'le thème et les interactions',
      'assets/js/eperf.js'),
+    ('assets/js/tracking.js',
+     'les événements de mesure — sans lui aucune conversion ne remonte',
+     'assets/js/tracking.js'),
 ]
 
 

@@ -153,10 +153,10 @@ que le remarketing sait rattraper.
 Compte neuf, dédié, séparé du MCC existant. Trois paramètres à ne pas rater au
 moment de la création parce qu'ils ne se corrigent pas après coup :
 
-- **Devise** : XOF (franc CFA). Attention — la devise se fixe définitivement à
-  la création. Vérifier que XOF est bien proposé pour le pays de facturation
-  choisi, sinon le compte sera en euros et tous les seuils exprimés en FCFA
-  devront être convertis à chaque lecture.
+- **Devise** : **USD**. Les publicités sont payées en dollars. La devise se fixe
+  définitivement à la création — vérifier à l'écran qu'USD est bien proposé pour
+  le pays de facturation choisi, puisque Google ne propose pas toutes les devises
+  partout. Une erreur impose de recréer le compte.
 - **Fuseau horaire** : Abidjan (UTC+0). Détermine les frontières de journée dans
   les rapports.
 - **Pays de facturation** : à choisir parmi ceux proposés. Il conditionne les
@@ -176,7 +176,7 @@ autres servent à **observer**, pas à optimiser : elles indiquent d'où vient l
 travail, elles ne pilotent rien.
 
 **La valeur des conversions.** Laisser la valeur vide au départ. Attribuer une
-valeur en FCFA à un diagnostic supposerait de connaître le taux de transformation
+valeur à un diagnostic — en USD, devise du compte — supposerait de connaître le taux de transformation
 diagnostic → client et le panier moyen — deux chiffres qui ne sont pas encore
 mesurés. Une valeur inventée fausse l'optimisation plus qu'elle ne l'aide. On la
 posera au deuxième mois, avec des données réelles.
@@ -315,8 +315,8 @@ Trois options, par ordre de préférence :
    pour le même budget. C'est aussi le canal de conversion réel d'ePerformance.
 2. **Optimiser vers le trafic** avec une audience très ciblée. Moins qualifié,
    mais l'algorithme ne dépend pas d'un seuil de conversions.
-3. **Ne pas faire de Meta au départ**, concentrer les 200 000 FCFA sur Google
-   Search. Contredit la décision actée — je le mentionne par honnêteté, pas pour
+3. **Ne pas faire de Meta au départ**, concentrer les 350 USD (200 000 FCFA)
+   sur Google Search. Contredit la décision actée — je le mentionne par honnêteté, pas pour
    la contester.
 
 Avec objectif « Messages », le seuil tombe à environ 25 conversations par
@@ -343,12 +343,13 @@ sur le Burkina Faso, puis sur la Côte d'Ivoire.** Si le volume burkinabè est
 trop faible, l'extension à la Côte d'Ivoire n'est pas une phase 2 : c'est le
 marché principal dès le départ.
 
-### Ce que 200 000 FCFA/mois permettent réellement
+### Ce que 350 USD/mois (200 000 FCFA) permettent réellement
 
 | | Réaliste | Irréaliste |
 |---|---|---|
 | Volume de clics | 800 à 2 000 clics/mois sur Google si le volume existe | 10 000 clics |
-| Coût par lead | 5 000 à 20 000 FCFA | 1 000 FCFA |
+| Budget quotidien | 5,80 USD/jour par plateforme | — |
+| Coût par lead | 9 à 35 USD (5 000 à 20 000 FCFA) | 1,75 USD |
 | Prospects/mois | 10 à 40 au total, deux plateformes | 200 |
 | Sortir de l'apprentissage Meta sur `Lead` | Non | Oui |
 | Sortir de l'apprentissage Meta sur « Messages » | Possible | — |
