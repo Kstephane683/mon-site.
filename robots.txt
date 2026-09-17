@@ -1,0 +1,45 @@
+User-agent: *
+Allow: /
+Disallow: /merci-ebook.html
+Disallow: /merci-candidature.html
+Disallow: /merci-ebook/
+Disallow: /merci-candidature/
+Disallow: /assets/js/
+
+# Moteurs IA — autorisation explicite (AEO / GEO)
+# Cohérent avec blog.eperformance.pro, pour que le site soit citable
+# par ChatGPT, Claude, Perplexity et Gemini.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://eperformance.pro/sitemap.xml

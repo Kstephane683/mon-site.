@@ -1,1 +1,26 @@
+# Dépendances — le site est statique, node_modules ne doit jamais être publié.
+# GitHub Pages (Jekyll) l'excluait par défaut, mais un simple fichier .nojekyll
+# ou un changement d'hébergeur l'aurait rendu public instantanément.
+node_modules/
 chatbot-widget/node_modules/
+package.json
+package-lock.json
+
+# Code serveur : conservé hors du dépôt (voir OX6A/_eperformance-prive/serveur/)
+server.js
+netlify/
+
+# Produits payants — ne doivent JAMAIS être dans un dépôt public.
+# Ils étaient téléchargeables librement sur eperformance.pro avant le 17/09/2026.
+*.pdf
+
+# Brouillons et sauvegardes
+*.backup
+*.bak
+*.swp
+
+# Système et éditeurs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

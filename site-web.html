@@ -11,14 +11,17 @@
   <meta property="og:description" content="Un site web professionnel avec une IA qui accueille vos visiteurs, prend leurs contacts et répond à leur place. Vous dormez, elle vend. Dès 100 000 FCFA, domaine inclus." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://eperformance.pro/site-web.html" />
-  <meta property="og:image" content="https://web-production-4ab53.up.railway.app/logo-ep-noir.png" />
+  <meta property="og:image" content="https://eperformance.pro/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="ePerformance — stratégie d\'acquisition, IA et automatisation" />
   <meta name="theme-color" content="#08080c" />
 
   <!-- Twitter Card (P2-technical) -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Site web + IA qui vend pour vous, dès 100 000 FCFA" />
   <meta name="twitter:description" content="Un site web professionnel avec une IA qui accueille vos visiteurs, prend leurs contacts et répond à leur place. Dès 100 000 FCFA, domaine inclus." />
-  <meta name="twitter:image" content="https://web-production-4ab53.up.railway.app/logo-ep-noir.png" />
+  <meta name="twitter:image" content="https://eperformance.pro/og-image.jpg" />
   <meta name="twitter:creator" content="@eperformancepro" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2947,8 +2950,16 @@
       console.warn('Erreur réseau:', err);
     }
 
-    if (window.fbq) fbq('track', 'Lead', { content_name: 'Commande site web', value: 75000, currency: 'XOF' });
-    if (window.gtag) gtag('event', 'generate_lead', { value: 75000, currency: 'XOF' });
+    // La valeur transmise reflète le palier réellement choisi, pas un montant figé.
+    // offre_choisie contient soit une clé (« decouverte »), soit le libellé
+    // complet (« Découverte — 100 000 FCFA ») selon le point d'entrée utilisé.
+    var __prix = (function (v) {
+      var m = String(v).match(/(\d[\d\s]{4,})\s*FCFA/);
+      if (m) return parseInt(m[1].replace(/\s/g, ''), 10);
+      return { decouverte: 100000, professionnel: 250000, croissance: 350000 }[String(v)] || 100000;
+    })(offreInput.value);
+    if (window.fbq) fbq('track', 'Lead', { content_name: 'Commande site web', value: __prix, currency: 'XOF' });
+    if (window.gtag) gtag('event', 'generate_lead', { value: __prix, currency: 'XOF' });
 
     cmdForm.style.display = 'none';
     cmdSuccess.classList.add('show');
