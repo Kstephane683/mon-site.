@@ -55,6 +55,30 @@
   window.gtag('js', new Date());
 
   // ---------------------------------------------------------------------
+  // gtag.js EST CHARGÉ MAINTENANT — Consent Mode v2 complet.
+  //
+  // C'est la différence avec le modèle partiel, qui attendait l'accord pour
+  // charger la bibliothèque. Ici, un visiteur qui REFUSE envoie malgré tout
+  // une requête anonyme à Google — sans cookie, sans identifiant — ce qui
+  // permet à Google de modéliser les conversions non consenties.
+  //
+  // Contrepartie assumée : un script tiers part avant tout choix. La page
+  // cookies le dit.
+  //
+  // L'état est en « denied » : rien n'est mesuré tant que le visiteur n'a pas
+  // accepté. `wait_for_update: 500` laisse 500 ms à sa réponse pour arriver
+  // avant que Google ne traite la file — sans ce délai, un visiteur qui
+  // accepte vite serait enregistré comme refusant.
+  // ---------------------------------------------------------------------
+  (function () {
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+    document.head.appendChild(g);
+    window.__eperfGtagLoaded = true;
+  })();
+
+  // ---------------------------------------------------------------------
   // LECTURE / ÉCRITURE DU CHOIX
   // ---------------------------------------------------------------------
 
@@ -107,10 +131,15 @@
     window.__eperfAnalyticsLoaded = true;
 
     // --- Google Analytics 4 ---
-    var ga = document.createElement('script');
-    ga.async = true;
-    ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
-    document.head.appendChild(ga);
+    // gtag.js a été chargé en tête de fichier (Consent Mode v2 complet) : on ne
+    // le recharge pas. La mise à jour de consentement a déjà autorisé la mesure.
+    if (!window.__eperfGtagLoaded) {
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+      document.head.appendChild(ga);
+      window.__eperfGtagLoaded = true;
+    }
 
     // gtag et dataLayer ont été posés en tête de fichier : on ne les
     // recrée pas, on configure seulement la propriété.
