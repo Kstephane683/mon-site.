@@ -96,7 +96,6 @@ PAGES = {
         "title": "ePerformance — acquisition, IA et automatisation | Abidjan",
         "description": "Stratégie d'acquisition mesurable, IA générative, automatisation et sites web premium pour les PME et e-commerces d'Afrique de l'Ouest.",
         "h1": 'Vos chiffres d\'acquisition, enfin<br><em>lisibles et pilotables.</em>',
-        "eyebrow": "Stratégie · IA · Automatisation · Web premium",
         "lead": ("Nous construisons le système qui rend votre acquisition mesurable : les ratios "
                  "qui comptent, l'IA qui capte les contacts, les workflows qui relancent, et le "
                  "site qui convertit. Pour les PME et e-commerces d'Afrique de l'Ouest."),
@@ -143,7 +142,6 @@ PAGES = {
         "title": "Formations acquisition et publicité digitale | ePerformance",
         "description": "Deux formations en visio individuelle : publicité Facebook et Instagram, et structuration de votre acquisition. Dès 10 000 FCFA.",
         "h1": 'Deux formations. Un seul objectif : <em>vous rendre autonome.</em>',
-        "eyebrow": "Formations · Visio individuelle",
         "lead": ("L'une vous apprend à faire de la publicité. L'autre à savoir si vous devez en "
                  "faire. Ou les deux, ensemble."),
         "cta": ("Demander une place", "#inscription"),
@@ -154,7 +152,6 @@ PAGES = {
         "title": "Ebooks acquisition et publicité Meta | ePerformance",
         "description": "Deux guides : Facebook et Instagram Ads version 2026, et pourquoi votre publicité n'est pas rentable. Duo à 15 000 FCFA.",
         "h1": 'Deux guides pour <em>maîtriser votre acquisition.</em>',
-        "eyebrow": "Ebooks ePerformance",
         "lead": ("Un guide technique sur Meta Ads, un guide stratégique sur les chiffres. "
                  "Concrets, sans jargon, à jour des évolutions de 2026."),
         "cta": ("Voir les deux guides", "#guides"),
@@ -165,7 +162,6 @@ PAGES = {
         "title": "Diagnostic acquisition gratuit — CAC, LTV | ePerformance",
         "description": "Cinq minutes pour connaître votre vrai coût d'acquisition, votre LTV, votre Payback et un score sur 100. Résultat immédiat, sans engagement.",
         "h1": 'Votre situation réelle.<br><em>En chiffres. En cinq minutes.</em>',
-        "eyebrow": "Diagnostic gratuit",
         "lead": ("Répondez à quelques questions et recevez immédiatement vos quatre ratios, "
                  "vos principales failles et un score sur 100. Aucun engagement."),
         "fragment": "diagnostic_eperformance.html",
@@ -177,7 +173,7 @@ PAGES = {
         "title": "Cas client : système d'acquisition MLM | ePerformance",
         "description": "Seize mois de données Search Console pour un distributeur au Burkina Faso : 15 666 clics organiques, 10,4 % de CTR, zéro publicité Google.",
         "h1": 'Un distributeur MLM. Un système complet. <em>Une preuve chiffrée.</em>',
-        "eyebrow": "Étude de cas · MLM · Burkina Faso",
+        "eyebrow": "Étude de cas · Longrich Santé Bio",
         "lead": ("Seize mois de données Search Console, aucune publicité Google achetée. "
                  "Voici ce qui a été construit et ce que cela a produit."),
         "cta": ("Voir les formules de site", "site-web.html#offres"),
@@ -188,7 +184,6 @@ PAGES = {
         "title": "K. Stéphane — fondateur d'ePerformance | Abidjan",
         "description": "K. Stéphane accompagne les entrepreneurs d'Afrique de l'Ouest sur leur acquisition digitale depuis 2017. Sites web, IA, automatisation, formation.",
         "h1": 'K. Stéphane<br><em>fondateur d\'ePerformance.</em>',
-        "eyebrow": "À propos",
         "lead": ("Je travaille avec des entrepreneurs qui vendent déjà et qui veulent savoir "
                  "ce que chaque client leur coûte vraiment. Basé en Côte d'Ivoire, 100 % en ligne."),
         "fragment": "kstephane.html",
@@ -223,7 +218,6 @@ PAGES = {
         "title": "Page introuvable | ePerformance",
         "description": "Cette page n'existe pas ou a été déplacée.",
         "h1": "Cette page n'existe pas.",
-        "eyebrow": "Erreur 404",
         "lead": ("Le lien est peut-être obsolète, ou l'adresse mal orthographiée. "
                  "Voici par où continuer."),
         "fragment": "404.html",
