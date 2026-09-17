@@ -24,3 +24,7 @@ netlify/
 Thumbs.db
 .vscode/
 .idea/
+
+# Artefacts Python
+__pycache__/
+*.pyc

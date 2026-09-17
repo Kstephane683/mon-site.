@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# Refuse les fichiers qui ne doivent jamais entrer dans un dépôt public.
+# Activation : git config core.hooksPath .githooks
+set -euo pipefail
+
+fail=0
+staged=$(git diff --cached --name-only --diff-filter=ACM)
+
+check() {
+  local motif="$1" raison="$2"
+  local trouve
+  trouve=$(printf '%s\n' "$staged" | grep -E "$motif" || true)
+  if [ -n "$trouve" ]; then
+    echo "  REFUSÉ — $raison"
+    printf '%s\n' "$trouve" | sed 's/^/    /'
+    fail=1
+  fi
+}
+
+check '^node_modules/|/node_modules/' \
+      "node_modules ne doit pas être versionné (le site est statique)"
+check '\.pdf$' \
+      "les PDF sont des produits payants : stockage privé, jamais un dépôt public"
+check '\.backup$|\.bak$' \
+      "les fichiers de sauvegarde exposent les versions antérieures du site"
+check '^(server\.js|package\.json|package-lock\.json)$|^netlify/' \
+      "code serveur : à conserver hors du dépôt (OX6A/_eperformance-prive/serveur/)"
+check '^preview/_build/.*\.pyc$|__pycache__' \
+      "artefacts Python"
+check '\.(env|pem|key)$|credentials' \
+      "secrets et identifiants"
+
+# Un .nojekyll désactiverait l'exclusion Jekyll, seul mécanisme qui empêchait
+# node_modules d'être publié. Le risque n'est donc pas que le dossier existe
+# sur le disque, mais qu'il redevienne versionnable en même temps que le
+# .nojekyll apparaît.
+if printf '%s\n' "$staged" | grep -qx '\.nojekyll'; then
+  si_versionne=$(git ls-files | grep -cE '^node_modules/|/node_modules/' || true)
+  si_ignore=$(grep -cE '^node_modules/?' .gitignore 2>/dev/null || echo 0)
+  if [ "$si_versionne" -gt 0 ] || [ "$si_ignore" -eq 0 ]; then
+    echo "  REFUSÉ — .nojekyll désactiverait l'exclusion Jekyll, qui est la"
+    echo "    seule protection contre la publication de node_modules/."
+    echo "    Vérifiez que node_modules est bien dans .gitignore avant d'ajouter ce fichier."
+    fail=1
+  else
+    echo "  ATTENTION — .nojekyll ajouté : Jekyll ne filtrera plus rien."
+    echo "    node_modules est ignoré par .gitignore ($si_ignore règle), donc c'est sûr."
+    echo "    Mais tout autre fichier non désiré serait désormais publié."
+  fi
+fi
+
+if [ "$fail" -ne 0 ]; then
+  echo ""
+  echo "  Commit bloqué. Utilisez --no-verify uniquement en connaissance de cause."
+  exit 1
+fi

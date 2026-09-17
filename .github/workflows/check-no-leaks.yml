@@ -1,0 +1,68 @@
+name: Vérifier l'absence de fuites
+
+# Le hook local protège la machine du développeur ; ce workflow protège le
+# dépôt, y compris si quelqu'un pousse depuis l'interface web de GitHub.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refuser les fichiers sensibles versionnés
+        run: |
+          echo "Recherche de fichiers qui ne doivent pas être publics…"
+          fail=0
+
+          refuser() {
+            local motif="$1" raison="$2"
+            local trouve
+            trouve=$(git ls-files | grep -E "$motif" || true)
+            if [ -n "$trouve" ]; then
+              echo "::error::$raison"
+              printf '%s\n' "$trouve" | sed 's/^/  /'
+              fail=1
+            fi
+          }
+
+          refuser '^node_modules/|/node_modules/' "node_modules est versionné"
+          refuser '\.pdf$' "un PDF est versionné — les produits payants doivent rester privés"
+          refuser '\.backup$|\.bak$' "un fichier de sauvegarde est versionné"
+          refuser '^(server\.js|package-lock\.json)$|^netlify/' "du code serveur est versionné"
+
+          if [ -f .nojekyll ] && git ls-files | grep -q '^node_modules/'; then
+            echo "::error::.nojekyll présent avec node_modules versionné"
+            fail=1
+          fi
+
+          if [ "$fail" -ne 0 ]; then
+            echo "Échec : le dépôt contient des fichiers qui ne doivent pas être publics."
+            exit 1
+          fi
+          echo "Aucune fuite détectée dans les fichiers versionnés."
+
+      - name: Vérifier que les pages déclarées dans le sitemap existent
+        run: |
+          echo "Contrôle des URL déclarées dans le sitemap…"
+          fail=0
+          if [ -f sitemap.xml ]; then
+            grep -oE '<loc>[^<]+</loc>' sitemap.xml | sed 's|</\?loc>||g' | while read -r url; do
+              case "$url" in
+                https://blog.eperformance.pro*) continue ;;
+              esac
+              local_path="${url#https://eperformance.pro/}"
+              [ -z "$local_path" ] && local_path="index.html"
+              if [ ! -f "$local_path" ]; then
+                echo "::error::URL fantôme dans le sitemap : $url (fichier $local_path absent)"
+                fail=1
+              fi
+            done
+          fi
+          exit 0

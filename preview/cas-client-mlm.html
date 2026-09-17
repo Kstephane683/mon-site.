@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+(function(){try{var t=localStorage.getItem('eperf-theme');
+if(t!=='dark'&&t!=='light'){t='light';}
+document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+  <title>Cas client : système d&#x27;acquisition MLM | ePerformance</title>
+  <meta name="description" content="Seize mois de données Search Console pour un distributeur au Burkina Faso : 15 666 clics organiques, 10,4 % de CTR, zéro publicité Google.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://eperformance.pro/cas-client-mlm.html">
+  <meta name="theme-color" content="#fdfcfa">
+  <meta name="author" content="K. Stéphane">
+
+  <!-- Icônes -->
+  <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="assets/img/favicon-16.png" sizes="16x16">
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ePerformance">
+  <meta property="og:locale" content="fr_CI">
+  <meta property="og:title" content="Cas client : système d&#x27;acquisition MLM | ePerformance">
+  <meta property="og:description" content="Seize mois de données Search Console pour un distributeur au Burkina Faso : 15 666 clics organiques, 10,4 % de CTR, zéro publicité Google.">
+  <meta property="og:url" content="https://eperformance.pro/cas-client-mlm.html">
+  <meta property="og:image" content="https://eperformance.pro/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ePerformance — ePerformance">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cas client : système d&#x27;acquisition MLM | ePerformance">
+  <meta name="twitter:description" content="Seize mois de données Search Console pour un distributeur au Burkina Faso : 15 666 clics organiques, 10,4 % de CTR, zéro publicité Google.">
+  <meta name="twitter:image" content="https://eperformance.pro/assets/img/og-image.jpg">
+  <meta name="twitter:creator" content="@eperformancepro">
+
+  <!-- Polices : chargement non bloquant -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+  </noscript>
+
+  <!-- Design system -->
+  <link rel="stylesheet" href="assets/css/eperf.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://eperformance.pro/#organization",
+      "name": "ePerformance",
+      "alternateName": "ePerformance par K. Stéphane",
+      "url": "https://eperformance.pro",
+      "email": "bonjour@eperformance.pro",
+      "telephone": "+2250151170666",
+      "founder": {
+        "@type": "Person",
+        "@id": "https://eperformance.pro/#founder",
+        "name": "K. Stéphane",
+        "jobTitle": "Fondateur, stratège acquisition",
+        "url": "https://eperformance.pro/kstephane.html"
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Côte d'Ivoire"
+        },
+        {
+          "@type": "Country",
+          "name": "Burkina Faso"
+        },
+        {
+          "@type": "Place",
+          "name": "Afrique de l'Ouest"
+        }
+      ],
+      "knowsLanguage": "fr",
+      "sameAs": [
+        "https://blog.eperformance.pro/"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://eperformance.pro/#localbusiness",
+      "name": "ePerformance",
+      "description": "Stratégie d'acquisition, IA générative, automatisation et développement web premium. Basé en Côte d'Ivoire, 100 % en ligne.",
+      "url": "https://eperformance.pro",
+      "email": "bonjour@eperformance.pro",
+      "telephone": "+2250151170666",
+      "parentOrganization": {
+        "@id": "https://eperformance.pro/#organization"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Abidjan",
+        "addressCountry": "CI"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Côte d'Ivoire"
+      },
+      "priceRange": "100000-350000 XOF",
+      "currenciesAccepted": "XOF",
+      "paymentAccepted": "Orange Money, Wave, MTN MoMo, Moov Money, Visa, Mastercard",
+      "availableLanguage": "fr"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://eperformance.pro/#website",
+      "url": "https://eperformance.pro",
+      "name": "ePerformance",
+      "description": "Stratégie d'acquisition, IA générative, automatisation et développement web premium. Basé en Côte d'Ivoire, 100 % en ligne.",
+      "publisher": {
+        "@id": "https://eperformance.pro/#organization"
+      },
+      "inLanguage": "fr-CI"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://eperformance.pro/cas-client-mlm.html#webpage",
+      "url": "https://eperformance.pro/cas-client-mlm.html",
+      "name": "Cas client : système d'acquisition MLM | ePerformance",
+      "description": "Seize mois de données Search Console pour un distributeur au Burkina Faso : 15 666 clics organiques, 10,4 % de CTR, zéro publicité Google.",
+      "isPartOf": {
+        "@id": "https://eperformance.pro/#website"
+      },
+      "about": {
+        "@id": "https://eperformance.pro/#organization"
+      },
+      "inLanguage": "fr-CI"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://eperformance.pro/cas-client-mlm.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://eperformance.pro/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Cas client MLM",
+          "item": "https://eperformance.pro/cas-client-mlm.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://eperformance.pro/cas-client-mlm.html#article",
+  "headline": "Un distributeur MLM au Burkina Faso : 15 666 clics organiques en 16 mois, sans publicité Google",
+  "description": "Étude de cas : boutique mobile d'abord, cinq pages produits, onze articles de blog, tracking CAPI Facebook, Google Merchant Center et fiche Google Business Profile pour Longrich Santé Bio. Données Google Search Console de novembre 2024 à mars 2026.",
+  "about": {
+    "@type": "Organization",
+    "name": "Longrich Santé Bio",
+    "url": "https://longrichsantebio.com",
+    "description": "Distributeur de produits de santé Longrich au Burkina Faso.",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Burkina Faso"
+    }
+  },
+  "author": { "@id": "https://eperformance.pro/#founder" },
+  "publisher": { "@id": "https://eperformance.pro/#organization" },
+  "temporalCoverage": "2024-11/2026-03",
+  "keywords": "SEO, référencement naturel, distributeur MLM, Longrich, Burkina Faso, Google Search Console",
+  "inLanguage": "fr-CI"
+}
+  </script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <a class="logo" href="index.html" aria-label="ePerformance — accueil">
+      <img class="logo-img-light" src="assets/img/logo-light.webp"
+           srcset="assets/img/logo-light.webp 1x, assets/img/logo-light@2x.webp 2x"
+           width="182" height="30" alt="ePerformance" fetchpriority="high">
+      <img class="logo-img-dark" src="assets/img/logo-dark.webp"
+           srcset="assets/img/logo-dark.webp 1x, assets/img/logo-dark@2x.webp 2x"
+           width="188" height="30" alt="" aria-hidden="true">
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Navigation principale">
+      <a href="#piliers">Services</a>
+      <a href="automatisation.html">Automatisation</a>
+      <a href="ia.html">IA</a>
+      <a href="site-web.html">Site web</a>
+      <a href="formation.html">Formation</a>
+      <a href="https://blog.eperformance.pro/" class="text-gold" rel="noopener">Blog</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle
+              aria-pressed="false" aria-label="Activer le thème sombre">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+        </svg>
+      </button>
+
+      <a class="btn btn-gold btn-desktop" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false"
+              aria-controls="primary-nav" aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<nav class="breadcrumb container" aria-label="Fil d'Ariane">
+  <ol>
+    <li><a href="index.html">Accueil</a></li>
+    <li aria-current="page">Cas client MLM</li>
+  </ol>
+</nav>
+
+<main id="main">
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Étude de cas · MLM · Burkina Faso</span>
+      <h1 class="mt-3">Un distributeur MLM. Un système complet. <em>Une preuve chiffrée.</em></h1>
+      <p class="lead mt-3">Seize mois de données Search Console, aucune publicité Google achetée. Voici ce qui a été construit et ce que cela a produit.</p>
+      <div class="row mt-4" style="gap:12px;flex-wrap:wrap">
+        <a class="btn btn-gold" href="site-web.html#offres">Voir les formules de site
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+<!-- ============================ CHIFFRES CLÉS ============================ -->
+<section class="section-tight">
+  <div class="container">
+    <h2 class="visually-hidden">Les chiffres clés du cas</h2>
+    <div class="stat-band reveal">
+      <div class="stat">
+        <span class="stat-num">15 666</span>
+        <span class="stat-label">clics organiques venus de Google sur la période</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">150 599</span>
+        <span class="stat-label">impressions dans les résultats de recherche</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">10,4 %</span>
+        <span class="stat-label">taux de clic moyen (CTR) mesuré</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">0 FCFA</span>
+        <span class="stat-label">de publicité Google sur toute la période</span>
+      </div>
+    </div>
+    <p class="text-muted text-center mt-3">
+      Source : Google Search Console, propriété <span class="num">longrichsantebio.com</span>.
+      Période du 1er novembre 2024 au 31 mars 2026, soit 16 mois.
+    </p>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ POINT DE DÉPART ============================ -->
+<section class="section" id="depart">
+  <div class="container">
+    <span class="eyebrow">Le point de départ</span>
+    <h2 class="mt-3">Novembre 2024 : l'activité vivait uniquement sur WhatsApp.</h2>
+    <p class="lead mt-3">
+      Longrich Santé Bio distribue des produits de santé au Burkina Faso. Le catalogue était
+      solide et la clientèle locale existait déjà — mais aucun point de contact ne permettait à
+      quelqu'un qui cherchait un produit de trouver cette boutique.
+    </p>
+
+    <div class="grid grid-2 mt-4">
+
+      <article class="card reveal">
+        <h3 class="card-title">Ce qui existait</h3>
+        <p class="card-text">
+          Une activité réelle, avec des clients qui achètent et qui reviennent, et un réseau de
+          distributeurs actifs sur le terrain.
+        </p>
+        <ul class="feature-list">
+          <li>Un catalogue de produits identifiés et disponibles</li>
+          <li>Une clientèle locale qui commande déjà</li>
+          <li>Un réseau de distributeurs sur place</li>
+          <li>Des ventes conclues par échange direct</li>
+        </ul>
+      </article>
+
+      <article class="card reveal reveal-delay-1">
+        <h3 class="card-title">Ce qui manquait</h3>
+        <p class="card-text">
+          Aucune page de vente consultable, aucun contenu indexable, aucune mesure des
+          conversions. Les commandes arrivaient par messages privés et par bouche-à-oreille :
+          rien n'était visible, rien n'était mesurable.
+        </p>
+        <p class="card-text mt-2">
+          La demande existait pourtant déjà dans les moteurs de recherche : le nom des produits
+          était tapé par des acheteurs, et ces recherches ne menaient vers aucune boutique
+          contrôlée par la marque.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ CE QUI A ÉTÉ CONSTRUIT ============================ -->
+<section class="section" id="construit">
+  <div class="container">
+    <span class="eyebrow">Ce qui a été construit</span>
+    <h2 class="mt-3">Six composantes, un seul système d'acquisition.</h2>
+    <p class="lead mt-3">
+      Chaque élément remplit une fonction précise dans la chaîne : être trouvé, inspirer
+      confiance, puis transformer la visite en commande mesurable.
+    </p>
+
+    <div class="grid grid-3 mt-4">
+
+      <article class="card card-hover reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <path d="M12 18h.01"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Boutique conçue mobile d'abord</h3>
+        <p class="card-text">
+          Un site de commande pensé pour un téléphone tenu à une main : pages légères, photos
+          compressées, parcours d'achat court, bouton de commande accessible sans zoomer.
+        </p>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-1">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <path d="M3 6h18"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Cinq pages produits structurées</h3>
+        <p class="card-text">
+          Une page dédiée par produit : présentation, usages, questions fréquentes et
+          informations pratiques. Chaque page peut être indexée sur le nom du produit et sur ce
+          que les acheteurs tapent réellement.
+        </p>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-2">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 2v6h6"/>
+            <path d="M16 13H8M16 17H8M10 9H8"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Onze articles de blog maillés</h3>
+        <p class="card-text">
+          Onze articles écrits sur les questions que se posent les acheteurs, reliés entre eux et
+          renvoyant vers les pages produits. Ce maillage interne sert autant le lecteur que
+          l'exploration du site par les moteurs.
+        </p>
+      </article>
+
+      <article class="card card-hover reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 2L11 13"/>
+            <path d="M22 2l-7 20-4-9-9-4z"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Tracking CAPI Facebook</h3>
+        <p class="card-text">
+          Les conversions remontent au gestionnaire de publicités Facebook par l'API côté
+          serveur. Le suivi reste fiable même lorsque le navigateur bloque les scripts de
+          mesure.
+        </p>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-1">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Google Merchant Center</h3>
+        <p class="card-text">
+          Un flux produits structuré, alimenté et soumis à Google, pour que les fiches
+          apparaissent dans les résultats d'achat sans avoir à acheter d'annonces.
+        </p>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-2">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Fiche Google Business Profile</h3>
+        <p class="card-text">
+          Une fiche d'établissement configurée avec les informations de contact et le lien du
+          site, pour apparaître aussi dans les résultats locaux et sur Google Maps.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ RÉSULTATS MESURÉS ============================ -->
+<section class="section" id="resultats">
+  <div class="container">
+    <span class="eyebrow">Résultats mesurés</span>
+    <h2 class="mt-3">Seize mois de trafic organique, sans publicité Google.</h2>
+    <p class="lead mt-3">
+      Les chiffres ci-dessous sont ceux de Google Search Console, relevés sur la propriété
+      <span class="num">longrichsantebio.com</span> entre novembre 2024 et mars 2026. Ils ne
+      sont ni estimés ni extrapolés.
+    </p>
+
+    <div class="stat-band mt-4 reveal">
+      <div class="stat">
+        <span class="stat-num">91 %</span>
+        <span class="stat-label">du trafic est venu d'un téléphone mobile</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">30+</span>
+        <span class="stat-label">pays ont envoyé du trafic, sans action spécifique</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">86 %</span>
+        <span class="stat-label">de ce trafic provient d'Afrique francophone</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">16</span>
+        <span class="stat-label">mois de données relevées, de novembre 2024 à mars 2026</span>
+      </div>
+    </div>
+
+    <h3 class="mt-4">Les requêtes qui ont amené le plus de clics</h3>
+    <p class="text-muted mt-2">
+      Nombre de clics et position moyenne relevés sur la période. Aucun mot-clé n'a été acheté.
+    </p>
+
+    <div class="grid grid-3 mt-3">
+
+      <article class="card card-hover reveal">
+        <span class="card-num">819 clics</span>
+        <h4>stc30 bienfaits</h4>
+        <p class="card-text mt-1">Position moyenne 6,5</p>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-1">
+        <span class="card-num">765 clics</span>
+        <h4>stc30</h4>
+        <p class="card-text mt-1">Position moyenne 7,4</p>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-2">
+        <span class="card-num">365 clics</span>
+        <h4>super root coffee bienfaits</h4>
+        <p class="card-text mt-1">Position moyenne 1,8</p>
+      </article>
+
+      <article class="card card-hover reveal">
+        <span class="card-num">351 clics</span>
+        <h4>super root coffee</h4>
+        <p class="card-text mt-1">Position moyenne 3,6</p>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-1">
+        <span class="card-num">298 clics</span>
+        <h4>stc30 prix en côte d'ivoire</h4>
+        <p class="card-text mt-1">Position moyenne 5,4</p>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-2">
+        <span class="card-num">260 clics</span>
+        <h4>stc30 bienfaits et témoignages</h4>
+        <p class="card-text mt-1">Position moyenne 3,3</p>
+      </article>
+
+    </div>
+
+    <h3 class="mt-4">D'où venaient les clics</h3>
+    <p class="text-muted mt-2">
+      Répartition par pays des clics enregistrés. Seuls les huit premiers pays sont détaillés.
+    </p>
+
+    <div class="stat-band mt-3 reveal">
+      <div class="stat">
+        <span class="stat-num">8 485</span>
+        <span class="stat-label">Côte d'Ivoire</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">2 620</span>
+        <span class="stat-label">Burkina Faso</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">767</span>
+        <span class="stat-label">Cameroun</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">734</span>
+        <span class="stat-label">France</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">422</span>
+        <span class="stat-label">Guinée</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">377</span>
+        <span class="stat-label">Togo</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">321</span>
+        <span class="stat-label">République démocratique du Congo</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">263</span>
+        <span class="stat-label">Sénégal</span>
+      </div>
+    </div>
+
+    <div class="callout mt-4 reveal">
+      <p>
+        <strong>Le taux de clic.</strong> Sur 150 599 impressions, 15 666 clics ont été
+        enregistrés, soit un CTR de 10,4 %. À titre de repère, les références publiées pour le
+        commerce en ligne situent généralement ce taux entre 3 % et 5 %. L'écart observé ici
+        vient de la nature des requêtes : des recherches précises, portant sur un nom de produit
+        et sur ce que les gens veulent savoir avant d'acheter.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ CE QUE ÇA NE PROUVE PAS ============================ -->
+<section class="section" id="limites">
+  <div class="container">
+    <span class="eyebrow">Ce que ça ne prouve pas</span>
+    <h2 class="mt-3">Un cas documenté n'est pas une promesse.</h2>
+    <p class="lead mt-3">
+      Cette page décrit une situation précise, sur un marché précis, pendant une période
+      précise. Voici ce qu'il serait malhonnête d'en déduire.
+    </p>
+
+    <div class="grid grid-3 mt-4">
+
+      <article class="card reveal">
+        <h3 class="card-title">Un cas, pas une moyenne</h3>
+        <p class="card-text">
+          Ces chiffres viennent d'une seule boutique, dans un seul pays. Rien ne dit qu'une autre
+          activité, avec d'autres produits et un autre marché, obtiendrait les mêmes volumes de
+          recherche.
+        </p>
+      </article>
+
+      <article class="card reveal reveal-delay-1">
+        <h3 class="card-title">Un secteur, pas une recette</h3>
+        <p class="card-text">
+          Les produits de santé génèrent des recherches particulières : noms de produits,
+          bienfaits, prix. Un autre secteur n'appelle ni le même contenu, ni les mêmes pages, ni
+          les mêmes requêtes.
+        </p>
+      </article>
+
+      <article class="card reveal reveal-delay-2">
+        <h3 class="card-title">Seize mois, pas une semaine</h3>
+        <p class="card-text">
+          Ce trafic s'est construit progressivement, à mesure que les pages étaient publiées et
+          que les contenus étaient reliés entre eux. Aucun de ces chiffres n'apparaît la première
+          semaine.
+        </p>
+      </article>
+
+    </div>
+
+    <div class="callout mt-4 reveal">
+      <p>
+        <strong>Ce que cette page ne dit pas.</strong> Elle ne promet pas de résultat équivalent
+        chez vous. Elle montre ce qui a été construit, sur quelle période, et ce que la mesure a
+        enregistré. Ce qu'un site ou un accompagnement produira dans votre cas dépend de votre
+        offre, de votre marché, de la concurrence et de votre régularité.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ LES FORMULES ============================ -->
+<section class="section" id="offres">
+  <div class="container">
+    <span class="eyebrow">Les formules</span>
+    <h2 class="mt-3">Le site dont parle ce cas, en deux formules.</h2>
+    <p class="lead mt-3">
+      Les deux formules ci-dessous comprennent le site et le nom de domaine, à votre nom. Elles
+      diffèrent sur le contenu produit pour vous et sur la mesure mise en place.
+    </p>
+
+    <div class="grid grid-2 mt-4">
+
+      <article class="card plan reveal">
+        <h3 class="card-title">Site Découverte</h3>
+        <p class="plan-price num">100 000 FCFA</p>
+        <p class="plan-price-note">Paiement unique. Aucun abonnement.</p>
+        <ul class="feature-list mb-4">
+          <li>Site vitrine ou boutique de 5 pages</li>
+          <li>Conception mobile d'abord et référencement de base</li>
+          <li>WhatsApp et formulaire intégrés</li>
+          <li>Nom de domaine en <span class="num">.com</span> inclus 1 an</li>
+          <li>Livraison en 7 jours</li>
+          <li>7 jours de support après la mise en ligne</li>
+        </ul>
+        <a class="btn btn-outline btn-block" href="site-web.html#offres">Voir le détail de Découverte</a>
+      </article>
+
+      <article class="card plan is-featured reveal reveal-delay-1">
+        <span class="plan-badge">Le plus choisi</span>
+        <h3 class="card-title">Site Professionnel</h3>
+        <p class="plan-price num">250 000 FCFA</p>
+        <p class="plan-price-note">Tout Découverte, plus :</p>
+        <ul class="feature-list mb-4">
+          <li>3 articles rédigés et optimisés pour Google</li>
+          <li>Tracking CAPI Facebook côté serveur</li>
+          <li>Google Merchant Center configuré</li>
+          <li>Fiche Google My Business configurée</li>
+          <li>30 jours de support après la mise en ligne</li>
+        </ul>
+        <a class="btn btn-gold btn-block" href="site-web.html#offres">Voir le détail de Professionnel</a>
+      </article>
+
+    </div>
+
+    <p class="text-muted text-center mt-3">
+      Il existe aussi une formule à 350 000 FCFA, qui ajoute 12 mois d'accompagnement.
+      <a class="text-gold" href="site-web.html#offres">Comparer les trois formules</a>.
+    </p>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ CONVERSION ============================ -->
+<section class="section" id="suite">
+  <div class="container container-narrow">
+    <div class="card text-center reveal">
+      <span class="eyebrow">Prochaine étape</span>
+      <h2 class="mt-3">Ce que la même approche donnerait sur votre marché, vous pouvez le mesurer.</h2>
+      <p class="lead mt-3 mx-auto">
+        Le diagnostic gratuit prend cinq minutes et calcule vos quatre ratios à partir de vos
+        propres chiffres. C'est la première étape, et elle ne vous engage à rien.
+      </p>
+      <div class="grid grid-2 mt-4">
+        <a class="btn btn-gold" href="diagnostic_eperformance.html">Faire mon diagnostic gratuit
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </a>
+        <a class="btn btn-wa" target="_blank" rel="noopener"
+           href="https://wa.me/2250151170666?text=Bonjour%2C%20j%27ai%20lu%20le%20cas%20Longrich%20Sant%C3%A9%20Bio.">Écrire sur WhatsApp</a>
+      </div>
+      <p class="text-muted mt-3">Réponse sous 24 à 48 h. Aucun engagement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ DONNÉES STRUCTURÉES ============================ -->
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-col">
+        <img class="footer-logo logo-img-light" src="assets/img/logo-light.webp"
+             srcset="assets/img/logo-light.webp 1x, assets/img/logo-light@2x.webp 2x"
+             width="152" height="25" alt="ePerformance" loading="lazy">
+        <img class="footer-logo logo-img-dark" src="assets/img/logo-dark.webp"
+             srcset="assets/img/logo-dark.webp 1x, assets/img/logo-dark@2x.webp 2x"
+             width="157" height="25" alt="" aria-hidden="true" loading="lazy">
+        <p class="card-text mt-3" style="max-width:34ch">Stratégie d&#x27;acquisition, IA générative, automatisation et développement web premium. Basé en Côte d&#x27;Ivoire, 100 % en ligne.</p>
+      </div>
+
+      <div class="footer-col">
+        <h2>Services</h2>
+        <ul>
+          <li><a href="index.html#programmes">stratégie d&#x27;acquisition</a></li>
+          <li><a href="ia.html">IA générative</a></li>
+          <li><a href="automatisation.html">Automatisation</a></li>
+          <li><a href="site-web.html">Création de site web</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Ressources</h2>
+        <ul>
+          <li><a href="diagnostic_eperformance.html">Diagnostic gratuit</a></li>
+          <li><a href="formation.html">Formations</a></li>
+          <li><a href="ebook.html">Ebooks</a></li>
+          <li><a href="https://blog.eperformance.pro/" rel="noopener">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="https://wa.me/2250151170666" rel="noopener">+225 01 51 17 06 66</a></li>
+          <li><a href="mailto:bonjour@eperformance.pro">bonjour@eperformance.pro</a></li>
+          <li><a href="https://api.eperformance.pro/connexion.php" rel="noopener">Espace client</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 ePerformance — par K. Stéphane. Tous droits réservés.</p>
+      <p><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a> · <a href="cookies.html">Cookies</a> · <a href="cgv.html">CGV</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a class="btn btn-gold" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
+  <a class="btn btn-wa" href="https://wa.me/2250151170666" style="flex:0 0 auto" rel="noopener">WhatsApp</a>
+</div>
+
+<div class="consent" id="consent-banner" hidden>
+  <div class="consent-inner">
+    <div class="consent-text">
+      <p><strong>Vous choisissez ce que nous mesurons.</strong></p>
+      <p>Nous utilisons des traceurs pour comprendre comment le site est utilisé et pour
+         mesurer nos campagnes. Aucun ne se déclenche avant votre accord.
+         <a href="politique-confidentialite.html">Politique de confidentialité</a> ·
+         <a href="cookies.html">En savoir plus</a></p>
+    </div>
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost" data-consent="refuse">Tout refuser</button>
+      <button type="button" class="btn btn-outline" data-consent="customize">Paramétrer</button>
+      <button type="button" class="btn btn-gold" data-consent="accept">Tout accepter</button>
+    </div>
+  </div>
+
+  <div class="consent-detail" id="consent-detail" hidden>
+    <fieldset class="fieldset">
+      <legend>Vos préférences</legend>
+
+      <label class="consent-row consent-row-locked">
+        <input type="checkbox" checked disabled>
+        <span>
+          <strong>Nécessaires</strong>
+          <span class="field-hint">Mémorisation de votre choix de thème et de vos préférences.
+            Toujours actifs : le site ne peut pas fonctionner sans.</span>
+        </span>
+      </label>
+
+      <label class="consent-row">
+        <input type="checkbox" id="consent-analytics">
+        <span>
+          <strong>Mesure d'audience</strong>
+          <span class="field-hint">Google Analytics 4 et Microsoft Clarity. Nous aide à voir
+            quelles pages sont utiles et où les visiteurs abandonnent.</span>
+        </span>
+      </label>
+
+      <label class="consent-row">
+        <input type="checkbox" id="consent-ads">
+        <span>
+          <strong>Publicité</strong>
+          <span class="field-hint">Meta Pixel. Mesure l'efficacité de nos campagnes
+            Facebook et Instagram.</span>
+        </span>
+      </label>
+    </fieldset>
+
+    <div class="consent-actions">
+      <button type="button" class="btn btn-outline" data-consent="back">Retour</button>
+      <button type="button" class="btn btn-gold" data-consent="save">Enregistrer mes choix</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/consent.js" defer></script>
+<script src="assets/js/eperf.js" defer></script>
+</body>
+</html>

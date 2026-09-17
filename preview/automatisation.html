@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+(function(){try{var t=localStorage.getItem('eperf-theme');
+if(t!=='dark'&&t!=='light'){t='light';}
+document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+  <title>Automatisation marketing et workflows n8n | ePerformance</title>
+  <meta name="description" content="Automatisez la capture, la relance et le reporting de vos prospects avec des workflows n8n sur mesure. Pour les PME d&#x27;Afrique de l&#x27;Ouest.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://eperformance.pro/automatisation.html">
+  <meta name="theme-color" content="#fdfcfa">
+  <meta name="author" content="K. Stéphane">
+
+  <!-- Icônes -->
+  <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="assets/img/favicon-16.png" sizes="16x16">
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ePerformance">
+  <meta property="og:locale" content="fr_CI">
+  <meta property="og:title" content="Automatisation marketing et workflows n8n | ePerformance">
+  <meta property="og:description" content="Automatisez la capture, la relance et le reporting de vos prospects avec des workflows n8n sur mesure. Pour les PME d&#x27;Afrique de l&#x27;Ouest.">
+  <meta property="og:url" content="https://eperformance.pro/automatisation.html">
+  <meta property="og:image" content="https://eperformance.pro/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ePerformance — ePerformance">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Automatisation marketing et workflows n8n | ePerformance">
+  <meta name="twitter:description" content="Automatisez la capture, la relance et le reporting de vos prospects avec des workflows n8n sur mesure. Pour les PME d&#x27;Afrique de l&#x27;Ouest.">
+  <meta name="twitter:image" content="https://eperformance.pro/assets/img/og-image.jpg">
+  <meta name="twitter:creator" content="@eperformancepro">
+
+  <!-- Polices : chargement non bloquant -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+  </noscript>
+
+  <!-- Design system -->
+  <link rel="stylesheet" href="assets/css/eperf.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://eperformance.pro/#organization",
+      "name": "ePerformance",
+      "alternateName": "ePerformance par K. Stéphane",
+      "url": "https://eperformance.pro",
+      "email": "bonjour@eperformance.pro",
+      "telephone": "+2250151170666",
+      "founder": {
+        "@type": "Person",
+        "@id": "https://eperformance.pro/#founder",
+        "name": "K. Stéphane",
+        "jobTitle": "Fondateur, stratège acquisition",
+        "url": "https://eperformance.pro/kstephane.html"
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Côte d'Ivoire"
+        },
+        {
+          "@type": "Country",
+          "name": "Burkina Faso"
+        },
+        {
+          "@type": "Place",
+          "name": "Afrique de l'Ouest"
+        }
+      ],
+      "knowsLanguage": "fr",
+      "sameAs": [
+        "https://blog.eperformance.pro/"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://eperformance.pro/#localbusiness",
+      "name": "ePerformance",
+      "description": "Stratégie d'acquisition, IA générative, automatisation et développement web premium. Basé en Côte d'Ivoire, 100 % en ligne.",
+      "url": "https://eperformance.pro",
+      "email": "bonjour@eperformance.pro",
+      "telephone": "+2250151170666",
+      "parentOrganization": {
+        "@id": "https://eperformance.pro/#organization"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Abidjan",
+        "addressCountry": "CI"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Côte d'Ivoire"
+      },
+      "priceRange": "100000-350000 XOF",
+      "currenciesAccepted": "XOF",
+      "paymentAccepted": "Orange Money, Wave, MTN MoMo, Moov Money, Visa, Mastercard",
+      "availableLanguage": "fr"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://eperformance.pro/#website",
+      "url": "https://eperformance.pro",
+      "name": "ePerformance",
+      "description": "Stratégie d'acquisition, IA générative, automatisation et développement web premium. Basé en Côte d'Ivoire, 100 % en ligne.",
+      "publisher": {
+        "@id": "https://eperformance.pro/#organization"
+      },
+      "inLanguage": "fr-CI"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://eperformance.pro/automatisation.html#webpage",
+      "url": "https://eperformance.pro/automatisation.html",
+      "name": "Automatisation marketing et workflows n8n | ePerformance",
+      "description": "Automatisez la capture, la relance et le reporting de vos prospects avec des workflows n8n sur mesure. Pour les PME d'Afrique de l'Ouest.",
+      "isPartOf": {
+        "@id": "https://eperformance.pro/#website"
+      },
+      "about": {
+        "@id": "https://eperformance.pro/#organization"
+      },
+      "inLanguage": "fr-CI"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://eperformance.pro/automatisation.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://eperformance.pro/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Automatisation",
+          "item": "https://eperformance.pro/automatisation.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Automatisation marketing et workflows n8n",
+  "serviceType": "Automatisation de workflows marketing pour PME",
+  "description": "Mise en place de workflows d'automatisation marketing avec n8n auto-hébergé : capture et qualification des demandes entrantes, relance des prospects, reporting automatique et synchronisation entre le site, WhatsApp Business et le suivi commercial.",
+  "url": "https://eperformance.pro/automatisation.html",
+  "provider": {
+    "@type": "Organization",
+    "name": "ePerformance",
+    "url": "https://eperformance.pro/",
+    "email": "bonjour@eperformance.pro",
+    "telephone": "+2250151170666",
+    "founder": {
+      "@type": "Person",
+      "name": "K. Stéphane"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Abidjan",
+      "addressCountry": "CI"
+    }
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Côte d'Ivoire"
+    },
+    {
+      "@type": "Place",
+      "name": "Afrique de l'Ouest"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce que l'automatisation marketing pour une PME ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "C'est l'ensemble des tâches répétitives de votre acquisition confiées à un système : accueillir une demande entrante, la qualifier, la relancer au bon moment, mettre à jour votre suivi commercial et remplir votre tableau de bord. Le principe est simple : ce qui se répète selon une règle fixe n'a pas besoin d'être fait à la main. Votre équipe garde les conversations qui demandent un jugement humain, le reste s'exécute seul."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi travailler avec n8n plutôt qu'une plateforme fermée ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "n8n est un outil d'automatisation de workflows que l'on peut installer sur un serveur que vous contrôlez, ce qui garde vos contacts et vos historiques hors des plateformes tierces. Il ne facture pas à l'exécution : le coût d'exploitation est celui d'un serveur, pas d'un compteur qui suit votre volume. Il se branche enfin à WhatsApp Business, Google Sheets, Gmail, Telegram et à toute API exposant un webhook, y compris les passerelles mobile money."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mes données et mes contacts restent-ils chez moi ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Une instance n8n auto-hébergée stocke les données d'exécution sur votre serveur, et vos contacts restent dans vos outils — votre WhatsApp Business, votre tableur, votre CRM — et non dans un compte tiers. Les workflows sont des fichiers exportables que vous conservez, avec leur documentation et leurs journaux d'exécution."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Faut-il abandonner mes outils actuels ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. L'automatisation se branche sur ce que vous utilisez déjà : WhatsApp Business, Google Sheets, Gmail, un formulaire de site, un logiciel de facturation. Elle sert précisément à faire circuler l'information entre ces outils, sans double saisie. Si un outil est réellement inadapté, nous le disons pendant le diagnostic, avant toute mise en place."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien coûte une automatisation, et qu'est-ce qui est engagé ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le périmètre dépend de vos outils et du nombre de workflows à construire : le chiffrage est établi après le diagnostic gratuit, pas avant. Ce qui est engagé, c'est le processus — un workflow documenté, supervisé, avec une alerte en cas d'échec — et non un résultat commercial. Les résultats dépendent de votre offre, de votre marché et de votre régularité."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <a class="logo" href="index.html" aria-label="ePerformance — accueil">
+      <img class="logo-img-light" src="assets/img/logo-light.webp"
+           srcset="assets/img/logo-light.webp 1x, assets/img/logo-light@2x.webp 2x"
+           width="182" height="30" alt="ePerformance" fetchpriority="high">
+      <img class="logo-img-dark" src="assets/img/logo-dark.webp"
+           srcset="assets/img/logo-dark.webp 1x, assets/img/logo-dark@2x.webp 2x"
+           width="188" height="30" alt="" aria-hidden="true">
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Navigation principale">
+      <a href="#piliers">Services</a>
+      <a href="automatisation.html">Automatisation</a>
+      <a href="ia.html">IA</a>
+      <a href="site-web.html">Site web</a>
+      <a href="formation.html">Formation</a>
+      <a href="https://blog.eperformance.pro/" class="text-gold" rel="noopener">Blog</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle
+              aria-pressed="false" aria-label="Activer le thème sombre">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+        </svg>
+      </button>
+
+      <a class="btn btn-gold btn-desktop" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false"
+              aria-controls="primary-nav" aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<nav class="breadcrumb container" aria-label="Fil d'Ariane">
+  <ol>
+    <li><a href="index.html">Accueil</a></li>
+    <li aria-current="page">Automatisation</li>
+  </ol>
+</nav>
+
+<main id="main">
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Pilier 03 · Automatisation</span>
+      <h1 class="mt-3">Automatiser, c'est arrêter de <em>perdre ce que vous avez déjà capté.</em></h1>
+      <p class="lead mt-3">Un prospect qui écrit et qu&#x27;on oublie, un devis jamais relancé, un reporting qui prend une journée : ce ne sont pas des problèmes de volume, ce sont des problèmes de système. L&#x27;automatisation les supprime.</p>
+      <div class="row mt-4" style="gap:12px;flex-wrap:wrap">
+        <a class="btn btn-gold" href="diagnostic_eperformance.html">Faire mon diagnostic gratuit
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+<!-- ============================ OUVERTURE ============================ -->
+<section class="section" id="automatisation">
+  <div class="container container-narrow">
+    <span class="eyebrow">Pilier 03 · Automatisation</span>
+    <h2 class="mt-3">Une demande traitée en trente secondes, même à trois heures du matin.</h2>
+
+    <p class="lead mt-2">
+      L'automatisation marketing, c'est confier à un système les gestes répétitifs de
+      votre acquisition — accueillir une demande, la qualifier, la relancer au bon
+      moment, tenir votre suivi à jour — pour que votre équipe ne garde que les
+      conversations qui demandent un humain.
+    </p>
+
+    <p class="mt-3">
+      Concrètement : un formulaire rempli sur votre site crée une fiche, envoie un
+      accusé de réception, prévient la bonne personne et programme une relance si
+      personne n'a répondu. Le travail se fait entre des outils qui, jusqu'ici, ne se
+      parlaient pas.
+    </p>
+
+    <p class="mt-3">
+      C'est le pilier le moins visible des quatre, et celui qui décide si les autres
+      tiennent dans le temps.
+    </p>
+
+    <div class="callout mt-4">
+      <p>
+        <strong>Automatiser n'est pas écrire à tout le monde.</strong> Une séquence
+        s'arrête dès que la personne répond, achète ou demande à ne plus être contactée.
+        Le volume n'est pas l'objectif ; la régularité l'est.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ LE PROBLÈME ============================ -->
+<section class="section" id="probleme">
+  <div class="container">
+    <span class="eyebrow">Le problème</span>
+    <h2 class="mt-3">Ce qui se perd quand tout est manuel.</h2>
+    <p class="lead mt-2">
+      Rien ne s'effondre d'un coup. Les pertes sont petites, répétées, et
+      n'apparaissent dans aucun compte de résultat.
+    </p>
+
+    <div class="grid grid-3 mt-4">
+
+      <article class="card reveal">
+        <div class="card-num">Scénario 01</div>
+        <h3 class="card-title">La demande qu'on oublie</h3>
+        <p class="card-text">
+          Un formulaire rempli un vendredi soir. Lu le lundi. Répondu le mardi, entre
+          deux rendez-vous. Le prospect a déjà signé ailleurs : il n'a pas disparu, il
+          a attendu plus longtemps que sa patience.
+        </p>
+      </article>
+
+      <article class="card reveal reveal-delay-1">
+        <div class="card-num">Scénario 02</div>
+        <h3 class="card-title">Le devis jamais relancé</h3>
+        <p class="card-text">
+          Un devis part. Le client répond « je reviens vers vous ». Personne ne
+          relance, par gêne ou par manque de temps. Le devis reste ouvert des semaines,
+          puis on n'ose plus revenir dessus. Il n'a jamais été refusé.
+        </p>
+      </article>
+
+      <article class="card reveal reveal-delay-2">
+        <div class="card-num">Scénario 03</div>
+        <h3 class="card-title">Le reporting qui mange une journée</h3>
+        <p class="card-text">
+          Extraire les chiffres de trois outils, les recopier dans un tableur, refaire
+          les mêmes formules chaque mois. Coût réel : une journée de travail, et des
+          décisions prises sur des données vieilles de trois semaines.
+        </p>
+      </article>
+
+    </div>
+
+    <div class="callout mt-4">
+      <p>
+        <strong>Le point commun :</strong> ce ne sont pas des problèmes de compétence,
+        mais de charge. Ces trois tâches obéissent à des règles fixes et se répètent :
+        c'est le terrain d'un workflow, qui ne se fatigue pas et n'oublie pas.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ CAS D'USAGE ============================ -->
+<section class="section" id="cas-usage">
+  <div class="container">
+    <span class="eyebrow">Ce que nous installons</span>
+    <h2 class="mt-3">Quatre cas d'usage, et ce que chacun remplace.</h2>
+    <p class="lead mt-2">
+      Chaque workflow se construit sur vos outils existants ; le périmètre se décide
+      après avoir vu vos volumes et vos canaux.
+    </p>
+
+    <div class="grid grid-2 mt-4 stack-mobile">
+
+      <article class="card card-hover reveal">
+        <div class="card-num">Cas d'usage 01</div>
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
+            <path d="M5.5 5.5 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.5A2 2 0 0 0 16.8 4H7.2a2 2 0 0 0-1.7 1.5z"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Capture et qualification des demandes entrantes</h3>
+        <p class="card-text">
+          <strong class="text-gold">Remplace :</strong> la boîte mail partagée, les
+          messages WhatsApp retrouvés trois jours plus tard, le carnet de numéros.
+        </p>
+        <p class="card-text mt-3"><strong class="text-gold">Produit :</strong></p>
+        <ul class="feature-list">
+          <li>Accusé de réception immédiat, avec les questions de qualification</li>
+          <li>Une fiche par contact, créée et alimentée sans saisie manuelle</li>
+          <li>Priorité selon le budget, le délai et la zone annoncés</li>
+          <li>Notification à la personne qui doit rappeler</li>
+        </ul>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-1">
+        <div class="card-num">Cas d'usage 02</div>
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 2 11 13"/>
+            <path d="M22 2l-7 20-4-9-9-4z"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Relance automatique des prospects tièdes</h3>
+        <p class="card-text">
+          <strong class="text-gold">Remplace :</strong> la relance faite « quand on y
+          pense », et les dossiers qui dorment par peur d'être insistant.
+        </p>
+        <p class="card-text mt-3"><strong class="text-gold">Produit :</strong></p>
+        <ul class="feature-list">
+          <li>Une séquence programmée à l'avance, sur vos délais (J+1, J+3, J+7)</li>
+          <li>Arrêt immédiat dès que la personne répond ou achète</li>
+          <li>Historique des échanges visible dans la fiche du contact</li>
+          <li>Désinscription prise en compte au premier mot</li>
+        </ul>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-2">
+        <div class="card-num">Cas d'usage 03</div>
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"/>
+            <path d="M7 16v-5M12 16V8M17 16v-6"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Reporting qui se remplit seul</h3>
+        <p class="card-text">
+          <strong class="text-gold">Remplace :</strong> la consolidation mensuelle,
+          les copier-coller entre le tableur des ventes et celui des campagnes.
+        </p>
+        <p class="card-text mt-3"><strong class="text-gold">Produit :</strong></p>
+        <ul class="feature-list">
+          <li>Un tableau de bord mis à jour chaque nuit, sans intervention</li>
+          <li>Demandes et coût par canal, calculés sur vos données réelles</li>
+          <li>Alerte quand un canal sort de la trajectoire prévue</li>
+          <li>Historique conservé, donc comparable d'un mois à l'autre</li>
+        </ul>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-3">
+        <div class="card-num">Cas d'usage 04</div>
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12a8 8 0 0 1 13.7-5.7L20 8"/>
+            <path d="M20 4v4h-4"/>
+            <path d="M20 12a8 8 0 0 1-13.7 5.7L4 16"/>
+            <path d="M4 20v-4h4"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Synchronisation site, WhatsApp et suivi commercial</h3>
+        <p class="card-text">
+          <strong class="text-gold">Remplace :</strong> la double saisie, les numéros
+          recopiés à la main, les conversations qui ne laissent aucune trace.
+        </p>
+        <p class="card-text mt-3"><strong class="text-gold">Produit :</strong></p>
+        <ul class="feature-list">
+          <li>Un seul statut par contact, partagé par tous vos outils</li>
+          <li>Mise à jour instantanée : personne ne rappelle un client déjà servi</li>
+          <li>Reprise de conversation possible sans redemander les informations</li>
+          <li>Export complet de vos contacts, à tout moment</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ L'OUTIL ============================ -->
+<section class="section" id="n8n">
+  <div class="container">
+    <span class="eyebrow">L'outil</span>
+    <h2 class="mt-3">Pourquoi nous construisons avec n8n.</h2>
+    <p class="lead mt-2">
+      n8n est un outil d'automatisation de workflows. Trois raisons techniques ont
+      décidé de ce choix.
+    </p>
+
+    <div class="grid grid-2 mt-4">
+
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="7" rx="2"/>
+            <rect x="2" y="14" width="20" height="7" rx="2"/>
+            <path d="M6 6.5h.01M6 17.5h.01"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Auto-hébergeable</h3>
+        <p class="card-text">
+          L'instance tourne sur un serveur que vous contrôlez. Vos contacts, vos
+          historiques et vos règles de relance ne sont pas stockés chez un prestataire
+          qui les exploite pour son propre compte. C'est un point de contrôle autant
+          que de conformité.
+        </p>
+      </article>
+
+      <article class="card reveal reveal-delay-1">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v10"/>
+            <path d="M14.5 9.2A3 3 0 0 0 12 8c-1.6 0-2.6.8-2.6 1.8S10.4 11.4 12 11.8s2.6.8 2.6 1.9-1 1.9-2.6 1.9a3 3 0 0 1-2.5-1.2"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Pas de facturation à la tâche</h3>
+        <p class="card-text">
+          La plupart des plateformes d'automatisation facturent chaque exécution : plus
+          vous automatisez, plus la facture monte. Ici, le coût d'exploitation est
+          celui d'un petit serveur, pas d'un compteur. Votre volume peut augmenter sans
+          créer un nouveau poste de dépense.
+        </p>
+      </article>
+
+      <article class="card reveal reveal-delay-2">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 2v6M15 2v6"/>
+            <path d="M6 8h12v3a6 6 0 0 1-6 6 6 6 0 0 1-6-6V8z"/>
+            <path d="M12 17v3"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Branché aux outils que vous utilisez déjà</h3>
+        <p class="card-text">
+          WhatsApp Business via l'API Cloud, Google Sheets, Gmail, Telegram, et
+          n'importe quelle API exposant un webhook — y compris les passerelles mobile
+          money et les logiciels de facturation locaux.
+        </p>
+      </article>
+
+      <article class="card reveal reveal-delay-3">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 3h7v7"/>
+            <path d="M21 3l-9 9"/>
+            <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Réversible et documenté</h3>
+        <p class="card-text">
+          Un workflow n8n s'exporte en fichier. Vous gardez une copie de la mécanique,
+          de sa documentation et de ses journaux d'exécution. Si vous changez de
+          prestataire, le travail se reprend.
+        </p>
+      </article>
+
+    </div>
+
+    <div class="callout mt-4">
+      <p>
+        <strong>Une automatisation qui tombe en panne en silence est pire que pas
+        d'automatisation.</strong> Chaque workflow est livré avec sa supervision : une
+        alerte dès qu'une étape échoue, et un journal consultable. C'est le seul
+        engagement que nous prenons — il porte sur le processus, pas sur vos ventes.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ==================== ARTICULATION AVEC LES AUTRES PILIERS ==================== -->
+<section class="section" id="boucle">
+  <div class="container">
+    <span class="eyebrow">Les quatre piliers</span>
+    <h2 class="mt-3">L'automatisation ne sert à rien seule.</h2>
+    <p class="lead mt-2">
+      C'est un multiplicateur, pas un moteur : elle amplifie ce qu'elle relie. Sans les
+      autres piliers, elle tourne à vide.
+    </p>
+
+    <div class="grid grid-3 mt-4">
+
+      <article class="card reveal">
+        <div class="card-num">Pilier 01</div>
+        <h3 class="card-title">Sans chiffres, on automatise le hasard</h3>
+        <p class="card-text">
+          CAC, LTV, Payback : sans ces ratios, impossible de fixer un seuil d'alerte,
+          de savoir quel canal mérite une relance, ni de juger si le système produit
+          quelque chose d'utile. L'automatisation exécute une règle ; encore faut-il
+          que la règle soit juste.
+        </p>
+      </article>
+
+      <article class="card reveal reveal-delay-1">
+        <div class="card-num">Pilier 02</div>
+        <h3 class="card-title">L'IA tient la conversation, le workflow fait la suite</h3>
+        <p class="card-text">
+          L'agent conversationnel accueille, répond et qualifie, y compris hors des
+          heures de bureau. Le workflow prend le relais : acheminer le contact,
+          relancer, archiver, remonter l'information. L'un sans l'autre laisse le
+          travail à moitié fait.
+        </p>
+      </article>
+
+      <article class="card reveal reveal-delay-2">
+        <div class="card-num">Pilier 04</div>
+        <h3 class="card-title">Le site est le point de capture</h3>
+        <p class="card-text">
+          Un site lent ou confus fait fuir avant la première relance : automatiser un
+          entonnoir qui fuit ne fait qu'accélérer la fuite. Un site qui convertit
+          alimente le workflow en demandes qualifiées, et le workflow le lui rend en
+          contacts qui reviennent.
+        </p>
+      </article>
+
+    </div>
+
+    <h3 class="mt-4">La boucle, dans l'ordre</h3>
+    <div class="grid grid-4 mt-3">
+
+      <article class="card reveal">
+        <div class="card-num">01</div>
+        <h4 class="card-title">Mesurer</h4>
+        <p class="card-text">Vous connaissez votre coût d'acquisition et votre marge réelle.</p>
+      </article>
+
+      <article class="card reveal reveal-delay-1">
+        <div class="card-num">02</div>
+        <h4 class="card-title">Capter</h4>
+        <p class="card-text">Le site et WhatsApp recueillent la demande, sans formulaire perdu.</p>
+      </article>
+
+      <article class="card reveal reveal-delay-2">
+        <div class="card-num">03</div>
+        <h4 class="card-title">Relancer</h4>
+        <p class="card-text">Le workflow qualifie, oriente et relance au rythme prévu.</p>
+      </article>
+
+      <article class="card reveal reveal-delay-3">
+        <div class="card-num">04</div>
+        <h4 class="card-title">Recalculer</h4>
+        <p class="card-text">Les résultats remontent, les ratios se recalculent, les règles s'ajustent.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section" id="faq">
+  <div class="container container-narrow">
+    <span class="eyebrow">Questions fréquentes</span>
+    <h2 class="mt-3">Ce qu'on nous demande avant de commencer.</h2>
+
+    <div class="faq mt-4">
+
+      <details>
+        <summary>Qu'est-ce que l'automatisation marketing pour une PME ?</summary>
+        <div class="faq-answer">
+          C'est l'ensemble des tâches répétitives de votre acquisition confiées à un
+          système : accueillir une demande entrante, la qualifier, la relancer au bon
+          moment, mettre à jour votre suivi commercial et remplir votre tableau de
+          bord. Le principe est simple : ce qui se répète selon une règle fixe n'a pas
+          besoin d'être fait à la main. Votre équipe garde les conversations qui
+          demandent un jugement humain, le reste s'exécute seul.
+        </div>
+      </details>
+
+      <details>
+        <summary>Pourquoi travailler avec n8n plutôt qu'une plateforme fermée ?</summary>
+        <div class="faq-answer">
+          n8n est un outil d'automatisation de workflows que l'on peut installer sur un
+          serveur que vous contrôlez, ce qui garde vos contacts et vos historiques hors
+          des plateformes tierces. Il ne facture pas à l'exécution : le coût
+          d'exploitation est celui d'un serveur, pas d'un compteur qui suit votre
+          volume. Il se branche enfin à WhatsApp Business, Google Sheets, Gmail,
+          Telegram et à toute API exposant un webhook, y compris les passerelles mobile
+          money.
+        </div>
+      </details>
+
+      <details>
+        <summary>Mes données et mes contacts restent-ils chez moi ?</summary>
+        <div class="faq-answer">
+          Oui. Une instance n8n auto-hébergée stocke les données d'exécution sur votre
+          serveur, et vos contacts restent dans vos outils — votre WhatsApp Business,
+          votre tableur, votre CRM — et non dans un compte tiers. Les workflows sont
+          des fichiers exportables que vous conservez, avec leur documentation et leurs
+          journaux d'exécution.
+        </div>
+      </details>
+
+      <details>
+        <summary>Faut-il abandonner mes outils actuels ?</summary>
+        <div class="faq-answer">
+          Non. L'automatisation se branche sur ce que vous utilisez déjà : WhatsApp
+          Business, Google Sheets, Gmail, un formulaire de site, un logiciel de
+          facturation. Elle sert précisément à faire circuler l'information entre ces
+          outils, sans double saisie. Si un outil est réellement inadapté, nous le
+          disons pendant le diagnostic, avant toute mise en place.
+        </div>
+      </details>
+
+      <details>
+        <summary>Combien coûte une automatisation, et qu'est-ce qui est engagé ?</summary>
+        <div class="faq-answer">
+          Le périmètre dépend de vos outils et du nombre de workflows à construire : le
+          chiffrage est établi après le diagnostic gratuit, pas avant. Ce qui est
+          engagé, c'est le processus — un workflow documenté, supervisé, avec une alerte
+          en cas d'échec — et non un résultat commercial. Les résultats dépendent de
+          votre offre, de votre marché et de votre régularité.
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONVERSION ============================ -->
+<section class="section" id="diagnostic">
+  <div class="container">
+    <div class="card text-center reveal" style="padding:clamp(2.5rem,5vw,4rem)">
+      <span class="eyebrow">Diagnostic gratuit · 5 minutes</span>
+      <h2 class="mt-3">Avant d'automatiser, sachez ce que vous perdez.</h2>
+      <p class="lead mt-2 mx-auto" style="max-width:56ch">
+        Répondez à quelques questions : vous obtenez vos ratios — CAC, LTV, Payback —
+        votre score sur 100 et les points où votre acquisition fuit. C'est le point de
+        départ de tout chiffrage d'automatisation.
+      </p>
+      <a class="btn btn-gold mt-4" href="diagnostic_eperformance.html">
+        Faire mon diagnostic gratuit
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+             stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+      </a>
+      <p class="text-muted mt-2" style="font-size:.8125rem">
+        Résultat immédiat · Aucun engagement
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ DONNÉES STRUCTURÉES ============================ -->
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-col">
+        <img class="footer-logo logo-img-light" src="assets/img/logo-light.webp"
+             srcset="assets/img/logo-light.webp 1x, assets/img/logo-light@2x.webp 2x"
+             width="152" height="25" alt="ePerformance" loading="lazy">
+        <img class="footer-logo logo-img-dark" src="assets/img/logo-dark.webp"
+             srcset="assets/img/logo-dark.webp 1x, assets/img/logo-dark@2x.webp 2x"
+             width="157" height="25" alt="" aria-hidden="true" loading="lazy">
+        <p class="card-text mt-3" style="max-width:34ch">Stratégie d&#x27;acquisition, IA générative, automatisation et développement web premium. Basé en Côte d&#x27;Ivoire, 100 % en ligne.</p>
+      </div>
+
+      <div class="footer-col">
+        <h2>Services</h2>
+        <ul>
+          <li><a href="index.html#programmes">stratégie d&#x27;acquisition</a></li>
+          <li><a href="ia.html">IA générative</a></li>
+          <li><a href="automatisation.html">Automatisation</a></li>
+          <li><a href="site-web.html">Création de site web</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Ressources</h2>
+        <ul>
+          <li><a href="diagnostic_eperformance.html">Diagnostic gratuit</a></li>
+          <li><a href="formation.html">Formations</a></li>
+          <li><a href="ebook.html">Ebooks</a></li>
+          <li><a href="https://blog.eperformance.pro/" rel="noopener">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="https://wa.me/2250151170666" rel="noopener">+225 01 51 17 06 66</a></li>
+          <li><a href="mailto:bonjour@eperformance.pro">bonjour@eperformance.pro</a></li>
+          <li><a href="https://api.eperformance.pro/connexion.php" rel="noopener">Espace client</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 ePerformance — par K. Stéphane. Tous droits réservés.</p>
+      <p><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a> · <a href="cookies.html">Cookies</a> · <a href="cgv.html">CGV</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a class="btn btn-gold" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
+  <a class="btn btn-wa" href="https://wa.me/2250151170666" style="flex:0 0 auto" rel="noopener">WhatsApp</a>
+</div>
+
+<div class="consent" id="consent-banner" hidden>
+  <div class="consent-inner">
+    <div class="consent-text">
+      <p><strong>Vous choisissez ce que nous mesurons.</strong></p>
+      <p>Nous utilisons des traceurs pour comprendre comment le site est utilisé et pour
+         mesurer nos campagnes. Aucun ne se déclenche avant votre accord.
+         <a href="politique-confidentialite.html">Politique de confidentialité</a> ·
+         <a href="cookies.html">En savoir plus</a></p>
+    </div>
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost" data-consent="refuse">Tout refuser</button>
+      <button type="button" class="btn btn-outline" data-consent="customize">Paramétrer</button>
+      <button type="button" class="btn btn-gold" data-consent="accept">Tout accepter</button>
+    </div>
+  </div>
+
+  <div class="consent-detail" id="consent-detail" hidden>
+    <fieldset class="fieldset">
+      <legend>Vos préférences</legend>
+
+      <label class="consent-row consent-row-locked">
+        <input type="checkbox" checked disabled>
+        <span>
+          <strong>Nécessaires</strong>
+          <span class="field-hint">Mémorisation de votre choix de thème et de vos préférences.
+            Toujours actifs : le site ne peut pas fonctionner sans.</span>
+        </span>
+      </label>
+
+      <label class="consent-row">
+        <input type="checkbox" id="consent-analytics">
+        <span>
+          <strong>Mesure d'audience</strong>
+          <span class="field-hint">Google Analytics 4 et Microsoft Clarity. Nous aide à voir
+            quelles pages sont utiles et où les visiteurs abandonnent.</span>
+        </span>
+      </label>
+
+      <label class="consent-row">
+        <input type="checkbox" id="consent-ads">
+        <span>
+          <strong>Publicité</strong>
+          <span class="field-hint">Meta Pixel. Mesure l'efficacité de nos campagnes
+            Facebook et Instagram.</span>
+        </span>
+      </label>
+    </fieldset>
+
+    <div class="consent-actions">
+      <button type="button" class="btn btn-outline" data-consent="back">Retour</button>
+      <button type="button" class="btn btn-gold" data-consent="save">Enregistrer mes choix</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/consent.js" defer></script>
+<script src="assets/js/eperf.js" defer></script>
+</body>
+</html>

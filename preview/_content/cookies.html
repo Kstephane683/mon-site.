@@ -1,0 +1,232 @@
+<!-- ============================================================
+     COOKIES ET TRACEURS — contenu de l'élément main
+     Le titre de niveau 1 vient du layout : ce fragment commence donc
+     directement par une section, sans titre de niveau 1.
+
+     Réécriture complète : la version précédente renvoyait uniquement aux
+     réglages du navigateur, alors que GA4, Microsoft Clarity et Meta Pixel
+     se déclenchaient au chargement, sans consentement. Cette page décrit le
+     dispositif réel (bandeau + bouton « Gérer mes cookies »), dont le
+     fonctionnement est défini dans assets/js/consent.js.
+     ============================================================ -->
+
+<section class="section-tight">
+  <div class="container container-narrow">
+
+    <p class="lead">
+      Un cookie est un petit fichier que votre navigateur enregistre lorsque vous visitez
+      un site, et qui permet de le reconnaître à la visite suivante.
+    </p>
+
+    <p class="mt-3">
+      Certains sont indispensables au fonctionnement du site. D'autres servent à mesurer
+      l'audience ou l'efficacité de la publicité : ceux-là ne se déclenchent qu'après
+      votre accord. Cette page dit lesquels sont utilisés, à quoi ils servent, qui les
+      pose, combien de temps ils restent et comment revenir sur votre choix.
+    </p>
+
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ LES TROIS CATÉGORIES ============================ -->
+<section class="section-tight" id="categories">
+  <div class="container">
+    <h2>Les trois catégories de traceurs</h2>
+    <p class="lead mt-3">
+      Une seule catégorie est active par défaut : celle sans laquelle le site ne peut pas
+      fonctionner. Les deux autres attendent votre décision.
+    </p>
+
+    <div class="grid grid-3 mt-4">
+
+      <article class="card card-hover reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4" y="10" width="16" height="11" rx="2"/>
+            <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Nécessaires</h3>
+        <p class="card-text">
+          Toujours actifs. Ils mémorisent vos préférences d'affichage et votre choix de
+          consentement, pour ne pas vous reposer la même question à chaque page.
+        </p>
+        <ul class="feature-list">
+          <li><strong>Rôle :</strong> mémoriser le thème clair ou sombre et votre décision sur les traceurs.</li>
+          <li><strong>Stockage :</strong> <code>eperf-theme</code> et <code>eperf-consent</code>, dans le stockage local du navigateur (localStorage).</li>
+          <li><strong>Qui les pose :</strong> ePerformance uniquement. Aucun traceur tiers.</li>
+          <li><strong>Durée :</strong> persistante, jusqu'à ce que vous effaciez les données du site.</li>
+          <li><strong>Consentement :</strong> non requis.</li>
+        </ul>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-1">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 20h18"/>
+            <path d="M7 20v-6M12 20V6M17 20v-9"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Mesure d'audience</h3>
+        <p class="card-text">
+          Soumis à votre consentement. Ces outils indiquent quelles pages sont utiles et
+          où les visiteurs s'arrêtent, pour corriger les contenus qui ne servent à rien.
+        </p>
+        <ul class="feature-list">
+          <li><strong>Rôle :</strong> compter les visites, repérer les pages lues et les abandons.</li>
+          <li><strong>Cookies :</strong> <code>_ga</code> et <code>_ga_*</code> pour Google Analytics 4, <code>_clck</code> et <code>_clsk</code> pour Microsoft Clarity.</li>
+          <li><strong>Qui les pose :</strong> Google (Google Ireland, données transférées aux États-Unis) et Microsoft (États-Unis).</li>
+          <li><strong>Durée :</strong> 13 mois pour Google Analytics 4, 12 mois pour Microsoft Clarity.</li>
+          <li><strong>Consentement :</strong> requis. Sans accord, aucun de ces scripts ne se charge.</li>
+        </ul>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-2">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 10.5v3a1 1 0 0 0 1 1h2.2L14 18.5v-13L7.2 9.5H5a1 1 0 0 0-1 1z"/>
+            <path d="M17.5 8.5a5 5 0 0 1 0 7"/>
+            <path d="M20.5 6a8.5 8.5 0 0 1 0 12"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Publicité</h3>
+        <p class="card-text">
+          Soumis à votre consentement. Le pixel mesure l'efficacité des campagnes
+          diffusées sur Facebook et Instagram : d'où viennent les visiteurs et ce qu'ils
+          font ensuite sur le site.
+        </p>
+        <ul class="feature-list">
+          <li><strong>Rôle :</strong> relier une visite aux campagnes Facebook et Instagram.</li>
+          <li><strong>Cookie :</strong> <code>_fbp</code> (Meta Pixel).</li>
+          <li><strong>Qui le pose :</strong> Meta Platforms, États-Unis.</li>
+          <li><strong>Durée :</strong> 3 mois.</li>
+          <li><strong>Consentement :</strong> requis. Sans accord, aucun pixel n'est chargé.</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ VOTRE CHOIX ============================ -->
+<section class="section-tight" id="consentement">
+  <div class="container container-narrow">
+    <h2>Donner, refuser ou retirer votre consentement</h2>
+
+    <p class="mt-3">
+      À votre première visite, un bandeau vous propose trois issues : tout accepter, tout
+      refuser, ou choisir catégorie par catégorie. Tant que vous n'avez pas tranché, aucun
+      traceur autre que les deux éléments nécessaires n'est chargé : ni Google Analytics,
+      ni Microsoft Clarity, ni Meta Pixel. Il n'y a pas d'accord par défaut, et poursuivre
+      la navigation ne vaut pas acceptation.
+    </p>
+
+    <p class="mt-3">
+      Votre décision est conservée dans votre navigateur. Pour la revoir, utilisez le
+      bouton ci-dessous : le bandeau réapparaît et vous pouvez modifier chaque catégorie,
+      dans un sens comme dans l'autre. Vous pouvez refuser une catégorie acceptée la
+      semaine dernière, ou l'inverse, autant de fois que vous le souhaitez.
+    </p>
+
+    <div class="mt-4">
+      <button type="button" class="btn btn-outline" id="manage-cookies">Gérer mes cookies</button>
+    </div>
+
+    <p class="text-muted mt-3">
+      <small>
+        Si ce bouton ne réagit pas, c'est que JavaScript est désactivé dans votre
+        navigateur. Vous pouvez alors effacer les cookies et le stockage local du site
+        depuis ses réglages : votre choix vous sera redemandé à la visite suivante.
+      </small>
+    </p>
+  </div>
+</section>
+
+<!-- ============================ EFFET DU REFUS ============================ -->
+<section class="section-tight" id="refus">
+  <div class="container container-narrow">
+    <h2>Ce que change un refus</h2>
+
+    <p class="mt-3">
+      Refuser ne vous ferme rien. L'accès au site, aux pages de services, au blog et aux
+      formulaires reste identique : seules les mesures d'audience et de publicité sont
+      désactivées pour votre visite.
+    </p>
+
+    <ul class="feature-list">
+      <li>Contenu, navigation et formulaires : inchangés.</li>
+      <li>Mesure d'audience et pixel publicitaire : désactivés.</li>
+      <li>Mémorisation du thème clair ou sombre : conservée, elle fait partie des éléments nécessaires.</li>
+      <li>Nouveau choix possible à tout moment, sans justification à donner.</li>
+    </ul>
+
+    <p class="mt-3">
+      Ce que nous perdons, c'est l'information qui nous sert à améliorer les pages. C'est
+      un choix parfaitement légitime, et il est respecté tel quel.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ TIERS ET LIENS ============================ -->
+<section class="section-tight" id="liens">
+  <div class="container container-narrow">
+    <h2>Cookies tiers et liens utiles</h2>
+
+    <p class="mt-3">
+      Les traceurs de mesure et de publicité appartiennent à des sociétés tierces, qui
+      traitent les données selon leurs propres règles. Vous pouvez les consulter et régler
+      vos préférences directement chez elles.
+    </p>
+
+    <ul class="feature-list">
+      <li>
+        <a class="text-gold" href="politique-confidentialite.html">Politique de confidentialité</a>
+        — données collectées, sous-traitants, durées de conservation et exercice de vos droits.
+      </li>
+      <li>
+        Google — <a class="text-gold" href="https://policies.google.com/privacy?hl=fr" target="_blank" rel="noopener">règles de confidentialité</a>
+        et <a class="text-gold" href="https://policies.google.com/technologies/cookies?hl=fr" target="_blank" rel="noopener">utilisation des cookies</a>.
+      </li>
+      <li>
+        Microsoft — <a class="text-gold" href="https://privacy.microsoft.com/fr-fr/privacystatement" target="_blank" rel="noopener">déclaration de confidentialité</a>
+        et <a class="text-gold" href="https://clarity.microsoft.com/privacy" target="_blank" rel="noopener">traitement des données par Clarity</a>.
+      </li>
+      <li>
+        Meta — <a class="text-gold" href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener">politique de confidentialité</a>
+        et <a class="text-gold" href="https://www.facebook.com/policies/cookies" target="_blank" rel="noopener">politique relative aux cookies</a>.
+      </li>
+      <li>
+        Navigateur — vous pouvez aussi effacer les cookies et le stockage local, ou
+        bloquer les cookies tiers, depuis ses réglages.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container container-narrow">
+    <p class="text-muted mt-4"><small>Dernière mise à jour : 17 septembre 2026</small></p>
+  </div>
+</section>
+
+<!-- ============================ SCRIPT DU BOUTON ============================ -->
+<script>
+(function () {
+  'use strict';
+
+  /* Le bandeau et son panneau de détail sont gérés par assets/js/consent.js.
+     Ici, on ne fait qu'ouvrir le panneau depuis cette page. */
+  var btn = document.getElementById('manage-cookies');
+  if (!btn) return;
+
+  btn.addEventListener('click', function () {
+    if (window.eperfConsent && typeof window.eperfConsent.open === 'function') {
+      window.eperfConsent.open();
+    }
+  });
+})();
+</script>

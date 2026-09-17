@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+(function(){try{var t=localStorage.getItem('eperf-theme');
+if(t!=='dark'&&t!=='light'){t='light';}
+document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+  <title>Diagnostic acquisition gratuit — CAC, LTV | ePerformance</title>
+  <meta name="description" content="Cinq minutes pour connaître votre vrai coût d&#x27;acquisition, votre LTV, votre Payback et un score sur 100. Résultat immédiat, sans engagement.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://eperformance.pro/diagnostic_eperformance.html">
+  <meta name="theme-color" content="#fdfcfa">
+  <meta name="author" content="K. Stéphane">
+
+  <!-- Icônes -->
+  <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="assets/img/favicon-16.png" sizes="16x16">
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ePerformance">
+  <meta property="og:locale" content="fr_CI">
+  <meta property="og:title" content="Diagnostic acquisition gratuit — CAC, LTV | ePerformance">
+  <meta property="og:description" content="Cinq minutes pour connaître votre vrai coût d&#x27;acquisition, votre LTV, votre Payback et un score sur 100. Résultat immédiat, sans engagement.">
+  <meta property="og:url" content="https://eperformance.pro/diagnostic_eperformance.html">
+  <meta property="og:image" content="https://eperformance.pro/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ePerformance — ePerformance">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Diagnostic acquisition gratuit — CAC, LTV | ePerformance">
+  <meta name="twitter:description" content="Cinq minutes pour connaître votre vrai coût d&#x27;acquisition, votre LTV, votre Payback et un score sur 100. Résultat immédiat, sans engagement.">
+  <meta name="twitter:image" content="https://eperformance.pro/assets/img/og-image.jpg">
+  <meta name="twitter:creator" content="@eperformancepro">
+
+  <!-- Polices : chargement non bloquant -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+  </noscript>
+
+  <!-- Design system -->
+  <link rel="stylesheet" href="assets/css/eperf.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://eperformance.pro/#organization",
+      "name": "ePerformance",
+      "alternateName": "ePerformance par K. Stéphane",
+      "url": "https://eperformance.pro",
+      "email": "bonjour@eperformance.pro",
+      "telephone": "+2250151170666",
+      "founder": {
+        "@type": "Person",
+        "@id": "https://eperformance.pro/#founder",
+        "name": "K. Stéphane",
+        "jobTitle": "Fondateur, stratège acquisition",
+        "url": "https://eperformance.pro/kstephane.html"
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Côte d'Ivoire"
+        },
+        {
+          "@type": "Country",
+          "name": "Burkina Faso"
+        },
+        {
+          "@type": "Place",
+          "name": "Afrique de l'Ouest"
+        }
+      ],
+      "knowsLanguage": "fr",
+      "sameAs": [
+        "https://blog.eperformance.pro/"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://eperformance.pro/#localbusiness",
+      "name": "ePerformance",
+      "description": "Stratégie d'acquisition, IA générative, automatisation et développement web premium. Basé en Côte d'Ivoire, 100 % en ligne.",
+      "url": "https://eperformance.pro",
+      "email": "bonjour@eperformance.pro",
+      "telephone": "+2250151170666",
+      "parentOrganization": {
+        "@id": "https://eperformance.pro/#organization"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Abidjan",
+        "addressCountry": "CI"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Côte d'Ivoire"
+      },
+      "priceRange": "100000-350000 XOF",
+      "currenciesAccepted": "XOF",
+      "paymentAccepted": "Orange Money, Wave, MTN MoMo, Moov Money, Visa, Mastercard",
+      "availableLanguage": "fr"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://eperformance.pro/#website",
+      "url": "https://eperformance.pro",
+      "name": "ePerformance",
+      "description": "Stratégie d'acquisition, IA générative, automatisation et développement web premium. Basé en Côte d'Ivoire, 100 % en ligne.",
+      "publisher": {
+        "@id": "https://eperformance.pro/#organization"
+      },
+      "inLanguage": "fr-CI"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://eperformance.pro/diagnostic_eperformance.html#webpage",
+      "url": "https://eperformance.pro/diagnostic_eperformance.html",
+      "name": "Diagnostic acquisition gratuit — CAC, LTV | ePerformance",
+      "description": "Cinq minutes pour connaître votre vrai coût d'acquisition, votre LTV, votre Payback et un score sur 100. Résultat immédiat, sans engagement.",
+      "isPartOf": {
+        "@id": "https://eperformance.pro/#website"
+      },
+      "about": {
+        "@id": "https://eperformance.pro/#organization"
+      },
+      "inLanguage": "fr-CI"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://eperformance.pro/diagnostic_eperformance.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://eperformance.pro/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Diagnostic",
+          "item": "https://eperformance.pro/diagnostic_eperformance.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <a class="logo" href="index.html" aria-label="ePerformance — accueil">
+      <img class="logo-img-light" src="assets/img/logo-light.webp"
+           srcset="assets/img/logo-light.webp 1x, assets/img/logo-light@2x.webp 2x"
+           width="182" height="30" alt="ePerformance" fetchpriority="high">
+      <img class="logo-img-dark" src="assets/img/logo-dark.webp"
+           srcset="assets/img/logo-dark.webp 1x, assets/img/logo-dark@2x.webp 2x"
+           width="188" height="30" alt="" aria-hidden="true">
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Navigation principale">
+      <a href="#piliers">Services</a>
+      <a href="automatisation.html">Automatisation</a>
+      <a href="ia.html">IA</a>
+      <a href="site-web.html">Site web</a>
+      <a href="formation.html">Formation</a>
+      <a href="https://blog.eperformance.pro/" class="text-gold" rel="noopener">Blog</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle
+              aria-pressed="false" aria-label="Activer le thème sombre">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+        </svg>
+      </button>
+
+      <a class="btn btn-gold btn-desktop" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false"
+              aria-controls="primary-nav" aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<nav class="breadcrumb container" aria-label="Fil d'Ariane">
+  <ol>
+    <li><a href="index.html">Accueil</a></li>
+    <li aria-current="page">Diagnostic</li>
+  </ol>
+</nav>
+
+<main id="main">
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Diagnostic gratuit</span>
+      <h1 class="mt-3">Votre situation réelle.<br><em>En chiffres. En cinq minutes.</em></h1>
+      <p class="lead mt-3">Répondez à quelques questions et recevez immédiatement vos quatre ratios, vos principales failles et un score sur 100. Aucun engagement.</p>
+    </div>
+  </section>
+
+<!-- ============================ POURQUOI CES CHIFFRES ============================ -->
+<section class="section-tight" id="pourquoi">
+  <div class="container">
+    <span class="eyebrow">Pourquoi ces chiffres</span>
+    <h2 class="mt-3">Trois chiffres décident si votre croissance vous enrichit ou vous appauvrit.</h2>
+    <p class="lead mt-3">
+      Ce que vous coûte un client, ce que ce client vous rapporte dans le temps, et le délai
+      avant de rentrer dans vos frais. Ces trois repères transforment un budget publicitaire
+      en décision. Le diagnostic les calcule à partir de vos données, pas de moyennes de marché.
+    </p>
+
+    <div class="grid grid-3 mt-4">
+
+      <article class="card card-hover reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="12" cy="12" r="1"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Le CAC : ce que coûte un client</h3>
+        <p class="card-text">
+          Votre budget publicitaire divisé par le nombre de clients qu'il vous apporte. Sans ce
+          chiffre, vous ne savez pas si une campagne vous fait gagner ou perdre de l'argent —
+          seulement si elle vous occupe.
+        </p>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-1">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 17l6-6 4 4 8-8"/>
+            <path d="M17 7h4v4"/>
+          </svg>
+        </div>
+        <h3 class="card-title">La LTV : ce que vaut un client</h3>
+        <p class="card-text">
+          Un client qui revient pendant un an ne vaut pas le même prix qu'un client qui n'achète
+          qu'une fois. La LTV additionne ce qu'il vous rapporte sur toute la durée de la
+          relation, et c'est elle qui donne sa vraie valeur au CAC.
+        </p>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-2">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Le Payback : quand vous rentrez dans vos frais</h3>
+        <p class="card-text">
+          Le nombre de mois nécessaires pour que la marge d'un client rembourse ce qu'il vous a
+          coûté. C'est ce délai, plus encore que le CAC, qui détermine si vous pouvez augmenter
+          votre budget sans mettre votre trésorerie en danger.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ LE TUNNEL ============================ -->
+<section class="section" id="diagnostic">
+  <div class="container container-narrow">
+    <span class="eyebrow">Diagnostic gratuit</span>
+    <h2 class="mt-3">Cinq étapes, cinq minutes.</h2>
+    <p class="lead mt-3">
+      Vos chiffres d'abord, vos canaux ensuite, votre objectif à la fin. Le calcul se fait dans
+      votre navigateur : rien n'est transmis avant la dernière étape. C'est gratuit et sans
+      engagement.
+    </p>
+
+    <!-- ======= Panneau de confirmation ======= -->
+    <div id="sucView" hidden>
+      <div class="card text-center mt-4">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+        </div>
+        <h3 id="sucTitle" tabindex="-1">Diagnostic en cours,<br>votre rapport arrive.</h3>
+        <p class="lead mt-2 mx-auto">
+          Vérifiez votre boîte email dans quelques instants — ainsi que vos spams. Votre rapport
+          stratégique personnalisé est en route.
+        </p>
+        <div class="grid grid-2 mt-4">
+          <a class="btn btn-wa" target="_blank" rel="noopener"
+             href="https://wa.me/2250151170666?text=Bonjour%20K.%20St%C3%A9phane%2C%20je%20viens%20de%20remplir%20le%20diagnostic.">Confirmer sur WhatsApp</a>
+          <a class="btn btn-outline" href="index.html">Retour à l'accueil</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= Panneau de chargement ======= -->
+    <div id="loadOv" hidden>
+      <div class="card text-center mt-4">
+        <span class="eyebrow">Analyse en cours</span>
+        <p class="lead mt-3 mx-auto" id="loadMsg" role="status" aria-live="polite">Analyse de vos données…</p>
+        <ul class="feature-list mt-4 text-center">
+          <li class="text-gold" id="ls1">Analyse de vos données…</li>
+          <li class="text-muted" id="ls2">Calcul de vos ratios financiers…</li>
+          <li class="text-muted" id="ls3">Identification de vos failles…</li>
+          <li class="text-muted" id="ls4">Génération de votre rapport…</li>
+        </ul>
+        <p class="field-hint mt-3">Ne fermez pas cet onglet. Votre rapport est en cours de création.</p>
+      </div>
+    </div>
+
+    <!-- ======= Le formulaire ======= -->
+    <div class="card mt-4" id="formShell">
+      <p class="eyebrow" id="progLabel">Étape 1 sur 5 · Identification</p>
+
+      <div class="grid text-center mt-4 mb-4" style="grid-template-columns:repeat(5,1fr)" aria-hidden="true">
+        <div>
+          <strong class="text-gold num" id="d1">1</strong>
+          <p class="text-gold" id="l1">Vous</p>
+        </div>
+        <div>
+          <strong class="text-muted num" id="d2">2</strong>
+          <p class="text-muted" id="l2">Chiffres</p>
+        </div>
+        <div>
+          <strong class="text-muted num" id="d3">3</strong>
+          <p class="text-muted" id="l3">Canaux</p>
+        </div>
+        <div>
+          <strong class="text-muted num" id="d4">4</strong>
+          <p class="text-muted" id="l4">Secteur</p>
+        </div>
+        <div>
+          <strong class="text-muted num" id="d5">5</strong>
+          <p class="text-muted" id="l5">Objectifs</p>
+        </div>
+      </div>
+
+      <p class="visually-hidden" role="status" aria-live="polite" id="stepStatus"></p>
+
+      <form id="diagForm" novalidate>
+
+        <!-- ======= ÉTAPE 1 : identification ======= -->
+        <div id="pane1">
+          <h3 id="t1" tabindex="-1">Qui êtes-vous ?</h3>
+          <p class="card-text mt-2">
+            Ces informations personnalisent votre rapport et permettent de vous le transmettre.
+          </p>
+
+          <div class="grid grid-2 mt-3">
+            <div class="field">
+              <label for="nom">Nom complet <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></label>
+              <input type="text" id="nom" name="nom" autocomplete="name"
+                     required aria-required="true" placeholder="ex : Kouadio Aimé">
+              <p class="field-error" id="err-nom" role="alert" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <label for="iwa">Numéro WhatsApp <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></label>
+              <input type="tel" id="iwa" name="iwa" autocomplete="tel"
+                     required aria-required="true" placeholder="ex : +225 07 01 23 45 67">
+              <p class="field-hint">Avec l'indicatif du pays.</p>
+              <p class="field-error" id="err-wa" role="alert" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="field">
+              <label for="email">Email <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></label>
+              <input type="email" id="email" name="email" autocomplete="email"
+                     required aria-required="true" placeholder="vous@exemple.com">
+              <p class="field-hint">C'est ici que votre rapport sera envoyé. Vérifiez l'adresse.</p>
+              <p class="field-error" id="err-email" role="alert" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <label for="ent">Entreprise ou activité <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></label>
+              <input type="text" id="ent" name="ent" autocomplete="organization"
+                     required aria-required="true" placeholder="ex : Boutique Coco, Longrich CI…">
+              <p class="field-error" id="err-ent" role="alert" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="sec">Secteur d'activité <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></label>
+            <select id="sec" name="sec" required aria-required="true">
+              <option value="">— Choisissez votre secteur —</option>
+              <option value="mlm">MLM / Marketing de réseau (Longrich, Superlife, Forever…)</option>
+              <option value="ecommerce">E-commerce / Boutique en ligne</option>
+              <option value="formation">Formation / Coaching / Consulting</option>
+              <option value="cosmetiques">Cosmétiques / Beauté / Bien-être</option>
+              <option value="restauration">Restauration / Alimentation</option>
+              <option value="immobilier">Immobilier / Location</option>
+              <option value="services">Services B2B / Prestation</option>
+              <option value="autre">Autre secteur</option>
+            </select>
+            <p class="field-hint">Il détermine les questions de la quatrième étape.</p>
+            <p class="field-error" id="err-sec" role="alert" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <!-- ======= ÉTAPE 2 : chiffres actuels ======= -->
+        <div id="pane2" hidden>
+          <h3 id="t2" tabindex="-1">Vos chiffres actuels</h3>
+          <p class="card-text mt-2">
+            Pas de jugement : des données précises donnent un diagnostic précis. Estimez si vous
+            n'avez pas les chiffres exacts.
+          </p>
+
+          <div class="grid grid-2 mt-3">
+            <div class="field">
+              <label for="ca">Chiffre d'affaires mensuel <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire, en FCFA</span></label>
+              <input type="number" id="ca" name="ca" min="0" required aria-required="true" placeholder="ex : 2000000">
+              <p class="field-hint">Tout ce que vous encaissez sur un mois : additionnez vos ventes du mois dernier.</p>
+              <p class="field-error" id="err-ca" role="alert" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <label for="cli">Nombre de clients par mois <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></label>
+              <input type="number" id="cli" name="cli" min="0" required aria-required="true" placeholder="ex : 25">
+              <p class="field-hint">Combien de personnes différentes ont acheté ce mois-ci ? Estimez si besoin.</p>
+              <p class="field-error" id="err-cli" role="alert" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="pan">Combien vous rapporte une vente en moyenne ? <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire, en FCFA</span></label>
+            <input type="number" id="pan" name="pan" min="0" required aria-required="true" placeholder="ex : 30000">
+            <div class="callout">
+              <p>
+                <strong>Le calcul :</strong> votre chiffre d'affaires du mois divisé par le nombre
+                de ventes du mois.
+              </p>
+              <p class="mt-2">
+                <strong>Exemple :</strong> 300 000 FCFA ÷ 10 ventes = 30 000 FCFA par vente. Si vous
+                ne savez pas, entrez le montant de votre commande la plus fréquente.
+              </p>
+            </div>
+            <p class="field-error" id="err-pan" role="alert" aria-live="polite"></p>
+          </div>
+
+          <fieldset class="fieldset" id="fs-marge">
+            <legend>Sur 100 FCFA encaissés, combien vous reste-t-il vraiment ? <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></legend>
+            <div class="callout">
+              <p>
+                <strong>La formule :</strong> (prix de vente − ce que ça vous a coûté) ÷ prix de
+                vente × 100.
+              </p>
+              <p class="mt-2" id="aide-marge-secteur">
+                <strong>Exemple revente :</strong> achat 10 000 FCFA, vente 25 000 FCFA →
+                (25 000 − 10 000) ÷ 25 000 × 100 = <strong>60 %</strong>.
+              </p>
+            </div>
+            <div class="field">
+              <label for="marge">Votre marge, en pourcentage <span class="field-hint">faites glisser le curseur</span></label>
+              <input type="range" id="marge" name="marge" min="5" max="90" step="1" value="30"
+                     required aria-required="true" aria-describedby="margeFcfa">
+              <p class="mt-1">
+                <output id="margeVal" for="marge" aria-live="polite" class="text-gold num">30 %</output>
+                <span class="field-hint" id="margeFcfa"></span>
+              </p>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset" id="fs-duree">
+            <legend>En général, un client vous rachète… <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></legend>
+            <div class="radio-group">
+              <label><input type="radio" name="duree" value="moins_1" required aria-required="true"><span>Une seule fois — il n'achète plus après</span></label>
+              <label><input type="radio" name="duree" value="1_3"><span>Il revient dans les 1 à 3 mois suivants</span></label>
+              <label><input type="radio" name="duree" value="3_6"><span>Il reste actif entre 3 et 6 mois</span></label>
+              <label><input type="radio" name="duree" value="6_12"><span>Il reste client entre 6 et 12 mois</span></label>
+              <label><input type="radio" name="duree" value="plus_12"><span>Il est client depuis plus d'un an</span></label>
+            </div>
+            <p class="field-error" id="err-duree" role="alert" aria-live="polite"></p>
+          </fieldset>
+        </div>
+
+        <!-- ======= ÉTAPE 3 : acquisition ======= -->
+        <div id="pane3" hidden>
+          <h3 id="t3" tabindex="-1">Comment vous trouvez vos clients</h3>
+          <p class="card-text mt-2">
+            L'objectif est de comprendre votre système d'acquisition actuel, qu'il soit structuré
+            ou non.
+          </p>
+
+          <fieldset class="fieldset mt-3" id="fs-pub">
+            <legend>Vous faites de la publicité payante en ce moment ? <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></legend>
+            <div class="radio-group">
+              <label><input type="radio" name="pub" value="oui" required aria-required="true"><span>Oui, j'investis en publicité</span></label>
+              <label><input type="radio" name="pub" value="non"><span>Non, pas de publicité payante</span></label>
+            </div>
+            <p class="field-error" id="err-pub" role="alert" aria-live="polite"></p>
+          </fieldset>
+
+          <div id="budField" hidden>
+            <div class="field">
+              <label for="bud">Budget publicitaire mensuel <span class="field-hint">en FCFA par mois</span></label>
+              <input type="number" id="bud" name="bud" min="0" placeholder="ex : 500000">
+              <p class="field-hint">Total dépensé en moyenne sur Facebook, Instagram, Google, TikTok…</p>
+            </div>
+          </div>
+
+          <fieldset class="fieldset" id="fs-sources">
+            <legend>Comment vos clients vous trouvent-ils ? <span class="field-hint">plusieurs réponses possibles</span></legend>
+            <div class="radio-group">
+              <label><input type="checkbox" name="source" value="bouche_a_oreille"><span>Bouche-à-oreille — recommandations de proches</span></label>
+              <label><input type="checkbox" name="source" value="pub_facebook"><span>Publicité payante Facebook / Instagram</span></label>
+              <label><input type="checkbox" name="source" value="whatsapp"><span>Prospection directe WhatsApp</span></label>
+              <label><input type="checkbox" name="source" value="marche_physique"><span>Marché physique / boutique en dur</span></label>
+              <label><input type="checkbox" name="source" value="recommandations"><span>Parrainage — clients qui recommandent activement</span></label>
+              <label><input type="checkbox" name="source" value="reseaux_organiques"><span>Réseaux sociaux sans publicité (posts, stories)</span></label>
+              <label><input type="checkbox" name="source" value="seo_google"><span>Référencement Google — clients qui trouvent votre site en cherchant</span></label>
+              <label><input type="checkbox" name="source" value="tiktok"><span>TikTok — vidéos organiques</span></label>
+            </div>
+          </fieldset>
+
+          <div class="grid grid-2">
+            <fieldset class="fieldset" id="fs-site">
+              <legend>Vous avez un site web ou une page de vente ? <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></legend>
+              <div class="radio-group">
+                <label><input type="radio" name="site" value="oui" required aria-required="true"><span>Oui</span></label>
+                <label><input type="radio" name="site" value="non"><span>Non</span></label>
+              </div>
+              <p class="field-error" id="err-site" role="alert" aria-live="polite"></p>
+            </fieldset>
+
+            <fieldset class="fieldset" id="fs-wauso">
+              <legend>Vous relancez vos clients par WhatsApp ? <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></legend>
+              <div class="radio-group">
+                <label><input type="radio" name="wauso" value="non" required aria-required="true"><span>Non, jamais</span></label>
+                <label><input type="radio" name="wauso" value="statuts"><span>Oui, via mes statuts WhatsApp uniquement</span></label>
+                <label><input type="radio" name="wauso" value="informel"><span>Oui, j'envoie des messages de temps en temps</span></label>
+                <label><input type="radio" name="wauso" value="structure"><span>Oui, de façon structurée (suivi régulier)</span></label>
+                <label><input type="radio" name="wauso" value="automatise"><span>Oui, avec un système automatisé</span></label>
+              </div>
+              <p class="field-error" id="err-wauso" role="alert" aria-live="polite"></p>
+            </fieldset>
+          </div>
+        </div>
+
+        <!-- ======= ÉTAPE 4 : questions propres au secteur (générées) ======= -->
+        <div id="pane4" hidden>
+          <h3 id="t4" tabindex="-1">Questions spécifiques à votre activité</h3>
+          <p class="card-text mt-2" id="s4">
+            Ces questions affinent le diagnostic selon les spécificités de votre secteur.
+          </p>
+          <div class="mt-3" id="p4c"></div>
+        </div>
+
+        <!-- ======= ÉTAPE 5 : objectifs ======= -->
+        <div id="pane5" hidden>
+          <h3 id="t5" tabindex="-1">Vos objectifs et votre situation</h3>
+          <p class="card-text mt-2">
+            Dernière étape. Ces informations calibrent votre rapport et la recommandation finale.
+          </p>
+
+          <div class="field mt-3">
+            <label for="objca">Objectif de chiffre d'affaires dans 90 jours <span class="field-hint">en FCFA, facultatif</span></label>
+            <input type="number" id="objca" name="objca" min="0" placeholder="ex : 5000000">
+          </div>
+
+          <fieldset class="fieldset" id="fs-budacc">
+            <legend>Budget que vous pouvez allouer à un accompagnement <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></legend>
+            <div class="radio-group">
+              <label><input type="radio" name="budacc" value="moins_100k" required aria-required="true"><span>Moins de 100 000 FCFA</span></label>
+              <label><input type="radio" name="budacc" value="100_300k"><span>Entre 100 000 et 300 000 FCFA</span></label>
+              <label><input type="radio" name="budacc" value="300_600k"><span>Entre 300 000 et 600 000 FCFA</span></label>
+              <label><input type="radio" name="budacc" value="plus_600k"><span>Plus de 600 000 FCFA</span></label>
+              <label><input type="radio" name="budacc" value="ne_sait_pas"><span>Je ne sais pas encore</span></label>
+            </div>
+            <p class="field-error" id="err-bud" role="alert" aria-live="polite"></p>
+          </fieldset>
+
+          <div class="field">
+            <label for="bloc">Qu'est-ce qui bloque vraiment votre croissance aujourd'hui ? <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></label>
+            <textarea id="bloc" name="bloc" required aria-required="true"
+                      placeholder="Décrivez librement : ce qui vous frustre, ce que vous avez déjà essayé, ce qui ne fonctionne pas…"></textarea>
+            <p class="field-error" id="err-bloc" role="alert" aria-live="polite"></p>
+          </div>
+
+          <fieldset class="fieldset" id="fs-suivi">
+            <legend>Suivez-vous vos chiffres chaque mois ? <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></legend>
+            <p class="field-hint mb-2">Chiffre d'affaires, nombre de clients, budget publicitaire dépensé.</p>
+            <div class="radio-group">
+              <label><input type="radio" name="suivi" value="oui" required aria-required="true"><span>Oui, dans un tableau ou un outil, chaque mois</span></label>
+              <label><input type="radio" name="suivi" value="partiel"><span>Partiellement — je surveille le chiffre d'affaires, pas le reste</span></label>
+              <label><input type="radio" name="suivi" value="non"><span>Non, je ne suis pas de chiffres réguliers</span></label>
+            </div>
+            <p class="field-error" id="err-suivi" role="alert" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="fieldset" id="fs-exp">
+            <legend>Avez-vous déjà été accompagné par un consultant ou une agence ? <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></legend>
+            <div class="radio-group">
+              <label><input type="radio" name="exp" value="jamais" required aria-required="true"><span>Non, c'est la première fois</span></label>
+              <label><input type="radio" name="exp" value="agence"><span>Oui, avec une agence — résultats mitigés</span></label>
+              <label><input type="radio" name="exp" value="consultant"><span>Oui, avec un consultant — résultats mitigés</span></label>
+              <label><input type="radio" name="exp" value="sans_resultats"><span>Oui, mais sans résultats concrets</span></label>
+            </div>
+            <p class="field-error" id="err-exp" role="alert" aria-live="polite"></p>
+          </fieldset>
+
+          <div class="radio-group">
+            <label>
+              <input type="checkbox" id="rgpd" name="rgpd" required aria-required="true">
+              <span>
+                J'accepte que mes données soient utilisées uniquement pour générer ce diagnostic
+                et pour me contacter. <a class="text-gold" href="politique-confidentialite.html">Politique de confidentialité</a>.
+              </span>
+            </label>
+          </div>
+          <p class="field-error" id="err-rgpd" role="alert" aria-live="polite"></p>
+        </div>
+
+      </form>
+
+      <div class="grid mt-4" style="grid-template-columns:1fr auto">
+        <button type="button" class="btn btn-gold btn-block" id="btnNext">
+          <span id="btnLbl">Continuer</span>
+        </button>
+        <div id="backWrap" hidden>
+          <button type="button" class="btn btn-outline btn-block" id="btnBack">Retour</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="field-hint text-center mt-3">
+      Vos réponses restent confidentielles et ne servent qu'à produire ce diagnostic.
+    </p>
+  </div>
+</section>
+
+<noscript>
+  <section class="section-tight">
+    <div class="container container-narrow">
+      <div class="callout">
+        <p>
+          <strong>Le calcul de vos ratios nécessite JavaScript.</strong> Sans lui, le
+          questionnaire ne peut pas calculer votre CAC, votre LTV, votre Payback ni votre score
+          sur 100. Activez JavaScript dans votre navigateur pour remplir le diagnostic.
+        </p>
+        <p class="mt-2">
+          Vous préférez échanger de vive voix ? Écrivez-moi sur WhatsApp : je vous pose les
+          mêmes questions et je vous transmets vos ratios.
+        </p>
+        <p class="mt-3">
+          <a class="btn btn-wa" target="_blank" rel="noopener"
+             href="https://wa.me/2250151170666?text=Bonjour%2C%20je%20souhaite%20faire%20le%20diagnostic.">Écrire sur WhatsApp</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</noscript>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section" id="faq">
+  <div class="container container-narrow">
+    <span class="eyebrow">Questions fréquentes</span>
+    <h2 class="mt-3">Ce qu'on demande avant de commencer.</h2>
+
+    <div class="faq mt-4">
+
+      <details>
+        <summary>Le diagnostic est-il vraiment gratuit ?</summary>
+        <div class="faq-answer">
+          Oui. Aucun paiement n'est demandé à aucune étape, et le rapport vous est envoyé que
+          vous décidiez ensuite de travailler avec moi ou non. Ce diagnostic sert à savoir si
+          votre situation peut être structurée, pas à vous vendre quelque chose.
+        </div>
+      </details>
+
+      <details>
+        <summary>Combien de temps faut-il pour le remplir ?</summary>
+        <div class="faq-answer">
+          Cinq minutes en moyenne, réparties sur cinq étapes. L'essentiel est constitué de
+          questions à choix rapide ; trois champs seulement demandent une réponse rédigée. Vous
+          pouvez revenir en arrière à tout moment tant que vous n'avez pas envoyé le formulaire.
+        </div>
+      </details>
+
+      <details>
+        <summary>Que faites-vous de mes chiffres ?</summary>
+        <div class="faq-answer">
+          Ils servent uniquement à calculer votre diagnostic et à vous recontacter. Ils ne sont
+          ni revendus ni utilisés pour autre chose, et vous pouvez demander leur suppression.
+          Le détail figure dans la
+          <a class="text-gold" href="politique-confidentialite.html">politique de confidentialité</a>.
+        </div>
+      </details>
+
+      <details>
+        <summary>Et si je n'ai pas mes chiffres exacts ?</summary>
+        <div class="faq-answer">
+          Estimez. Chaque champ est accompagné du calcul qui permet de le retrouver, et une
+          estimation reste exploitable. Le rapport signale justement ce que vous ne mesurez pas
+          encore : c'est souvent là que se trouve la première faille.
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SCRIPT DU TUNNEL ============================ -->
+<script>
+(function () {
+  'use strict';
+
+  var form = document.getElementById('diagForm');
+  if (!form) return;
+
+  var TOTAL = 5;
+  var TAGS = ['Identification', 'Chiffres clés', 'Acquisition', 'Détails du secteur', 'Objectifs'];
+  var DUREE_MOIS = { moins_1: 1, '1_3': 2, '3_6': 4.5, '6_12': 9, plus_12: 14 };
+  var step = 1;
+  var firstInvalid = null;
+
+  function el(id) { return document.getElementById(id); }
+
+  /* Bascule d'état : or = actif/en cours, gris = à venir.
+     Les deux classes sont permutées, jamais cumulées (.text-muted est déclarée
+     après .text-gold dans la feuille : un cumul garderait le gris). */
+  function setState(node, on) {
+    if (!node) return;
+    node.classList.toggle('text-gold', !!on);
+    node.classList.toggle('text-muted', !on);
+  }
+
+  /* ------------------------------------------------------------------
+     ERREURS — le texte est injecté dans une zone role="alert" et le champ
+     fautif porte aria-invalid + aria-describedby vers cette zone.
+     ------------------------------------------------------------------ */
+  function showError(controlId, errorId, message) {
+    var box = el(errorId);
+    if (box) box.textContent = message;
+    var field = el(controlId);
+    if (field) {
+      field.setAttribute('aria-invalid', 'true');
+      field.setAttribute('aria-describedby', errorId);
+    }
+  }
+
+  function clearError(controlId, errorId) {
+    var box = el(errorId);
+    if (box) box.textContent = '';
+    var field = el(controlId);
+    if (field) {
+      field.removeAttribute('aria-invalid');
+      field.removeAttribute('aria-describedby');
+    }
+  }
+
+  function markFirst(node) { if (!firstInvalid && node) firstInvalid = node; }
+
+  function needValue(id, errorId, message) {
+    var field = el(id);
+    if (!field) return true;
+    if (!field.value.trim()) {
+      showError(id, errorId, message);
+      markFirst(field);
+      return false;
+    }
+    clearError(id, errorId);
+    return true;
+  }
+
+  function needEmail() {
+    var field = el('email');
+    var value = field ? field.value.trim() : '';
+    if (!value) {
+      showError('email', 'err-email', 'Votre email est requis.');
+      markFirst(field);
+      return false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      showError('email', 'err-email', 'Entrez une adresse email valide (ex : nom@gmail.com).');
+      markFirst(field);
+      return false;
+    }
+    clearError('email', 'err-email');
+    return true;
+  }
+
+  /* Le fieldset porte la question : c'est lui qui reçoit aria-invalid et
+     aria-describedby, et le premier bouton du groupe qui reçoit le focus. */
+  function needChoice(name, fieldsetId, errorId, message) {
+    var checked = form.querySelector('input[name="' + name + '"]:checked');
+    if (!checked) {
+      showError(fieldsetId, errorId, message);
+      markFirst(form.querySelector('input[name="' + name + '"]'));
+      return false;
+    }
+    clearError(fieldsetId, errorId);
+    return true;
+  }
+
+  function needChecked(id, errorId, message) {
+    var box = el(id);
+    if (!box || !box.checked) {
+      showError(id, errorId, message);
+      markFirst(box);
+      return false;
+    }
+    clearError(id, errorId);
+    return true;
+  }
+
+  function focusFirstInvalid() {
+    if (!firstInvalid) return;
+    try { firstInvalid.focus({ preventScroll: true }); } catch (e) { firstInvalid.focus(); }
+    if (firstInvalid.scrollIntoView) {
+      firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  /* ------------------------------------------------------------------
+     VALIDATION PAR ÉTAPE
+     ------------------------------------------------------------------ */
+  function validate(s) {
+    firstInvalid = null;
+    var ok = true;
+
+    if (s === 1) {
+      if (!needValue('nom', 'err-nom', 'Votre nom complet est requis.')) ok = false;
+      if (!needValue('iwa', 'err-wa', 'Votre numéro WhatsApp est requis (ex : +225 07 01 23 45 67).')) ok = false;
+      if (!needEmail()) ok = false;
+      if (!needValue('ent', 'err-ent', 'Précisez le nom de votre entreprise ou activité.')) ok = false;
+      if (!needValue('sec', 'err-sec', "Choisissez votre secteur d'activité pour continuer.")) ok = false;
+    }
+
+    if (s === 2) {
+      if (!needValue('ca', 'err-ca', "Le chiffre d'affaires mensuel est requis.")) ok = false;
+      if (!needValue('cli', 'err-cli', 'Le nombre de clients par mois est requis.')) ok = false;
+      if (!needValue('pan', 'err-pan', 'Ce chiffre est requis.')) ok = false;
+      if (!needChoice('duree', 'fs-duree', 'err-duree', 'Choisissez une durée.')) ok = false;
+    }
+
+    if (s === 3) {
+      if (!needChoice('pub', 'fs-pub', 'err-pub', 'Répondez à cette question pour continuer.')) ok = false;
+      if (!needChoice('site', 'fs-site', 'err-site', 'Répondez à cette question.')) ok = false;
+      if (!needChoice('wauso', 'fs-wauso', 'err-wauso', 'Répondez à cette question.')) ok = false;
+    }
+
+    if (s === 5) {
+      if (!needChoice('budacc', 'fs-budacc', 'err-bud', 'Choisissez une tranche de budget.')) ok = false;
+      if (!needValue('bloc', 'err-bloc', 'Décrivez votre situation en quelques mots.')) ok = false;
+      if (!needChoice('suivi', 'fs-suivi', 'err-suivi', 'Répondez à cette question.')) ok = false;
+      if (!needChoice('exp', 'fs-exp', 'err-exp', 'Répondez à cette question.')) ok = false;
+      if (!needChecked('rgpd', 'err-rgpd', 'Vous devez accepter pour continuer.')) ok = false;
+    }
+
+    if (!ok) focusFirstInvalid();
+    return ok;
+  }
+
+  /* ------------------------------------------------------------------
+     NAVIGATION — le titre de l'étape prend le focus et une zone
+     role="status" annonce le nouvel état du tunnel.
+     ------------------------------------------------------------------ */
+  function goTo(s, silent) {
+    step = s;
+
+    for (var i = 1; i <= TOTAL; i++) {
+      var pane = el('pane' + i);
+      if (pane) pane.hidden = (i !== s);
+    }
+
+    el('progLabel').textContent = 'Étape ' + s + ' sur ' + TOTAL + ' · ' + TAGS[s - 1];
+    var status = el('stepStatus');
+    if (status) status.textContent = 'Étape ' + s + ' sur ' + TOTAL + ' : ' + TAGS[s - 1] + '.';
+
+    for (var n = 1; n <= TOTAL; n++) {
+      setState(el('d' + n), n <= s);
+      setState(el('l' + n), n === s);
+    }
+
+    el('backWrap').hidden = (s === 1);
+    el('btnLbl').textContent = (s === TOTAL) ? 'Obtenir mon diagnostic' : 'Continuer';
+
+    if (silent) return;
+    var title = el('t' + s);
+    if (title) {
+      title.setAttribute('tabindex', '-1');
+      try { title.focus({ preventScroll: true }); } catch (e) { title.focus(); }
+    }
+    var shell = el('formShell');
+    if (shell && shell.scrollIntoView) {
+      shell.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  /* ------------------------------------------------------------------
+     ÉTAPE 4 — questions propres au secteur
+     ------------------------------------------------------------------ */
+  var AIDE_MARGE = {
+    mlm: '<strong>MLM (Longrich, Superlife…) :</strong> votre marge correspond à votre taux de commission. Si vous touchez 20 % sur chaque vente, réglez le curseur sur 20.',
+    ecommerce: '<strong>E-commerce :</strong> vous achetez à 10 000 FCFA et revendez à 25 000 FCFA → (25 000 − 10 000) ÷ 25 000 × 100 = <strong>60 %</strong>.',
+    formation: '<strong>Formation / coaching :</strong> une formation qui coûte 5 000 FCFA à produire et se vend 50 000 FCFA laisse une marge de <strong>90 %</strong>.',
+    cosmetiques: '<strong>Cosmétiques :</strong> achat 8 000 FCFA, revente 20 000 FCFA → (20 000 − 8 000) ÷ 20 000 × 100 = <strong>60 %</strong>.',
+    restauration: '<strong>Restauration :</strong> un plat qui coûte 2 000 FCFA à préparer et se vend 6 000 FCFA → (6 000 − 2 000) ÷ 6 000 × 100 = <strong>67 %</strong>.',
+    immobilier: '<strong>Immobilier :</strong> votre marge est votre commission sur la vente ou sur le loyer encaissé, une fois les charges déduites.',
+    services: '<strong>Services B2B :</strong> votre marge est ce qui reste une fois votre temps et vos outils payés.',
+    autre: '<strong>Exemple :</strong> achat 10 000 FCFA, revente 25 000 FCFA → (25 000 − 10 000) ÷ 25 000 × 100 = <strong>60 %</strong>.'
+  };
+
+  function updateAideMarge(secteur) {
+    var box = el('aide-marge-secteur');
+    if (box) box.innerHTML = AIDE_MARGE[secteur] || AIDE_MARGE.autre;
+  }
+
+  function group(legend, name, options) {
+    var items = '';
+    for (var i = 0; i < options.length; i++) {
+      items += '<label><input type="radio" name="' + name + '" value="' + options[i][0] +
+               '"><span>' + options[i][1] + '</span></label>';
+    }
+    return '<fieldset class="fieldset"><legend>' + legend + '</legend>' +
+           '<div class="radio-group">' + items + '</div></fieldset>';
+  }
+
+  function textField(id, label, placeholder, numeric) {
+    return '<div class="field"><label for="' + id + '">' + label + '</label>' +
+           '<input type="' + (numeric ? 'number' : 'text') + '" id="' + id + '" name="' + id + '"' +
+           (numeric ? ' min="0"' : '') + ' placeholder="' + placeholder + '"></div>';
+  }
+
+  function buildStep4(secteur) {
+    var title = el('t4'), sub = el('s4'), box = el('p4c');
+    if (!box) return;
+    updateAideMarge(secteur);
+
+    if (secteur === 'mlm') {
+      title.textContent = 'Votre réseau MLM';
+      sub.textContent = "Ces questions évaluent la structure et le potentiel de votre réseau.";
+      box.innerHTML =
+        textField('mlmr', 'Réseau MLM représenté', 'ex : Longrich, Superlife, Forever Living…', false) +
+        textField('nbdist', 'Nombre de distributeurs dans votre réseau direct', 'ex : 12', true) +
+        group('Activité de vos distributeurs', 'actdist', [
+          ['aucun', 'Peu ou aucun ne vend activement'],
+          ['quelques_uns', 'Quelques-uns sont actifs (moins de 30 %)'],
+          ['moitie', "La moitié environ est active"],
+          ['majorite', 'La majorité est active et vend régulièrement']
+        ]) +
+        group('Votre objectif principal sur 90 jours', 'objmlm', [
+          ['ventes_directes', 'Augmenter mes ventes directes de produits'],
+          ['recruter', 'Recruter de nouveaux distributeurs actifs'],
+          ['les_deux', 'Les deux : ventes et recrutement'],
+          ['stabiliser', 'Stabiliser et activer mon réseau existant']
+        ]);
+
+    } else if (secteur === 'ecommerce') {
+      title.textContent = 'Votre boutique en ligne';
+      sub.textContent = "Ces questions analysent la performance de votre tunnel de vente.";
+      box.innerHTML =
+        group('Type de produits vendus', 'typrod', [
+          ['physique', 'Produits physiques'],
+          ['numerique', 'Produits numériques'],
+          ['les_deux', 'Les deux']
+        ]) +
+        group("Taux d'abandon estimé", 'taaband', [
+          ['moins_40', 'Moins de 40 % — bon taux de conversion'],
+          ['40_60', 'Entre 40 et 60 % — dans la moyenne'],
+          ['plus_60', 'Plus de 60 % — beaucoup repartent sans acheter'],
+          ['ne_sait_pas', 'Je ne mesure pas encore ce chiffre']
+        ]) +
+        group("Vous proposez des upsells après l'achat ?", 'upsell', [
+          ['oui', 'Oui'],
+          ['non', 'Non']
+        ]);
+
+    } else if (secteur === 'formation') {
+      title.textContent = 'Votre activité formation ou coaching';
+      sub.textContent = "Ces questions évaluent la structure de votre tunnel de conversion.";
+      box.innerHTML =
+        group('Vous proposez une offre gratuite (livre, webinaire, audit) ?', 'leadmag', [
+          ['oui', 'Oui'],
+          ['non', 'Non']
+        ]) +
+        group('Durée moyenne du cycle de vente', 'cyclev', [
+          ['immediat', "Immédiat — l'achat se fait dans les 24 heures"],
+          ['semaine', 'Une semaine environ'],
+          ['mois', 'Un mois ou plus'],
+          ['variable', 'Très variable selon les profils']
+        ]);
+
+    } else {
+      title.textContent = 'Votre situation spécifique';
+      sub.textContent = "Quelques questions pour affiner le diagnostic selon votre modèle économique.";
+      box.innerHTML =
+        group('Vous vendez principalement à…', 'typemkt', [
+          ['b2c', 'Des particuliers (B2C)'],
+          ['b2b', 'Des entreprises (B2B)'],
+          ['les_deux', 'Les deux']
+        ]) +
+        group("Le frein principal à votre croissance aujourd'hui", 'frein', [
+          ['pas_assez_clients', 'Pas assez de clients ou de prospects'],
+          ['peu_achetent', 'Des prospects, mais peu achètent'],
+          ['pas_de_rachat', "Les clients n'achètent pas une deuxième fois"],
+          ['marges_faibles', 'Chiffre d\'affaires correct mais marges insuffisantes'],
+          ['visibilite', "Manque de visibilité — je ne sais pas où investir"]
+        ]);
+    }
+  }
+
+  /* ------------------------------------------------------------------
+     CURSEUR DE MARGE — libellé associé, valeur courante annoncée
+     ------------------------------------------------------------------ */
+  var marge = el('marge');
+
+  function updateMarge() {
+    if (!marge) return;
+    var value = parseInt(marge.value, 10) || 30;
+    var out = el('margeVal');
+    if (out) out.textContent = value + ' %';
+
+    var fcfa = el('margeFcfa');
+    if (fcfa) {
+      var pan = parseFloat((el('pan') || {}).value) || 0;
+      if (pan > 0) {
+        fcfa.textContent = '= ' + Math.round(pan * (value / 100)).toLocaleString('fr-FR') +
+                           ' FCFA gardés sur une vente de ' + pan.toLocaleString('fr-FR') + ' FCFA';
+      } else {
+        fcfa.textContent = '';
+      }
+    }
+  }
+
+  if (marge) {
+    marge.addEventListener('input', updateMarge);
+    updateMarge();
+  }
+
+  var pan = el('pan');
+  if (pan) pan.addEventListener('input', updateMarge);
+
+  /* ------------------------------------------------------------------
+     PUBLICITÉ ACTIVE — le budget n'apparaît que si la réponse est oui
+     ------------------------------------------------------------------ */
+  var pubRadios = form.querySelectorAll('input[name="pub"]');
+  Array.prototype.forEach.call(pubRadios, function (radio) {
+    radio.addEventListener('change', function () {
+      var box = el('budField');
+      if (box) box.hidden = !(radio.value === 'oui' && radio.checked);
+    });
+  });
+
+  /* ------------------------------------------------------------------
+     COLLECTE
+     ------------------------------------------------------------------ */
+  function val(id) { var field = el(id); return field ? field.value : ''; }
+
+  function choice(name) {
+    var checked = form.querySelector('input[name="' + name + '"]:checked');
+    return checked ? checked.value : '';
+  }
+
+  function collect() {
+    var sources = [];
+    Array.prototype.forEach.call(
+      form.querySelectorAll('input[name="source"]:checked'),
+      function (box) { sources.push(box.value); }
+    );
+    return {
+      nom: val('nom'),
+      whatsapp: val('iwa'),
+      email: val('email'),
+      entreprise: val('ent'),
+      secteur: val('sec'),
+      ca_mensuel: val('ca'),
+      clients_par_mois: val('cli'),
+      panier_moyen: val('pan'),
+      marge_pct: val('marge'),
+      duree_vie_client: choice('duree'),
+      pub_active: choice('pub'),
+      budget_pub: val('bud'),
+      sources_acquisition: sources.join(', '),
+      site_web: choice('site'),
+      usage_whatsapp: choice('wauso'),
+      mlm_reseau: val('mlmr'),
+      nb_distributeurs: val('nbdist'),
+      activite_distributeurs: choice('actdist'),
+      objectif_mlm: choice('objmlm'),
+      type_produit: choice('typrod'),
+      taux_abandon: choice('taaband'),
+      upsell_actif: choice('upsell'),
+      lead_magnet: choice('leadmag'),
+      cycle_vente: choice('cyclev'),
+      type_marche: choice('typemkt'),
+      frein_croissance: choice('frein'),
+      objectif_ca: val('objca'),
+      budget_accompagnement: choice('budacc'),
+      blocage_principal: val('bloc'),
+      suivi_indicateurs: choice('suivi'),
+      experience_conseil: choice('exp')
+    };
+  }
+
+  /* ------------------------------------------------------------------
+     CALCUL DES RATIOS — exécuté dans le navigateur, à partir des
+     réponses. CAC, LTV, Payback, ratio LTV:CAC, score sur 100.
+     ------------------------------------------------------------------ */
+  function calcRatios(d) {
+    var clients = Math.max(parseFloat(d.clients_par_mois) || 1, 1);
+    var panier = parseFloat(d.panier_moyen) || 0;
+    var taux = parseFloat(d.marge_pct) || 30;
+    var budget = parseFloat(d.budget_pub) || 0;
+    var duree = DUREE_MOIS[d.duree_vie_client] || 2;
+
+    var cac = budget > 0 ? Math.round(budget / clients) : 0;
+    var ltv = Math.round(panier * duree);
+    var margeAbsolue = panier * (taux / 100);
+    var payback = (cac > 0 && margeAbsolue > 0) ? Math.round(cac / margeAbsolue) : 0;
+    var ratio = (cac > 0 && ltv > 0) ? Math.round((ltv / cac) * 10) / 10 : 0;
+
+    var score = 50;
+    if (ratio >= 3) score += 20;
+    else if (ratio >= 1.5) score += 10;
+    else if (ratio > 0) score -= 10;
+    if (d.pub_active === 'oui') score += 5;
+    if (d.site_web === 'oui') score += 5;
+    if (d.usage_whatsapp === 'structure' || d.usage_whatsapp === 'automatise') score += 10;
+    if (d.duree_vie_client === 'plus_12') score += 10;
+    else if (d.duree_vie_client === 'moins_1') score -= 10;
+
+    return { cac: cac, ltv: ltv, payback: payback, ratioLTV: ratio, score: score, marge: Math.round(taux) };
+  }
+
+  function getFailles(d, r) {
+    var failles = [];
+    if (r.cac === 0 && d.pub_active !== 'oui') {
+      failles.push({ t: 'Acquisition non structurée', d: "Aucun investissement publicitaire tracé : la croissance dépend uniquement du bouche-à-oreille." });
+    }
+    if (r.ratioLTV > 0 && r.ratioLTV < 3) {
+      failles.push({ t: 'Ratio LTV:CAC insuffisant (' + r.ratioLTV + ':1)', d: "Chaque client rapporte moins de trois fois son coût d'acquisition. Le seuil considéré comme sain est de 3:1." });
+    }
+    if (d.duree_vie_client === 'moins_1') {
+      failles.push({ t: 'Aucune rétention client', d: "Vos clients n'achètent qu'une seule fois. Sans rachat, il faut en acquérir de nouveaux en permanence." });
+    }
+    if (d.usage_whatsapp === 'non') {
+      failles.push({ t: 'Aucune relance client', d: "WhatsApp n'est pas utilisé pour relancer vos prospects ni vos anciens clients." });
+    }
+    if (d.site_web === 'non') {
+      failles.push({ t: 'Aucune présence digitale', d: "Sans page de vente, vous ne pouvez pas convertir du trafic en clients de façon autonome." });
+    }
+    if (r.marge < 25) {
+      failles.push({ t: 'Marge trop faible pour augmenter le budget', d: 'Avec ' + r.marge + ' % de marge, le modèle ne supporte pas une hausse des dépenses publicitaires.' });
+    }
+    if (failles.length === 0) {
+      failles.push({ t: 'Structure correcte', d: 'Votre modèle présente une base saine. Des ajustements ciblés amélioreraient la rentabilité.' });
+    }
+    return failles.slice(0, 3);
+  }
+
+  function getReco(r) {
+    if (r.score >= 75) {
+      return { label: 'Prêt pour la montée en charge', msg: "Votre structure est saine : vous êtes en position d'accélérer avec méthode. Un plan sur 90 jours est recommandé." };
+    }
+    if (r.score >= 50) {
+      return { label: 'Optimisation nécessaire', msg: 'Des failles limitent votre rentabilité. Un accompagnement permettrait de les corriger en 60 à 90 jours.' };
+    }
+    return { label: 'Restructuration prioritaire', msg: 'Votre modèle présente des risques structurels importants. Une remise à plat est indispensable avant tout investissement supplémentaire.' };
+  }
+
+  /* ------------------------------------------------------------------
+     ENVOI
+     ------------------------------------------------------------------ */
+  function send(d) {
+    var ref = '';
+    try { ref = sessionStorage.getItem('ep_ref') || ''; } catch (e) { ref = ''; }
+
+    fetch('https://web-production-4ab53.up.railway.app/api/diagnostic/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        nom: d.nom,
+        email: d.email,
+        whatsapp: d.whatsapp,
+        entreprise: d.entreprise || undefined,
+        secteur: d.secteur,
+        ca_mensuel: Math.round(parseFloat(d.ca_mensuel) || 0),
+        clients_par_mois: Math.round(parseFloat(d.clients_par_mois) || 0),
+        budget_pub_mensuel: Math.round(parseFloat(d.budget_pub) || 0),
+        budget_disponible: Math.round(parseFloat(d.budget_accompagnement) || 0),
+        duree_vie_client_mois: DUREE_MOIS[d.duree_vie_client] || 12,
+        marge_pct: parseFloat(d.marge_pct) || 30,
+        has_website: d.site_web === 'oui',
+        uses_digital_tools: d.usage_whatsapp !== 'non',
+        tracks_metrics: d.suivi_indicateurs === 'oui',
+        objectif: ('Blocage: ' + (d.blocage_principal || 'non precis') +
+                   '. Accompagnement envisage: ' + (d.budget_accompagnement || 'non precis') +
+                   '. Experience conseil: ' + (d.experience_conseil || 'non precise') +
+                   '. Suivi des chiffres: ' + (d.suivi_indicateurs || 'non precise') +
+                   '. Sources: ' + (d.sources_acquisition || 'non precis') + '.').slice(0, 500),
+        sources_acquisition: d.sources_acquisition,
+        ref_parrainage: ref
+      })
+    })
+    .then(function (r) {
+      if (!r.ok) console.warn('Diagnostic submit HTTP', r.status);
+      return r.json();
+    })
+    .then(function (res) {
+      if (res && res.score != null) console.info('Diagnostic enregistre — score', res.score);
+    })
+    .catch(function (e) { console.warn('Diagnostic error:', e); });
+  }
+
+  function submit() {
+    var d = collect();
+    var ratios = calcRatios(d);
+    var failles = getFailles(d, ratios);
+    var reco = getReco(ratios);
+    console.info('Diagnostic — ratios', ratios, failles, reco);
+
+    var shell = el('formShell');
+    var load = el('loadOv');
+    if (shell) shell.hidden = true;
+    if (load) {
+      load.hidden = false;
+      if (load.scrollIntoView) load.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    /* Retour visuel progressif : chaque étape passe en or, la précédente reste
+       marquée, et la zone role="status" annonce le libellé courant. */
+    var stages = [
+      { id: 'ls1', msg: 'Analyse de vos données…', delay: 0 },
+      { id: 'ls2', msg: 'Calcul de vos ratios financiers…', delay: 1800 },
+      { id: 'ls3', msg: 'Identification de vos failles…', delay: 3600 },
+      { id: 'ls4', msg: 'Génération de votre rapport…', delay: 5200 }
+    ];
+
+    stages.forEach(function (stage, i) {
+      setTimeout(function () {
+        stages.forEach(function (other, j) { setState(el(other.id), j <= i); });
+        var box = el('loadMsg');
+        if (box) box.textContent = stage.msg;
+      }, stage.delay);
+    });
+
+    /* Les traceurs sont chargés par consent.js, après accord explicite.
+       Aucun appel n'est fait s'ils sont absents. */
+    if (window.fbq) window.fbq('track', 'Lead');
+    if (window.gtag) window.gtag('event', 'generate_lead', { page_location: window.location.href });
+
+    setTimeout(function () {
+      if (load) load.hidden = true;
+      var success = el('sucView');
+      if (success) {
+        success.hidden = false;
+        var title = el('sucTitle');
+        if (title) {
+          try { title.focus({ preventScroll: true }); } catch (e) { title.focus(); }
+        }
+        if (success.scrollIntoView) {
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    }, 7200);
+
+    send(d);
+  }
+
+  function goNext() {
+    if (!validate(step)) return;
+    if (step === 1) buildStep4(el('sec').value);
+    if (step < TOTAL) { goTo(step + 1); return; }
+    submit();
+  }
+
+  el('btnNext').addEventListener('click', goNext);
+  el('btnBack').addEventListener('click', function () { if (step > 1) goTo(step - 1); });
+
+  /* Entrée dans un champ : même parcours que le bouton Continuer. */
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    goNext();
+  });
+
+  goTo(1, true);
+})();
+</script>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-col">
+        <img class="footer-logo logo-img-light" src="assets/img/logo-light.webp"
+             srcset="assets/img/logo-light.webp 1x, assets/img/logo-light@2x.webp 2x"
+             width="152" height="25" alt="ePerformance" loading="lazy">
+        <img class="footer-logo logo-img-dark" src="assets/img/logo-dark.webp"
+             srcset="assets/img/logo-dark.webp 1x, assets/img/logo-dark@2x.webp 2x"
+             width="157" height="25" alt="" aria-hidden="true" loading="lazy">
+        <p class="card-text mt-3" style="max-width:34ch">Stratégie d&#x27;acquisition, IA générative, automatisation et développement web premium. Basé en Côte d&#x27;Ivoire, 100 % en ligne.</p>
+      </div>
+
+      <div class="footer-col">
+        <h2>Services</h2>
+        <ul>
+          <li><a href="index.html#programmes">stratégie d&#x27;acquisition</a></li>
+          <li><a href="ia.html">IA générative</a></li>
+          <li><a href="automatisation.html">Automatisation</a></li>
+          <li><a href="site-web.html">Création de site web</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Ressources</h2>
+        <ul>
+          <li><a href="diagnostic_eperformance.html">Diagnostic gratuit</a></li>
+          <li><a href="formation.html">Formations</a></li>
+          <li><a href="ebook.html">Ebooks</a></li>
+          <li><a href="https://blog.eperformance.pro/" rel="noopener">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="https://wa.me/2250151170666" rel="noopener">+225 01 51 17 06 66</a></li>
+          <li><a href="mailto:bonjour@eperformance.pro">bonjour@eperformance.pro</a></li>
+          <li><a href="https://api.eperformance.pro/connexion.php" rel="noopener">Espace client</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 ePerformance — par K. Stéphane. Tous droits réservés.</p>
+      <p><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a> · <a href="cookies.html">Cookies</a> · <a href="cgv.html">CGV</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a class="btn btn-gold" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
+  <a class="btn btn-wa" href="https://wa.me/2250151170666" style="flex:0 0 auto" rel="noopener">WhatsApp</a>
+</div>
+
+<div class="consent" id="consent-banner" hidden>
+  <div class="consent-inner">
+    <div class="consent-text">
+      <p><strong>Vous choisissez ce que nous mesurons.</strong></p>
+      <p>Nous utilisons des traceurs pour comprendre comment le site est utilisé et pour
+         mesurer nos campagnes. Aucun ne se déclenche avant votre accord.
+         <a href="politique-confidentialite.html">Politique de confidentialité</a> ·
+         <a href="cookies.html">En savoir plus</a></p>
+    </div>
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost" data-consent="refuse">Tout refuser</button>
+      <button type="button" class="btn btn-outline" data-consent="customize">Paramétrer</button>
+      <button type="button" class="btn btn-gold" data-consent="accept">Tout accepter</button>
+    </div>
+  </div>
+
+  <div class="consent-detail" id="consent-detail" hidden>
+    <fieldset class="fieldset">
+      <legend>Vos préférences</legend>
+
+      <label class="consent-row consent-row-locked">
+        <input type="checkbox" checked disabled>
+        <span>
+          <strong>Nécessaires</strong>
+          <span class="field-hint">Mémorisation de votre choix de thème et de vos préférences.
+            Toujours actifs : le site ne peut pas fonctionner sans.</span>
+        </span>
+      </label>
+
+      <label class="consent-row">
+        <input type="checkbox" id="consent-analytics">
+        <span>
+          <strong>Mesure d'audience</strong>
+          <span class="field-hint">Google Analytics 4 et Microsoft Clarity. Nous aide à voir
+            quelles pages sont utiles et où les visiteurs abandonnent.</span>
+        </span>
+      </label>
+
+      <label class="consent-row">
+        <input type="checkbox" id="consent-ads">
+        <span>
+          <strong>Publicité</strong>
+          <span class="field-hint">Meta Pixel. Mesure l'efficacité de nos campagnes
+            Facebook et Instagram.</span>
+        </span>
+      </label>
+    </fieldset>
+
+    <div class="consent-actions">
+      <button type="button" class="btn btn-outline" data-consent="back">Retour</button>
+      <button type="button" class="btn btn-gold" data-consent="save">Enregistrer mes choix</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/consent.js" defer></script>
+<script src="assets/js/eperf.js" defer></script>
+</body>
+</html>
