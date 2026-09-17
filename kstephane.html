@@ -1,481 +1,580 @@
-<!doctype html>
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="fr" class="no-js" data-theme="light">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>K. Stéphane — Sites web, IA & Formation | ePerformance Abidjan</title>
-  <meta name="description" content="Sites web + IA dès 100K FCFA, formation publicité digitale, ebooks marketing. Tous mes services pour entrepreneurs. Contactez-moi sur WhatsApp." />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://eperformance.pro/kstephane" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+(function(){try{var t=localStorage.getItem('eperf-theme');
+if(t!=='dark'&&t!=='light'){t='light';}
+document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+  <title>K. Stéphane — fondateur d&#x27;ePerformance | Abidjan</title>
+  <meta name="description" content="K. Stéphane accompagne les entrepreneurs d&#x27;Afrique de l&#x27;Ouest sur leur acquisition digitale depuis 2017. Sites web, IA, automatisation, formation.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://eperformance.pro/kstephane.html">
+  <meta name="theme-color" content="#fdfcfa">
+  <meta name="author" content="K. Stéphane">
 
-  <meta property="og:title" content="K. Stéphane — Sites web, IA & Formation | ePerformance" />
-  <meta property="og:description" content="Sites web + IA dès 100K FCFA, formation publicité digitale, ebooks marketing. Contactez K. Stéphane sur WhatsApp." />
-  <meta property="og:image" content="https://eperformance.pro/photos/IMG_2806.jpeg" />
-  <meta property="og:url" content="https://eperformance.pro/kstephane" />
-  <meta property="og:type" content="profile" />
+  <!-- Icônes -->
+  <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="assets/img/favicon-16.png" sizes="16x16">
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png">
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="K. Stéphane — Sites web, IA & Formation | ePerformance" />
-  <meta name="twitter:description" content="Sites web + IA dès 100K FCFA, formation publicité digitale, ebooks marketing." />
-  <meta name="twitter:image" content="https://eperformance.pro/photos/IMG_2806.jpeg" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ePerformance">
+  <meta property="og:locale" content="fr_CI">
+  <meta property="og:title" content="K. Stéphane — fondateur d&#x27;ePerformance | Abidjan">
+  <meta property="og:description" content="K. Stéphane accompagne les entrepreneurs d&#x27;Afrique de l&#x27;Ouest sur leur acquisition digitale depuis 2017. Sites web, IA, automatisation, formation.">
+  <meta property="og:url" content="https://eperformance.pro/kstephane.html">
+  <meta property="og:image" content="https://eperformance.pro/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ePerformance — ePerformance">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="K. Stéphane — fondateur d&#x27;ePerformance | Abidjan">
+  <meta name="twitter:description" content="K. Stéphane accompagne les entrepreneurs d&#x27;Afrique de l&#x27;Ouest sur leur acquisition digitale depuis 2017. Sites web, IA, automatisation, formation.">
+  <meta name="twitter:image" content="https://eperformance.pro/assets/img/og-image.jpg">
+  <meta name="twitter:creator" content="@eperformancepro">
 
-  <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z7QW8BCYQ1"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z7QW8BCYQ1');</script>
+  <!-- Polices : préconnexion, préchargement des deux polices critiques,
+       puis chargement non bloquant de la feuille complète -->
+  <!-- Polices : auto-hébergées, déclarées dans eperf.css.
+       On précharge les deux graisses du premier écran pour que le
+       texte soit peint dans la bonne police dès le premier rendu. -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cormorant-garamond-700.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/dm-sans-400.woff2">
 
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "w2e89n0biv");
-  </script>
-
-  <!-- Meta Pixel -->
-  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1592627695615531');fbq('track','PageView');</script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1592627695615531&ev=PageView&noscript=1"/></noscript>
-
-  <!-- Schema.org Person -->
+  <!-- Design system : une seule feuille externe pour tout le site. -->
+  <link rel="stylesheet" href="assets/css/eperf.css">
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"K. Stéphane",
-    "url":"https://eperformance.pro/kstephane",
-    "image":"https://eperformance.pro/photos/IMG_2806.jpeg",
-    "jobTitle":"Créateur de sites web + IA, formation & ebooks — ePerformance",
-    "worksFor":{"@type":"Organization","name":"ePerformance"},
-    "sameAs":[
-      "https://www.facebook.com/performanc77",
-      "https://www.instagram.com/e_eperformance",
-      "https://www.tiktok.com/@influenceurdigital683",
-      "https://www.linkedin.com/in/kstephane/"
-    ]
-  }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://eperformance.pro/#organization",
+      "name": "ePerformance",
+      "alternateName": "ePerformance par K. Stéphane",
+      "url": "https://eperformance.pro",
+      "email": "bonjour@eperformance.pro",
+      "telephone": "+2250151170666",
+      "founder": {
+        "@type": "Person",
+        "@id": "https://eperformance.pro/#founder",
+        "name": "K. Stéphane",
+        "jobTitle": "Fondateur, stratège acquisition",
+        "url": "https://eperformance.pro/kstephane.html"
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Côte d'Ivoire"
+        },
+        {
+          "@type": "Country",
+          "name": "Burkina Faso"
+        },
+        {
+          "@type": "Place",
+          "name": "Afrique de l'Ouest"
+        }
+      ],
+      "knowsLanguage": "fr",
+      "sameAs": [
+        "https://blog.eperformance.pro/"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://eperformance.pro/#localbusiness",
+      "name": "ePerformance",
+      "description": "Stratégie d'acquisition, IA générative, automatisation et développement web premium. Basé en Côte d'Ivoire, 100 % en ligne.",
+      "url": "https://eperformance.pro",
+      "email": "bonjour@eperformance.pro",
+      "telephone": "+2250151170666",
+      "parentOrganization": {
+        "@id": "https://eperformance.pro/#organization"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Abidjan",
+        "addressCountry": "CI"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Côte d'Ivoire"
+      },
+      "priceRange": "100000-350000 XOF",
+      "currenciesAccepted": "XOF",
+      "paymentAccepted": "Orange Money, Wave, MTN MoMo, Moov Money, Visa, Mastercard",
+      "availableLanguage": "fr"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://eperformance.pro/#website",
+      "url": "https://eperformance.pro",
+      "name": "ePerformance",
+      "description": "Stratégie d'acquisition, IA générative, automatisation et développement web premium. Basé en Côte d'Ivoire, 100 % en ligne.",
+      "publisher": {
+        "@id": "https://eperformance.pro/#organization"
+      },
+      "inLanguage": "fr-CI"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://eperformance.pro/kstephane.html#webpage",
+      "url": "https://eperformance.pro/kstephane.html",
+      "name": "K. Stéphane — fondateur d'ePerformance | Abidjan",
+      "description": "K. Stéphane accompagne les entrepreneurs d'Afrique de l'Ouest sur leur acquisition digitale depuis 2017. Sites web, IA, automatisation, formation.",
+      "isPartOf": {
+        "@id": "https://eperformance.pro/#website"
+      },
+      "about": {
+        "@id": "https://eperformance.pro/#organization"
+      },
+      "inLanguage": "fr-CI"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://eperformance.pro/kstephane.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://eperformance.pro/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "À propos",
+          "item": "https://eperformance.pro/kstephane.html"
+        }
+      ]
+    }
+  ]
+}
   </script>
-
-  <style>
-    :root{
-      --bg:#08080c;--bg2:#0c0c10;--card:#101014;--card2:#14141a;
-      --border:#1c1c22;--border2:#282830;
-      --text:#edeae3;--muted:#7a7a85;--soft:#b0aaa0;
-      --gold:#c9a96e;--gold2:#e2c07a;
-      --gold-bg:rgba(201,169,110,.08);--gold-border:rgba(201,169,110,.22);
-      --gold-glow:rgba(201,169,110,.4);--gold-glow-soft:rgba(201,169,110,.15);
-      --wa:#25D366;
-      --grad-gold:linear-gradient(135deg,#c9a96e 0%,#e2c07a 100%);
-      --grad-gold-text:linear-gradient(135deg,#e2c07a 0%,#c9a96e 50%,#e2c07a 100%);
-      --grad-card:linear-gradient(145deg,#101014 0%,#0c0c10 100%);
-      --shadow-gold:0 8px 32px rgba(201,169,110,.15);
-      --shadow-gold-hover:0 12px 40px rgba(201,169,110,.3);
-      --shadow-lg:0 16px 48px rgba(0,0,0,.5);
-      --r-sm:12px;--r:20px;--r-lg:28px;--r-xl:36px;--r-pill:999px;
-      --ease-out:cubic-bezier(0.16,1,0.3,1);
-      --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
-      --t-fast:150ms;--t:300ms;--t-slow:600ms;
-    }
-
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-
-    body{
-      background:var(--bg);color:var(--text);
-      font-family:'DM Sans',system-ui,sans-serif;
-      min-height:100vh;display:flex;align-items:flex-start;justify-content:center;
-      padding:3rem 1.2rem 4rem;line-height:1.6;
-      position:relative;overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
-    }
-
-    /* Background blobs animés */
-    body::before{
-      content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-      background:radial-gradient(circle 600px at 50% 0%, rgba(201,169,110,.07), transparent 70%),radial-gradient(circle 500px at 15% 80%, rgba(26,66,192,.04), transparent 70%);
-    }
-    body::after{
-      content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-      background:radial-gradient(circle 300px at 30% 20%, rgba(201,169,110,.08), transparent 70%),radial-gradient(circle 250px at 70% 70%, rgba(26,66,192,.05), transparent 70%);
-      animation:float-blobs 25s ease-in-out infinite;will-change:transform;
-    }
-    @keyframes float-blobs{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.1)}66%{transform:translate(-20px,30px) scale(.95)}}
-
-    a{color:inherit;text-decoration:none}
-    button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-
-    .wrap{position:relative;z-index:1;width:100%;max-width:460px;display:flex;flex-direction:column;align-items:center;gap:0}
-
-    /* TRUST BAR */
-    .trust-bar{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;font-size:.72rem;color:var(--muted);animation:fadeUp .6s .02s ease both}
-    .trust-bar .sep{color:var(--border2)}
-    .trust-bar strong{color:var(--gold);font-weight:600}
-
-    /* HEADER */
-    .header{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:1.5rem;animation:fadeUp .6s .05s ease both}
-
-    .avatar-wrap{position:relative;margin-bottom:1.1rem}
-    .avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid var(--gold-border);display:block;filter:grayscale(100%);transition:filter .4s ease}
-    .avatar:hover{filter:grayscale(0%)}
-    .avatar-ring{position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(201,169,110,.3);animation:pulse-ring 3s ease infinite}
-    .avatar-ring::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(201,169,110,.15);animation:pulse-ring 3s ease .5s infinite}
-    @keyframes pulse-ring{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.8;transform:scale(1.04)}}
-
-    .name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;letter-spacing:-.01em;line-height:1.1;margin-bottom:.25rem}
-    .role{font-size:.78rem;text-transform:uppercase;letter-spacing:.13em;color:var(--gold);margin-bottom:.9rem}
-    .tagline{font-size:.93rem;color:var(--soft);max-width:360px;line-height:1.65}
-
-    /* STATS MINI */
-    .stats-mini{display:flex;gap:1.5rem;margin-bottom:1.5rem;animation:fadeUp .6s .1s ease both}
-    .stat-mini{text-align:center}
-    .stat-mini-num{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;background:var(--grad-gold-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
-    .stat-mini-label{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem}
-
-    /* DIVIDER */
-    .sep-line{width:40px;height:1px;background:var(--gold-border);margin:1.2rem auto}
-
-    /* BOUTONS */
-    .links{width:100%;display:flex;flex-direction:column;gap:.7rem}
-
-    .link-btn{
-      display:flex;align-items:center;gap:1rem;width:100%;padding:1rem 1.3rem;
-      background:var(--grad-card);border:1px solid var(--border2);border-radius:var(--r-lg);
-      color:var(--text);font-size:.94rem;font-weight:500;text-decoration:none !important;
-      transition:transform var(--t) var(--ease-out),border-color var(--t),background var(--t),box-shadow var(--t);
-      position:relative;overflow:hidden;
-      animation:fadeUp .6s ease both;
-    }
-
-    /* Bordure lumineuse haut */
-    .link-btn::before{
-      content:'';position:absolute;top:0;left:20px;right:20px;height:1px;
-      background:linear-gradient(90deg,transparent,rgba(201,169,110,.3),transparent);
-      opacity:0;transition:opacity var(--t);
-    }
-
-    /* Hover lumineux qui suit la souris */
-    .link-btn::after{
-      content:'';position:absolute;inset:0;border-radius:inherit;
-      background:radial-gradient(200px circle at var(--mx,50%) var(--my,50%),var(--gold-glow-soft),transparent 70%);
-      opacity:0;transition:opacity var(--t);pointer-events:none;
-    }
-
-    .link-btn:hover{
-      transform:translateY(-3px);border-color:var(--gold);
-      background:linear-gradient(145deg,#14141a 0%,#101014 100%);
-      box-shadow:var(--shadow-gold);
-    }
-    .link-btn:hover::before{opacity:1}
-    .link-btn:hover::after{opacity:1}
-
-    .link-btn.primary{border-color:var(--gold-border);background:linear-gradient(145deg,rgba(201,169,110,.06) 0%,#0c0c10 100%)}
-    .link-btn.primary:hover{border-color:var(--gold);background:linear-gradient(145deg,rgba(201,169,110,.12) 0%,#0c0c10 100%)}
-
-    .link-btn.wa{border-color:rgba(37,211,102,.2);background:linear-gradient(145deg,rgba(37,211,102,.04) 0%,#0c0c10 100%)}
-    .link-btn.wa:hover{border-color:rgba(37,211,102,.4);background:linear-gradient(145deg,rgba(37,211,102,.08) 0%,#0c0c10 100%);box-shadow:0 8px 32px rgba(37,211,102,.1)}
-
-    /* Variante produit (violet) */
-    .link-btn.product{border-color:rgba(155,89,182,.2);background:linear-gradient(145deg,rgba(155,89,182,.04) 0%,#0c0c10 100%)}
-    .link-btn.product:hover{border-color:rgba(155,89,182,.4);background:linear-gradient(145deg,rgba(155,89,182,.08) 0%,#0c0c10 100%);box-shadow:0 8px 32px rgba(155,89,182,.1)}
-    .link-btn.product .btn-icon{background:rgba(155,89,182,.1);border-color:rgba(155,89,182,.25);color:#bb8fce}
-
-    /* Variante neutre (en savoir plus) */
-    .link-btn.neutral{opacity:.85}
-    .link-btn.neutral:hover{opacity:1}
-    .link-btn.neutral .btn-icon{background:rgba(255,255,255,.03);color:var(--soft)}
-
-    /* Mini-titres de section */
-    .section-title{
-      font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;
-      color:var(--muted);margin:1.5rem 0 .6rem;padding-left:.3rem;
-      display:flex;align-items:center;gap:.5rem;
-      animation:fadeUp .6s ease both;width:100%;
-    }
-    .section-title::before{content:'';width:14px;height:1px;background:var(--gold)}
-    .section-title span{color:var(--gold);font-weight:600}
-
-
-    .btn-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;background:rgba(255,255,255,.04);border:1px solid var(--border2);transition:all var(--t)}
-    .link-btn.primary .btn-icon{background:var(--gold-bg);border-color:var(--gold-border);color:var(--gold)}
-    .link-btn.wa .btn-icon{background:rgba(37,211,102,.1);border-color:rgba(37,211,102,.25);color:var(--wa)}
-    .link-btn:hover .btn-icon{transform:scale(1.08)}
-
-    .btn-text{flex:1}
-    .btn-label{display:block;font-weight:600;font-size:.93rem}
-    .btn-sub{display:block;font-size:.76rem;color:var(--muted);margin-top:.05rem}
-
-    .btn-arrow{color:var(--muted);font-size:.8rem;flex-shrink:0;transition:transform var(--t),color var(--t)}
-    .link-btn:hover .btn-arrow{transform:translateX(4px);color:var(--gold)}
-
-    /* Badge flottant sur bouton */
-    .btn-badge{
-      position:absolute;top:-8px;right:16px;
-      padding:3px 10px;border-radius:var(--r-pill);
-      background:var(--grad-gold);color:#0a0a0e;
-      font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-      box-shadow:var(--shadow-gold);
-      animation:badge-pulse 2s ease-in-out infinite;
-    }
-    @keyframes badge-pulse{0%,100%{box-shadow:0 0 0 0 var(--gold-glow)}50%{box-shadow:0 0 0 6px transparent}}
-
-    /* ANIMATION DELAYS */
-    .link-btn:nth-child(1){animation-delay:.15s}
-    .link-btn:nth-child(2){animation-delay:.22s}
-    .link-btn:nth-child(3){animation-delay:.29s}
-    .link-btn:nth-child(4){animation-delay:.36s}
-    .link-btn:nth-child(5){animation-delay:.43s}
-    .link-btn:nth-child(6){animation-delay:.50s}
-    .link-btn:nth-child(7){animation-delay:.57s}
-    .link-btn:nth-child(8){animation-delay:.64s}
-
-    /* RÉSEAUX */
-    .socials{display:flex;gap:.7rem;margin-top:1.8rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .6s .7s ease both}
-    .social-link{
-      width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-      background:var(--grad-card);border:1px solid var(--border2);color:var(--muted);font-size:1.05rem;
-      transition:all var(--t) var(--ease-out);position:relative;overflow:hidden;
-    }
-    .social-link::before{content:'';position:absolute;top:0;left:10px;right:10px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,.3),transparent);opacity:0;transition:opacity var(--t)}
-    .social-link:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px);box-shadow:var(--shadow-gold)}
-    .social-link:hover::before{opacity:1}
-
-    /* EMAIL */
-    .email-line{margin-top:1.2rem;font-size:.78rem;color:var(--muted);animation:fadeUp .6s .75s ease both}
-    .email-line a{color:var(--muted);transition:color var(--t)}
-    .email-line a:hover{color:var(--gold)}
-
-    /* FOOTER */
-    .footer{margin-top:2rem;font-size:.72rem;color:#3a3a42;text-align:center;animation:fadeUp .6s .8s ease both}
-    .footer a{color:#3a3a42;transition:color var(--t)}
-    .footer a:hover{color:var(--muted)}
-
-    /* CURSOR CUSTOM */
-    .cursor{position:fixed;width:14px;height:14px;border:2px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform var(--t-fast) var(--ease-out),width var(--t),height var(--t),background var(--t);transform:translate(-50%,-50%);mix-blend-mode:difference}
-    .cursor.hover{width:40px;height:40px;background:rgba(201,169,110,.1)}
-    @media(max-width:768px){.cursor{display:none} *{cursor:auto!important}}
-
-    /* KEYFRAMES */
-    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
-    /* ACCESSIBILITY */
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.cursor{display:none}}
-    :focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:4px}
-
-    /* MOBILE */
-    @media(max-width:600px){
-      body{padding:2rem 1rem 3rem}
-      .name{font-size:1.5rem}
-      .avatar{width:80px;height:80px}
-      .stats-mini{gap:1rem}
-      .stat-mini-num{font-size:1.2rem}
-    }
-  </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
+<a class="skip-link" href="#main">Aller au contenu</a>
 
-<div class="wrap">
+<header class="site-header">
+  <div class="container header-inner">
 
-  <!-- TRUST BAR -->
-  <div class="trust-bar">
-    <strong>Depuis 2017</strong>
-    <span class="sep">·</span>
-    <strong>100% en ligne</strong>
-    <span class="sep">·</span>
-    <strong>Côte d'Ivoire</strong>
-  </div>
+    <a class="logo" href="index.html" aria-label="ePerformance — accueil">
+      <img class="logo-img-light" src="assets/img/logo-light.webp"
+           srcset="assets/img/logo-light.webp 1x, assets/img/logo-light@2x.webp 2x"
+           width="182" height="30" alt="ePerformance" fetchpriority="high">
+      <img class="logo-img-dark" src="assets/img/logo-dark.webp"
+           srcset="assets/img/logo-dark.webp 1x, assets/img/logo-dark@2x.webp 2x"
+           width="188" height="30" alt="" aria-hidden="true">
+    </a>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="avatar-wrap">
-      <img class="avatar" src="photos/IMG_2806.jpeg" alt="K. Stéphane — ePerformance" loading="eager" />
-      <div class="avatar-ring"></div>
+    <nav class="nav" id="primary-nav" aria-label="Navigation principale">
+      <a href="#piliers">Services</a>
+      <a href="automatisation.html">Automatisation</a>
+      <a href="ia.html">IA</a>
+      <a href="site-web.html">Site web</a>
+      <a href="formation.html">Formation</a>
+      <a href="https://blog.eperformance.pro/" class="text-gold" rel="noopener">Blog</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle
+              aria-pressed="false" aria-label="Activer le thème sombre">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+        </svg>
+      </button>
+
+      <a class="btn btn-gold btn-desktop" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false"
+              aria-controls="primary-nav" aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
     </div>
-    <p class="name">K. Stéphane</p>
-    <p class="role">Stratège Digital · ePerformance</p>
-    <p class="tagline">Sites web, IA conversationnelle, formation et ebooks pour entrepreneurs</p>
-  </div>
 
-  <!-- STATS MINI -->
-  <div class="stats-mini">
-    <div class="stat-mini">
-      <div class="stat-mini-num" data-count="2017">2017</div>
-      <div class="stat-mini-label">Depuis</div>
+  </div>
+</header>
+
+<nav class="breadcrumb container" aria-label="Fil d'Ariane">
+  <ol>
+    <li><a href="index.html">Accueil</a></li>
+    <li aria-current="page">À propos</li>
+  </ol>
+</nav>
+
+<main id="main">
+  <section class="hero">
+    <div class="container">
+      <h1 class="mt-3">K. Stéphane<br><em>fondateur d'ePerformance.</em></h1>
+      <p class="lead mt-3">Je travaille avec des entrepreneurs qui vendent déjà et qui veulent savoir ce que chaque client leur coûte vraiment. Basé en Côte d&#x27;Ivoire, 100 % en ligne.</p>
     </div>
-    <div class="stat-mini">
-      <div class="stat-mini-num" data-count="100" data-suffix="+">100+</div>
-      <div class="stat-mini-label">Clients</div>
-    </div>
-    <div class="stat-mini">
-      <div class="stat-mini-num" data-count="35" data-suffix="+">35+</div>
-      <div class="stat-mini-label">Pays touchés</div>
-    </div>
-  </div>
-
-  <div class="sep-line"></div>
-
-  <!-- BOUTONS -->
-  <div class="links">
-
-    <!-- BLOC 1 — ME CONTACTER -->
-    <div class="section-title">Me contacter</div>
-
-    <a class="link-btn wa" target="_blank" rel="noopener" href="https://wa.me/2250151170666?text=Bonjour%20K.%20St%C3%A9phane%2C%20je%20vous%20contacte%20via%20votre%20page%20de%20liens.">
-      <div class="btn-icon"><i class="fa-brands fa-whatsapp"></i></div>
-      <div class="btn-text">
-        <span class="btn-label">WhatsApp professionnel</span>
-        <span class="btn-sub">Réponse rapide · +225 01 51 17 06 66</span>
-      </div>
-      <i class="fa-solid fa-arrow-right btn-arrow"></i>
-    </a>
-
-    <!-- BLOC 2 — MES SERVICES -->
-    <div class="section-title">Mes services</div>
-
-    <a class="link-btn primary" href="https://eperformance.pro/site-web.html">
-      <div class="btn-icon"><i class="fa-solid fa-globe"></i></div>
-      <div class="btn-text">
-        <span class="btn-label">Site Web + IA Conversationnelle</span>
-        <span class="btn-sub">Dès 100 000 FCFA · IA qui vend 24h/24 · Domaine inclus</span>
-      </div>
-      <i class="fa-solid fa-arrow-right btn-arrow"></i>
-    </a>
-
-    <a class="link-btn primary" href="https://eperformance.pro/diagnostic_eperformance.html">
-      <div class="btn-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-      <div class="btn-text">
-        <span class="btn-label">Diagnostic ePerformance</span>
-        <span class="btn-sub">Gratuit · 5 min · Résultat immédiat</span>
-      </div>
-      <i class="fa-solid fa-arrow-right btn-arrow"></i>
-    </a>
-
-    <a class="link-btn primary" href="https://eperformance.pro/formation.html">
-      <div class="btn-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-      <div class="btn-text">
-        <span class="btn-label">Formation Publicité Digitale</span>
-        <span class="btn-sub">Zoom · Présentiel · Accompagnement · Sur devis</span>
-      </div>
-      <i class="fa-solid fa-arrow-right btn-arrow"></i>
-    </a>
-
-    <!-- BLOC 3 — MES PRODUITS -->
-    <div class="section-title">Mes produits</div>
-
-    <a class="link-btn product" href="https://eperformance.pro/ebook.html">
-      <div class="btn-icon"><i class="fa-solid fa-book"></i></div>
-      <div class="btn-text">
-        <span class="btn-label">Ebook Technique FB &amp; IG Ads 2026</span>
-        <span class="btn-sub">49 pages · Andromeda 2026 · Pour débutants · 9 900 FCFA</span>
-      </div>
-      <i class="fa-solid fa-arrow-right btn-arrow"></i>
-    </a>
-
-    <a class="link-btn product" href="https://eperformance.pro/ebook.html">
-      <div class="btn-icon"><i class="fa-solid fa-chart-pie"></i></div>
-      <div class="btn-text">
-        <span class="btn-label">Ebook Stratégique CAC / LTV / Payback</span>
-        <span class="btn-sub">Pourquoi votre pub n'est pas rentable · 14 900 FCFA</span>
-      </div>
-      <i class="fa-solid fa-arrow-right btn-arrow"></i>
-    </a>
-
-    <!-- BLOC 4 — EN SAVOIR PLUS -->
-    <div class="section-title">En savoir plus</div>
-
-    <a class="link-btn neutral" href="https://eperformance.pro">
-      <div class="btn-icon"><i class="fa-solid fa-globe"></i></div>
-      <div class="btn-text">
-        <span class="btn-label">Tous mes services sur ePerformance.pro</span>
-        <span class="btn-sub">Catalogue complet · Réalisations · Blog</span>
-      </div>
-      <i class="fa-solid fa-arrow-right btn-arrow"></i>
-    </a>
-
-  </div>
-
-  <!-- RÉSEAUX -->
-  <div class="socials">
-    <a class="social-link" target="_blank" rel="noopener" href="https://wa.me/2250151170666" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-    <a class="social-link" target="_blank" rel="noopener" href="https://www.facebook.com/performanc77" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-    <a class="social-link" target="_blank" rel="noopener" href="https://www.instagram.com/e_eperformance" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-    <a class="social-link" target="_blank" rel="noopener" href="https://www.tiktok.com/@influenceurdigital683" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-    <a class="social-link" target="_blank" rel="noopener" href="https://www.snapchat.com/add/eperformancepro" aria-label="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
-    <a class="social-link" target="_blank" rel="noopener" href="https://www.linkedin.com/in/kstephane/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-  </div>
-
-  <!-- EMAIL -->
-  <p class="email-line">
-    <a href="mailto:bonjour@eperformance.pro">bonjour@eperformance.pro</a>
-  </p>
-
-  <!-- FOOTER -->
-  <p class="footer">
-    © 2026 ePerformance · par K. Stéphane ·
-    <a href="https://eperformance.pro/mentions-legales.html">Mentions légales</a>
-  </p>
-
-</div>
-
-<script>
-(function(){
-  'use strict';
-
-  // 1. HOVER GLOW (boutons + réseaux)
-  document.querySelectorAll('.link-btn, .social-link').forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      btn.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-      btn.style.setProperty('--my', (e.clientY - rect.top) + 'px');
-    });
-  });
-
-  // 2. CURSOR CUSTOM (desktop only)
-  const cursor = document.getElementById('cursor');
-  if (cursor && window.matchMedia('(min-width: 769px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    let cx = 0, cy = 0, tx = 0, ty = 0;
-    document.addEventListener('mousemove', (e) => { tx = e.clientX; ty = e.clientY; });
-    function loop() {
-      cx += (tx - cx) * 0.2; cy += (ty - cy) * 0.2;
-      cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
-      requestAnimationFrame(loop);
-    }
-    loop();
-    document.querySelectorAll('a, button, .link-btn, .social-link, .avatar').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-  }
-
-  // 3. AVATAR COLOR HOVER (grayscale → color on hover)
-  const avatar = document.querySelector('.avatar');
-
-})();
-</script>
+  </section>
 
 <!-- ============================================================
-     CHATBOT IA ePERFORMANCE — Widget Vue (backend Railway 27 agents)
-     Source: github.com/Kstephane683/eperformance-widget
-     API: window.ePerformance.open()/close()/identify(userId, data)
-     ============================================================ -->
-<script>
-  window.ePerformanceConfig = {
-    widgetUrl: 'https://kstephane683.github.io/eperformance-widget/',
-    apiUrl: 'https://web-production-4ab53.up.railway.app',
-    siteId: 'eperformance_vitrine',
-    position: 'right'
-  };
-</script>
-<script src="https://kstephane683.github.io/eperformance-widget/eperformance-sdk.js" defer></script>
+     K. STÉPHANE — contenu de l'élément main
+     Le sur-titre, le titre de niveau 1 et le chapô viennent du layout :
+     ce fragment commence donc par une section et un titre de niveau 2.
 
+     Correctif principal de cette page : l'ancienne version (481 lignes)
+     n'avait aucun titre et aucun repère de navigation. Chaque bloc porte
+     désormais un titre de niveau 2 : la page est parcourable au lecteur d'écran.
+     ============================================================ -->
+
+<!-- ============================ PARCOURS ============================ -->
+<section class="section" id="parcours">
+  <div class="container">
+    <h2>Depuis 2017, neuf ans dans le digital au service de l'acquisition.</h2>
+
+    <div class="grid grid-2 mt-4">
+
+      <div class="card reveal">
+        <img src="photos/IMG_2806.jpeg"
+             alt="Portrait de K. Stéphane, fondateur d'ePerformance"
+             width="2048" height="2706" loading="lazy" decoding="async">
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <p>
+          Je suis K. Stéphane, fondateur d'ePerformance et stratège digital spécialisé
+          dans l'acquisition rentable. Depuis 2017, j'accompagne des entrepreneurs qui
+          vendent déjà et qui veulent savoir ce que chaque client leur coûte réellement.
+        </p>
+        <p class="mt-3">
+          Je travaille 100 % en ligne, depuis la Côte d'Ivoire, sans local d'accueil :
+          les échanges se font en visio individuelle ou par écrit, avec des clients de
+          tous secteurs d'activité.
+        </p>
+        <ul class="feature-list">
+          <li>Fondateur d'ePerformance</li>
+          <li>Stratège digital, spécialisé dans l'acquisition rentable</li>
+          <li>Basé en Côte d'Ivoire, 100 % en ligne</li>
+          <li>Un seul interlocuteur, du diagnostic à la livraison</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="stat-band mt-4 reveal">
+      <div class="stat">
+        <span class="stat-num num">2017</span>
+        <span class="stat-label">Première activité dans le digital</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num num">9 ans</span>
+        <span class="stat-label">Années d'expérience dans le digital</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num num">100 %</span>
+        <span class="stat-label">En ligne, sans local d'accueil</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num num">0</span>
+        <span class="stat-label">Intermédiaire entre vous et moi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ APPROCHE ============================ -->
+<section class="section-tight" id="approche">
+  <div class="container">
+    <h2>Lancer une publicité est facile. La rendre rentable est un métier.</h2>
+    <p class="lead mt-3">
+      C'est la conviction qui guide chaque accompagnement : la différence ne se joue pas
+      au moment où l'on appuie sur « publier », mais dans la structure qui décide si le
+      budget revient ou non.
+    </p>
+
+    <div class="grid grid-2 mt-4">
+
+      <article class="card card-hover reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 20h18"/>
+            <path d="M7 20v-6M12 20V6M17 20v-9"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Les ratios réels, pas les impressions</h3>
+        <p class="card-text">
+          Je pose avec vous les quatre chiffres qui décident vraiment : ce que coûte un
+          client, ce qu'il rapporte sur la durée, en combien de temps il rembourse son
+          acquisition, et ce qu'il reste en marge nette une fois tout payé.
+        </p>
+        <ul class="feature-list">
+          <li>CAC — le coût d'acquisition client</li>
+          <li>LTV — la valeur d'un client sur la durée</li>
+          <li>Payback — le délai de récupération</li>
+          <li>Marge nette — ce qui reste après tous les coûts</li>
+        </ul>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-1">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 20v-1.6a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20"/>
+            <circle cx="9.5" cy="7.5" r="3.5"/>
+            <path d="M17 4.6a3.5 3.5 0 0 1 0 6.4"/>
+            <path d="M21 20v-1.6a4 4 0 0 0-2.6-3.7"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Un accompagnement direct, sans intermédiaire</h3>
+        <p class="card-text">
+          Vous parlez à la personne qui travaille sur votre dossier. Pas de chef de projet
+          interposé, pas de sous-traitance : le diagnostic, les décisions et les livrables
+          passent par le même interlocuteur.
+        </p>
+        <ul class="feature-list">
+          <li>Structuration de votre modèle d'acquisition, pas seulement des campagnes</li>
+          <li>Échanges en visio individuelle</li>
+          <li>100 % en ligne, depuis la Côte d'Ivoire</li>
+          <li>Tous secteurs d'activité</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ CE QUE JE FAIS ============================ -->
+<section class="section" id="services">
+  <div class="container">
+    <h2>Quatre façons de travailler ensemble.</h2>
+    <p class="lead mt-3">
+      Selon où vous en êtes : un site qui capte les contacts, un diagnostic pour y voir
+      clair, une formation pour devenir autonome, ou un guide à appliquer seul.
+    </p>
+
+    <div class="grid grid-2 mt-4">
+
+      <article class="card card-hover reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18"/>
+            <path d="M12 3a13 13 0 0 1 3.4 9A13 13 0 0 1 12 21a13 13 0 0 1-3.4-9A13 13 0 0 1 12 3z"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Création de site web</h3>
+        <p class="card-text">
+          Un site construit sur mesure, avec un agent qui engage la conversation et
+          recueille les demandes. Nom de domaine inclus, livré en sept jours ouvrés.
+        </p>
+        <p class="text-muted mt-2"><small>Dès 100 000 FCFA.</small></p>
+        <a class="btn btn-outline btn-block mt-3" href="site-web.html">Voir les formules</a>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-1">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M20 20l-4.3-4.3"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Diagnostic gratuit</h3>
+        <p class="card-text">
+          Cinq minutes pour situer votre coût d'acquisition, votre LTV, votre Payback et
+          votre marge. Vous repartez avec vos chiffres et un score sur 100, sans engagement.
+        </p>
+        <p class="text-muted mt-2"><small>Gratuit, résultat immédiat.</small></p>
+        <a class="btn btn-outline btn-block mt-3" href="diagnostic_eperformance.html">Lancer mon diagnostic</a>
+      </article>
+
+      <article class="card card-hover reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9.5 12 5l9 4.5-9 4.5z"/>
+            <path d="M7 11.6V17c0 1.1 2.2 2 5 2s5-.9 5-2v-5.4"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Formations</h3>
+        <p class="card-text">
+          Deux formations en visio individuelle, 100 % en ligne : publicité Facebook et
+          Instagram d'un côté, structuration de votre acquisition de l'autre. On travaille
+          sur vos comptes et vos chiffres.
+        </p>
+        <p class="text-muted mt-2"><small>Dès 10 000 FCFA.</small></p>
+        <a class="btn btn-outline btn-block mt-3" href="formation.html">Voir les formations</a>
+      </article>
+
+      <article class="card card-hover reveal reveal-delay-1">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Ebooks</h3>
+        <p class="card-text">
+          Deux guides à appliquer seul : la mécanique publicitaire de Facebook et
+          Instagram, et la lecture des chiffres qui disent si votre acquisition tient
+          debout.
+        </p>
+        <p class="text-muted mt-2"><small>Au format PDF.</small></p>
+        <a class="btn btn-outline btn-block mt-3" href="ebook.html">Voir les deux guides</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<!-- ============================ ME CONTACTER ============================ -->
+<section class="section" id="contact">
+  <div class="container container-narrow">
+    <span class="eyebrow">Me contacter</span>
+    <h2>Un message suffit pour commencer.</h2>
+    <p class="lead mt-3">
+      Décrivez votre situation en quelques lignes : ce que vous vendez, comment vous
+      acquérez aujourd'hui, ce qui bloque. Je réponds moi-même, en visio individuelle ou
+      par écrit, 100 % en ligne.
+    </p>
+
+    <div class="grid grid-2 mt-4">
+      <a class="btn btn-wa" href="https://wa.me/2250151170666" target="_blank" rel="noopener">Écrire sur WhatsApp</a>
+      <a class="btn btn-outline" href="mailto:bonjour@eperformance.pro">Envoyer un email</a>
+    </div>
+
+    <ul class="feature-list mt-4">
+      <li>WhatsApp : <a class="text-gold" href="https://wa.me/2250151170666" target="_blank" rel="noopener">+225 01 51 17 06 66</a></li>
+      <li>Email : <a class="text-gold" href="mailto:bonjour@eperformance.pro">bonjour@eperformance.pro</a></li>
+      <li>100 % en ligne : aucun déplacement n'est nécessaire, tout se tient à distance.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-col">
+        <img class="footer-logo logo-img-light" src="assets/img/logo-light.webp"
+             srcset="assets/img/logo-light.webp 1x, assets/img/logo-light@2x.webp 2x"
+             width="152" height="25" alt="ePerformance" loading="lazy">
+        <img class="footer-logo logo-img-dark" src="assets/img/logo-dark.webp"
+             srcset="assets/img/logo-dark.webp 1x, assets/img/logo-dark@2x.webp 2x"
+             width="157" height="25" alt="" aria-hidden="true" loading="lazy">
+        <p class="card-text mt-3" style="max-width:34ch">Stratégie d&#x27;acquisition, IA générative, automatisation et développement web premium. Basé en Côte d&#x27;Ivoire, 100 % en ligne.</p>
+      </div>
+
+      <div class="footer-col">
+        <h2>Services</h2>
+        <ul>
+          <li><a href="index.html#programmes">stratégie d&#x27;acquisition</a></li>
+          <li><a href="ia.html">IA générative</a></li>
+          <li><a href="automatisation.html">Automatisation</a></li>
+          <li><a href="site-web.html">Création de site web</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Ressources</h2>
+        <ul>
+          <li><a href="diagnostic_eperformance.html">Diagnostic gratuit</a></li>
+          <li><a href="formation.html">Formations</a></li>
+          <li><a href="ebook.html">Ebooks</a></li>
+          <li><a href="https://blog.eperformance.pro/" rel="noopener">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="https://wa.me/2250151170666" rel="noopener">+225 01 51 17 06 66</a></li>
+          <li><a href="mailto:bonjour@eperformance.pro">bonjour@eperformance.pro</a></li>
+          <li><a href="https://api.eperformance.pro/connexion.php" rel="noopener">Espace client</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 ePerformance — par K. Stéphane. Tous droits réservés.</p>
+      <p><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a> · <a href="cookies.html">Cookies</a> · <a href="cgv.html">CGV</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a class="btn btn-gold" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
+  <a class="btn btn-wa" href="https://wa.me/2250151170666" style="flex:0 0 auto" rel="noopener">WhatsApp</a>
+</div>
+
+<div class="consent" id="consent-banner" hidden>
+  <div class="consent-inner">
+    <div class="consent-text">
+      <p><strong>Vous choisissez ce que nous mesurons.</strong></p>
+      <p>Nous utilisons des traceurs pour comprendre comment le site est utilisé et pour
+         mesurer nos campagnes. Aucun ne se déclenche avant votre accord.
+         <a href="politique-confidentialite.html">Politique de confidentialité</a> ·
+         <a href="cookies.html">En savoir plus</a></p>
+    </div>
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost" data-consent="refuse">Tout refuser</button>
+      <button type="button" class="btn btn-outline" data-consent="customize">Paramétrer</button>
+      <button type="button" class="btn btn-gold" data-consent="accept">Tout accepter</button>
+    </div>
+  </div>
+
+  <div class="consent-detail" id="consent-detail" hidden>
+    <fieldset class="fieldset">
+      <legend>Vos préférences</legend>
+
+      <label class="consent-row consent-row-locked">
+        <input type="checkbox" checked disabled>
+        <span>
+          <strong>Nécessaires</strong>
+          <span class="field-hint">Mémorisation de votre choix de thème et de vos préférences.
+            Toujours actifs : le site ne peut pas fonctionner sans.</span>
+        </span>
+      </label>
+
+      <label class="consent-row">
+        <input type="checkbox" id="consent-analytics">
+        <span>
+          <strong>Mesure d'audience</strong>
+          <span class="field-hint">Google Analytics 4 et Microsoft Clarity. Nous aide à voir
+            quelles pages sont utiles et où les visiteurs abandonnent.</span>
+        </span>
+      </label>
+
+      <label class="consent-row">
+        <input type="checkbox" id="consent-ads">
+        <span>
+          <strong>Publicité</strong>
+          <span class="field-hint">Meta Pixel. Mesure l'efficacité de nos campagnes
+            Facebook et Instagram.</span>
+        </span>
+      </label>
+    </fieldset>
+
+    <div class="consent-actions">
+      <button type="button" class="btn btn-outline" data-consent="back">Retour</button>
+      <button type="button" class="btn btn-gold" data-consent="save">Enregistrer mes choix</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/consent.js" defer></script>
+<script src="assets/js/eperf.js" defer></script>
 </body>
 </html>
-
-<!-- Chatbot IA ePerformance -->
-<!-- Chatbot IA ePerformance: injecté via SDK en bas de page -->

@@ -4,11 +4,10 @@ Disallow: /merci-ebook.html
 Disallow: /merci-candidature.html
 Disallow: /merci-ebook/
 Disallow: /merci-candidature/
-Disallow: /assets/js/
+Disallow: /preview/_build/
+Disallow: /preview/_content/
 
 # Moteurs IA — autorisation explicite (AEO / GEO)
-# Cohérent avec blog.eperformance.pro, pour que le site soit citable
-# par ChatGPT, Claude, Perplexity et Gemini.
 User-agent: GPTBot
 Allow: /
 
