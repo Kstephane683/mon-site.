@@ -50,7 +50,7 @@ YEAR = "2026"
 # ---------------------------------------------------------------------------
 
 NAV = [
-    ("Services",     "#piliers",   "services"),
+    ("Services",     "index.html#piliers",   "services"),
     ("Automatisation", "automatisation.html", "automatisation"),
     ("IA",           "ia.html",     "ia"),
     ("Site web",     "site-web.html", "site-web"),
@@ -60,7 +60,7 @@ NAV = [
 
 FOOTER_COLS = [
     ("Services", [
-        ("stratégie d'acquisition", "index.html#programmes"),
+        ("stratégie d'acquisition", "index.html#methode"),
         ("IA générative",           "ia.html"),
         ("Automatisation",          "automatisation.html"),
         ("Création de site web",    "site-web.html"),
@@ -100,7 +100,7 @@ PAGES = {
                  "qui comptent, l'IA qui capte les contacts, les workflows qui relancent, et le "
                  "site qui convertit. Pour les PME et e-commerces d'Afrique de l'Ouest."),
         "cta": ("Faire mon diagnostic gratuit", "diagnostic_eperformance.html"),
-        "cta2": ("Voir les 4 piliers", "#piliers"),
+        "cta2": ("Voir les 4 piliers", "index.html#piliers"),
         "fragment": "index.html",
     },
     "automatisation.html": {
