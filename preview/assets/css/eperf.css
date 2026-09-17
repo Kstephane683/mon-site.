@@ -21,6 +21,118 @@
    ========================================================================== */
 
 @layer tokens {
+
+  /* --- Polices, auto-hébergées ----------------------------------------
+     Servies depuis ce domaine plutôt que depuis Google Fonts :
+       · aucune connexion tierce sur le chemin critique (LCP)
+       · aucun appel à Google depuis le navigateur du visiteur
+       · les fichiers arrivent avec le CSS, donc le repli ne dure qu'un instant
+         et le décalage de mise en page disparaît
+     Seul le sous-ensemble latin est conservé : il couvre tout le français,
+     accents compris. Les sous-ensembles cyrillique et vietnamien étaient
+     téléchargés pour rien à chaque visite.
+     Précharger les deux graisses du premier écran (voir compose.py) :
+     Cormorant 700 pour les titres, DM Sans 400 pour le corps. */
+
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../fonts/cormorant-garamond-500-italic.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                   U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+                   U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/cormorant-garamond-600-italic.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                   U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+                   U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../fonts/cormorant-garamond-500.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                   U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+                   U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/cormorant-garamond-600.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                   U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+                   U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/cormorant-garamond-700.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                   U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+                   U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/dm-sans-400.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                   U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+                   U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../fonts/dm-sans-500.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                   U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+                   U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/dm-sans-600.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                   U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+                   U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/dm-sans-700.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                   U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+                   U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
   :root {
     /* --- Couche A : contrat générateur (agent-ia-web) ------------------ */
     --primaire: #fdfcfa;
@@ -29,8 +141,8 @@
     --fond-clair: #fdfcfa;
     --fond-moyen: #f7f5f1;
     --fond-fonce: #16151a;
-    --police-titres: 'Cormorant Garamond', Georgia, serif;
-    --police-corps: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --police-titres: 'Cormorant Garamond', 'Cormorant Fallback', Georgia, serif;
+    --police-corps: 'DM Sans', 'DM Sans Fallback', system-ui, -apple-system, sans-serif;
     --arrondi-carte: 28px;
     --arrondi-bouton: 999px;
     --arrondi-bloc: 12px;
@@ -173,13 +285,6 @@
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
   img, picture, video, svg { display: block; max-width: 100%; }
-
-  /* Les attributs width/height des images servent à réserver la place (CLS) et
-     à donner le ratio, pas à figer la hauteur : sans `height:auto`,
-     `max-width:100%` réduit la largeur mais laisse la hauteur d'origine, et
-     l'image est étirée. Les logos gardent leur hauteur via `.logo img` et
-     `.footer-logo`, plus spécifiques. */
-  img { height: auto; }
 
   button, input, select, textarea { font: inherit; color: inherit; }
 

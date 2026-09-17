@@ -242,10 +242,17 @@ if(t!=='dark'&&t!=='light'){t='light';}
 document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 </script>"""
 
-FONTS_HREF = ("https://fonts.googleapis.com/css2?"
-              "family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600"
-              "&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700"
-              "&display=swap")
+
+# Polices peintes au premier écran, auto-hébergées dans assets/fonts/.
+# Les précharger garantit que le texte est peint dans la bonne police dès le
+# premier rendu : sans cela le navigateur affiche d'abord le repli puis
+# recompose — c'est ce qui produisait un CLS de 0,13 à la première visite.
+FONT_PRELOADS = [
+    'assets/fonts/cormorant-garamond-700.woff2',
+    'assets/fonts/dm-sans-400.woff2',
+]
+
+# Les polices sont servies localement (assets/fonts/) : plus de requête tierce.
 
 
 def head(page_key, meta):
@@ -294,16 +301,14 @@ def head(page_key, meta):
         f'<meta name="twitter:image" content="{BASE_URL}/assets/img/og-image.jpg">',
         f'<meta name="twitter:creator" content="@eperformancepro">',
         "",
-        '<!-- Polices : chargement non bloquant -->',
-        '<link rel="preconnect" href="https://fonts.googleapis.com">',
-        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-        f'<link rel="stylesheet" media="print" onload="this.media=\'all\'" href="{FONTS_HREF}">',
-        '<noscript>',
-        f'  <link rel="stylesheet" href="{FONTS_HREF}">',
-        '</noscript>',
-        "",
-        '<!-- Design system -->',
-        '<link rel="stylesheet" href="assets/css/eperf.css">',
+        '<!-- Polices : préconnexion, préchargement des deux polices critiques,',
+        '     puis chargement non bloquant de la feuille complète -->',
+        '<!-- Polices : auto-hébergées, déclarées dans eperf.css.',
+        '     On précharge les deux graisses du premier écran pour que le',
+        '     texte soit peint dans la bonne police dès le premier rendu. -->',
+    ] + [
+        f'<link rel="preload" as="font" type="font/woff2" crossorigin href="{u}">'
+        for u in FONT_PRELOADS
     ]
 
     return "\n".join("  " + p if p else "" for p in parts)
