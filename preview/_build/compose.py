@@ -309,6 +309,10 @@ def head(page_key, meta):
     ] + [
         f'<link rel="preload" as="font" type="font/woff2" crossorigin href="{u}">'
         for u in FONT_PRELOADS
+    ] + [
+        '',
+        '<!-- Design system : une seule feuille externe pour tout le site. -->',
+        '<link rel="stylesheet" href="assets/css/eperf.css">',
     ]
 
     return "\n".join("  " + p if p else "" for p in parts)
@@ -713,6 +717,50 @@ def compose_page(page_key, meta):
 """
 
 
+
+# ---------------------------------------------------------------------------
+# CONTRÔLE DE COMPOSITION
+#   Ce contrôle existe à cause d'un bug réel : la balise
+#   <link rel="stylesheet" href="assets/css/eperf.css"> a disparu du gabarit
+#   lors d'une réécriture du <head>, et les 14 pages ont été régénérées sans
+#   design system. Aucun test ne l'a vu, parce qu'aucun test ne vérifiait que
+#   la page produite contenait réellement ses ressources.
+#   Une page sans feuille de style reste du HTML parfaitement valide : seule
+#   une vérification explicite peut l'attraper.
+# ---------------------------------------------------------------------------
+
+RESSOURCES_CRITIQUES = [
+    ('assets/css/eperf.css',
+     'la feuille du design system — sans elle la page n\'est pas stylée',
+     '<link rel="stylesheet" href="assets/css/eperf.css">'),
+    ('assets/js/consent.js',
+     'le consentement — sans lui les traceurs ne se chargent pas du tout',
+     'assets/js/consent.js'),
+    ('assets/js/eperf.js',
+     'le thème et les interactions',
+     'assets/js/eperf.js'),
+]
+
+
+def controler(page_key, html_produit):
+    """Vérifie qu'une page contient bien ses ressources. Renvoie une liste
+    de problèmes, vide si tout va bien."""
+    problemes = []
+    for chemin, role, motif in RESSOURCES_CRITIQUES:
+        if motif not in html_produit:
+            problemes.append(f"balise absente du HTML : {role}")
+        if not os.path.exists(os.path.join(PREVIEW, chemin)):
+            problemes.append(f"fichier introuvable sur disque : {chemin}")
+    for police in FONT_PRELOADS:
+        if police not in html_produit:
+            problemes.append(f"police non préchargée : {police}")
+        if not os.path.exists(os.path.join(PREVIEW, police)):
+            problemes.append(f"fichier de police introuvable : {police}")
+    if '<link rel="stylesheet"' not in html_produit:
+        problemes.append("aucune feuille de style liée dans le <head>")
+    return problemes
+
+
 # ---------------------------------------------------------------------------
 # PROGRAMME
 # ---------------------------------------------------------------------------
@@ -739,6 +787,11 @@ def main():
         except Exception as e:
             errors.append((page_key, str(e)))
             continue
+        problemes = controler(page_key, out)
+        if problemes:
+            errors.append((page_key, " ; ".join(problemes)))
+            continue
+
         if not args.check:
             with open(os.path.join(PREVIEW, page_key), "w", encoding="utf-8") as f:
                 f.write(out)
@@ -746,6 +799,8 @@ def main():
 
     label = "vérifiées" if args.check else "écrites"
     print(f"  {written} page(s) {label}")
+    if written and not errors:
+        print(f"  ressources vérifiées : feuille de style, JS, polices")
 
     if skipped:
         print(f"\n  Fragments absents ({len(skipped)}) :")
