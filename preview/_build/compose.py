@@ -361,6 +361,9 @@ def header(active=""):
         </svg>
       </button>
 
+      <a class="btn btn-outline btn-desktop" href="{WHATSAPP}" data-cta="whatsapp"
+         target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 11.6a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.4-4.3A8.4 8.4 0 1 1 20.4 11.6z"/><path d="M9.4 9.2a4.6 4.6 0 0 0 5.4 5.4"/></svg> WhatsApp</a>
+
       <a class="btn btn-gold btn-desktop" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
 
       <button class="nav-toggle" type="button" aria-expanded="false"
@@ -425,8 +428,17 @@ def footer():
 
 <div class="sticky-cta">
   <a class="btn btn-gold" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
-  <a class="btn btn-wa" href="{WHATSAPP}" style="flex:0 0 auto" rel="noopener">WhatsApp</a>
-</div>"""
+  <a class="btn btn-wa" href="{WHATSAPP}" style="flex:0 0 auto" rel="noopener"
+     data-cta="whatsapp" aria-label="Écrire sur WhatsApp"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 11.6a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.4-4.3A8.4 8.4 0 1 1 20.4 11.6z"/><path d="M9.4 9.2a4.6 4.6 0 0 0 5.4 5.4"/></svg> WhatsApp</a>
+</div>
+
+<!-- Bouton WhatsApp flottant — desktop uniquement. Voir .wa-float dans eperf.css :
+     sur mobile la barre ci-dessus fait déjà le travail, et le bas à droite est
+     réservé au widget chatbot. -->
+<a class="wa-float" href="{WHATSAPP}" data-cta="whatsapp" target="_blank" rel="noopener"
+   aria-label="Écrire sur WhatsApp">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 11.6a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.4-4.3A8.4 8.4 0 1 1 20.4 11.6z"/><path d="M9.4 9.2a4.6 4.6 0 0 0 5.4 5.4"/></svg>
+</a>"""
 
 
 # ---------------------------------------------------------------------------

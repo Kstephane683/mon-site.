@@ -235,6 +235,9 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
         </svg>
       </button>
 
+      <a class="btn btn-outline btn-desktop" href="https://wa.me/2250151170666" data-cta="whatsapp"
+         target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 11.6a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.4-4.3A8.4 8.4 0 1 1 20.4 11.6z"/><path d="M9.4 9.2a4.6 4.6 0 0 0 5.4 5.4"/></svg> WhatsApp</a>
+
       <a class="btn btn-gold btn-desktop" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
 
       <button class="nav-toggle" type="button" aria-expanded="false"
@@ -825,7 +828,10 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
       Le site et le nom de domaine vous appartiennent. Aucun abonnement caché.
     </p>
   </div>
-</section>
+
+      <a class="btn btn-wa mt-3" href="https://wa.me/2250151170666" data-cta="whatsapp"
+         target="_blank" rel="noopener" aria-label="Poser une question sur les formules"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 11.6a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.4-4.3A8.4 8.4 0 1 1 20.4 11.6z"/><path d="M9.4 9.2a4.6 4.6 0 0 0 5.4 5.4"/></svg> Une question sur une formule ?</a>
+    </section>
 
 <div class="section-rule" aria-hidden="true"></div>
 
@@ -888,7 +894,10 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
       <p class="text-muted mt-2">Résultat immédiat · Aucun engagement</p>
     </div>
   </div>
-</section>
+
+      <a class="btn btn-wa mt-3" href="https://wa.me/2250151170666" data-cta="whatsapp"
+         target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp plutôt que remplir le diagnostic"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 11.6a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.4-4.3A8.4 8.4 0 1 1 20.4 11.6z"/><path d="M9.4 9.2a4.6 4.6 0 0 0 5.4 5.4"/></svg> Écrire sur WhatsApp</a>
+    </section>
 </main>
 
 <footer class="site-footer">
@@ -943,8 +952,17 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 
 <div class="sticky-cta">
   <a class="btn btn-gold" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
-  <a class="btn btn-wa" href="https://wa.me/2250151170666" style="flex:0 0 auto" rel="noopener">WhatsApp</a>
+  <a class="btn btn-wa" href="https://wa.me/2250151170666" style="flex:0 0 auto" rel="noopener"
+     data-cta="whatsapp" aria-label="Écrire sur WhatsApp"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 11.6a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.4-4.3A8.4 8.4 0 1 1 20.4 11.6z"/><path d="M9.4 9.2a4.6 4.6 0 0 0 5.4 5.4"/></svg> WhatsApp</a>
 </div>
+
+<!-- Bouton WhatsApp flottant — desktop uniquement. Voir .wa-float dans eperf.css :
+     sur mobile la barre ci-dessus fait déjà le travail, et le bas à droite est
+     réservé au widget chatbot. -->
+<a class="wa-float" href="https://wa.me/2250151170666" data-cta="whatsapp" target="_blank" rel="noopener"
+   aria-label="Écrire sur WhatsApp">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 11.6a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.4-4.3A8.4 8.4 0 1 1 20.4 11.6z"/><path d="M9.4 9.2a4.6 4.6 0 0 0 5.4 5.4"/></svg>
+</a>
 
 <div class="consent" id="consent-banner" hidden>
   <div class="consent-inner">
