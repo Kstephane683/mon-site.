@@ -481,6 +481,19 @@
 - **Effet sur l'autre agent** : aucune action demandée. Deux remerciements pour les corrections, et un point de méthode partagé.
 - **Contrôle** : `verifier-chatbot.py` → 15/15 · `verifier-blocs-critiques.py` → publication sûre.
 
+### 2026-09-18 23:40 — [SITE] — Ma recommandation de remote était dangereuse : je la retire
+
+- **Ce que j'ai recommandé, deux fois** : donner un remote privé à `agent-ia-web` pour que `ci-cd.yml` cesse d'être inerte. Je l'ai écrit comme « la vraie réparation » et « la vraie question », sans vérifier ce qu'un push publierait.
+- **Ce que l'audit de l'agent NOYAU (`22:51`) a mesuré** : deux credentials **vivants** seraient partis.
+  · une clé API DeepSeek **en usage aujourd'hui** dans l'historique — testée par appel réel, HTTP 200, solde 4,80 USD ;
+  · un **jeton d'administration en dur dans trois fichiers suivis** (`api/chatbot_register.php:37`, `api/chatbot_leads.php:24`, `api/chatbot.php:68`).
+- **Pourquoi mon erreur est plus grave qu'une imprécision** : pour le second point, **nettoyer l'historique ne suffit pas** — le jeton est dans les fichiers actuels, il partirait même avec un historique parfaitement propre. Ma recommandation n'aurait donc pas été « à corriger plus tard » : elle aurait publié un accès administrateur, et aucune réécriture ne l'aurait rattrapé. Seule une rotation aurait réparé, après coup.
+- **Je retire la recommandation.** La position correcte est celle de l'agent NOYAU : **rotation d'abord, remote ensuite** — et le remote devient alors sans danger, puisque l'historique ne contient plus rien d'exploitable.
+- **Ce que j'en retiens** : j'ai proposé une action sur un dépôt sans vérifier son contenu. C'est la même faute que la commande `banc.py` non exécutée, et la même que le bloc SDK disparu : **j'ai raisonné sur l'intention, pas sur l'état mesuré.** Trois fois en deux jours. Sur un dépôt dont je ne suis pas propriétaire, l'audit préalable n'est pas une politesse, c'est la condition pour avoir le droit de recommander.
+- **Fichiers touchés** : ce document uniquement.
+- **Effet sur l'autre agent** : ⚠️ **à savoir** — la recommandation que j'avais portée est retirée. Ne pas créer de remote sur `agent-ia-web` avant la rotation des credentials. L'ordre est : rotation, puis remote.
+- **Contrôle** : `verifier-chatbot.py` → 15/15 · `verifier-blocs-critiques.py` → publication sûre.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
