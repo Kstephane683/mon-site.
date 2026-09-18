@@ -317,6 +317,54 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
   </div>
 </section>
 
+
+<div class="section-rule" aria-hidden="true"></div>
+
+<section class="section" id="chatbot">
+  <div class="container container-narrow">
+    <h2>L'assistant conversationnel</h2>
+
+    <p class="lead">Un assistant répond aux questions des visiteurs directement sur le site.
+    Il est facultatif : il ne s'ouvre que si vous cliquez dessus.</p>
+
+    <h3>Ce qu'il fait</h3>
+    <p>Il répond aux questions courantes sur les offres, et permet de laisser ses coordonnées
+    pour être rappelé. Il ne démarre aucune conversation de lui-même et n'écrit jamais en premier.</p>
+
+    <h3>Ce qu'il enregistre</h3>
+    <ul>
+      <li>Les messages que vous lui écrivez, pour qu'il puisse y répondre et pour que
+      K. STEPHANE reprenne la conversation si vous le demandez.</li>
+      <li>Les coordonnées que vous saisissez volontairement (nom, e-mail, numéro WhatsApp),
+      uniquement si vous les donnez.</li>
+      <li>Des données techniques : adresse IP, date et heure, page depuis laquelle vous
+      avez ouvert l'assistant.</li>
+    </ul>
+    <p>Ces données sont traitées sur un serveur d'ePerformance, hébergé par Railway.
+    Elles ne sont ni vendues, ni transmises à des tiers.</p>
+
+    <h3>Combien de temps</h3>
+    <p>[À PRÉCISER : durée de conservation des conversations]</p>
+
+    <h3>Comment les supprimer</h3>
+    <p>Écrivez à <a href="mailto:bonjour@eperformance.pro">bonjour@eperformance.pro</a>
+    en indiquant la conversation concernée. La suppression est faite sous trente jours.</p>
+
+    <h3>Faut-il l'autoriser ?</h3>
+    <p><strong>Non.</strong> L'assistant fait partie des éléments nécessaires : il ne fonctionne
+    pas sans les données que vous lui transmettez, et il ne sert qu'à vous répondre. Il ne
+    requiert donc aucun consentement préalable, au même titre qu'un formulaire de contact.</p>
+    <p>En revanche, <strong>la mesure de son usage</strong> — savoir combien de visiteurs
+    l'ouvrent et quelles questions ils posent — relève de la catégorie « Mesure d'audience ».
+    Elle ne démarre qu'avec votre accord, comme le reste de la mesure sur ce site.</p>
+
+    <h3>Base légale</h3>
+    <p>Le fonctionnement de l'assistant repose sur l'<strong>intérêt légitime</strong> :
+    répondre à une question que vous avez posée. La mesure de son usage repose sur votre
+    <strong>consentement</strong>. Aucune donnée n'est utilisée à d'autres fins que celles
+    décrites ici.</p>
+  </div>
+</section>
 <div class="section-rule" aria-hidden="true"></div>
 
 <!-- ============================ VOTRE CHOIX ============================ -->
@@ -570,20 +618,5 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 <script src="assets/js/consent.js" defer></script>
 <script src="assets/js/eperf.js" defer></script>
 <script src="assets/js/tracking.js" defer></script>
-<!-- ============================================================
-     CHATBOT IA ePERFORMANCE — Mia (widget Vue + backend FastAPI)
-     Source: github.com/Kstephane683/eperformance-widget
-     Cohérence design: variables --ep-* alignées sur eperf.css
-     ============================================================ -->
-<script>
-  window.ePerformanceConfig = {
-    widgetUrl: 'https://kstephane683.github.io/eperformance-widget/',
-    apiUrl: 'https://web-production-4ab53.up.railway.app',
-    siteId: 'eperformance_vitrine',
-    position: 'right'
-  };
-</script>
-<script src="https://kstephane683.github.io/eperformance-widget/eperformance-sdk.js" defer></script>
-
 </body>
 </html>

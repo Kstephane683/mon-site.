@@ -86,4 +86,70 @@
     envoyer('contenu_offre_vu', { page: window.location.pathname }, 'ViewContent');
   }
 
+  /* --- Chatbot ----------------------------------------------------------
+     Le widget expose window.ePerformance avec open/close/toggle/identify et
+     un écouteur ePerformance.on('open'|'close'). On s'y branche plutôt que
+     d'observer le DOM : le SDK est minifié, sans identifiant stable, et une
+     observation casserait à sa première mise à jour.
+
+     Deux événements n'ont pas d'écouteur dans l'API : les messages et les
+     captures de contact. Ils sont reçus par événements personnalisés, que le
+     SDK émettra (spécification dans docs/chatbot-integration-noyau.md).
+     Aucune donnée personnelle ne transite : ni nom, ni e-mail, ni numéro. */
+  (function () {
+    var api = null, essais = 0, debut = null, messages = 0, source = null;
+
+    function brancher() {
+      api = window.ePerformance;
+      if (!api || typeof api.on !== 'function') {
+        if (++essais < 20) setTimeout(brancher, 500);   // le SDK arrive en defer
+        return;
+      }
+      api.on('open', function () {
+        debut = Date.now();
+        messages = 0;
+        envoyer('chatbot_open', { page: window.location.pathname, source: source || 'inconnue' }, 'Contact');
+      });
+      api.on('close', function () {
+        var duree = debut ? Math.round((Date.now() - debut) / 1000) : 0;
+        envoyer('chatbot_close', {
+          page: window.location.pathname,
+          messages_envoyes: messages,
+          duree_secondes: duree
+        }, 'Contact');
+      });
+
+      /* Événements à venir du SDK. Le jour où il les émettra, ils seront
+         mesurés sans toucher à ce fichier. */
+      document.addEventListener('eperf:chatbot:message', function (e) {
+        var d = e.detail || {};
+        messages++;
+        envoyer('chatbot_message', {
+          page: window.location.pathname,
+          message_index: messages,
+          intent: d.intent || 'non_detecte'
+        }, 'Contact');
+      });
+      document.addEventListener('eperf:chatbot:lead', function (e) {
+        var d = e.detail || {};
+        envoyer('chatbot_lead', {
+          page: window.location.pathname,
+          type: d.type || 'formulaire'
+        }, 'Lead');
+      });
+    }
+
+    /* Source d'ouverture : mémorisée au clic sur un déclencheur connu. */
+    document.addEventListener('click', function (event) {
+      var el = event.target.closest ? event.target.closest('[data-chatbot-source]') : null;
+      if (el) source = el.getAttribute('data-chatbot-source');
+    }, true);
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', brancher);
+    } else {
+      brancher();
+    }
+  })();
+
 })();
