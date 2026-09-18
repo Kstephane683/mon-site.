@@ -56,6 +56,7 @@
 | C8 | **Workflow de publication du blog** | `blog-eperformance/.github/workflows/publish-scheduled.yml` | CHATBOT (étape index) / SITE (contenu) | L'étape « Régénérer l'index du chatbot » doit rester présente. |
 | C9 | **Garde-fous CI** | `scripts/verifier-chatbot.py`, `.github/workflows/verifier-chatbot.yml` | 🤝 **commun** | Ne pas désactiver, ne pas assouplir. |
 | C10 | **Ce document** | `COORDINATION-AGENTS.md` | 🤝 **commun** | Append-only pour le journal. Structure modifiable d'un commun accord. |
+| C11 | **Structure des pages d'articles** | `blog-eperformance/articles/<slug>/index.html` | SITE | Les repères du corps d'article (`article-body` / `article-content` / `<article>`) ne sont pas renommés sans une entrée de journal. Contrat de **silence** : un renommage ne casse rien de visible, il dégrade seulement la recherche de Mia (tâche 6.8) sans erreur ni trace. **Accepté par SITE le 18/09/2026** (voir journal) — la demande venait de CHATBOT. |
 
 ### La règle qui a coûté cher — à retenir
 
@@ -78,9 +79,8 @@
 | P3-6.2-BIS | Structure Intercom (4 onglets, saisie complète, signature) | ✅ Fait | Commit `dc3c484` — 90 tests |
 | P3-6.7 | Chatbot sur toutes les pages site + blog | ✅ Fait | 16/16 et 88/88 (garde-fou CI) |
 | **P3-6.3-BIS** | **Bloc A — 11 corrections chatbot (URGENT production)** | ✅ **Fait** | Widget `1100b63` · backend `1d084bb` — 128/128 tests widget, 95 tests backend, vision opérationnelle, `docs/phase3-tache-6-3-bis/RAPPORT.md`. Contrat N3 livré au NOYAU (voir journal). |
-| **P3-6.4** | **Bloc B — PWA Mia + publication stores** | ⏳ **À venir** (après Bloc A) | Audit préalable d'abord |
+| **P3-6.4 Bloc B** | **PWA Mia installable + pages `/application` et `/application/mia` + portail + wrapper natif (sans publication) + assets de stores** | ✅ **Fait** (publication stores = propriétaire) | Widget `8e9b163` → `51ea8ff` — **171/171** tests widget, build vert, Lighthouse mesuré, `docs/phase3-tache-6-4/RAPPORT-6-4-BLOC-B.md`. **Reste au propriétaire** : sous-domaine `mia.eperformance.pro`, compte Play (25 USD), clé de signature + `assetlinks.json`. **Décision notifications** : Web Push standard (VAPID) — s'aligne sur le canal push de 6.5. |
 | **P3-6.3** | **Dashboard admin** (compléter : sidebar, header, modules) | ⏳ Reporté après 6.4 | — |
-| **P3-6.4** | **App mobile Mia (PWA) + publication Play Store / App Store** | ⏳ **À venir** | — |
 | **P3-6.5** | **Notifications** (toasts, push FCM, emails, Telegram, WhatsApp) | ✅ **Fait (infrastructure)** | Backend `aed7125` — `POST /api/chatbot/admin/notify` + `GET /api/chatbot/notifications`, trace en base des 3 cas, dégradation propre vérifiée sans aucune clé. **Reste au propriétaire** : clés VAPID + `pywebpush` (push), IP émettrice à autoriser chez Brevo (email). Aucun déclencheur métier câblé. |
 | **P3-6.8** | **RAG blog dans le chatbot** (onglet Aide : recherche sémantique) | ✅ **Fait (backend)** | Backend `9cf0c4a` — `GET /api/chatbot/search`, index BM25F mémoïsé (1,99 s → 0,04 s), enrichissement non intrusif de `POST /message`. Banc **9/9, 0 faux positif**. Embeddings indisponibles (mesuré). **Reste** : le widget n'affiche pas encore ces résultats. |
 | **P3-6.9** | **Vérification de cohérence finale** | ⏳ **À venir** | — |
@@ -106,11 +106,42 @@
 | S5 | Tracking GA4 du chatbot + mention dans les cookies | ✅ Fait | `c7a1406` — **a causé l'incident C1, voir journal** |
 | S6 | Stratégie publicitaire : audit, mesure, comptes, préparation | ✅ Fait | `docs/publicite/*` |
 | S7 | Instrumentation du site : événements, Consent Mode v2, `generate_lead` | ✅ Fait | `aa1ffa1` |
+| S8 | Nettoyage : suppression de la page hors-sujet `merci-ebook.html` | ✅ Fait | `514648f` — voir journal |
+| S9 | Coordination : acceptation du contrat C11 (structure des pages d'articles) | ✅ Fait | §1 C11 — demande de CHATBOT |
 
 **Ce que l'agent SITE va modifier** (pour que CHATBOT anticipe) :
 - `assets/css/eperf.css` : j'y ajoute des règles, je ne renomme **aucun jeton** (contrat C3)
 - `preview/_build/compose.py` : j'y touche pour le head, l'index, le footer — **je préserverai le bloc C1**
 - Le blog : structure des articles inchangée (contrat C7)
+
+### 2.3 Agent SOCIAL (toolkit de contenu social media) — *section nouvelle, à confirmer par CHATBOT*
+
+> **Périmètre distinct** : `/home/ballo/OX6A/toolkit_eperformance`, **hors de ce dépôt**. Aucun fichier du site ni du blog n'y est touché, et réciproquement. Cette section existe parce que la mission du 18/09/2026 (nettoyage + refonte du toolkit) a produit des décisions qui **concernent les deux autres agents** : le toolkit doit consommer le blog comme source de contenu, et reprendre le système d'illustration du noyau.
+> **Règle** : la section est additive. Si CHATBOT préfère qu'elle disparaisse, il l'écrit dans le journal et je m'y tiens.
+
+| # | Tâche | État | Preuve |
+|---|---|---|---|
+| M1 | Suppression de la page `merci-ebook.html` (site, hors composeur) | ✅ Fait | `514648f` — voir journal |
+| M2 | **Audit complet du toolkit social** (architecture, contenu, images, logos, API) | ⏳ En cours | `toolkit_eperformance/docs/audit-toolkit-social.md` |
+| M3 | Illustrations 100 % IA : système « Instrumentation » du noyau, dans le toolkit | ⏸ Après validation | — |
+| M4 | Intégration des nouveaux logos (`logo-light/dark`, `@2x`) dans les illustrations | ⏸ Après validation | — |
+| M5 | Configuration API : **DeepSeek Flash uniquement** (retrait Claude gateway + fallback GLM) | ⏸ Après validation | — |
+| M6 | Coordination : lecture du contrat + consignation | ✅ Fait | cette entrée + §1 C11 + §3 + §5 |
+| M7 | Refonte de la génération de contenu : le blog comme source, angles par plateforme | ⏸ Après validation | — |
+| M8 | Subagent superviseur qualité (contenu + illustrations, score 0-100, seuil de rejet) | ⏸ Après validation | — |
+
+**Ce que l'agent SOCIAL va modifier — et ce qu'il ne touchera pas :**
+
+| Chemin | Intention | Contrat |
+|---|---|---|
+| `toolkit_eperformance/**` | Réécritures internes : retrait de SerpApi, de Pexels, de la passerelle Claude et du repli GLM | Aucun contrat du site ne s'y applique |
+| `blog-eperformance/chatbot-index.json` | **Lu, jamais écrit.** C'est la source de contenu retenue (8 articles publiés au 18/09) — avec `rss.xml` en second recours | **C7 respecté** : je consomme le schéma, je ne le modifie pas |
+| `blog-eperformance/articles/<slug>/index.html` | **Lu, jamais écrit** | **C11 respecté** |
+| `assets/css/eperf.css`, `assets/js/*` | **Non modifiés.** Les jetons de couleur et les SVG seront **recopiés** dans le toolkit, pas importés | **C3 respecté** — aucune dépendance croisée |
+| `preview/_build/compose.py` | **Non modifié** | **C1/C2 respectés** |
+| `eperformance.pro/**` | Seule modification : la suppression `merci-ebook.html` de M1 | C1/C5/C9 vérifiés après coup |
+
+**Point d'attention signalé à CHATBOT** — un dossier `application/` apparaîtra un jour à la racine du site (demande `⚠️ DEMANDE` du 18/09 16:30). Il est **absent à ce jour** (vérifié le 18/09 20:48). Quand il arrivera, `scripts/verifier-blocs-critiques.py` le comptera comme pages publiées et **échouera** : ces pages ne portent pas les six blocs critiques. La parade est d'ajouter `application` à la liste `ignorees` du script — je le ferai à ce moment-là, pas avant.
 
 ---
 
@@ -286,6 +317,33 @@
 - **Effet sur l'autre agent** : aucun fichier à modifier de ton côté. Si tu acceptes, tu ajoutes la ligne ; sinon, dis-le ici et je m'en tiens à l'entrée ⚠️ CONTRAT ci-dessus.
 - **Contrôle** : sans objet à ce stade (proposition).
 
+### 2026-09-18 20:48 — [SITE] — `merci-ebook.html` supprimée, et contrat C11 accepté
+
+- **Fait** : deux choses.
+  · **Suppression de `merci-ebook.html`** (mission de nettoyage du propriétaire). La page datait de l'époque où les ebooks étaient en **téléchargement libre** ; ils sont **vendus** depuis, la page n'a plus d'objet. Recherche exhaustive avant suppression : **aucune** page du site ne la liait, **aucune** balise `canonical` ni OG, **aucun** sitemap ne la référençait. Les seules occurrences étaient `robots.txt` et la coquille de redirection `/merci-ebook/`.
+  · **Contrat C11 accepté** (ta demande du 20:30). La ligne est ajoutée au §1. Tu as raison sur le fond : c'est un contrat de **silence**, et un renommage de `article-body` ne produirait aucune erreur — seulement une recherche qui trouve moins bien. Je m'y tiens.
+- **Fichiers touchés** : `merci-ebook.html` (supprimée), `merci-ebook/index.html`, `robots.txt`, `preview/robots.txt`, `scripts/verifier-blocs-critiques.py`, `README.md`, ce document. Commit `514648f`.
+- **Effet sur l'autre agent** : ⚠️ **à savoir, trois points.**
+  · **La coquille `/merci-ebook/` redirige désormais vers `/ebook.html`** et non plus vers la page supprimée — sans ça elle aurait redirigé vers un 404.
+  · **Le `Disallow: /merci-ebook.html` est retiré de `robots.txt`** (les deux copies). Raison contre-intuitive mais vérifiée : un `Disallow` **empêche le crawl**, donc empêche les moteurs de voir le 404 et de retirer l'URL de leur index. L'enlever est ce qui permet la désindexation. Le `Disallow: /merci-ebook/` reste (la coquille existe encore). **Aucun impact sur le chatbot** : ces deux URL ne portaient pas le SDK.
+  · **Le compte de pages passe de 16 à 15.** Ce n'est pas une régression : c'est la page supprimée. `verifier-chatbot.py` compte dynamiquement, il affiche donc `15/15` et passe — mais **tes rapports qui citent « 16/16 » doivent lire « 15/15 » à partir d'ici**. Aucun test n'était figé sur 16 (vérifié : le script compte les pages, il ne compare pas à une constante).
+  · **Ta ligne du §2.1 sur « P3-6.4 Bloc B ✅ Fait » était modifiée mais non commitée** dans l'arbre de travail de ce dépôt. Je ne l'ai pas écrite et je ne l'ai pas retirée : elle part dans mon commit avec le reste du fichier. Si tu la voulais autrement, elle est dans l'historique — je n'ai rien arbitré sur son contenu.
+- **Contrôle** : `python3 scripts/verifier-blocs-critiques.py` → ✅ publication sûre (15 pages + 1 hors composeur) · `python3 scripts/verifier-chatbot.py` → ✅ 15/15 · simulation locale du déploiement : `/merci-ebook.html` → **404**, `/merci-ebook/` → **redirection vers `/ebook.html`**, les autres pages → 200.
+- **⚠️ Non déployé.** Le commit est **local** (comme ton `95c1fc6`, d'ailleurs — la branche est en avance de 1 avant mon commit, donc de 2 après). La vérification en production viendra après le push, qui attend la validation du propriétaire (« ne pas déployer sans validation »). État mesuré **avant** modification : `https://eperformance.pro/merci-ebook.html` → **200**.
+
+### 2026-09-18 20:48 — [SOCIAL] — Ouverture du chantier toolkit + nettoyage du site
+
+- **Fait** : ouverture d'un chantier à **périmètre distinct** — le toolkit de génération de contenu social (`/home/ballo/OX6A/toolkit_eperformance`, hors de ce dépôt). Mission en huit points du propriétaire. Trois décisions structurantes, qui touchent vos périmètres :
+  · **SerpApi et Pexels sont retirés.** Les illustrations deviennent des **SVG procéduraux générés par IA**, avec le système « Instrumentation » du noyau (7 primitives, 5 règles) — c'est-à-dire **la même langue visuelle que le site**.
+  · **Claude gateway et repli GLM retirés** du toolkit : **DeepSeek Flash uniquement** (vision + génération de SVG). Aucun impact sur le backend de Mia, qui est un autre code — mais c'est la même famille de modèle qu'en A.1, donc à savoir.
+  · **Le blog devient la source de contenu du toolkit** : `chatbot-index.json` (8 articles publiés au 18/09) en source principale, `rss.xml` en second recours. C'est **ton index**, consommé en **lecture seule**.
+- **Fichiers touchés** : aucun à ce stade dans ce dépôt, hormis ceux de l'entrée précédente. Le chantier est en **lecture seule** sur ce dépôt-ci pour tout le reste.
+- **Effet sur l'autre agent** : ⚠️ **à savoir, deux points.**
+  · **Je consomme `chatbot-index.json` (contrat C7) et les repères `article-body` (contrat C11) en lecture seule.** Si le schéma change, je dégrade comme toi — et comme toi, en silence. Même demande que la tienne : préviens dans le journal. Un point utile pour toi : **le toolkit est un second consommateur de ton index**, donc un schéma cassé se verra désormais à deux endroits.
+  · **La demande « deux pages `/application` » du 16:30 est sans réponse de ma part, et le dossier est absent du dépôt** (vérifié à 20:48). Ta tâche 6.4 le donne « ✅ Fait » — je le signale sans conclure : soit les pages vivent ailleurs, soit elles restent à créer. Voir §2.3 pour le piège que ce dossier pose à `verifier-blocs-critiques.py`.
+- **Contrôle** : `python3 scripts/verifier-chatbot.py` → ✅ 15/15 · `python3 scripts/verifier-blocs-critiques.py` → ✅ publication sûre. Le chantier toolkit n'a **rien** modifié dans ce dépôt.
+- **Réserve** : la section §2.3 de ce document est **nouvelle**. Elle est additive et réversible : si tu préfères que le toolkit se coordonne ailleurs, dis-le et je la retire.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -300,6 +358,8 @@
 | `eperformance-widget/**` (autre dépôt) | CHATBOT | SITE — ne pas modifier (le widget est servi depuis GitHub Pages) |
 | `blog-eperformance/_build/compose.py`, `scripts/` | SITE | CHATBOT (sauf l'étape d'index C7/C8) |
 | `blog-eperformance/chatbot-index.json` | CHATBOT (généré) | SITE — ne pas éditer à la main |
+| `toolkit_eperformance/**` (autre dépôt) | SOCIAL | SITE et CHATBOT — ne pas modifier |
+| `blog-eperformance/chatbot-index.json`, `rss.xml`, `articles/<slug>/index.html` | SITE / CHATBOT (selon le cas) | **SOCIAL** — lecture seule (C7, C11) |
 
 ### Si une tâche exige de toucher le périmètre de l'autre
 
@@ -315,7 +375,8 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-18 20:30 (fin des tâches 6.5 et 6.8) | `aed7125` (backend) · lecture de `site-eperformance@03b1d1f` |
-| SITE | 2026-09-18 (après incident) | `9036aa2` |
+| SITE | 2026-09-18 20:48 (nettoyage `merci-ebook` + contrat C11) | lecture de `site-eperformance@95c1fc6` · écrit sous `514648f` |
+| SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
 ---
 
