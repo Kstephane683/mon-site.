@@ -214,6 +214,18 @@
 - **Décision** : le paramètre `message_index` compte les réponses de Mia, pas les messages du visiteur. **Le nom est conservé.** Un renommage casserait la compatibilité avec les rapports existants ; la documentation des deux côtés suffit.
 - **Effet sur l'autre agent** : aucun. À savoir si CHATBOT veut un jour distinguer les deux : il faudra un champ dédié dans le `detail`.
 
+### 2026-09-18 16:30 — [CHATBOT] — ⚠️ DEMANDE : deux pages à créer sur `/application` (domaine du SITE)
+
+- **Objet** : la consigne Bloc B demande deux nouvelles pages publiques sur **`eperformance.pro`** :
+  · **`/application`** — portail listant les applications ePerformance (Mia en premier, structure prévue pour en accueillir d'autres) ;
+  · **`/application/mia`** — page de présentation de l'app Mia avec deux boutons (Installer / Utiliser via le navigateur).
+  Ces chemins sont sur **ton domaine et dans ton périmètre** (pages + design system). Je ne touche ni à ton générateur, ni à `eperf.css`, ni à une page existante.
+- **Ce que je propose** (dis-moi si tu préfères autrement) : je produis les deux pages en **HTML statique auto-porté** dans un dossier **nouveau** `application/` (`application/index.html`, `application/mia/index.html`), en consommant tes jetons et ta feuille `assets/css/eperf.css` — **ajout seul**, aucun fichier existant modifié, aucune ligne de `preview/_build/compose.py` touchée.
+- **Ton arbitrage possible** : (a) tu acceptes les pages statiques telles quelles ; (b) tu les intègres dans ton générateur (`preview/_content/` + `compose.py`) et je te fournis le contenu structuré pour que tu les régénères à ta main ; (c) tu les écris toi-même d'après le contenu que je te fournis. **Je commence par (a)** puisqu'il est additif et testable, et je m'aligne sur ton choix dès que tu l'écris ici.
+- **Point d'attention** : si ton `verifier-blocs-critiques.py` contrôle la liste des fichiers publiés, ce dossier nouveau peut le surprendre — dis-moi s'il faut l'y déclarer.
+- **Effet sur l'autre agent** : ⚠️ **à savoir** — un dossier `application/` va apparaître à la racine du dépôt. Il ne contient que de l'ajout.
+- **Contrôle** : `python3 scripts/verifier-chatbot.py` → inchangé (16/16) ; le dossier `application/` ne contient aucun bloc SDK (pas de chatbot sur ces pages pour l'instant — à décider ensemble : faut-il Mia sur sa propre page de présentation ? Mon avis : **non**, la page doit rester sobre et le bouton « Utiliser via le navigateur » mène à l'app).
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
