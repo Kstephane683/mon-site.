@@ -84,6 +84,10 @@
 | **P3-6.5** | **Notifications** (toasts, push FCM, emails, Telegram, WhatsApp) | ✅ **Fait (infrastructure)** | Backend `aed7125` — `POST /api/chatbot/admin/notify` + `GET /api/chatbot/notifications`, trace en base des 3 cas, dégradation propre vérifiée sans aucune clé. **Reste au propriétaire** : clés VAPID + `pywebpush` (push), IP émettrice à autoriser chez Brevo (email). Aucun déclencheur métier câblé. |
 | **P3-6.8** | **RAG blog dans le chatbot** (onglet Aide : recherche sémantique) | ✅ **Fait (backend)** | Backend `9cf0c4a` — `GET /api/chatbot/search`, index BM25F mémoïsé (1,99 s → 0,04 s), enrichissement non intrusif de `POST /message`. Banc **9/9, 0 faux positif**. Embeddings indisponibles (mesuré). **Reste** : le widget n'affiche pas encore ces résultats. |
 | **P3-6.9** | **Vérification de cohérence finale** | ⏳ **À venir** | — |
+| **P3-6.3** | **Dashboard admin** — sidebar 11 modules, header, jetons canoniques | 🔄 **En cours** | — |
+| **P3-6.6** | **Maquettes finales** (widget, dashboard, app, landing, portail) | ⏳ À venir | — |
+| **P3-SYNC-DOCKER** | **Parité `docker-unified/` ↔ Railway** (fallback de production) + contrat C12 + garde-fou | 🔄 **En cours** | Audit d'écart : `unified-ia-backend/docs/phase3-sync-docker/AUDIT-ECART.md` |
+| **P3-PUSH** | **Interface push subscribe** (manquante entre 6.5 et 6.4) | 🔄 **En cours** | — |
 
 **Ce que l'agent CHATBOT va modifier dans les prochaines semaines** (pour que l'agent SITE anticipe) :
 - `eperformance-widget/**` (widget, SDK, dashboard) — **hors de ce dépôt**, aucun impact direct sur tes fichiers
@@ -409,6 +413,34 @@
 - **Une leçon de méthode, contre moi** : mon premier balayage de ce dépôt l'avait déclaré « propre ». Mes motifs étaient trop étroits — ils cherchaient les préfixes connus des grands fournisseurs et ne voyaient ni un jeton en prose, ni la convention de nommage de ce projet. C'est le second passage, après avoir constaté que le jeton *était* là, qui a produit les bons motifs. **Un scan qui ne trouve rien ne prouve pas qu'il n'y a rien** ; il prouve seulement qu'il a bien tourné.
 - **Contrôle** : `verifier-secrets.py` → PASS sur site (78 fichiers), backend (122), blog (208) · santé backend `/health` → 200 · conversation Mia → 200, `metadata.agent_used` absent (conforme) · recherche 6.8 → 200, 3 résultats pertinents · routes de notification → **401 sans jeton**, `require_admin` présent sur les deux.
 
+### 2026-09-18 23:05 — [CHATBOT] — Ouverture : parité Docker (C12), push subscribe, 6.3, 6.6, 6.9
+
+- **Fait (protocole)** : documents relus avant toute écriture. Garde-fous exécutés — `verifier-chatbot.py` → **code 0 sur le site et sur le blog**. Sections 2.1 et 5 mises à jour. Audit d'écart Docker terminé **avant** toute correction, publié dans `unified-ia-backend/docs/phase3-sync-docker/AUDIT-ECART.md`.
+- **Ce que j'ouvre** : cinq chantiers, par ordre de priorité du propriétaire. (1) **Parité `docker-unified/` ↔ backend Railway** — le dossier est le **backend de remplacement** de Railway, pas un bac à sable ; il était resté à un instantané du 13/09. (2) **Interface push subscribe**, le maillon manquant entre la 6.5 (qui sait envoyer) et la 6.4 (dont le service worker sait recevoir). (3) **6.3** dashboard admin. (4) **6.6** maquettes. (5) **6.9** cohérence finale.
+- **⚠️ TROIS CONSTATS D'AUDIT QUI CONTREDISENT LA CONSIGNE — je les signale au lieu de les contourner en silence.**
+  · **n8n n'existe pas dans cette pile.** La consigne décrit « FastAPI + PostgreSQL + n8n » et demande de vérifier 3 services *healthy*. Le `docker-compose.yml` n'en déclare que **deux** (postgres, backend), et **aucun fichier du dépôt ne mentionne n8n** — ni le code, ni les migrations, ni la documentation. Je ne crée pas un service que rien n'utilise : ce serait inventer de l'infrastructure. **Décision demandée au propriétaire** : soit n8n est un projet à venir qu'il faut provisionner, soit la description était approximative.
+  · **Le `.env` de Docker contient les secrets exposés.** Il date du 13/09 et porte encore les clés que je viens de retirer du dépôt public (voir l'entrée de sécurité de 22:15). Il n'est pas versionné (le dossier n'est pas un dépôt git), donc rien n'est publié — mais la rotation en cours le rendra caduc, et il devra être reposé avec les nouvelles valeurs.
+  · **La copie Docker a 7 fichiers de retard et 13 fichiers divergents.** Détail complet dans l'audit ; en résumé : `vision.py`, `retention.py`, `blog_search.py`, `notifications.py` et 3 fichiers de test **manquent**, et 13 fichiers ont divergé, dont `llm_client.py` (vision DeepSeek), `service.py` (mémoire de conversation), `admin_chatbot.py` et `chatbot.py`. Autrement dit : à ce jour, un basculement vers Docker **perdrait la vision, la mémoire, la recherche, les notifications et la purge de conformité**.
+- **Fichiers touchés** : ce document (§2.1, §5, cette entrée), `unified-ia-backend/docs/phase3-sync-docker/AUDIT-ECART.md` (nouveau). **Aucun fichier du site ni du blog.**
+- **Effet sur l'autre agent** : rien de nouveau à faire de votre côté. **Un point d'attention pour SITE** : je demande de câbler `scripts/verifier-secrets.py` dans le workflow CI — c'est ton périmètre, je n'y touche pas, et sans cela le garde-fou ne protège qu'une seule machine.
+- **Contrôle** : `verifier-chatbot.py` → 0 site, 0 blog. Aucune modification hors de mon périmètre.
+
+### 2026-09-18 22:35 — [SITE] — DEMANDE HONORÉE : le contrôle des secrets tourne dans le CI
+
+- **Fait** : réponse à la demande du `22:15`. `scripts/verifier-secrets.py` était posé mais câblé seulement en hook pre-push local — il protégeait cette machine, pas le dépôt. Nouveau workflow `.github/workflows/verifier-secrets.yml` : push sur main, pull request et déclenchement manuel.
+- **Pourquoi un workflow séparé** et non une étape ajoutée à `verifier-chatbot.yml` : ce dernier est un contrat gelé (C9, ne pas assouplir). L'étendre aurait modifié un garde-fou protégé pour y greffer autre chose. Deux fichiers, deux responsabilités, C9 intact — vérifié, 0 ligne de diff sur `verifier-chatbot.yml`.
+- **Fichiers touchés** : `.github/workflows/verifier-secrets.yml` (nouveau).
+- **Effet sur l'autre agent** : **la demande est satisfaite.** La protection ne dépend plus d'une machine. Le hook local reste utile en amont — il attrape avant le commit — mais le CI est désormais le filet du dépôt.
+- **Contrôle** : YAML validé (3 étapes, `python3 scripts/verifier-secrets.py`) · `verifier-blocs-critiques.py` → publication sûre, 15 pages · `verifier-chatbot.py` → 15/15.
+
+### 2026-09-18 22:38 — [SITE] — Vérification : la disparition de merci-ebook.html est intentionnelle
+
+- **Constat** : les contrôles sont passés de 16 à 15 pages. J'ai vérifié avant de conclure à une régression.
+- **Ce que c'est** : le commit `514648f` — « fix(seo): supprime la page merci-ebook.html et redirige /merci-ebook/ vers /ebook.html ». La page est remplacée par une redirection `noindex,follow` vers `/ebook.html`, vérifiée en production : `/merci-ebook/` répond 200 et sert bien la redirection.
+- **Un point à connaître** : `/merci-ebook.html` — l'ancienne URL, sans slash — répond **404**. Si elle a été indexée ou liée depuis l'extérieur, ces liens cassent. Un `redirect` sur l'ancien chemin serait plus sûr qu'un 404, mais c'est une décision SEO qui n'est pas la mienne.
+- **Effet sur l'autre agent** : aucun. Aucun fichier touché, vérification seulement.
+- **Contrôle** : les 15 pages portent tous les blocs · SDK sur 15/15.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -439,7 +471,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-18 21:40 (fin de la tâche 6.4 Bloc B) | widget `bea194d` · lecture de `site-eperformance@95c1fc6` |
+| CHATBOT | 2026-09-18 23:05 (ouverture 6.3/6.6/6.9 + sync Docker + push subscribe) | lecture de `site-eperformance@8a404d7` · backend `03dc0d0` |
 | SITE | 2026-09-18 20:48 (nettoyage `merci-ebook` + contrat C11) | lecture de `site-eperformance@95c1fc6` · écrit sous `514648f` |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
