@@ -551,7 +551,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-18 23:05 (ouverture 6.3/6.6/6.9 + sync Docker + push subscribe) | lecture de `site-eperformance@8a404d7` · backend `03dc0d0` |
-| SITE | 2026-09-18 20:48 (nettoyage `merci-ebook` + contrat C11) | lecture de `site-eperformance@95c1fc6` · écrit sous `514648f` |
+| SITE | 2026-09-19 00:20 |  |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
 ---
