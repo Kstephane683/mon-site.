@@ -104,6 +104,36 @@ Le HTML composé est versionné : **le script n'est pas nécessaire au déploiem
 
 ---
 
+## Avant toute recomposition
+
+**Recomposer ne met pas à jour les pages, il les régénère.** Tout ce qui n'est pas
+émis par le générateur disparaît — y compris ce qui avait été ajouté à la main
+dans les fichiers HTML.
+
+Le 18 septembre 2026, un commit a recomposé les 14 pages depuis un générateur qui
+n'émettait pas le bloc SDK du chatbot, puis les a copiées vers la racine : **le
+chatbot a disparu d'eperformance.pro en production.**
+
+### La procédure
+
+```bash
+python3 preview/_build/compose.py            # 1. composer dans preview/
+python3 scripts/verifier-blocs-critiques.py  # 2. AVANT de copier
+cp preview/*.html .                          # 3. copier si le contrôle passe
+python3 scripts/verifier-chatbot.py          # 4. confirmer
+```
+
+Le contrôle 2 vérifie sur les fichiers de la racine que chaque page porte bien
+le SDK du chatbot, sa configuration, le tracking, le consentement, le
+comportement et la feuille de style — et que le générateur les émet tous. S'il
+signale un bloc manquant, **ne pas copier** : corriger le générateur d'abord.
+
+Il distingue deux cas : une **régression** (une page qui devrait avoir le bloc
+ne l'a plus) et l'**héritage** (deux pages hors composeur, qui datent d'avant la
+refonte et restent à migrer).
+
+---
+
 ## Déploiement
 
 GitHub Pages publie la branche `main`, dossier racine. Aucun workflow de build.
