@@ -65,6 +65,16 @@
 
 ---
 
+### C12 — Parité `docker-unified/` ↔ backend Railway
+
+**Propriétaire** : CHATBOT.
+**Ce qui est gelé** : `docker-unified/unified-ia-backend/` n'est pas un bac à sable, c'est le **backend qui remplacera Railway** sur un serveur dédié. Toute modification du backend Railway doit être répliquée dans la copie Docker **dans le même cycle** (même session de travail, avant le push).
+**Justification** : un écart n'est pas une dette cosmétique — le jour du basculement, ce qui manque est perdu. Au 18/09 la copie avait six jours de retard : il lui manquait la vision, la mémoire de conversation, la recherche, les notifications et la purge de conformité. Un basculement ce jour-là aurait cassé cinq fonctions sans prévenir.
+**Ce que la parité couvre** : fichiers de code, migrations, `requirements.txt`, documentation et scripts — **identiques à l'octet**. Le `.env` est **propre à chaque environnement** (URL de base de données différente) et ne peut donc pas être identique ; ce qui doit être identique, c'est la **connaissance** : toute variable lue par le code doit y être **déclarée**, sinon l'écart de comportement ne se voit qu'au premier symptôme.
+**Fichiers jamais écrasés** : `Dockerfile`, `.dockerignore`, `docker-compose.yml`, `.env` — une copie naïve de la source les ferait disparaître.
+**Contrôle** : `python3 scripts/verifier-parite-docker.py` — comparaison md5, sortie `0` parité / `1` écart / `2` erreur de mesure, intégré au smoke test pre-push. **Une comparaison sur zéro fichier est une erreur de mesure, jamais un succès** : un garde-fou qui valide le vide ne garde rien.
+**Preuve d'utilité immédiate** : le contrôle a détecté, à la minute où elles ont été écrites, trois variables VAPID ajoutées par la livraison push **après** l'audit Docker — puis ma propre modification du smoke test non répliquée. C'est exactement l'écart silencieux que ce contrat existe pour empêcher.
+
 ## 2. ÉTAT DES TÂCHES
 
 ### 2.1 Agent CHATBOT (Mia)
