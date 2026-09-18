@@ -77,7 +77,7 @@
 | P3-6.2 | Refonte visuelle du widget (jetons canoniques, polices, thème) | ✅ Fait | Commit widget `9fa2fd7` — 90 hex → 3 |
 | P3-6.2-BIS | Structure Intercom (4 onglets, saisie complète, signature) | ✅ Fait | Commit `dc3c484` — 90 tests |
 | P3-6.7 | Chatbot sur toutes les pages site + blog | ✅ Fait | 16/16 et 88/88 (garde-fou CI) |
-| **P3-6.3-BIS** | **Bloc A — 11 corrections chatbot (URGENT production)** | 🚧 **En cours** | 11 items : vision DeepSeek, scroll Actualités, datation, ouverture Mia, script rigide, fuite d'agent, suggestions desktop, 9 intents, Aide enrichi, ONBOARDING, non-régression |
+| **P3-6.3-BIS** | **Bloc A — 11 corrections chatbot (URGENT production)** | ✅ **Fait** | Widget `1100b63` · backend `1d084bb` — 128/128 tests widget, 95 tests backend, vision opérationnelle, `docs/phase3-tache-6-3-bis/RAPPORT.md`. Contrat N3 livré au NOYAU (voir journal). |
 | **P3-6.4** | **Bloc B — PWA Mia + publication stores** | ⏳ **À venir** (après Bloc A) | Audit préalable d'abord |
 | **P3-6.3** | **Dashboard admin** (compléter : sidebar, header, modules) | ⏳ Reporté après 6.4 | — |
 | **P3-6.4** | **App mobile Mia (PWA) + publication Play Store / App Store** | ⏳ **À venir** | — |
@@ -161,6 +161,28 @@
 - **Effet sur l'autre agent** : ⚠️ **à savoir** — les 9 suggestions enverront un préfixe `[intent:<nom>]` au backend. Le mapping intent → agent reste **strictement backend** : aucun nom d'agent ne doit apparaître côté front (règle A.6). Si tu vois un nom d'agent dans une réponse de Mia, c'est un défaut de mon périmètre — signale-le en entrée de journal.
 - **Contrôle** : à passer en fin de Bloc A puis consigné ici.
 
+### 2026-09-18 — [CHATBOT] — 6.3-BIS Bloc A LIVRÉ : 11 corrections + contrat N3
+
+- **Fait** : les 11 corrections du Bloc A sont en production, plus le contrat N3 demandé en cours de mission par l'agent NOYAU.
+  · **A.1 vision** — modèle `deepseek-flash` (l'ancien `deepseek-chat` était écrit en dur et non surchargeable) ; le widget transmet l'image en base64 (champ `image` sur le dernier message) ; formats JPEG/PNG/GIF/WebP détectés par magic bytes, plafond 512 px. Mia décrit l'image et répond à la question.
+  · **A.2 + A.7 défilement** — `.ep-vue` n'avait ni `flex:1`, ni `min-height:0`, ni `overflow-y:auto` alors que son parent est en `overflow:hidden` : tout contenu plus haut que la fenêtre était coupé (listes Actualités, suggestions desktop). Mesuré : 2 198 px de contenu / 541 px visibles, 48 captures avant/après.
+  · **A.3** signature toujours sous la bulle (« Bonjourvous · il y a 2 min » corrigé) ; **A.4** message d'ouverture une seule fois par session ; **A.5** canevas de premier contact supprimé du persona `sales-discovery-coach` ; **A.6** plus aucun nom d'agent (widget + 24 personas normalisés + garde-fou de sortie) ; **A.8** 9 capacités en 3 familles avec payload `[intent:…]` et tracking ; **A.9** onglet Aide enrichi des 9 capacités ; **A.10** `ONBOARDING-MIA.md`.
+  · **N3** — le SDK émet désormais `eperf:chatbot:message` (chaque réponse de Mia) et `eperf:chatbot:lead` (clic WhatsApp ou capture) sur le document de la page hôte, avec `detail` réduit à une catégorie/un type d'énumération. **Aucune donnée personnelle.**
+- **Fichiers touchés** : dépôt widget — `src/views/{Home,Help,Conversation,Messages}.vue`, `src/components/{MessageBubble,ChatMessages,ChatInput}.vue`, `src/stores/{messages,intent,conversation}.ts`, `src/api/railway.ts`, `src/types/api.ts`, `src/style.css`, `src/data/capacites.ts` (nouveau), `src/helpers/tracking.ts` (nouveau), `src/sdk/entry.ts`, tests (`blocA.spec.ts`, `railway.spec.ts`, `sdk.spec.ts`), `ONBOARDING-MIA.md`, `docs/phase3-tache-6-3-bis/**`. Backend — `backend/core/llm_client.py`, `backend/chatbot/{vision.py (nouveau),response_generator.py,service.py,agent_router.py}`, `backend/api/routes/chatbot.py`, 27 personas `backend/chatbot/agents/**`, `backend/chatbot/test_tache_6_3_bis.py`. Contrat — `CONTRAT-INTERFACE-V2.md` (V2.2). **Aucun fichier du site ni du blog n'a été modifié.**
+- **Effet sur l'autre agent** : ⚠️ **à savoir, deux points.**
+  · **Contrat N3 livré pour le NOYAU** : `eperf:chatbot:message` `{detail:{intent}}` et `eperf:chatbot:lead` `{detail:{type}}` sont émis sur le `document` de la page — le `tracking.js` du site les écoute déjà, rien à modifier côté SITE. `ePerformance.on('open'|'close')` est **inchangée**.
+  · **Le SDK change d'interface publique (ajout, pas rupture)** : d'où l'entrée ⚠️ DEMANDE ci-dessous.
+  · Rappel A.6 : `metadata.agent_used` reste dans la réponse mais **n'est plus jamais affiché**. Si vous voyez un nom d'agent à l'écran, c'est un défaut de mon périmètre.
+- **Contrôle** : site `16/16` · blog `88/88` · widget **128/128** · backend `/health` 200 · `node_modules` inchangé (aucune dépendance ajoutée) · bundle widget ≈ 73,6 Ko gzip (< 150) · **chevauchement `.sticky-cta` = 0 px²** (1280×720 et 390×844) · **bulle masquée sous bandeau de consentement** (D9) · **Consent Mode v2 intact** (`ad_storage`/`ad_user_data`/`ad_personalization`/`analytics_storage` = `denied` par défaut). Mesures rejouables : `docs/phase3-tache-6-3-bis/non-regression.py`.
+
+#### ⚠️ DEMANDE — au nom de l'agent CHATBOT, à l'attention de SITE (et du NOYAU)
+
+- **Quoi** : le SDK (`eperformance-sdk.js`) émet deux **nouveaux** événements sur le `document` de la page hôte : `eperf:chatbot:message` et `eperf:chatbot:lead`.
+- **Pourquoi** : le noyau les spécifie (`agent-ia-web/docs/chatbot-integration-noyau.md`) et le `tracking.js` du site les écoute déjà ; sans émission côté SDK, deux des quatre événements GA4 du chatbot n'étaient jamais mesurés.
+- **Interface publique** : **ajout seul**, aucune rupture. `window.ePerformance.open/close/toggle/identify/on` inchangées ; les événements ajoutés sont des `CustomEvent` sur `document`, sans effet si personne ne les écoute.
+- **Impact sur l'autre agent** : aucun fichier du site à modifier. Si le SITE veut les mesurer, ses écouteurs actuels suffisent.
+- **Détail des données** : `{intent: string}` (catégorie, filtrée `[a-z0-9_-]{1,40}`, sinon `non_detecte`) et `{type: 'whatsapp_clic'|'formulaire'|'email_clic'}` (énumération fermée, toute autre valeur rejetée). **Aucune donnée personnelle**, jamais de contenu de message.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -189,7 +211,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-18 | `5898cdc` (mission 6.3-BIS ouverte) |
+| CHATBOT | 2026-09-18 (fin de Bloc A) | `6.3-BIS Bloc A livré` — widget `1100b63`, backend `1d084bb` · lecture de `site-eperformance@9036aa2` |
 | SITE | 2026-09-18 (après incident) | `9036aa2` |
 
 ---
