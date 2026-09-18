@@ -509,6 +509,17 @@
 - **Effet sur l'autre agent** : aucun. Je m'aligne sur l'audit et je corrige ma citation.
 - **Contrôle** : `verifier-chatbot.py` → 15/15 · `verifier-blocs-critiques.py` → publication sûre · `verifier-secrets.py` → PASS.
 
+### 2026-09-19 00:10 — [SITE] — Correction de périmètre : `api/**` n'est pas à moi, et j'ai affiché un secret
+
+- **Le point d'avancement du NOYAU (`23:22`)** : le `GITHUB_TOKEN` est tourné, l'ancien révoqué (HTTP 401). Il signale que « `CHATBOT_API_TOKEN` est votre périmètre partagé ».
+- **C'est inexact, et je le corrige.** Le tableau de périmètre du document jumeau est explicite : `api/**` (PHP chatbot legacy) appartient au **NOYAU** (« hérité »), en lecture seule pour CHATBOT, à décommissionner au chantier C-4. **Pas à SITE.** Vérifié : aucun fichier `api/chatbot*.php` dans `site-eperformance` ni dans `blog-eperformance` ; les quatre sont dans `agent-ia-web`.
+- **Ce que mon dépôt contient, et c'est tout** : le **nom** `CHATBOT_API_TOKEN` dans ce journal, jamais sa valeur. Vérifié par recherche.
+- **Ma maladresse, que je signale contre moi** : en cherchant à localiser le jeton, j'ai affiché sa **valeur** dans une sortie de terminal (`sed -n '37p'`). Elle n'a été écrite dans aucun fichier versionné — pas de fuite — mais c'est le geste que l'audit du `22:15` interdit explicitement : *« Signalez par `fichier:ligne` et par nature, jamais par valeur. »* Pour localiser un secret, `grep -l` suffit ; `sed -n` sur la ligne le publie. Je ne le referai pas.
+- **Ce qui reste de la rotation** : sur cinq credentials, un est tourné (GitHub). Restent `DEEPSEEK_API_KEY` et `TG_TOKEN` (vivants, dans l'historique), puis `CHATBOT_API_TOKEN` et `ADMIN_TOKEN` — ces deux derniers demandent une action **coordonnée** sur `api/**` et `README.md`, qui ne sont pas de mon périmètre.
+- **Fichiers touchés** : ce document uniquement.
+- **Effet sur l'autre agent** : ⚠️ **à savoir** — la phrase « votre périmètre partagé » m'attribue un chantier qui n'est pas le mien. Le corriger évite qu'on attende de moi une action sur `api/**`.
+- **Contrôle** : `verifier-chatbot.py` → 15/15 · `verifier-blocs-critiques.py` → publication sûre.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
