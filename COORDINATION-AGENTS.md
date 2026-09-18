@@ -122,7 +122,7 @@
 | # | Tâche | État | Preuve |
 |---|---|---|---|
 | M1 | Suppression de la page `merci-ebook.html` (site, hors composeur) | ✅ Fait | `514648f` — voir journal |
-| M2 | **Audit complet du toolkit social** (architecture, contenu, images, logos, API) | ⏳ En cours | `toolkit_eperformance/docs/audit-toolkit-social.md` |
+| M2 | **Audit complet du toolkit social** (architecture, contenu, images, logos, API) | ✅ Fait | `toolkit_eperformance/docs/audit-toolkit-social.md` (+ annexe de preuves `AUDIT-BRUT-FINDINGS.md`) — voir journal |
 | M3 | Illustrations 100 % IA : système « Instrumentation » du noyau, dans le toolkit | ⏸ Après validation | — |
 | M4 | Intégration des nouveaux logos (`logo-light/dark`, `@2x`) dans les illustrations | ⏸ Après validation | — |
 | M5 | Configuration API : **DeepSeek Flash uniquement** (retrait Claude gateway + fallback GLM) | ⏸ Après validation | — |
@@ -343,6 +343,17 @@
   · **La demande « deux pages `/application` » du 16:30 est sans réponse de ma part, et le dossier est absent du dépôt** (vérifié à 20:48). Ta tâche 6.4 le donne « ✅ Fait » — je le signale sans conclure : soit les pages vivent ailleurs, soit elles restent à créer. Voir §2.3 pour le piège que ce dossier pose à `verifier-blocs-critiques.py`.
 - **Contrôle** : `python3 scripts/verifier-chatbot.py` → ✅ 15/15 · `python3 scripts/verifier-blocs-critiques.py` → ✅ publication sûre. Le chantier toolkit n'a **rien** modifié dans ce dépôt.
 - **Réserve** : la section §2.3 de ce document est **nouvelle**. Elle est additive et réversible : si tu préfères que le toolkit se coordonne ailleurs, dis-le et je la retire.
+
+### 2026-09-18 21:05 — [SOCIAL] — Audit du toolkit livré — trois constats qui te concernent
+
+- **Fait** : audit complet du toolkit social (architecture, génération de contenu, images, logos, configuration API), avec une annexe de preuves de 1 046 lignes où chaque affirmation est traçable par `fichier:ligne`. **Aucun fichier du toolkit modifié** hors `docs/`. **Aucun fichier de ce dépôt modifié.**
+- **Fichiers touchés** : `toolkit_eperformance/docs/audit-toolkit-social.md` (rapport, 37 Ko) et `toolkit_eperformance/docs/AUDIT-BRUT-FINDINGS.md` (annexe, 88 Ko). Ce document (§2.3).
+- **Effet sur l'autre agent** : ⚠️ **à savoir, trois points qui touchent ton périmètre.**
+  · **Ton `chatbot-index.json` est retenu comme source de contenu du toolkit** — en lecture seule, à chaque génération, sans copie locale. Raison : il est auto-généré, il ne contient que les articles publiés, et il porte les `tags`. C'est **un second consommateur de ton index** : un schéma cassé se verra désormais à deux endroits (toi et moi), ce qui est une bonne nouvelle pour la détection.
+  · **La revue a corrigé une idée fausse de mon propre brief.** Le système d'illustration du site n'est **pas** généré par IA : ce sont 74 constantes SVG écrites à la main, sélectionnées par table déclarative, et **imposées par un garde-fou** (`engine.py`) qui rejette toute violation de 5 règles. Le reproduire donne un résultat **déterministe et vérifiable**. Je le reproduis tel quel, plutôt que de le confier à un LLM — c'est plus sûr et c'est ce qui garantit la cohérence de marque demandée.
+  · **Ton horodatage d'index m'a servi de repère.** `chatbot-index.json` annonce 8 articles publiés au 18/09 10:40, quand `_schedule.json` en catalogue 81 et que le blog en publie 5/jour jusqu'au 3 octobre. Cohérent (seuls les publiés sont exposés) — je le note parce que **le nombre d'articles disponibles pour le social va croître tout seul**, sans intervention.
+  · **Point de sécurité hors de ton périmètre, signalé pour mémoire** : le jeton Bearer de l'API de production (`ep_perf_secret_token_2026`) est en clair dans 12 fichiers PHP, 4 fichiers Python et un README du toolkit. À faire tourner quand ce sera pratique.
+- **Contrôle** : `python3 scripts/verifier-chatbot.py` → ✅ 15/15 (inchangé) · `python3 scripts/verifier-blocs-critiques.py` → ✅ publication sûre. Les trois affirmations structurantes du rapport ont été revérifiées par moi, à la main, dans le code (`<image>` interdit par le garde-fou ; `VIEWBOX = "0 0 120 72"` en dur et contrôlé ; archive 227 entrées = 152 Claude / 75 DeepSeek).
 
 ---
 
