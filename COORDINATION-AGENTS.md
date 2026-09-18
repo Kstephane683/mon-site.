@@ -77,7 +77,9 @@
 | P3-6.2 | Refonte visuelle du widget (jetons canoniques, polices, thème) | ✅ Fait | Commit widget `9fa2fd7` — 90 hex → 3 |
 | P3-6.2-BIS | Structure Intercom (4 onglets, saisie complète, signature) | ✅ Fait | Commit `dc3c484` — 90 tests |
 | P3-6.7 | Chatbot sur toutes les pages site + blog | ✅ Fait | 16/16 et 88/88 (garde-fou CI) |
-| **P3-6.3** | **Dashboard admin** (compléter : sidebar, header, modules, iframes habillées) | 🚧 **En cours** | — |
+| **P3-6.3-BIS** | **Bloc A — 11 corrections chatbot (URGENT production)** | 🚧 **En cours** | 11 items : vision DeepSeek, scroll Actualités, datation, ouverture Mia, script rigide, fuite d'agent, suggestions desktop, 9 intents, Aide enrichi, ONBOARDING, non-régression |
+| **P3-6.4** | **Bloc B — PWA Mia + publication stores** | ⏳ **À venir** (après Bloc A) | Audit préalable d'abord |
+| **P3-6.3** | **Dashboard admin** (compléter : sidebar, header, modules) | ⏳ Reporté après 6.4 | — |
 | **P3-6.4** | **App mobile Mia (PWA) + publication Play Store / App Store** | ⏳ **À venir** | — |
 | **P3-6.5** | **Notifications** (toasts, push FCM, emails, Telegram, WhatsApp) | ⏳ **À venir** | — |
 | **P3-6.8** | **RAG blog dans le chatbot** (onglet Aide : recherche sémantique) | ⏳ **À venir** | — |
@@ -142,6 +144,23 @@
   Pourquoi je ne l'ai pas vu : le bloc SDK avait été injecté **dans les pages**, pas dans le générateur. J'ai supposé que recomposer était sans risque — or recomposer régénère les pages **depuis le générateur**, donc tout ce qui n'y est pas disparaît. C'est la règle qui a coûté cher, et je l'avais lue après coup.
 - **Contrôle** : `python3 scripts/verifier-chatbot.py` → ✅ 16/16 pages + générateur conforme. Vérifié en production : SDK présent sur 6/6 pages testées.
 
+### 2026-09-18 — [CHATBOT] — Ouverture de la mission 6.3-BIS (Bloc A) + 6.4 (Bloc B)
+
+- **Fait** : protocole de coordination exécuté avant démarrage — document lu aux 3 emplacements, contrôles lancés sur les 2 dépôts, non-régression de départ mesurée.
+  · `scripts/verifier-chatbot.py` → ✅ 16/16 (site) et 88/88 (blog)
+  · widget 90/90 tests · site 200 · blog 200 · backend `/health` 200
+- **Fichiers touchés** : aucun à ce stade (lecture seule).
+- **Effet sur l'autre agent** : **aucun**. Mission à venir = périmètre CHATBOT exclusivement (`eperformance-widget/**`, backend FastAPI). Le générateur du site, `eperf.css`, le workflow blog et les garde-fous CI ne seront pas modifiés — toute exception fera l'objet d'une entrée ⚠️ DEMANDE.
+- **Contrôle** : conforme.
+- **Note de lisibilité** : la consigne demandait de « remplir la section 2.2 ». La 2.2 est la section **SITE** (déjà remplie par l'agent SITE, commit `5898cdc`) ; je suis l'agent **CHATBOT**, ma section est la **2.1**, complétée ci-dessous. Aucune écriture dans le périmètre de l'autre agent.
+
+### 2026-09-18 — [CHATBOT] — Mission 6.3-BIS Bloc A — démarrage des 11 corrections
+
+- **Fait** : démarrage du Bloc A (corrections urgentes de production) : vision DeepSeek (A.1), défilement Actualités (A.2), datation des messages visiteur (A.3), message d'ouverture de Mia (A.4), suppression du script rigide (A.5), fuite du nom d'agent (A.6), suggestions desktop (A.7), 9 suggestions enrichies par intent (A.8), onglet Aide enrichi (A.9), `ONBOARDING-MIA.md` (A.10), non-régression (A.11).
+- **Périmètre** : widget + SDK + backend FastAPI. **Aucun fichier du site ou du blog.**
+- **Effet sur l'autre agent** : ⚠️ **à savoir** — les 9 suggestions enverront un préfixe `[intent:<nom>]` au backend. Le mapping intent → agent reste **strictement backend** : aucun nom d'agent ne doit apparaître côté front (règle A.6). Si tu vois un nom d'agent dans une réponse de Mia, c'est un défaut de mon périmètre — signale-le en entrée de journal.
+- **Contrôle** : à passer en fin de Bloc A puis consigné ici.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -170,7 +189,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-18 | `7227e7a` |
+| CHATBOT | 2026-09-18 | `5898cdc` (mission 6.3-BIS ouverte) |
 | SITE | 2026-09-18 (après incident) | `9036aa2` |
 
 ---
