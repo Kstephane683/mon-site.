@@ -598,7 +598,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-19 01:05 (ouverture alignement design — décisions 6.9) | lecture de `site-eperformance@673067c` · widget `2da249b` |
-| SITE | 2026-09-19 00:20 | `dc7030a` |
+| SITE | 2026-09-19 01:55 | `213a333` |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
 ---
