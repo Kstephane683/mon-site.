@@ -391,6 +391,24 @@
 - **Proposition, à trancher par l'agent BACKEND** (je n'arbitre pas seul) : un endpoint public `POST /api/chatbot/push/subscribe` recevant `{ endpoint, keys: { p256dh, auth }, conversation_id, site_id }`, appelé par le widget après consentement explicite du visiteur. Le widget ne demandera **jamais** la permission de notification au premier chargement (même règle que l'invite d'installation).
 - **Réserve** : ce n'est pas dans le périmètre du Bloc B, et la consigne était de ne rien publier. Je le signale pour que la tâche qui le fera ne reparte pas de zéro.
 
+### 2026-09-18 22:15 — [CHATBOT] — 🔴 SÉCURITÉ : quatre secrets de production étaient exposés dans des dépôts PUBLICS
+
+- **Fait** : en vérifiant la livraison 6.5/6.8, deux clés de production ont été trouvées **en clair dans le dépôt public du backend**. L'audit élargi aux cinq dépôts en a trouvé **quatre au total, tous vérifiés ACTIFS** — pas des reliquats périmés :
+  · `DEEPSEEK_API_KEY` — publique (unified-ia-backend), 2 fichiers.
+  · `CLAUDE_GATEWAY_KEY` — publique (unified-ia-backend), 2 fichiers.
+  · `TELEGRAM_BOT_TOKEN` — publique (unified-ia-backend), 5 fichiers dont une **valeur par défaut codée en dur** dans `config.py`.
+  · **Le jeton de l'API de production — publique dans CE dépôt**, à la ligne 355 du présent document : l'entrée [SOCIAL] du 20:48 le nommait pour dire qu'il était exposé, et l'a donc publié du même geste. Également présent dans 31 fichiers du toolkit et 7 d'agent-ia-web (ces deux dépôts **n'ont aucun remote** : rien n'en est sorti).
+- **Comment « actif » a été établi** (pas supposé) : comparaison d'empreintes SHA-256 avec les variables Railway en production pour les trois premiers ; appel HTTP réel sur l'endpoint cron pour le quatrième → **HTTP 200**, le jeton fonctionne aujourd'hui.
+- **Traité** : valeurs retirées de **tous les fichiers publiés**, remplacées par des références de variables d'environnement. Nouveau `scripts/verifier-secrets.py` — 11 motifs, filtre de gabarits, **sortie masquée** (il ne recrache jamais la valeur qu'il trouve) — câblé dans le smoke test pre-push du backend et en hook pre-push local de ce dépôt-ci. Deux commits poussés : backend `cb5e2cb` puis `03dc0d0`, site `bc44906`.
+- **⚠️ CE QUI RESTE, ET QUI N'APPARTIENT QU'AU PROPRIÉTAIRE — LA ROTATION.** Réécrire un fichier **ne répare rien** : l'historique git conserve les valeurs, et un dépôt public est moissonné en continu. Les quatre secrets doivent être **révoqués chez leurs fournisseurs** (DeepSeek, passerelle aiapiflow, BotFather pour Telegram, cPanel pour le jeton API), puis les nouvelles valeurs posées en variables d'environnement. Tant que ce n'est pas fait, la fuite est active — et la rotation était **déjà** sur la liste des actions cPanel en attente, donc rien de nouveau sinon l'urgence.
+- **Fichiers touchés** : ce document (la valeur disparaît, la mention du problème reste), `scripts/verifier-secrets.py` (nouveau). Hors de ce dépôt : 3 fichiers de documentation + `config.py` + 2 fichiers de code + le smoke test, côté backend.
+- **Effet sur l'autre agent** : ⚠️ **trois consignes, dont une qui vaut pour tout le monde.**
+  · **N'écrivez plus jamais une valeur de secret dans un fichier versionné — même pour la signaler.** Signalez par `fichier:ligne` et par nature (« un jeton Bearer en clair dans 12 fichiers PHP »), jamais par valeur. Le garde-fou couvre désormais ce cas, mais il est arrivé parce qu'un agent a voulu bien faire.
+  · **Le hook est local, donc non versionné** : il protège cette machine, pas le dépôt. Je demande à **SITE** de câbler `python3 scripts/verifier-secrets.py` dans le workflow CI — c'est son périmètre, je ne touche pas à ses workflows. Sans cela, la protection dépend d'une machine.
+  · **Je n'ai pas touché aux copies du toolkit ni d'agent-ia-web** (31 et 7 fichiers) : hors de mon périmètre, et surtout sans objet une fois les jetons révoqués. Un demi-correctif y donnerait une fausse assurance.
+- **Une leçon de méthode, contre moi** : mon premier balayage de ce dépôt l'avait déclaré « propre ». Mes motifs étaient trop étroits — ils cherchaient les préfixes connus des grands fournisseurs et ne voyaient ni un jeton en prose, ni la convention de nommage de ce projet. C'est le second passage, après avoir constaté que le jeton *était* là, qui a produit les bons motifs. **Un scan qui ne trouve rien ne prouve pas qu'il n'y a rien** ; il prouve seulement qu'il a bien tourné.
+- **Contrôle** : `verifier-secrets.py` → PASS sur site (78 fichiers), backend (122), blog (208) · santé backend `/health` → 200 · conversation Mia → 200, `metadata.agent_used` absent (conforme) · recherche 6.8 → 200, 3 résultats pertinents · routes de notification → **401 sans jeton**, `require_admin` présent sur les deux.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
