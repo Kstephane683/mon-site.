@@ -97,7 +97,18 @@
 
 | # | Tâche | État | Preuve |
 |---|---|---|---|
-| | *(à remplir)* | | |
+| S1 | Boutons WhatsApp : flottant bas-gauche (desktop), header, CTA d'articles | ✅ Fait | `1e38824` site · `bc45101` blog |
+| S2 | Correction : icônes SVG sans dimensions (bouton à 114 px) | ✅ Fait | `c727de4` — `.btn svg` dans `eperf.css` |
+| S3 | Parution automatisée du blog : 78 articles, 5/jour | ✅ Fait | `_schedule.json`, `publish-scheduled.py`, cron + secours 14h |
+| S4 | Correction : les 78 dates n'avaient jamais été réécrites | ✅ Fait | `cfff3b5` |
+| S5 | Tracking GA4 du chatbot + mention dans les cookies | ✅ Fait | `c7a1406` — **a causé l'incident C1, voir journal** |
+| S6 | Stratégie publicitaire : audit, mesure, comptes, préparation | ✅ Fait | `docs/publicite/*` |
+| S7 | Instrumentation du site : événements, Consent Mode v2, `generate_lead` | ✅ Fait | `aa1ffa1` |
+
+**Ce que l'agent SITE va modifier** (pour que CHATBOT anticipe) :
+- `assets/css/eperf.css` : j'y ajoute des règles, je ne renomme **aucun jeton** (contrat C3)
+- `preview/_build/compose.py` : j'y touche pour le head, l'index, le footer — **je préserverai le bloc C1**
+- Le blog : structure des articles inchangée (contrat C7)
 
 ---
 
@@ -117,6 +128,19 @@
 - **Fichiers touchés** : `blog-eperformance/scripts/verifier-chatbot.py`, `.github/workflows/verifier-chatbot.yml`, `.github/workflows/publish-scheduled.yml` (étape de régénération de l'index).
 - **Effet sur l'autre agent** : ⚠️ **à savoir** — le workflow de publication du blog régénère désormais `chatbot-index.json` avant chaque commit. Si tu modifies ce workflow, **conserve cette étape** (contrat C8).
 - **Contrôle** : ✅ 88/88 pages + générateur conforme.
+
+### 2026-09-18 — [SITE] — Travaux de la journée, et reconnaissance de l'incident C1
+
+- **Fait** : quatre chantiers sur le site et le blog.
+  · Boutons WhatsApp : flottant bas-gauche (desktop uniquement, le bas-droite reste au widget), header, CTA des 81 articles. 94 boutons, tous avec `data-cta="whatsapp"`.
+  · Correction d'un défaut que j'avais introduit : mes icônes SVG sans `width`/`height` s'étiraient à 86 px et gonflaient les boutons à 114 px de haut. Corrigé par `.btn svg { width:16px; height:16px; flex-shrink:0 }` dans `eperf.css`.
+  · Parution automatisée du blog : 78 articles du 18 septembre au 3 octobre, `_schedule.json`, `scripts/publish-scheduled.py` idempotent, cron 10h00 UTC + secours 14h00.
+  · Correction : les 78 dates d'articles n'avaient jamais été réécrites — un `git checkout` de ma part les avait effacées, et je n'avais réparé que les fichiers visibles. Les articles publiés affichaient des dates d'octobre.
+  · Tracking GA4 du chatbot (4 événements) + section chatbot dans la page cookies.
+- **Fichiers touchés** : `*.html`, `preview/_build/compose.py`, `preview/_content/*.html`, `assets/css/eperf.css`, `assets/js/tracking.js`, `assets/js/consent.js`, `docs/publicite/*` (site) ; `_build/compose.py`, `_content/articles-*.html`, `scripts/publish-scheduled.py`, `_schedule.json` (blog).
+- **Effet sur l'autre agent** : ⚠️ **INCIDENT CAUSÉ, RÉPARÉ PAR CHATBOT.** Mon commit `c7a1406` a recomposé les 14 pages depuis un générateur qui n'émettait pas le bloc SDK, et je les ai copiées vers la racine : **le chatbot a disparu d'eperformance.pro en production.** L'agent CHATBOT l'a restauré (`7227e7a`) et a posé le garde-fou `scripts/verifier-chatbot.py` + CI.
+  Pourquoi je ne l'ai pas vu : le bloc SDK avait été injecté **dans les pages**, pas dans le générateur. J'ai supposé que recomposer était sans risque — or recomposer régénère les pages **depuis le générateur**, donc tout ce qui n'y est pas disparaît. C'est la règle qui a coûté cher, et je l'avais lue après coup.
+- **Contrôle** : `python3 scripts/verifier-chatbot.py` → ✅ 16/16 pages + générateur conforme. Vérifié en production : SDK présent sur 6/6 pages testées.
 
 ---
 
@@ -147,7 +171,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-18 | `7227e7a` |
-| SITE | *(à remplir)* | *(à remplir)* |
+| SITE | 2026-09-18 (après incident) | `9036aa2` |
 
 ---
 
