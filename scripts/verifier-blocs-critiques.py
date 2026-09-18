@@ -55,7 +55,7 @@ BLOCS_SOUPLES = [
 def pages_publiees():
     """Les pages de la racine, hors dossiers techniques et preview."""
     ignorees = {"preview", "_build", "_content", "_templates", "scripts",
-                "docs", "assets", "node_modules", ".git", ".github"}
+                "docs", "assets", "node_modules", "application", ".git", ".github"}
     pages = []
     for f in sorted(RACINE.rglob("*.html")):
         parties = set(f.relative_to(RACINE).parts[:-1])

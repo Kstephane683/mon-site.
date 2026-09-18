@@ -94,6 +94,7 @@
 | **P3-6.5** | **Notifications** (toasts, push FCM, emails, Telegram, WhatsApp) | ✅ **Fait (infrastructure)** | Backend `aed7125` — `POST /api/chatbot/admin/notify` + `GET /api/chatbot/notifications`, trace en base des 3 cas, dégradation propre vérifiée sans aucune clé. **Reste au propriétaire** : clés VAPID + `pywebpush` (push), IP émettrice à autoriser chez Brevo (email). Aucun déclencheur métier câblé. |
 | **P3-6.8** | **RAG blog dans le chatbot** (onglet Aide : recherche sémantique) | ✅ **Fait (backend)** | Backend `9cf0c4a` — `GET /api/chatbot/search`, index BM25F mémoïsé (1,99 s → 0,04 s), enrichissement non intrusif de `POST /message`. Banc **9/9, 0 faux positif**. Embeddings indisponibles (mesuré). **Reste** : le widget n'affiche pas encore ces résultats. |
 | **P3-6.9** | **Vérification de cohérence finale** | ✅ **Fait** | Widget `017cf90` — jetons **identiques** (empreinte SHA-256 `e1fc55546b5ce00a`) sur les 4 contextes du produit, polices auto-hébergées identiques, emoji d'interface **4 → 1** (le dernier est dans le SDK gelé). Voir le journal. |
+| **P3-ALIGN-DESIGN** | **Alignement design — 5 décisions du propriétaire sur le rapport 6.9** (D4 filet, D7a voiles d'erreur, D7b ombre d'accent, D7c durée d'état actif, D7d vocabulaire « carte ») | 🔄 **En cours** | Décisions D4/D7a-D7d du propriétaire. **D7e (275 espacements littéraux) explicitement hors périmètre** — à planifier après la Phase 4. |
 | **P3-6.3** | **Dashboard admin** — sidebar 11 modules, header, jetons canoniques | ✅ **Fait** | Widget `a57ece3` — 11 modules en 4 groupes, couleurs littérales **47 → 0**, tests **171 → 219**, **50/50** paires de contraste conformes, 78 captures. 3 défauts trouvés au passage (écran de connexion vide, fuite d'agent à 3 endroits). |
 | **P3-6.6** | **Maquettes finales** (widget, dashboard, app, landing, portail) | ✅ **Fait** | Widget `2da249b` — **112 captures** échelle 2 (clair/sombre, mobile/desktop), harnais reproductible, **50/50 images identiques à l'octet** sur deux passes. |
 | **P3-SYNC-DOCKER** | **Parité `docker-unified/` ↔ Railway** (fallback de production) + contrat C12 + garde-fou | ✅ **Fait** | Backend `9ebd89d` — **133 fichiers identiques (md5)**, 54 variables toutes déclarées, services healthy, vision + recherche + notifications + purge re-testés dans Docker. Contrat **C12** + `verifier-parite-docker.py` au pre-push. |
@@ -544,6 +545,28 @@
 - **Effet sur l'autre agent** : aucun. Le point qu'il a signalé est traité.
 - **Contrôle** : `verifier-blocs-critiques.py` → publication sûre, 15 pages · `verifier-chatbot.py` → 15/15 · `verifier-secrets.py` → PASS (79 fichiers).
 
+### 2026-09-19 01:05 — [CHATBOT] — Ouverture : alignement design (5 décisions du propriétaire sur le rapport 6.9)
+
+- **Fait (protocole)** : documents relus avant écriture. Garde-fous exécutés — `verifier-chatbot.py` → **code 0 site et blog**. Sections 2.1 et 5 mises à jour.
+- **Ce que j'ouvre** : les cinq décisions qui relèvent de mon périmètre, tranchées par le propriétaire sur les 13 divergences documentées par la tâche 6.9. **D4** — la console utilise `--border` (1,30:1) là où les pages utilisent `--border-strong` (3,44:1) pour le même travail : alignement sur `--border-strong`. **D7a** — les voiles d'erreur sont des littéraux `rgba(180,45,45,…)` alors que le noyau compose `--erreur` (168,48,47) : passage en `color-mix`. **D7b** — `--shadow-gold` porte l'ancien accent (avant D6) : passage sur `--accent-halo`, et décision à prendre pour la console qui n'a pas d'ombre d'accent. **D7c** — durée d'état actif de la console 150 ms contre 300 ms pour le widget. **D7d** — le mot « carte » désigne un rayon de 12 px dans la console et de 28 px dans le noyau.
+- **D7e explicitement hors périmètre** : les 275 valeurs d'espacement littérales ne sont pas traitées ici, comme demandé — à planifier après la Phase 4.
+- **Une remarque de méthode sur ces cinq points** : quatre d'entre eux (D4, D7a, D7b, D7c) ne sont pas des corrections cosmétiques mais des **écarts entre deux contextes du même produit**, et deux d'entre eux (D7a, D7b) rapprochent le widget du **noyau** — c'est-à-dire qu'ils réduisent une divergence au lieu d'en créer une. Je vérifierai les valeurs contre la source canonique `eperf_core/` avant de substituer, et je consignerai en ⚠️ DEMANDE tout ce qui toucherait un contrat gelé.
+- **Fichiers touchés** : ce document (§2.1, §5, cette entrée). Aucun fichier du site ni du blog.
+- **Effet sur l'autre agent** : rien à faire de votre côté. **Un point pour SITE** : je note que les 3 références Google Fonts de `merci-candidature.html` ont été retirées (`290dc76`) avant même que je rédige cette entrée — merci, c'est traité.
+- **Contrôle** : `verifier-chatbot.py` → 0 site, 0 blog. Aucune modification hors de mon périmètre.
+
+### 2026-09-19 01:30 — [SITE] — Alignement design : D5, D6, D7 + liens /application
+
+- **Fait** : les trois correctifs de jetons décidés en 6.9, plus le chantier des liens.
+  · **D5 + D7** — `--gold` `#8a6f38` → `#856b37` et `--gold2` `#8f7238` → `#735d32`, avec les quatre dérivés `rgba`. **Mesure : le défaut était plus large qu'annoncé** — `--gold` était à 4,37:1 sur `--bg2`, et `--gold2` **sous le seuil sur deux fonds sur trois** (4,16:1 sur `--bg2`, 4,42:1 sur `--bg`). Les commentaires du CSS annonçaient « 4,64:1 » et « 4,42:1 » : deux chiffres exacts, calculés sur le fond le plus favorable. Un commentaire qui cite le meilleur ratio n'est pas une preuve d'accessibilité. Les deux valeurs y figurent désormais.
+  · **D6** — `--arrondi-input` `10px` → `12px`, aligné sur le widget.
+  · **Liens `/application`** — option 2 : deux redirections (`application/index.html`, `application/mia/index.html`, `meta refresh` + `noindex` + `canonical`). L'option 1 aurait envoyé le signal vers un autre domaine ; la 2 crée l'URL `eperformance.pro/application/mia/` que CHATBOT peut cibler. **Un lien entrant ajouté depuis `ia.html`** — sans lui les redirections seraient restées orphelines. `application` ajouté aux dossiers ignorés de `verifier-blocs-critiques.py`, comme l'agent SOCIAL l'avait signalé.
+- **Google Fonts : déjà fait** au `290dc76`, une heure avant la consigne. Balayage complet : **une seule occurrence dans tout le dépôt, dans ce journal**, qui mentionne le problème sans le reproduire.
+- **Section 2.2 : déjà remplie**, 9 tâches avec commits, aucune mention « à remplir ».
+- **Fichiers touchés** : `preview/assets/css/eperf.css`, `preview/_content/ia.html`, `application/**` (2 fichiers), `scripts/verifier-blocs-critiques.py`, `docs/phase3-alignment-site/RAPPORT.md`. CSS synchronisé site/blog (MD5 `5fe2150f`).
+- **Effet sur l'autre agent** : ⚠️ **à savoir** — `eperformance.pro/application/mia/` existe désormais et redirige vers le chemin GitHub Pages actuel. **CHATBOT peut basculer les `canonical` et `og:url` de ses pages vers ce domaine** ; le jour où elles seront hébergées côté site, seule la cible de la redirection changera.
+- **Contrôle** : `verifier-blocs-critiques.py` → publication sûre, 15 pages · `verifier-chatbot.py` → 15/15 · CSS site = blog.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -574,7 +597,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-19 00:20 (clôture 6.3, 6.6, 6.9, sync Docker, push subscribe) | lecture de `site-eperformance@4d4b7bd` · backend `9ebd89d` · widget `2da249b` |
+| CHATBOT | 2026-09-19 01:05 (ouverture alignement design — décisions 6.9) | lecture de `site-eperformance@673067c` · widget `2da249b` |
 | SITE | 2026-09-19 00:20 | `dc7030a` |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
