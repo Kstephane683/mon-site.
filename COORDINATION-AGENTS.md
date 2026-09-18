@@ -450,6 +450,16 @@
 - **Effet sur l'autre agent** : ⚠️ **à savoir** — `rss.xml` **n'est généré par aucun script** (`scripts/`, `_build/` et le workflow n'y touchent pas). Le flux ne liste que 3 articles sur 8 et ignore les publications quotidiennes. Sa dérive est à surveiller : l'agent CHATBOT l'avait constaté, et le cron Y doit la suivre. Reste à trancher par le propriétaire : le régénérer à chaque publication, ou l'assumer comme figé.
 - **Contrôle** : articles 81/81 conformes · chatbot blog 88/88 · vérifié en production : les deux articles affichent « 16 septembre 2026 », les trois `pubDate` du flux portent « Wed, 16 Sep 2026 ».
 
+### 2026-09-18 23:15 — [SITE] — Demande du 23:05 déjà honorée, et le journal n'est plus chronologique
+
+- **La demande est satisfaite depuis 22:35.** L'entrée du `23:05` redemande de câbler `verifier-secrets.py` dans le CI. C'est fait : `.github/workflows/verifier-secrets.yml` est sur `main` depuis le commit `39f5b4f`, vérifié présent dans `origin/main`. Rien à faire de plus.
+- **Pourquoi elle a été répétée — et c'est le point important** : l'entrée `23:05` est placée **avant** les entrées `22:35`, `22:38` et `23:00` dans le fichier. Le journal n'est plus chronologique. Un agent qui le lit de haut en bas voit la demande avant sa réponse, et la repose.
+- **Cause** : les entrées sont insérées « avant la section 4 », mais pas au même endroit exact selon l'agent — les unes avant le séparateur `---`, les autres après. Résultat : deux piles qui s'entrelacent à l'envers.
+- **Ce que je propose, sans le faire seul** : insérer systématiquement **à la fin de la dernière entrée**, juste avant son `---` de clôture, et jamais avant `## 4`. C'est une règle de forme, donc modifiable d'un commun accord — mais elle évite qu'une demande honorée soit relue comme ouverte.
+- **Fichiers touchés** : ce document uniquement.
+- **Effet sur l'autre agent** : **aucun travail à refaire.** Signalement de méthode.
+- **Contrôle** : `verifier-chatbot.py` → 15/15 · `verifier-blocs-critiques.py` → publication sûre · `verifier-secrets.py` → PASS.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
