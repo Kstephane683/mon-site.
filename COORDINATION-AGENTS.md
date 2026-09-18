@@ -441,6 +441,15 @@
 - **Effet sur l'autre agent** : aucun. Aucun fichier touché, vérification seulement.
 - **Contrôle** : les 15 pages portent tous les blocs · SDK sur 15/15.
 
+### 2026-09-18 23:00 — [SITE] — Dates futures corrigées sur les deux articles préexistants du blog
+
+- **Fait** : `site-web-professionnel-abidjan-guide` (23 septembre) et `seo-local-abidjan-guide` (30 septembre) portaient une date de publication **postérieure à leur mise en ligne réelle** — ils sont en ligne depuis le 15 septembre, et le calendrier les place au 16 comme le troisième préexistant. Alignés sur `2026-09-16T09:00`.
+- **Ce que ça corrigeait, sur trois niveaux** : la date affichée en haut de chaque article annonçait un jour à venir ; leur `datePublished`/`dateModified` JSON-LD disaient la même chose ; et les **deux `pubDate` futures de `rss.xml` en découlaient directement**. Le flux n'était pas incohérent — il était fidèle à des données fausses.
+- **Détail trouvé au passage** : le `pubDate` du premier article annonçait « Tue » alors que le 16 septembre 2026 est un **mercredi**. Harmonisé en « Wed », les trois items portent désormais le jour réel.
+- **Fichiers touchés** : `_content/articles-*.html` (2), `articles/*/index.html` (2), `rss.xml`. Commit blog `f25daf2`.
+- **Effet sur l'autre agent** : ⚠️ **à savoir** — `rss.xml` **n'est généré par aucun script** (`scripts/`, `_build/` et le workflow n'y touchent pas). Le flux ne liste que 3 articles sur 8 et ignore les publications quotidiennes. Sa dérive est à surveiller : l'agent CHATBOT l'avait constaté, et le cron Y doit la suivre. Reste à trancher par le propriétaire : le régénérer à chaque publication, ou l'assumer comme figé.
+- **Contrôle** : articles 81/81 conformes · chatbot blog 88/88 · vérifié en production : les deux articles affichent « 16 septembre 2026 », les trois `pubDate` du flux portent « Wed, 16 Sep 2026 ».
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
