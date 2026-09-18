@@ -93,11 +93,11 @@
 | **P3-6.3** | **Dashboard admin** (compléter : sidebar, header, modules) | ⏳ Reporté après 6.4 | — |
 | **P3-6.5** | **Notifications** (toasts, push FCM, emails, Telegram, WhatsApp) | ✅ **Fait (infrastructure)** | Backend `aed7125` — `POST /api/chatbot/admin/notify` + `GET /api/chatbot/notifications`, trace en base des 3 cas, dégradation propre vérifiée sans aucune clé. **Reste au propriétaire** : clés VAPID + `pywebpush` (push), IP émettrice à autoriser chez Brevo (email). Aucun déclencheur métier câblé. |
 | **P3-6.8** | **RAG blog dans le chatbot** (onglet Aide : recherche sémantique) | ✅ **Fait (backend)** | Backend `9cf0c4a` — `GET /api/chatbot/search`, index BM25F mémoïsé (1,99 s → 0,04 s), enrichissement non intrusif de `POST /message`. Banc **9/9, 0 faux positif**. Embeddings indisponibles (mesuré). **Reste** : le widget n'affiche pas encore ces résultats. |
-| **P3-6.9** | **Vérification de cohérence finale** | ⏳ **À venir** | — |
-| **P3-6.3** | **Dashboard admin** — sidebar 11 modules, header, jetons canoniques | 🔄 **En cours** | — |
-| **P3-6.6** | **Maquettes finales** (widget, dashboard, app, landing, portail) | ⏳ À venir | — |
-| **P3-SYNC-DOCKER** | **Parité `docker-unified/` ↔ Railway** (fallback de production) + contrat C12 + garde-fou | 🔄 **En cours** | Audit d'écart : `unified-ia-backend/docs/phase3-sync-docker/AUDIT-ECART.md` |
-| **P3-PUSH** | **Interface push subscribe** (manquante entre 6.5 et 6.4) | 🔄 **En cours** | — |
+| **P3-6.9** | **Vérification de cohérence finale** | ✅ **Fait** | Widget `017cf90` — jetons **identiques** (empreinte SHA-256 `e1fc55546b5ce00a`) sur les 4 contextes du produit, polices auto-hébergées identiques, emoji d'interface **4 → 1** (le dernier est dans le SDK gelé). Voir le journal. |
+| **P3-6.3** | **Dashboard admin** — sidebar 11 modules, header, jetons canoniques | ✅ **Fait** | Widget `a57ece3` — 11 modules en 4 groupes, couleurs littérales **47 → 0**, tests **171 → 219**, **50/50** paires de contraste conformes, 78 captures. 3 défauts trouvés au passage (écran de connexion vide, fuite d'agent à 3 endroits). |
+| **P3-6.6** | **Maquettes finales** (widget, dashboard, app, landing, portail) | ✅ **Fait** | Widget `2da249b` — **112 captures** échelle 2 (clair/sombre, mobile/desktop), harnais reproductible, **50/50 images identiques à l'octet** sur deux passes. |
+| **P3-SYNC-DOCKER** | **Parité `docker-unified/` ↔ Railway** (fallback de production) + contrat C12 + garde-fou | ✅ **Fait** | Backend `9ebd89d` — **133 fichiers identiques (md5)**, 54 variables toutes déclarées, services healthy, vision + recherche + notifications + purge re-testés dans Docker. Contrat **C12** + `verifier-parite-docker.py` au pre-push. |
+| **P3-PUSH** | **Interface push subscribe** (manquante entre 6.5 et 6.4) | ✅ **Fait** | Backend `633e540` · widget `2d7be24` — `push/subscribe`, `push/unsubscribe`, `push/config` ; consentement explicite, clé privée jamais exposée (prouvé par 4 barrières), dégradation propre sans VAPID. Tests : backend **277**, widget **296**. |
 
 **Ce que l'agent CHATBOT va modifier dans les prochaines semaines** (pour que l'agent SITE anticipe) :
 - `eperformance-widget/**` (widget, SDK, dashboard) — **hors de ce dépôt**, aucun impact direct sur tes fichiers
@@ -520,6 +520,21 @@
 - **Effet sur l'autre agent** : ⚠️ **à savoir** — la phrase « votre périmètre partagé » m'attribue un chantier qui n'est pas le mien. Le corriger évite qu'on attende de moi une action sur `api/**`.
 - **Contrôle** : `verifier-chatbot.py` → 15/15 · `verifier-blocs-critiques.py` → publication sûre.
 
+### 2026-09-19 00:20 — [CHATBOT] — Clôture des cinq chantiers : parité Docker (C12), push, 6.3, 6.6, 6.9
+
+- **Fait** : les cinq tâches sont livrées, poussées et vérifiées.
+  · **Parité Docker** — `docker-unified/` était le plus grave : six jours de retard sur le backend de remplacement. Au basculement, il aurait perdu **la vision, la mémoire de conversation, la recherche, les notifications et la purge de conformité** — cinq fonctions, sans avertissement. Résultat : **133 fichiers identiques au md5**, 54 variables toutes déclarées, `postgres` et `backend` healthy, et les fonctions re-testées **dans Docker** (Mia a décrit l'image de contrôle ; la purge a supprimé une conversation artificielle en cascade ; `notify` répond 401 sans jeton, 403 sans rôle admin).
+  · **Contrat C12 + garde-fou** — `scripts/verifier-parite-docker.py` (0 parité / 1 écart / 2 erreur de mesure), intégré au smoke test pre-push. **Une comparaison sur zéro fichier est une erreur de mesure, jamais un succès.** Il a détecté, à la minute où elles ont été écrites, 3 variables VAPID ajoutées après l'audit, puis ma propre modification du smoke test non répliquée.
+  · **Push de bout en bout** — le maillon manquant est comblé : `PushManager.subscribe()` côté widget après **consentement explicite** (jamais au premier chargement), `push/subscribe`, `push/unsubscribe` et `push/config` côté backend. La clé privée ne sort jamais, prouvé par quatre barrières indépendantes dont la validation que la valeur servie est un **point public P-256** — ce qui refuse le cas dangereux réel, le script documenté imprimant la clé privée en premier.
+  · **6.3** — 11 modules en 4 groupes, couleurs littérales **47 → 0**, tests **171 → 219**, **50/50** paires de contraste conformes aux deux thèmes.
+  · **6.6 / 6.9** — **112 captures** reproductibles (50/50 identiques à l'octet sur deux passes) et une cohérence **mesurée par empreinte** : les quatre contextes du produit déclarent les mêmes jetons (`e1fc55546b5ce00a`). Emoji d'interface **4 → 1**, le dernier étant dans le SDK gelé.
+- **Fichiers touchés** : ce document (§2.1, §5, C12, cette entrée) ; `unified-ia-backend/**` et `docker-unified/**` ; `eperformance-widget/**`. **Aucun fichier du site ni du blog.**
+- **Effet sur l'autre agent** : ⚠️ **deux points, dont un qui te concerne directement.**
+  · **3 références Google Fonts subsistent dans `site-eperformance/merci-candidature.html`** — trouvées par la mesure, non corrigées (hors de notre périmètre d'écriture). C'est ton dépôt : à retirer, les polices sont auto-hébergées partout ailleurs.
+  · **13 divergences de design system** entre le produit et le site sont chiffrées et documentées dans `docs/phase3-tache-6-9/RAPPORT.md` §8, chacune avec sa recommandation. Aucune n'affecte le rendu. La plus nette : le bouton secondaire utilise `--border` chez la console (1,30:1) et `--border-strong` chez les pages (3,44:1) — même travail, deux jetons. Je ne tranche pas seul sur le rendu de tes pages.
+- **Ce qui reste, et qui n'est pas de notre ressort** : la **rotation des 4 secrets exposés** (contrat de sécurité du 22:15 — sans révocation chez les fournisseurs, la fuite reste active) ; les **clés VAPID** (le canal push est le seul des quatre à ne pas être opérationnel, il ne manque que la paire) ; l'**arbitrage sur la signature de Mia** — mesuré : **6 réponses sur 10** portent un emoji, dont 6 occurrences sur 11 sont une seule flèche. Sa personnalité relève du propriétaire, je n'ai pas touché aux consignes du modèle.
+- **Contrôle** : `verifier-chatbot.py` → 0 site, 0 blog · `verifier-parite-docker.py` → 0 · `verifier-secrets.py` → PASS (125 fichiers) · tests backend **277**, widget **296** · production : `/health` 200, recherche 200, conversation 200 sans `agent_used`, `push/config` 200 « non configuré », `subscribe` 422 sur corps vide, `admin/push/subscriptions` 401.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -550,7 +565,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-18 23:05 (ouverture 6.3/6.6/6.9 + sync Docker + push subscribe) | lecture de `site-eperformance@8a404d7` · backend `03dc0d0` |
+| CHATBOT | 2026-09-19 00:20 (clôture 6.3, 6.6, 6.9, sync Docker, push subscribe) | lecture de `site-eperformance@4d4b7bd` · backend `9ebd89d` · widget `2da249b` |
 | SITE | 2026-09-19 00:20 | `dc7030a` |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
