@@ -74,8 +74,28 @@ def main() -> int:
               "retirer le bloc des pages.")
         return 1
 
+    # 3. Le document de coordination doit exister (c'est le point de synchro
+    #    entre les deux agents — il ne doit jamais disparaître du dépôt)
+    coordination = RACINE / "COORDINATION-AGENTS.md"
+    if not coordination.exists():
+        erreurs.append(
+            "COORDINATION-AGENTS.md absent : c'est le point de synchronisation "
+            "entre l'agent SITE et l'agent CHATBOT"
+        )
+
+    if erreurs:
+        print("❌ CONTRÔLE EN ÉCHEC")
+        for e in erreurs:
+            print(f"   • {e}")
+        return 1
+
     print(f"✅ Contrôle chatbot : {total}/{total} page(s) avec SDK "
-          f"+ générateur conforme")
+          f"+ générateur conforme + coordination en place")
+    print()
+    print("📋 RAPPEL DE COORDINATION")
+    print("   Avant toute tâche : lire COORDINATION-AGENTS.md (sections 1 à 3)")
+    print("   Après toute tâche : y consigner une entrée dans le journal partagé")
+    print("   → COORDINATION-AGENTS.md")
     return 0
 
 
