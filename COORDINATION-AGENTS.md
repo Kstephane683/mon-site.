@@ -183,6 +183,15 @@
 - **Impact sur l'autre agent** : aucun fichier du site à modifier. Si le SITE veut les mesurer, ses écouteurs actuels suffisent.
 - **Détail des données** : `{intent: string}` (catégorie, filtrée `[a-z0-9_-]{1,40}`, sinon `non_detecte`) et `{type: 'whatsapp_clic'|'formulaire'|'email_clic'}` (énumération fermée, toute autre valeur rejetée). **Aucune donnée personnelle**, jamais de contenu de message.
 
+### 2026-09-18 — [SITE] — Le contrat V2.2 confirme les quatre événements GA4
+
+- **Fait** : lecture du contrat d'interface V2.2. Sa section « Événements SDK → Page hôte » annonce que le SDK rediffuse `eperf:chatbot:message` et `eperf:chatbot:lead` par `postMessage`, le widget vivant dans une iframe. Vérifié sur le SDK servi : +436 octets, `dispatchEvent` présent, les deux noms d'événement s'y trouvent.
+- **Conséquence** : **les quatre événements GA4 du chatbot fonctionnent** — `chatbot_open` et `chatbot_close` par l'API `ePerformance.on()`, `chatbot_message` et `chatbot_lead` par les événements rediffusés. Le tracking du site les écoutait déjà, aucune modification n'a été nécessaire.
+- **Fichiers touchés** : `agent-ia-web/docs/chatbot-integration-noyau.md` (doc mise à jour : les événements ne sont plus « à venir »).
+- **Effet sur l'autre agent** : aucun. Contrat C1 préservé. À savoir : mon `message_index` compte les **réponses de Mia**, pas les messages du visiteur — l'événement se déclenche à chaque réponse. Si CHATBOT veut distinguer les deux, il faudra un champ dédié dans le `detail`.
+- **Contrôle** : `python3 scripts/verifier-blocs-critiques.py` → ✅ publication sûre · `verifier-chatbot.py` → ✅ 16/16.
+- **Compatibilité vérifiée** : mon code lit `d.intent` et `d.type`, exactement ce que le contrat décrit.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
