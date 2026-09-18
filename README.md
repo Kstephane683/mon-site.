@@ -184,9 +184,15 @@ Elles sont référencées en `.webp` par les pages composées : **conserver les 
 PNG n'est pas nécessaire**, mais ne pas les supprimer avant d'avoir vérifié que
 plus aucune page ne les référence.
 
-Les anciennes URL restent valides : `/formation/`, `/kstephane/`, `/merci-*`
-redirigent déjà vers leur équivalent `.html`, et `/cookies/`, `/mentions-legales/`,
-`/politique-confidentialite/` servent le bon contenu.
+Les anciennes URL restent valides : `/formation/`, `/kstephane/`,
+`/merci-candidature/` redirigent déjà vers leur équivalent `.html`, et `/cookies/`,
+`/mentions-legales/`, `/politique-confidentialite/` servent le bon contenu.
+
+`/merci-ebook/` redirige vers `/ebook.html`. La page `merci-ebook.html` a été
+supprimée le 18/09/2026 : elle datait de l'époque où les ebooks étaient en
+téléchargement libre, ils sont vendus depuis. Aucune autre page ne la
+mentionnait ; le `Disallow` correspondant a été retiré de `robots.txt` pour que
+les moteurs voient le 404 et la retirent de leur index.
 
 ---
 

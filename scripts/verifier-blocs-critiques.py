@@ -119,13 +119,14 @@ def main():
     else:
         print("  ✓ générateur : émet tous les blocs critiques")
 
-    # Deux pages ne passent pas par le composeur : merci-ebook.html et
-    # merci-candidature.html. Elles datent d'avant la refonte et gardent leurs
-    # propres styles. Leur conformité a été corrigée le 18/09/2026 — GA4 et le
-    # pixel Meta y étaient chargés en dur, sans consentement ; ils passent
-    # désormais par consent.js et le bandeau est en place. Reste à les migrer
-    # vers le composeur, ce qui n'est pas urgent : elles fonctionnent.
-    LEGACY = {"merci-ebook.html", "merci-candidature.html"}
+    # Une page ne passe pas par le composeur : merci-candidature.html. Elle date
+    # d'avant la refonte et garde ses propres styles. Sa conformité a été corrigée
+    # le 18/09/2026 — GA4 et le pixel Meta y étaient chargés en dur, sans
+    # consentement ; ils passent désormais par consent.js et le bandeau est en
+    # place. Reste à la migrer vers le composeur, ce qui n'est pas urgent : elle
+    # fonctionne. `merci-ebook.html` en faisait partie ; elle a été supprimée le
+    # 18/09/2026 et `/merci-ebook/` redirige maintenant vers `/ebook.html`.
+    LEGACY = {"merci-candidature.html"}
     regression = [m for m in manquants if m[0] not in LEGACY]
     heritage = [m for m in manquants if m[0] in LEGACY]
 

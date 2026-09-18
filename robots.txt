@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /merci-ebook.html
 Disallow: /merci-candidature.html
 Disallow: /merci-ebook/
 Disallow: /merci-candidature/
