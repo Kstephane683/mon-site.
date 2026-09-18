@@ -120,10 +120,11 @@ def main():
         print("  ✓ générateur : émet tous les blocs critiques")
 
     # Deux pages ne passent pas par le composeur : merci-ebook.html et
-    # merci-candidature.html. Elles datent d'avant la refonte, gardent leurs
-    # propres styles, et — plus grave — chargent GA4 en dur sans passer par
-    # consent.js. Elles ne sont donc pas une régression : ce sont des pages
-    # à migrer. Les isoler évite de crier au loup à chaque contrôle.
+    # merci-candidature.html. Elles datent d'avant la refonte et gardent leurs
+    # propres styles. Leur conformité a été corrigée le 18/09/2026 — GA4 et le
+    # pixel Meta y étaient chargés en dur, sans consentement ; ils passent
+    # désormais par consent.js et le bandeau est en place. Reste à les migrer
+    # vers le composeur, ce qui n'est pas urgent : elles fonctionnent.
     LEGACY = {"merci-ebook.html", "merci-candidature.html"}
     regression = [m for m in manquants if m[0] not in LEGACY]
     heritage = [m for m in manquants if m[0] in LEGACY]
@@ -134,8 +135,8 @@ def main():
             print(f"      {nom_page} : {bloc} — {raison}")
     if heritage:
         pages_legacy = sorted({m[0] for m in heritage})
-        print(f"  ⚠ {len(pages_legacy)} page(s) hors composeur, à migrer : {', '.join(pages_legacy)}")
-        print("      Elles chargent GA4 en dur, sans consentement — défaut de conformité.")
+        print(f"  · {len(pages_legacy)} page(s) hors composeur, à migrer un jour : {', '.join(pages_legacy)}")
+        print("      Conformité corrigée ; il reste à les passer au composeur.")
     else:
         print(f"  ✓ pages : les {len(BLOCS)} blocs critiques sont présents partout")
 

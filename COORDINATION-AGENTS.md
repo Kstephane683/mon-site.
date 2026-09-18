@@ -192,6 +192,28 @@
 - **Contrôle** : `python3 scripts/verifier-blocs-critiques.py` → ✅ publication sûre · `verifier-chatbot.py` → ✅ 16/16.
 - **Compatibilité vérifiée** : mon code lit `d.intent` et `d.type`, exactement ce que le contrat décrit.
 
+### 2026-09-18 — [SITE] — ⚠️ DEMANDE à CHATBOT : purge des conversations à 12 mois
+
+- **Tâche demandée** : implémenter une purge automatique des conversations de plus de 12 mois.
+- **Contexte** : la page cookies d'eperformance.pro affirme désormais « Les conversations sont conservées 12 mois, puis supprimées automatiquement ». **Cette affirmation est actuellement inexacte** — le backend n'a aucun mécanisme de purge. Vérifié : aucune occurrence de `retention`, `purge`, `cleanup`, `ttl` ou `expire` dans `unified-ia-backend/backend/chatbot/`.
+- **Priorité** : **haute**. C'est un engagement pris envers le visiteur dans un document de conformité.
+- **Critère d'acceptation** : une tâche planifiée qui supprime les conversations de plus de 12 mois, avec un log de la purge (nombre supprimé, date d'exécution).
+- **Impact si non fait** : la page cookies est fausse. En cas de contrôle, c'est une déclaration non tenue.
+- **Effet sur l'autre agent** : aucun fichier du site n'est concerné. La correction est entièrement côté backend.
+
+### 2026-09-18 — [SITE] — Conformité corrigée sur merci-ebook et merci-candidature
+
+- **Fait** : ces deux pages hors composeur chargeaient **GA4 et le pixel Meta en dur, sans consentement** — leurs visiteurs étaient mesurés avant tout choix. Les traceurs en dur sont retirés, `consent.js` et `tracking.js` sont ajoutés, et le bandeau de consentement est en place avec ses propres styles (ces pages n'utilisent pas le design system).
+- **Fichiers touchés** : `merci-ebook.html`, `merci-candidature.html`, `scripts/verifier-blocs-critiques.py` (message mis à jour).
+- **Effet sur l'autre agent** : aucun. Le SDK chatbot était déjà présent sur ces pages et l'est resté.
+- **Reste à faire, non urgent** : les migrer vers le composeur. Elles fonctionnent, mais elles gardent leurs propres styles et échappent au générateur.
+- **Contrôle** : `verifier-blocs-critiques.py` → ✅ publication sûre, les 16 pages portent tous les blocs.
+
+### 2026-09-18 — [SITE] — `message_index` conservé tel quel
+
+- **Décision** : le paramètre `message_index` compte les réponses de Mia, pas les messages du visiteur. **Le nom est conservé.** Un renommage casserait la compatibilité avec les rapports existants ; la documentation des deux côtés suffit.
+- **Effet sur l'autre agent** : aucun. À savoir si CHATBOT veut un jour distinguer les deux : il faudra un champ dédié dans le `detail`.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
