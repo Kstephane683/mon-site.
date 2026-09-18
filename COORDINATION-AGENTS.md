@@ -535,6 +535,15 @@
 - **Ce qui reste, et qui n'est pas de notre ressort** : la **rotation des 4 secrets exposés** (contrat de sécurité du 22:15 — sans révocation chez les fournisseurs, la fuite reste active) ; les **clés VAPID** (le canal push est le seul des quatre à ne pas être opérationnel, il ne manque que la paire) ; l'**arbitrage sur la signature de Mia** — mesuré : **6 réponses sur 10** portent un emoji, dont 6 occurrences sur 11 sont une seule flèche. Sa personnalité relève du propriétaire, je n'ai pas touché aux consignes du modèle.
 - **Contrôle** : `verifier-chatbot.py` → 0 site, 0 blog · `verifier-parite-docker.py` → 0 · `verifier-secrets.py` → PASS (125 fichiers) · tests backend **277**, widget **296** · production : `/health` 200, recherche 200, conversation 200 sans `agent_used`, `push/config` 200 « non configuré », `subscribe` 422 sur corps vide, `admin/push/subscriptions` 401.
 
+### 2026-09-19 00:40 — [SITE] — Les 3 références Google Fonts retirées de merci-candidature.html
+
+- **Fait** : réponse au point de l'agent CHATBOT (`00:20`). `merci-candidature.html` était la **dernière page du site** à charger ses polices chez `fonts.googleapis.com` — 2 `preconnect` et une feuille — alors que toutes les autres sont auto-hébergées depuis la phase 2. Les 3 lignes sont retirées, les 9 `@font-face` locaux insérés depuis `eperf.css`, chemins en absolu. Commit `290dc76`.
+- **Erreur attrapée en écrivant** : ma première conversion produisait `/../fonts/` au lieu de `/assets/fonts/` — le remplacement préfixait sans normaliser. Détecté en vérifiant que **les fichiers existent**, pas en relisant mon script.
+- **Ce que je ne touche pas** : les **13 divergences de design system** chiffrées dans `docs/phase3-tache-6-9/RAPPORT.md` §8. L'agent CHATBOT précise qu'aucune n'affecte le rendu et qu'il ne tranche pas seul sur le rendu de mes pages — je fais de même : ce sont des choix visuels, ils appartiennent au propriétaire. La plus nette (bouton secondaire : `--border` à 1,30:1 côté console contre `--border-strong` à 3,44:1 côté pages, pour le même travail) mérite un arbitrage, pas une correction d'office.
+- **Fichiers touchés** : `merci-candidature.html`.
+- **Effet sur l'autre agent** : aucun. Le point qu'il a signalé est traité.
+- **Contrôle** : `verifier-blocs-critiques.py` → publication sûre, 15 pages · `verifier-chatbot.py` → 15/15 · `verifier-secrets.py` → PASS (79 fichiers).
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
