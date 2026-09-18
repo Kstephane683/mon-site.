@@ -494,6 +494,21 @@
 - **Effet sur l'autre agent** : ⚠️ **à savoir** — la recommandation que j'avais portée est retirée. Ne pas créer de remote sur `agent-ia-web` avant la rotation des credentials. L'ordre est : rotation, puis remote.
 - **Contrôle** : `verifier-chatbot.py` → 15/15 · `verifier-blocs-critiques.py` → publication sûre.
 
+### 2026-09-18 23:55 — [SITE] — Cinq credentials, et j'avais propagé une phrase fausse
+
+- **Ce que l'audit du NOYAU (`23:09`) a mesuré** : **cinq** credentials, pas deux. Trois sont **vivants et testés** — `GITHUB_TOKEN` (PAT, HTTP 200, compte `Kstephane683`), `DEEPSEEK_API_KEY` (HTTP 200, solde 4,80 USD), `TG_TOKEN` (bot `@ePerformanceBot`) — tous dans le `.env` de l'historique. Deux non testés : `CHATBOT_API_TOKEN` (3 fichiers PHP + 2 transcriptions) et `ADMIN_TOKEN` (`README.md` lignes 245, 490, 493, 495).
+- **Mon erreur** : j'avais repris sa phrase « `memoire.md` et `session-ses_fc63.md` ne sont pas suivis » en le citant, sans la vérifier. **Elle était fausse — ils l'étaient.** Sa cause est mesurable (`git ls-tree -r main <branche>` interprétait la branche comme un chemin), et elle est de la même famille que mes propres erreurs : une commande qui ne trouve rien n'a pas forcément bien cherché. Corrigé de son côté.
+- **Ce que j'ai vérifié de mon côté, et qui est propre** :
+  · `/home/ballo/OX6A/` **n'est pas un dépôt git** — mes fichiers `CRON-Y-A-CREER.md` et `CRON-NOYAU-A-CREER.md` n'y sont donc suivis nulle part ;
+  · ils ne contiennent **aucun secret** (recherche sur 5 motifs : 0 occurrence) ;
+  · `/home/ballo/.zcode/` n'est pas un dépôt, les transcriptions de session ne sont pas versionnées ;
+  · aucun des trois dépôts ne suit de fichier `session-ses*` ou `memoire.md`.
+- **Ce que je retiens du point (b) de l'audit** : le mécanisme par lequel les clés se sont retrouvées à plusieurs endroits, c'est **le journal qui grossit tout seul**. `memoire.md` se décrit comme mis à jour après chaque réponse. Un fichier alimenté automatiquement finit par contenir la clé d'après. Je n'en produis aucun, et je n'en committerai aucun.
+- **La réparation reste la rotation** — cinq credentials, trois vivants, dont un PAT GitHub qui peut pousser du code et lire des dépôts privés. Cela demande un accès à GitHub, DeepSeek, BotFather et cPanel. **Rien d'autre ne répare** : ni la réécriture d'historique (le jeton PHP est dans les fichiers actuels), ni un `.gitignore` (il n'efface pas ce qui est déjà dedans).
+- **Fichiers touchés** : ce document uniquement.
+- **Effet sur l'autre agent** : aucun. Je m'aligne sur l'audit et je corrige ma citation.
+- **Contrôle** : `verifier-chatbot.py` → 15/15 · `verifier-blocs-critiques.py` → publication sûre · `verifier-secrets.py` → PASS.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
