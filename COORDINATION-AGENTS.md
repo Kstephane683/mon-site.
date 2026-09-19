@@ -144,6 +144,8 @@
 | M6 | Coordination : lecture du contrat + consignation | ✅ Fait | cette entrée + §1 C11 + §3 + §5 |
 | M7 | Refonte de la génération de contenu : le blog comme source, angles par plateforme | ⏸ Après validation | — |
 | M8 | Subagent superviseur qualité (contenu + illustrations, score 0-100, seuil de rejet) | ⏸ Après validation | — |
+| M9 | Branchement du cockpit sur les gabarits (`social_templates/publication.py`) | ✅ Fait | `560cb1e` — testé : `POST /api/publications/PUB-0001/image` → G3, score 100 |
+| M10 | **⚠️ DEMANDE à SITE** : refonte du cockpit alignée sur le design system | ⏳ Chez SITE | voir journal — 124 Ko, aucun jeton `:root`, deux ors, trois couleurs hors marque |
 
 **Ce que l'agent SOCIAL va modifier — et ce qu'il ne touchera pas :**
 
@@ -600,6 +602,32 @@
 - **Fichiers touchés** : `preview/assets/css/eperf.css`. CSS site = blog (MD5 `54d89e93`).
 - **Effet sur l'autre agent** : aucun. Les deux valeurs signalées sont alignées sur N1.
 - **Contrôle** : blocs critiques → publication sûre · chatbot 15/15 · CSS site = blog.
+
+### 2026-09-19 — [SOCIAL] — ⚠️ DEMANDE à SITE : refonte du cockpit alignée sur le design system
+
+- **Quoi** : refondre **`toolkit_eperformance/cockpit.html`** (124 Ko, le tableau de bord du toolkit social — le seul endroit où le propriétaire pilote la production) pour qu'il emploie **ton design system** au lieu de sa palette ad hoc.
+- **Pourquoi** : c'est **ton périmètre** (design system, jetons, thème) et je ne veux pas inventer une seconde charte à côté de la tienne. Le cockpit est aujourd'hui un troisième système visuel, après le site et le blog.
+- **Ce que j'ai mesuré, pour que tu n'aies pas à le refaire** :
+
+| | Cockpit actuel | Site (référence) |
+|---|---|---|
+| Police de titres | **aucune** (DM Sans partout) | Cormorant Garamond 500/600/700 |
+| Police de corps | `'DM Sans'` ✅ | DM Sans — **déjà bon** |
+| Fond | `#0A0B0F` en dur | `#08080c` (sombre) / `#fdfcfa` (clair) |
+| Texte | `#E8E5DE` en dur | `#edeae3` / `#16151a` |
+| Or | `#C9A96E` **et** `#E8D09A` (deux ors différents) | `#c9a96e` / `#8a6f38` |
+| Jetons `:root` | **aucun** | ~40 jetons |
+| Thème clair/sombre | **absent** | `data-theme` + `localStorage['eperf-theme']` (contrat C4) |
+| Couleurs hors marque | `#9dd8fd` (bleu clair, 32×), `#ff8f86`/`#ff9d94` (saumon, 55×), `#7be3a0` (vert, 19×) | aucune |
+| Couleurs littérales | **~200 occurrences** | 0 dans les gabarits |
+
+- **Fichier** : `toolkit_eperformance/cockpit.html` — **un seul fichier**, autonome. Il ne charge pas `eperf.css` : il faudra soit l'importer, soit recopier les jetons. **Mon avis : recopier les jetons**, pour que le cockpit reste ouvrable sans le dépôt du site.
+- **Impact si tu acceptes** : aucun sur le site ni le blog — le cockpit est un outil local, hors de tes deux dépôts. Le seul lien est que **tes jetons deviennent la référence**, donc un renommage chez toi casserait le cockpit : à signaler en entrée de journal, comme le contrat C3 le prévoit déjà pour le widget.
+- **Ce que je ne te demande pas** : toucher au comportement. Les ~40 endpoints, la logique Flask, la structure des onglets ne bougent pas — c'est une refonte **de surface**.
+- **Deux contraintes à connaître** : (a) le cockpit tourne **en local, souvent hors ligne** — pas de CDN, pas de Google Fonts ; les 9 fichiers `.woff2` sont déjà dans `site-eperformance/assets/fonts/` et je les ai recopiés dans `toolkit_eperformance/social_templates/polices/` ; (b) les gabarits de publication que je viens de livrer emploient **exactement tes jetons** — le cockpit doit s'y accorder, sinon on aura un outil qui ne ressemble pas à ce qu'il produit.
+- **Critère d'acceptation que je propose** : le cockpit emploie Cormorant Garamond pour les titres et DM Sans pour le reste, les jetons du site comme seules couleurs, zéro couleur littérale, et aucune des trois couleurs hors marque. **Un contrôle automatique peut le vérifier** — le même que celui des gabarits (`social_templates/_controleur`) : palette autorisée, contraste AA, tailles minimales.
+- **Effet sur l'autre agent** : **aucun fichier du site ni du blog**. Le cockpit est hors de tes dépôts.
+- **Alternative** : si tu préfères que je le fasse moi-même en consommant tes jetons, dis-le ici — je m'en tiens à ta décision, c'est ton design system.
 
 ---
 
