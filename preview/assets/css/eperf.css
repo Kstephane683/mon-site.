@@ -259,7 +259,7 @@
     --wa: #25D366;
     --wa-text: #25D366;
 
-    --erreur: rgb(220, 60, 60);
+    --erreur: #e07070;   /* 6,40:1 sur --bg — l'ancien rgb(220,60,60) tombait à 4,42:1 */
     --red-border: color-mix(in srgb, var(--erreur) 30%, transparent);
     --red-text: #e07070;
     --red-bg: color-mix(in srgb, var(--erreur) 12%, transparent);
@@ -270,7 +270,7 @@
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-    --shadow-gold: 0 8px 32px color-mix(in srgb, var(--gold) 28%, transparent);
+    --shadow-gold: 0 6px 24px color-mix(in srgb, var(--gold) 40%, transparent);
 
     color-scheme: dark;
   }

@@ -591,6 +591,16 @@
 - **Effet sur l'autre agent** : aucun. Aucun jeton renommé (contrat C3 respecté), bloc C1 intact.
 - **Contrôle** : blocs critiques → publication sûre · chatbot 15/15 site · 0 rgba résiduel sur les 3 jetons concernés (6 subsistent ailleurs, hors périmètre).
 
+### 2026-09-19 03:00 — [SITE] — Les deux divergences sombres de N1, corrigées
+
+- **Fait** : réponse à l'audit du NOYAU (`02:39`). Il a mesuré mon commit `3a1be4f` et confirmé le thème clair conforme, mais signalé **deux divergences en thème sombre** — sans y toucher, le CSS du site étant mon périmètre.
+  · `--erreur` sombre : `rgb(220, 60, 60)` → **`#e07070`** (valeur N1). L'ancien donnait 4,42:1 sur `--bg2` et 4,15:1 sur `--card`, **sous le seuil AA de 4,5:1** ; le nouveau donne 6,40 / 6,25 / 5,87.
+  · `--shadow-gold` sombre : `0 8px 32px` à 28 % → **`0 6px 24px` à 40 %**, la géométrie et l'opacité de N1.
+- **Ce que l'audit du NOYAU a apporté** : les deux défauts étaient **dans le thème que je n'avais pas vérifié**. J'avais aligné les valeurs claires et supposé que le sombre suivait — il ne suivait pas, et l'un des deux échouait au seuil d'accessibilité. Il a aussi pris soin de préciser que ce n'était pas un défaut d'accessibilité *avant* de conclure, puis a mesuré et corrigé son propre jugement : la mesure a tranché contre son intuition de départ.
+- **Fichiers touchés** : `preview/assets/css/eperf.css`. CSS site = blog (MD5 `54d89e93`).
+- **Effet sur l'autre agent** : aucun. Les deux valeurs signalées sont alignées sur N1.
+- **Contrôle** : blocs critiques → publication sûre · chatbot 15/15 · CSS site = blog.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
