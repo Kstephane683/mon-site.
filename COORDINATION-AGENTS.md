@@ -91,7 +91,7 @@
 | **P3-6.3-BIS** | **Bloc A — 11 corrections chatbot (URGENT production)** | ✅ **Fait** | Widget `1100b63` · backend `1d084bb` — 128/128 tests widget, 95 tests backend, vision opérationnelle, `docs/phase3-tache-6-3-bis/RAPPORT.md`. Contrat N3 livré au NOYAU (voir journal). |
 | **P3-6.4 Bloc B** | **PWA Mia installable + pages `/application` et `/application/mia` + portail + wrapper natif (sans publication) + assets de stores** | ✅ **Fait** (publication stores = propriétaire) | Widget `8e9b163` → `51ea8ff` — **171/171** tests widget, build vert, Lighthouse mesuré, `docs/phase3-tache-6-4/RAPPORT-6-4-BLOC-B.md`. **Reste au propriétaire** : sous-domaine `mia.eperformance.pro`, compte Play (25 USD), clé de signature + `assetlinks.json`. **Décision notifications** : Web Push standard (VAPID) — s'aligne sur le canal push de 6.5. |
 | **P3-6.3** | **Dashboard admin** (compléter : sidebar, header, modules) | ⏳ Reporté après 6.4 | — |
-| **P3-6.5** | **Notifications** (toasts, push FCM, emails, Telegram, WhatsApp) | ✅ **Fait (infrastructure)** | Backend `aed7125` — `POST /api/chatbot/admin/notify` + `GET /api/chatbot/notifications`, trace en base des 3 cas, dégradation propre vérifiée sans aucune clé. **Reste au propriétaire** : clés VAPID + `pywebpush` (push), IP émettrice à autoriser chez Brevo (email). Aucun déclencheur métier câblé. |
+| **P3-6.5** | **Notifications** (toasts, push FCM, emails, Telegram, WhatsApp) | ✅ **Fait (infrastructure)** | Backend `aed7125` — `POST /api/chatbot/admin/notify` + `GET /api/chatbot/notifications`, trace en base des 3 cas, dégradation propre vérifiée sans aucune clé. **Reste au propriétaire** : clés VAPID + `pywebpush` (push), IP émettrice à autoriser chez Brevo (email). Aucun déclencheur métier câblé. | **MISE À JOUR 19/09 : le canal e-mail est OPÉRATIONNEL** (blocage IP Brevo désactivé par le propriétaire, test réel HTTP 200 avec messageId serveur ; API HTTPS port 443, pas de SMTP) ; petit correctif : destinataire par défaut `BREVO_NOTIF_EMAIL` ou état « non configuré » explicite. **3 canaux sur 4 opérationnels** (email, Telegram, webpush via 6.4 ; webpush attend les clés VAPID).
 | **P3-6.8** | **RAG blog dans le chatbot** (onglet Aide : recherche sémantique) | ✅ **Fait (backend)** | Backend `9cf0c4a` — `GET /api/chatbot/search`, index BM25F mémoïsé (1,99 s → 0,04 s), enrichissement non intrusif de `POST /message`. Banc **9/9, 0 faux positif**. Embeddings indisponibles (mesuré). **Reste** : le widget n'affiche pas encore ces résultats. |
 | **P3-6.9** | **Vérification de cohérence finale** | ✅ **Fait** | Widget `017cf90` — jetons **identiques** (empreinte SHA-256 `e1fc55546b5ce00a`) sur les 4 contextes du produit, polices auto-hébergées identiques, emoji d'interface **4 → 1** (le dernier est dans le SDK gelé). Voir le journal. |
 | **P3-ALIGN-DESIGN** | **Alignement design — 5 décisions du propriétaire sur le rapport 6.9** (D4 filet, D7a voiles d'erreur, D7b ombre d'accent, D7c durée d'état actif, D7d vocabulaire « carte ») | ✅ **Fait** | Widget `220822e` → **D4** filet `1,30:1 → 3,44:1` (clair) et `1,12:1 → 3,25:1` (sombre), les deux valeurs du noyau ; **D7a/D7b** font passer les divergences produit/noyau de **9 à 4** ; **D7c** `0,15 s → 0,3 s` par le jeton ; **D7d** renommé à rendu constant, prouvé **22/22 sur la cascade** et **à l'octet** sur les artefacts compilés. Empreintes de jetons **identiques sur les 4 contextes** (`51fffc2c…` / `2e5e6964…`), tests **296 → 296**. `docs/phase3-alignment-design/RAPPORT.md`. **D7e (275 espacements littéraux) explicitement hors périmètre** — à planifier après la Phase 4. |
@@ -846,6 +846,18 @@
 - **Contrôles** : secrets_loader charge clé et token · `content_engine` les voit · appel API réel `/models` → 200 · `git grep` sur working tree ET historique ET objets : **0 occurrence** des 5 secrets · les 4 modules de `social_templates/` importent et fonctionnent.
 - **Fichiers touchés** : dépôt toolkit uniquement (25 fichiers + historique). **Aucun fichier du site ni du blog.**
 
+### 2026-09-19 21:15 — [CHATBOT] — ✅ CANAL E-MAIL OPÉRATIONNEL (test réel) + retour des copies consigné
+
+- **Fait** : mission Brevo du propriétaire — vérifier le canal et tester l'envoi. **Tout est au vert.**
+- **1. Canal : API HTTPS, pas SMTP.** Le backend envoie via `api.brevo.com/v3/smtp/email` (HTTP JSON, port 443) — **aucun SMTP** dans le code. La désactivation du blocage IP par le propriétaire était donc la bonne et unique intervention nécessaire : Railway ne bloque pas l'HTTPS sortant.
+- **2. Clé API : valide.** `GET /v3/account` → **HTTP 200** (compte kstephane683@gmail.com, plan free). La clé était bonne depuis le début — c'était le blocage IP, maintenant levé.
+- **3. Test d'envoi réel : 200, envoyé.** Via `POST /api/chatbot/admin/notify` (authentifié), canal `email` : **HTTP 200**, `statut: envoye`, `messages_envoyes: 1`, **identifiant Brevo reçu** (`<202609191428.…@smtp-relay.mailin.fr>`), 616 ms. L'e-mail de test est parti vers kstephane683@gmail.com — le propriétaire peut le constater dans sa boîte.
+- **Un défaut d'API découvert par le test et corrigé** : le canal email **sans destinataire** envoyait `to: [{"email": ""}]` et recevait 400 « email is missing in to », présenté comme un 502 « échec d'envoi » — alors que la configuration était **incomplète, pas fausse**. Corrigé : destinataire par défaut `BREVO_NOTIF_EMAIL` (variable à poser si besoin) ; sans lui, le canal répond « non configuré » avec la cause exacte — même philosophie de dégradation propre que les autres canaux. Backend `6b8ce3c`, répliqué dans Docker (parité 140 fichiers), 284 tests verts.
+- **État des 4 canaux** : **e-mail ✅ opérationnel** · **Telegram ✅** (testé le 18/09, message_id délivré) · **webpush ⏳** (code prêt, attend les clés VAPID — registre) · **WhatsApp** (non évalué dans cette mission).
+- **⚠️ Retour du défaut des copies, détecté par la veille horaire** : les deux copies hors-site du document de coordination ont été **recréées** le 19/09 à 14h56 (985 lignes, synchronisation scriptée — mtimes à 100 ms d'écart, **aucun auteur dans le journal**). La note est remise à OX6A racine (mon périmètre) ; **SITE : remettre la note dans son dossier de travail** (registre `COPIE-RECREES-2`) et **identifier quel outil ou processus recopie**, sinon le défaut reviendra.
+- **Fichiers touchés** : ce document (§2.1, §5, cette entrée), `unified-ia-backend/backend/chatbot/notifications.py` + copie Docker, `/home/ballo/OX6A/COORDINATION-AGENTS.md` (note remise). Aucune valeur de secret dans un fichier versionné.
+- **Contrôle** : `verifier-chatbot.py` → 0 site et blog · parité Docker → 0 · `verifier-secrets.py` → PASS · tests backend 284.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -876,7 +888,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-19 20:10 (audit app Mia fait — 10 recommandations — consigne SITE prête) | lecture de `site-eperformance@102ba3c` · backend `0dcb004` |
+| CHATBOT | 2026-09-19 21:15 (canal e-mail vérifié et opérationnel ; retour des copies consigné) | lecture de `site-eperformance@aa6eccc` · backend `6b8ce3c` |
 | SITE | 2026-09-19 12:00 | `b0b6802` |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
