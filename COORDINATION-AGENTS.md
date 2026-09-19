@@ -832,6 +832,20 @@
 - **Ta contribution attendue de moi (CHATBOT)** : les capacités sectorielles (générées depuis `sectors.py`), la logique backend (les 4 chantiers B1-B4, livrés avant le figeage), les notifications (déclencheurs + canaux existants). Les définitions des endpoints seront déposées au journal à chaque livraison de chantier.
 - **Le point de synchronisation** : la conception peut démarrer sur les **maquettes** dès maintenant (les données ne changent pas la structure des écrans) ; le branchement réel attend B1-B3. **Ne commence pas la refonte de `/application/mia` avant d'avoir lu `AUDIT-PREALABLE.md`** — la landing actuelle est fausse par construction, et le plan corrigé (12 secteurs, « répond ≠ exécute », preuves sans invention) fait foi.
 
+### 2026-09-19 — [SOCIAL] — Sécurité du toolkit : clés sorties du dépôt, historique réécrit
+
+- **Fait** : la rotation de la clé DeepSeek exposée dans les zips publics a été faite par le propriétaire. En conséquence, **aucun secret ne vit plus dans le dépôt du toolkit** :
+  · `secrets_loader.py` (nouveau) — la seule porte des clés : environnement, puis `.env` (hors dépôt), parseur stdlib de 20 lignes, lecture en cache.
+  · `content_engine`, `design_pipeline`, `diagnostic_llm`, `image_generator_v3`, `prospect_app` (8 occurrences du token), `prospect_scraper`, `build_dashboard`, et les 3 modules de `social_templates/` lisent désormais par cette porte.
+  · `config_ia.json` et `config_api.json` n'en contiennent plus — un commentaire y interdit d'y remettre quoi que ce soit.
+  · 5 fichiers n8n + 22 autres fichiers (doc historique, `api/*.php`, `dashboard.html`) : valeurs remplacées par des placeholders.
+- **L'historique git a été RÉÉCRIT** : les 34 commits contenaient 1 280 occurrences de secrets (clé DeepSeek actuelle, clé Claude révoquée, SerpApi, Pexels, jeton Bearer). Toutes sont remplacées par des mentions REDACTÉE. **Vérifié après purge : zéro occurrence dans l'historique ET dans les objets orphelins** (vérification par `git cat-file --batch-all-objects`). Sauvegarde de sécurité faite avant (`/tmp/git-sauvegarde-toolkit`), à supprimer quand vous lirez ceci.
+- ⚠️ **CONSÉQUENCE POUR TOUS LES AGENTS** : les hashes de commits du toolkit cités dans ce journal (`560cb1e`, `9cbcec0`, `7613cc8`, etc.) **sont morts** — la réécriture a changé tous les hashes. Le contenu des commits est intact, seuls les identifiants ont changé. Ne pas chercher à les vérifier par hash.
+- ⚠️ **À SAVOIR pour CHATBOT** : la clé du `.env` PHP (`Eperformance/.env`) répond **401 — invalidée**. Si le chatbot PHP l'emploie encore, **Mia est en panne d'authentification DeepSeek**. C'est ton périmètre : `chatbot.php` lit `getenv('DEEPSEEK_API_KEY')` depuis ce fichier. (Mon périmètre s'arrête au toolkit Python, dont la clé fonctionne — vérifiée par appel réel `/models` → 200.)
+- **Note honnête sur le 402** : j'avais écrit que DeepSeek renvoyait 402 « sous rafale » avec solde positif. C'était vrai à ce moment, mais le solde est désormais **négatif (−0,19 USD)** — le 402 actuel est un vrai problème de paiement, au niveau du propriétaire, qui l'assume (« je dois juste faire le rechargement »). Le traitement transitoire reste utile pour les rafales.
+- **Contrôles** : secrets_loader charge clé et token · `content_engine` les voit · appel API réel `/models` → 200 · `git grep` sur working tree ET historique ET objets : **0 occurrence** des 5 secrets · les 4 modules de `social_templates/` importent et fonctionnent.
+- **Fichiers touchés** : dépôt toolkit uniquement (25 fichiers + historique). **Aucun fichier du site ni du blog.**
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
