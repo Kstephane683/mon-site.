@@ -875,6 +875,18 @@
 - **Contrôles** : banc 74/74 · modules compilent et importent · validateur : note refusée, 50+ refusé, 2 repères catalogue seuls refusés, catalogue + fait d'article accepté, chiffre « 1 » refusé, accroche générique refusée · **zéro trace du bloc dans tout fichier versionné**.
 - **Push** : le dépôt toolkit **n'a aucun remote** — commit local `fa4d9f7` + celui-ci. Le dépôt site est poussé (voir ci-dessous).
 
+### 2026-09-19 22:30 — [CHATBOT] — Mission complète app Mia lancée : backend B1-B4 + landing sectorielle déployée
+
+- **Fait (protocole)** : documents relus. Garde-fous → **0 site, 0 blog, parité Docker 0**. Sections 2.1 et 5 mises à jour. Veille horaire : passage vert (le retour des copies est déjà au registre).
+- **Ce que j'ouvre** — la mission complète du propriétaire : **AUCUNE tâche reportée**, l'app Mia backend complète, testée, déployée, pour que SITE conçoive sans attendre.
+  · **B1-B4 (backend, mon périmètre)** : provisionnement des comptes propriétaires, rôles Admin/Opérateur/Lecteur scopés par site + 2FA TOTP + logs d'audit, API client v1 complète (`/api/client/*`), déclencheurs de notification. Garde-fous exigés : tests unitaires + intégration, **isolation multi-tenant vérifiée**, rate limiting, parité Docker.
+  · **Landing (mon périmètre d'exécution, conception sectorielle depuis `sectors.py`)** : **choix et création du dépôt d'hébergement** (le propriétaire a retiré le custom domain du dépôt widget — code source et site public se séparent), refonte sectorielle des 8 sections, **démo interactive**, **4 vidéos muettes** (décision du propriétaire : sans voix générée — enregistrement d'écran réel + texte animé), déploiement `mia.eperformance.pro`.
+  · **Consigne SITE enrichie** : références visuelles, rapidité d'exécution (performance mobile prioritaire), sous-agents.
+- **⚠️ RECTIFICATION (correction du propriétaire, 22h40)** : le dossier de références visuelles Jèko **existe** — à `toolkit_eperformance/eperformance-widget/docs/refonte-app-mia/references-visuelles/` (7 captures WebP + README). Mon annonce d'un « manquant » était fausse : **ma recherche explorait le backend, pas le widget**. Le README pose déjà les règles : la structure est reprise (navigation basse 4 onglets + bouton central, KPIs en gros, actions rapides sur carte surélevée, paramètres en catégories, écran support, état vide clair) — **pas** le design system (Mia suit `eperf.css` canonique), **pas** les couleurs, **pas** le paiement. La consigne SITE l'intègre comme référence structurale, pas comme un modèle à copier.
+- **Un point de décision posé par la mission (choix du dépôt landing)** : ma décision argumentée sera dans `RAPPORT-FINAL.md` — en résumé : **dépôt dédié par app** (séparation code source / site public, un sous-domaine par app, déploiement indépendant, périmètre de coordination clair), plutôt que `mon-site` (périmètre SITE) ou le widget (code source, custom domain retiré).
+- **Fichiers touchés** : ce document (§2.1, §5, cette entrée). Le reste suivra aux livraisons.
+- **Contrôle** : `verifier-chatbot.py` → 0 site et blog · parité Docker → 0.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -905,7 +917,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-19 21:15 (canal e-mail vérifié et opérationnel ; retour des copies consigné) | lecture de `site-eperformance@aa6eccc` · backend `6b8ce3c` |
+| CHATBOT | 2026-09-19 22:30 (mission complète app Mia lancée : B1-B4 + landing + déploiement) | lecture de `site-eperformance@404e137` · backend `6b8ce3c` |
 | SITE | 2026-09-19 12:00 | `b0b6802` |
 | SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
