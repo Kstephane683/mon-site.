@@ -19,7 +19,7 @@
 2. **Vérifier la section 1 (Contrats gelés)** — ta tâche touche-t-elle un élément protégé ?
 3. **Lancer le contrôle automatique** :
    ```bash
-   python3 scripts/verifier-chatbot.py     # site : 16/16 attendu
+   python3 scripts/verifier-chatbot.py     # site : 15/15 attendu (16 avant le retrait de merci-ebook.html)
    ```
 4. Mettre à jour la ligne **« Dernière lecture »** de ton agent dans la section 5.
 
@@ -674,7 +674,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-19 02:05 (alignement design LIVRÉ — D4, D7a, D7b, D7c, D7d) | lecture de `site-eperformance@38f571a` · widget `220822e` |
-| SITE | 2026-09-19 01:55 | `213a333` |
+| SITE | 2026-09-19 04:45 | `fc8a1f2` |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
 ---
@@ -682,11 +682,25 @@
 ## 6. CONTRÔLE AUTOMATIQUE (rappel)
 
 ```bash
-python3 scripts/verifier-chatbot.py    # site : attendu 16/16
+python3 scripts/verifier-chatbot.py    # site : attendu 15/15 (16 avant le retrait de merci-ebook.html)
 python3 -c "print('blog')" && cd ../blog-eperformance && python3 scripts/verifier-chatbot.py   # blog : attendu 88/88
 ```
 
 Ce contrôle tourne **en CI à chaque push** : s'il échoue, le déploiement est signalé. Ne le contourne jamais — c'est lui qui a détecté (et empêchera) la disparition du chatbot.
+
+### 2026-09-19 04:45 — [SITE] — Refonte du cockpit : audit fait sur l'outil ouvert, pas sur le code
+
+- **Fait** : le tableau de bord `toolkit_eperformance/cockpit.html` a été démarré, ouvert et mesuré dans un navigateur. Deux défauts bloquants trouvés, invisibles depuis le source, corrigés (commit `42bdc2d` du dépôt toolkit). Audit UX/UI complet : `docs/refonte-cockpit/AUDIT-UX-COMPLET.md` (407 lignes), plus `ARCHITECTURE-ECRANS.md` (962) et `SYSTEME-VISUEL.md` (1502) écrits par deux sous-agents.
+- **Défaut 1 — l'écran d'accueil était mort.** Le commit `560cb1e` (« branche le cockpit sur les gabarits ») a inséré `_gabarits_disponibles()` entre le décorateur `@app.get("/api/state")` et `api_state()`. La route renvoyait un entier, Flask répondait 500, le cockpit affichait « Serveur injoignable » et ne rendait rien — avec 22 prospects en base.
+- **Défaut 2 — 24 règles CSS annulées en silence.** `:root` contenait `--gold: var(--gold)` et `--wa: var(--wa)`. Un `var()` non résolu annule la déclaration entière et la fait retomber sur sa valeur initiale, jamais sur la précédente. Étaient invisibles : le mot « Cockpit » du titre, les 19 boutons WhatsApp, les barres de l'entonnoir, la puce de filtre active, et **tous les anneaux de focus**. Réparés aux valeurs du site : `--gold: #c9a96e`, `--wa: #25D366`.
+- **Effet sur l'autre agent** : ⚠️ **à savoir** — **un jeton non résolu ne produit aucune erreur** : ni à l'écriture, ni au chargement, ni en console. Il produit une interface qui a l'air d'avoir été conçue ainsi. Rien ne le détecte aujourd'hui. Le widget consomme les mêmes jetons (contrat N1) : la même famille de défaut peut y exister.
+- **Demande à l'autre agent** : vérifier que chaque `var()` utilisé par le widget se résout réellement. Le contrôle utile compare les jetons **référencés** aux jetons **déclarés** — pas la présence d'un jeton, sa **résolution**.
+- **⚠️ Anomalie de coordination, à traiter ensemble.** Il existe **trois copies** de ce document, distinctes (inodes différents) et divergentes :
+  · `OX6A/site-eperformance/COORDINATION-AGENTS.md` — 694 lignes, **le canonique**
+  · `OX6A/COORDINATION-AGENTS.md` — 688 lignes, sans l'entrée [SITE] du 03:35
+  · `Google ads projets/site eperformance/COORDINATION-AGENTS.md` — 678 lignes, s'arrête au 03:00
+  J'ai d'abord écrit mon entrée et corrigé la consigne dans la **mauvaise** copie (`OX6A/`). C'est la même famille de piège que les deux `eperf.css` dont l'un est périmé, qui a déjà trompé quatre agents. **Proposition : ne garder qu'une copie versionnée et faire des autres des liens symboliques** — à trancher par l'humain, je ne le fais pas seul.
+- **Contrôle** : `python3 scripts/verifier-chatbot.py` → ✅ 15/15 pages + générateur conforme. ⚠️ La section 6 annonçait « 16/16 attendu » : **périmé** depuis le retrait volontaire de `merci-ebook.html`. Corrigé ici et en section 0.
 
 ---
 
