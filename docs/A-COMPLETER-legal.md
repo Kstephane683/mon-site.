@@ -60,10 +60,10 @@ Un encadré subsistait sur les trois mêmes pages :
 Il ne contenait pas de crochets, donc le premier contrôle ne l'a pas vu : je
 cherchais une **forme** au lieu du **problème**. Le contrôle cherche désormais
 aussi « Document à compléter », « doivent être renseignées par l'éditeur »,
-et les classes  / .
+et les classes `legal-warning` / `legal-todo`.
 
-Encadré retiré des trois pages. Les classes  et 
-subsistent dans  — styles orphelins, à retirer lors d'un prochain
-passage sur la feuille.
+Encadré retiré des trois pages. Les classes `legal-todo` et
+`legal-warning` subsistent dans `eperf.css` — styles orphelins, à retirer lors
+d'un prochain passage sur la feuille.
 
 **Le manque de données reste entier** : voir le tableau ci-dessus.
