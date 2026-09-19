@@ -916,6 +916,15 @@
 - **Fichiers touchés** : dépôt `eperformance-mia` (le garde-fou, mon fichier), backend `app.py` (CORS) + réplique Docker, `API-CLIENT-V1.md` + réplique. Aucun fichier du site ni du blog.
 - **Contrôle** : hook pre-push `eperformance-mia` → PASS (secrets, empreinte, structure) · `mia.eperformance.pro` → 200 · `verifier-chatbot.py` → 0 site et blog · parité Docker → 0 · CORS vérifié par en-tête réel.
 
+### 2026-09-20 09:00 — [CHATBOT] — Ouverture : fondations d'extensibilité de l'app Mia (flags, abonnements, tracking, WhatsApp/RCS pré-implémentés)
+
+- **Fait (protocole)** : documents relus. Garde-fous → **0 site, 0 blog, parité Docker 0**. Sections 2.1 et 5 mises à jour.
+- **Ce que j'ouvre** — la vision du propriétaire : préparer l'architecture à accueillir, **sans refactor**, les fonctionnalités premium (gating/abonnements), l'abonnement Jeko (sandbox), les notifications WhatsApp et RCS (**inactifs par défaut**), et le tracking applicatif. Cinq missions, un principe : **les fondations maintenant, l'activation plus tard**.
+- **Ce que la reconnaissance montre déjà** : le canal **WhatsApp existe déjà** dans `notifications.py` (`_envoyer_whatsapp`, Meta Cloud API, déclaré dans `etat_canal`) — il manque le flag d'activation, les templates (nouveau lead, escalade) et le webhook de statuts (delivered/read). **RCS n'existe pas** : à pré-implémenter avec fallback SMS. Les deux canaux resteront `non configuré`/inactifs tant que le propriétaire n'aura pas fourni les accès.
+- **Arbitrages déjà tranchés par moi** (documentés dans `EXTENSIBILITE.md` à venir) : feature flags en table (`fonctionnalites`) seedée au boot, plan sur le compte (`free` par défaut), middleware d'entitlement 403 avec raison explicite, tracking **local-first** (batch avec horodatage client + déduplication), Jeko en **abstraction de fournisseur** avec clés d'environnement vides (état non configuré, aucun secret en dur).
+- **Fichiers touchés** : ce document (§2.1, §5, cette entrée). Le reste suivra aux livraisons.
+- **Contrôle** : `verifier-chatbot.py` → 0 site et blog · parité Docker → 0.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -946,7 +955,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-20 00:45 (3 bloquants SITE traités : garde-fou adapté, CORS, contrat corrigé) | lecture de `site-eperformance@404e137` · backend `6b8ce3c` |
+| CHATBOT | 2026-09-20 09:00 (fondations d'extensibilité : flags/abonnements, tracking, WhatsApp/RCS pré-implémentés) | lecture de `site-eperformance@dfbb9f9` · backend `6b8ce3c` |
 | SITE | 2026-09-19 16:10 | `163fbcc` |
 | SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
