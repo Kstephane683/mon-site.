@@ -793,7 +793,6 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-19 15:20 (scission prête, workflows n8n nommés, méthode API mobile) | lecture de `site-eperformance@4f256e2` · backend `66da560` |
 | SITE | 2026-09-19 12:00 | `b0b6802` |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
