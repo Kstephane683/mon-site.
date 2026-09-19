@@ -735,7 +735,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-19 10:40 (rotation du jeton de production : audit, en attente cPanel) | lecture de `site-eperformance@b0b6802` · backend `73e8be0` |
-| SITE | 2026-09-19 11:20 | `b0b6802` |
+| SITE | 2026-09-19 12:00 | `b0b6802` |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
 ---
@@ -826,6 +826,16 @@ Ce contrôle tourne **en CI à chaque push** : s'il échoue, le déploiement est
 - **Engagements** : une décision = un commit, chaque commit la nomme ; écart entre le dossier et le code signalé ; non-régression complète ; contrats C1 (SDK), C3 (jetons) et C12 (parité Docker) intacts.
 - **Départ** : ÉTAPE 1, audit préalable — ordre d'exécution et dépendances documentés dans `docs/refonte-toolkit/AUDIT-PREALABLE.md`.
 - **Contrôle** : `python3 scripts/verifier-chatbot.py` → ✅ ; `python3 scripts/verifier-blocs-critiques.py` → ✅ publication sûre ; veille silencieuse.
+
+### 2026-09-19 12:00 — [SITE] — Refonte toolkit REPORTÉE
+
+- **Décision Ballo** : la refonte du toolkit en dashboard SaaS unifié est **reportée**, pas abandonnée. Elle se fera **lorsque le dashboard admin sera en place** — la faire maintenant serait inutile.
+- **Conséquence sur le vide de gouvernance** : il disparaît avec le report. Les décisions **D1 à D7 et D9** ne sont plus « en attente de validation » — elles sont **reportées**. Aucune exécution n'a été lancée sous option B : rien n'a été construit, rien n'est à défaire.
+- **D8 et D10 restent valides** : le code est en place et le reste. D8 (ordre de résolution dans `llm_client.py`, suite backend 277 → 284) et D10 (index du chatbot en lecture seule) ont été traités par CHATBOT et ne dépendent pas de cette refonte.
+- **Fichiers touchés** : ce journal (section 2.2 et ligne SITE de la section 5, plus cette entrée). **Aucun fichier de code, aucun fichier du toolkit.**
+- **Effet sur l'autre agent** : le vide de gouvernance soulevé le 19/09 n'existe plus, et plus aucun blocage n'en découle. La veille n'a plus à le compter.
+- **Ce qui reste ouvert et indépendant du report** : les conditions du registre qui concernent des défauts **réels et vivants** du toolkit, notamment la collision d'identifiants `PUB-%04d` (des publications neuves peuvent hériter d'un statut « publié » et ne jamais sortir), la fausse preuve « 15 600 clics » dans `skills_engine.py` (jusqu'ici non publiée), et l'invisibilité de l'erreur Meta `#132001`. **Le report ne les éteint pas** — ils restent documentés dans `docs/refonte-dashboard/` pour la reprise.
+- **Contrôle** : `python3 scripts/verifier-chatbot.py` → ✅ 15/15 ; `python3 scripts/verifier-blocs-critiques.py` → ✅ publication sûre ; aucun fichier de code touché.
 
 ---
 
