@@ -780,6 +780,23 @@
 - **Fichiers touchés** : ce journal, `unified-ia-backend/docs/securite/N8N-TOKENS-PAR-NOEUD.md` (nouveau, répliqué dans `docker-unified`), `/home/ballo/N8N-WORKFLOWS-CORRIGES.txt` et `/home/ballo/scripts/corriger-jetons-n8n.py` (hors dépôt, 0600). **Aucun fichier du site, du blog, du toolkit, du noyau ni du widget.**
 - **Contrôle** : `verifier-chatbot.py` → 0 site et blog · parité Docker → 0 · aucune valeur de secret dans un fichier versionné.
 
+### 2026-09-19 18:40 — [CHATBOT] — n8n CORRIGÉ ET PROUVÉ : 16 emplacements, workflow actif re-testé, Meta répond
+
+- **Fait** : les 18 emplacements de la consigne n'étaient pas tous à corriger. Mesuré au départ : le workflow actif portait **déjà** le nouveau jeton sur un de ses deux emplacements (une écriture de ton premier essai était passée avant l'échec signalé). **16 emplacements corrigés réellement, par l'API officielle de n8n** — le workflow actif inclus, avec désactivation, modification, réactivation.
+- **Pourquoi ton premier essai échouait (HTTP 400) — trois causes distinctes, chacune diagnostiquée par le corps de la réponse** :
+  · **`request/body/active is read-only`** : dans cette version de n8n, l'état actif se pilote par des **endpoints dédiés** (`POST /workflows/{id}/activate` et `/deactivate`), pas dans le PUT ;
+  · **`Cannot update an archived workflow`** : deux des six workflows sont **archivés** et refusent toute écriture ;
+  · le payload devait être réduit aux champs réellement modifiables (`name`, `nodes`, `connections`, `settings`).
+  Ton diagnostic de départ (champs read-only + workflow actif + payload) était le bon triptyque — c'est le corps de l'erreur qui a désigné lequel s'appliquait.
+- **Résultat** : 4 workflows corrigés sur 6, **2 sont archivés** (`prospect-manuel`, une version de `WhatsApp Sequences J0-J3-J7`) et refusent toute écriture. Ce sont des reliques volontairement abandonnées : elles portent encore l'ancien jeton mais ne tourneront plus sans une décision de désarchivage — inoffensives.
+- **✅ PREUVE QUE LE WORKFLOW ACTIF FONCTIONNE** — test réel de la vérification Meta, qui exige que le `hub.challenge` soit répercuté :
+  `GET /webhook/meta-whatsapp?hub.mode=subscribe&hub.verify_token=<valeur attendue>&hub.challenge=essai-4251` → **HTTP 200, corps : essai-4251**.
+  La chaîne Meta → n8n → `webhook_reponse.php` est de nouveau opérationnelle. C'était la seule panne réelle : les réponses Meta ne sont plus perdues.
+- **⚠️ DÉCOUVERTE QUI COMPTE** : n8n attend son **propre** verify_token — une valeur de 64 caractères hexadécimaux codée dans la condition du nœud « Token valide ? » — qui n'est **ni** `ep_perf_verify_2026` **ni** `ep_webhook_2026` (les valeurs du PHP). Il y a donc **deux vérificateurs en parallèle** (le PHP et n8n), chacun avec sa valeur, et **Meta n'envoie qu'un seul hub.verify_token** : c'est l'**URL de webhook configurée chez Meta** qui décide lequel s'applique. Le chemin n8n (`/webhook/meta-whatsapp`) valide avec sa valeur à lui. **Aucune action Meta nécessaire** — c'était bien ta décision de ne pas y aller, et elle est doublement justifiée : inutile pour la restauration prévue, et le mécanisme réel ne passe pas par les valeurs que tu aurais comparées là-bas.
+- **Honnêteté sur le chiffre** : la consigne disait « 18 emplacements, 6 workflows ». La mesure au moment de l'application a donné 18, mais **2 appartenaient aux workflows archivés** — 16 seulement étaient atteignables et corrigés. Et l'étape 5 du brief demandait de vérifier le nœud « Meta Verification » : **vérifié non touché** — son jeton de 64 hex est intact, tout comme les `EAA…`.
+- **Fichiers touchés** : `unified-ia-backend/docs/securite/ROTATION-JETON-PRODUCTION.md` (§10, répliqué dans `docker-unified`), `/home/ballo/scripts/corriger-jetons-n8n.py` (corrigé : payload réduit, endpoints dédiés, échecs non fatals, log d'erreurs). **Aucun fichier du site, du blog, du toolkit, du noyau ni du widget.**
+- **Contrôle** : parité Docker → 0 · `verifier-secrets.py` → PASS sur backend et site · `verifier-chatbot.py` → 0 site et blog · sonde de production : la valeur de scission est acceptée (200).
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
