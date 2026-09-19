@@ -970,7 +970,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-20 10:30 (fondations d'extensibilité LIVRÉES : 406 tests, 4 canaux + flags + tracking) | lecture de `site-eperformance@dfbb9f9` · backend `26520d7` |
-| SITE | 2026-09-19 16:10 | `163fbcc` |
+| SITE | 2026-09-19 22:55 | `163fbcc` |
 | SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
 ---
@@ -1092,6 +1092,19 @@ Ce contrôle tourne **en CI à chaque push** : s'il échoue, le déploiement est
 - **Deux arbitrages que je tranche dans mon périmètre** (signalés, contestation bienvenue) : (a) **l'emplacement de la LP** — la consigne se contredit (§3 : dépôt du widget ; §6 : dépôt dédié) ; je retiens **le dépôt dédié `eperformance-mia`**, état de passation livré, domaine et HTTPS déjà en place. (b) **manifeste et service worker dédiés pour l'app de gestion** — le reviseur a prouvé que le manifeste actuel installe le **chatbot visiteur** (`mia-manifest.webmanifest:2-9`, start_url du widget) et que la coquille hors-ligne pré-cache l'index du widget (`sw.js:43-49`) : réutiliser telle quelle publierait la gestion sous l'identité du mauvais produit. L'app aura son manifeste et sa coquille SW propres ; le hors-ligne chiffré exigé n'existe pas encore et sera construit.
 - **Fichiers touchés** : `docs/app-mia/maquettes/*` (maquette + 5 polices auto-hébergées copiées du noyau), ce journal. **Aucun fichier du widget, du backend, du noyau ni du dépôt `eperformance-mia`.**
 - **Contrôle** : `verifier-chatbot.py` → ✅ 15/15 site · ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre.
+
+### 2026-09-19 22:55 — [SITE] — Visuel validé par Ballo ; premium, tracking et canaux rendus dans la maquette ; note d'évolutivité
+
+- **Validation reçue** : Ballo a ouvert la maquette et **valide le rendu visuel** — identité, hiérarchie, wow moment, clair/sombre. **C'est ma base de référence : je ne repars pas de zéro, j'étends.**
+- **Fait — extension de la maquette** (`docs/app-mia/maquettes/app-mia.html`), trois blocs nouveaux, tous **générés depuis une réponse `/me` déclarative** (aucune liste en dur dans le rendu) :
+  · **Abonnement** : plan actuel, fonctionnalités verrouillées visibles-inactives avec cadenas et badge `plan_requis`, au tap → feuille d'upgrade alimentée par `/plans`, et `POST /subscribe` simulé — la branche affichée suit la **réponse** : `non_configure` → « Disponible prochainement — votre intérêt est enregistré, aucun paiement demandé » (prouvé en capture) ; `en_attente_paiement` → flux de paiement (démo commutable).
+  · **Matrice de notifications 3×5** : les 3 types × push/email/telegram opérationnels, **WhatsApp et RCS en cadenas + « bientôt », aucun appel réseau**, avec la promesse affichée que les réglages seront conservés à l'ouverture du canal.
+  · **Compte** : interrupteur « Statistiques d'usage » (consentement RGPD — sans accord, la file de tracking ne s'enrichit pas, sauf l'événement `consent` lui-même) et entrée « Analytics de l'application ».
+- **Fait — note d'évolutivité** : `docs/app-mia/EVOLUTIVITE-UI.md` (mission 4) — comment ajouter un écran premium depuis un nouveau flag `/me`, un canal dans la matrice, un événement de tracking ; carte des points d'extension (`lib/gating.ts`, `lib/canaux.ts`, `lib/tracking.ts`, composants uniques). **Emplacement choisi dans mon arbre** (`site-eperformance/docs/app-mia/`) plutôt que le `docs/refonte-app-mia/` du backend : la mission dit « ne pas toucher au périmètre CHATBOT », et ce dossier vit dans son dépôt.
+- **Le principe qui gouverne les trois extensions**, démontré dans la maquette : **l'interface ne connaît aucune liste** — elle rend ce que `/me`, `/settings` et le tuple backend lui disent. Ajouter une fonctionnalité, un canal ou un événement côté serveur = zéro changement de rendu côté app.
+- **Tracking côté app, conçu local-first** : file IndexedDB, `event_id` UUID produit par l'app (dédup serveur au rejeu), horodatage client, batch 1-500, consentement comme porte unique — le contrat §17 est respecté au dessin près.
+- **Fichiers touchés** : `docs/app-mia/maquettes/app-mia.html` (extension), `docs/app-mia/EVOLUTIVITE-UI.md` (nouveau), ce journal. **Aucun fichier du backend, du widget ni du dépôt `eperformance-mia`.**
+- **Contrôle** : `verifier-chatbot.py` → ✅ 15/15 site · ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre ; zéro hexadécimal hors primitives, zéro emoji (vérifiés par script sur la maquette étendue).
 
 ---
 
