@@ -146,7 +146,8 @@
 | M7 | Refonte de la génération de contenu : le blog comme source, angles par plateforme | ⏸ Après validation | — |
 | M8 | Subagent superviseur qualité (contenu + illustrations, score 0-100, seuil de rejet) | ⏸ Après validation | — |
 | M9 | Branchement du cockpit sur les gabarits (`social_templates/publication.py`) | ✅ Fait | `560cb1e` — testé : `POST /api/publications/PUB-0001/image` → G3, score 100 |
-| M10 | **⚠️ DEMANDE à SITE** : refonte du cockpit alignée sur le design system | ⏳ Chez SITE | voir journal — 124 Ko, aucun jeton `:root`, deux ors, trois couleurs hors marque |
+| M10 | **⚠️ DEMANDE à SITE** : refonte du cockpit alignée sur le design system | 🚫 **REPORTÉE** (décision Ballo via SITE 12:00) | à reprendre quand le dashboard admin sera en place |
+| M11 | Retrait DÉFINITIF du bloc « 4,9/5 · 50+ sites livrés » (placeholder confirmé) | ✅ Fait | 3 affiches (HTML + 6 PNG), template WhatsApp v5, doc V5 — voir journal |
 
 **Ce que l'agent SOCIAL va modifier — et ce qu'il ne touchera pas :**
 
@@ -858,6 +859,22 @@
 - **Fichiers touchés** : ce document (§2.1, §5, cette entrée), `unified-ia-backend/backend/chatbot/notifications.py` + copie Docker, `/home/ballo/OX6A/COORDINATION-AGENTS.md` (note remise). Aucune valeur de secret dans un fichier versionné.
 - **Contrôle** : `verifier-chatbot.py` → 0 site et blog · parité Docker → 0 · `verifier-secrets.py` → PASS · tests backend 284.
 
+### 2026-09-19 — [SOCIAL] — Bloc « 4,9/5 · 50+ sites livrés » retiré DÉFINITIVEMENT — c'était un placeholder
+
+- **Décision Ballo** : le bloc était un **placeholder, pas un chiffre**. Retrait définitif — pas de note sans source, pas de chiffre inventé. J'applique ma propre règle : *le système refuse une publication pour une offre inventée ; accepter une note sans source serait la même faute, en plus visible.*
+- **Fait, endroits identifiés puis nettoyés :**
+  · **3 affiches** (`D-preuve-sociale`, `CAR-4`, `ST-D`) : le bloc étoiles + note + « basé sur 50+ sites livrés » **ET** le titre « 50+ entrepreneurs » (même allégation). HTML édités, **6 PNG re-rendus** (2 tailles chacun), rendus vérifiés visuellement. La preuve sociale des affiches est désormais **uniquement les trois témoignages nominatifs réels** (Superlife, Longrich, Emvie). Originaux sauvegardés dans `backup-pre-retrait-notation/`.
+  · **Template WhatsApp de production** (`templates_whatsapp_j0_v5_authentiques.json`) : `general.sites_livres` + `general.satisfaction` — **lus par aucun code**, donc donnée morte mais exposée : un piège à retardement si un template futur les branchait. Retirés ; JSON re-validé. « delai_livraison : 7 jours » reste : offre réelle du catalogue.
+  · `TEMPLATES_AUTHENTIQUES_V5.md` : les deux lignes retirées.
+  · **Les gabarits sociaux n'ont jamais porté le bloc** — ma liste fermée de repères l'excluait déjà ; testé par mutation : « 4,9/5 satisfaction client » en repère est **refusé**, « 50+ sites livrés » aussi, deux repères catalogue seuls aussi (règle « au moins un repère vient de l'article »).
+  · Les mentions restantes dans `docs/analyse-affiches-reference.md` et `remplisseur.py` sont des **enregistrements de la décision** (le pourquoi), mises à jour en « DÉFINITIF » — pas du bloc en usage.
+- **Remplacement** : Option A (silence sur la note) + la preuve par la démonstration qui existe déjà : les trois témoignages réels sur les affiches, et pour les gabarits la règle « repère = fait du catalogue OU fait de l'article ».
+- **Défaut trouvé en testant mes propres garde-fous** : ma contrainte d'accroche exigeait un chiffre dans `libelle_heros` / `avant_libelle` / `apres_libelle`, alors que ces libellés sont **appariés à un chiffre héros** — reprocher à « des recherches ont une intention locale » de ne pas être une statistique alors que « 46 % » l'est juste au-dessus. **C'est ce défaut qui avait causé les refus « trop générique » du lot v6 sur G3.** Recentré sur ce qui vit seul (couverture, titre, conclusion). Testé dans les deux sens.
+- **Vu en passant, signalé (pas mon bloc mandaté)** : `templates_whatsapp_j0_v5_authentiques.json` porte aussi `trafic_google : « 15 600 clics Google/mois »` — le même chiffre fictif que SITE a déjà au registre (`skills_engine.py`). S'il part dans un message WhatsApp réel, c'est le même risque de conformité. À trancher du côté de qui suit ce registre.
+- **Périmètre** : toolkit + dossier affiches (propriétaire, hors dépôts). **Aucun fichier SITE, CHATBOT, NOYAU.** Pas de note inventée, pas de chiffre de remplacement non vérifiable.
+- **Contrôles** : banc 74/74 · modules compilent et importent · validateur : note refusée, 50+ refusé, 2 repères catalogue seuls refusés, catalogue + fait d'article accepté, chiffre « 1 » refusé, accroche générique refusée · **zéro trace du bloc dans tout fichier versionné**.
+- **Push** : le dépôt toolkit **n'a aucun remote** — commit local `fa4d9f7` + celui-ci. Le dépôt site est poussé (voir ci-dessous).
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -890,7 +907,7 @@
 |---|---|---|
 | CHATBOT | 2026-09-19 21:15 (canal e-mail vérifié et opérationnel ; retour des copies consigné) | lecture de `site-eperformance@aa6eccc` · backend `6b8ce3c` |
 | SITE | 2026-09-19 12:00 | `b0b6802` |
-| SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
+| SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
 ---
 
