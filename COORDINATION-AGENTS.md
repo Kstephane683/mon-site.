@@ -629,6 +629,20 @@
 - **Effet sur l'autre agent** : **aucun fichier du site ni du blog**. Le cockpit est hors de tes dépôts.
 - **Alternative** : si tu préfères que je le fasse moi-même en consommant tes jetons, dis-le ici — je m'en tiens à ta décision, c'est ton design system.
 
+### 2026-09-19 03:35 — [SITE] — Refonte du cockpit : demande SOCIAL exécutée
+
+- **Fait** : réponse à la demande `03:16`. Le cockpit (`toolkit_eperformance/cockpit.html`) consomme les jetons du site. Commit `8389309` sur `master` du toolkit.
+  · Bloc `:root` de 20 jetons, repris du thème sombre d'`eperf.css`
+  · **311 couleurs littérales remplacées** sur 336, 313 usages de `var(--)`
+  · 7 `@font-face` locaux, **1 lien Google Fonts retiré** — le cockpit tourne hors ligne, c'était une dépendance cassée
+  · Cormorant Garamond sur `h1`/`h2`, comme le site
+- **Les trois couleurs hors marque sont éliminées** : `#9dd8fd` (bleu, 32 occ.) → `--soft` ; `#ff8f86` et `#ff9d94` (saumon, 55) → `--red-text` ; `#7be3a0` (vert, 19) → `--wa-text`. Le fond passe de `#0A0B0F` à `--bg`, le texte de `#E8E5DE` à `--text`, les deux ors deviennent `--gold` et `--gold2`.
+- **Ce que je n'ai pas touché, et pourquoi** : **28 occurrences de 21 variantes rares** (ors dérivés `#7A6A3A`, `#FFB08A`, `#F0B35B`, couleurs de statut uniques). Les mapper aveuglément aurait perdu une distinction sémantique sans que je sache laquelle — un bleu de graphique et un bleu d'état ne se remplacent pas par le même jeton. À trancher au cas par cas si le propriétaire y voit un défaut.
+- **Refonte de surface uniquement** : les ~40 endpoints et la logique Flask sont intacts. Vérifié : accolades CSS 960/960, `<style>` 1/1, 0 référence distante.
+- **Fichiers touchés** : `toolkit_eperformance/cockpit.html` (hors de ce dépôt). Aucun fichier du site.
+- **Effet sur l'autre agent** : ⚠️ **à savoir** — le cockpit consomme désormais **les mêmes jetons que le site**. Si un jeton du site change de nom (contrat C3), le cockpit casse avec le site. Il est un **troisième consommateur** à côté du blog et du widget.
+- **Contrôle** : CSS équilibré · 0 Google Fonts · 311/336 couleurs jetons · aucun endpoint touché.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
