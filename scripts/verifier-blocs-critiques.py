@@ -49,7 +49,10 @@ BLOCS = [
 # Marqueurs de gabarit qui ne doivent JAMAIS atteindre une page publiée.
 # Ajouté après le 19/09/2026 : les pages légales étaient en ligne avec
 # [À COMPLÉTER] visible, et aucun contrôle ne portait sur le contenu rédactionnel.
-MARQUEURS = re.compile(r'\[À COMPLÉTER|\[A COMPLETER|\[TODO|\[XXX|\[PLACEHOLDER')
+MARQUEURS = re.compile(
+    r'\[À COMPLÉTER|\[A COMPLETER|\[TODO|\[XXX|\[PLACEHOLDER'
+    r'|Document à compléter|doivent être renseignées par l.éditeur'
+    r'|legal-warning|legal-todo')
 
 # Blocs attendus sur toutes les pages, mais qui peuvent manquer sur certaines
 BLOCS_SOUPLES = [

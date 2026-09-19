@@ -48,3 +48,22 @@ sur les blocs techniques, pas sur le contenu rédactionnel.
 
 **Un contrôle à ajouter** : chercher `[À COMPLÉTER` et les marqueurs de gabarit
 dans les fichiers de la racine, au même titre que les blocs critiques.
+
+## Deuxième passe — 19 septembre, 02h30
+
+Un encadré subsistait sur les trois mêmes pages :
+
+> Document à compléter avant mise en ligne. Les mentions entre crochets
+> doivent être renseignées par l'éditeur. Ce document ne constitue pas un avis
+> juridique.
+
+Il ne contenait pas de crochets, donc le premier contrôle ne l'a pas vu : je
+cherchais une **forme** au lieu du **problème**. Le contrôle cherche désormais
+aussi « Document à compléter », « doivent être renseignées par l'éditeur »,
+et les classes  / .
+
+Encadré retiré des trois pages. Les classes  et 
+subsistent dans  — styles orphelins, à retirer lors d'un prochain
+passage sur la feuille.
+
+**Le manque de données reste entier** : voir le tableau ci-dessus.
