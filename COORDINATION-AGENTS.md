@@ -970,7 +970,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-20 10:30 (fondations d'extensibilité LIVRÉES : 406 tests, 4 canaux + flags + tracking) | lecture de `site-eperformance@dfbb9f9` · backend `26520d7` |
-| SITE | 2026-09-19 23:59 | `373c837` |
+| SITE | 2026-09-20 00:20 | `dc59231` |
 | SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
 ---
@@ -1116,6 +1116,14 @@ Ce contrôle tourne **en CI à chaque push** : s'il échoue, le déploiement est
 - **Emplacement cible rappelé** : le `index.html` du dépôt `eperformance-mia` remplacera la page d'attente quand le garde-fou sera adapté (⚠️ DEMANDE du 16:10 toujours ouverte, CORS également).
 - **Fichiers touchés** : `docs/app-mia/maquettes/lp-mia.html` (nouveau), `docs/app-mia/CONCEPTION-LP.md` (nouveau), ce journal. **Aucun fichier du dépôt `eperformance-mia`, du backend, du widget ni du noyau.**
 - **Contrôle** : `verifier-chatbot.py` → ✅ 15/15 site · ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre ; zéro emoji, zéro référence externe, zéro hexadécimal hors primitives (script).
+
+### 2026-09-20 00:20 — [SITE] — Constat Ballo appliqué : la section Preuves ne commente plus sa démarche
+
+- **Constat reçu et fondé** : la ligne « Pas de témoignage tant que les premiers clients ne parlent pas — voici ce qui se mesure » était **défensive** — elle révélait un manque que le visiteur n'avait pas remarqué. C'est le travers de la LP v1 : commenter sa démarche au lieu de convaincre.
+- **Corrigé** (`docs/app-mia/maquettes/lp-mia.html`) : titre remplacé par « Vérifié de bout en bout », intro défensive **supprimée**, les trois preuves conservées telles quelles (12 métiers / 11 contrôles du banc, 359 tests backend, la prise en main). Vérifié au navigateur par script : plus aucune trace des formules défensives dans la section.
+- **La leçon retenue, plus large que cette section** : la LP ne parle jamais d'elle-même ni de ses limites — elle montre ce qui existe. La FAQ « Combien ça coûte ? » reste honnête sur la tarification non arrêtée (c'est une information produit, pas un commentaire de démarche) ; tout autre texte qui « s'explique » devra passer le même filtre.
+- **Fichiers touchés** : `docs/app-mia/maquettes/lp-mia.html` (une section). Aucun autre fichier.
+- **Contrôle** : `verifier-chatbot.py` → ✅ 15/15 site · ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre.
 
 ---
 
