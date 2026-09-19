@@ -970,7 +970,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-20 10:30 (fondations d'extensibilité LIVRÉES : 406 tests, 4 canaux + flags + tracking) | lecture de `site-eperformance@dfbb9f9` · backend `26520d7` |
-| SITE | 2026-09-20 00:20 | `dc59231` |
+| SITE | 2026-09-20 00:55 | `401a61a` |
 | SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
 ---
@@ -1123,6 +1123,15 @@ Ce contrôle tourne **en CI à chaque push** : s'il échoue, le déploiement est
 - **Corrigé** (`docs/app-mia/maquettes/lp-mia.html`) : titre remplacé par « Vérifié de bout en bout », intro défensive **supprimée**, les trois preuves conservées telles quelles (12 métiers / 11 contrôles du banc, 359 tests backend, la prise en main). Vérifié au navigateur par script : plus aucune trace des formules défensives dans la section.
 - **La leçon retenue, plus large que cette section** : la LP ne parle jamais d'elle-même ni de ses limites — elle montre ce qui existe. La FAQ « Combien ça coûte ? » reste honnête sur la tarification non arrêtée (c'est une information produit, pas un commentaire de démarche) ; tout autre texte qui « s'explique » devra passer le même filtre.
 - **Fichiers touchés** : `docs/app-mia/maquettes/lp-mia.html` (une section). Aucun autre fichier.
+- **Contrôle** : `verifier-chatbot.py` → ✅ 15/15 site · ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre.
+
+### 2026-09-20 00:55 — [SITE] — LP : les trois finitions de Ballo appliquées et vérifiées au navigateur
+
+- **Point 1 — la démonstration suit le secteur.** Douze conversations, une par métier, **chacune écrite sur les thèmes réels du noyau, verbatim** (restauration → `réservation` / `allergènes et régimes` ; immobilier → `visite` / `financement` ; éducation → `inscription et dossier` / `frais de scolarité`…). Vérifié au navigateur : sélection « Éducation et formation » → titre, accroche, capacités **et échange** changent ensemble, miroir synchronisé. Le fil par défaut (restauration) reste rendu en balisage pour l'indexation sans JavaScript.
+- **Point 2 — « Gérez-la » : la transition préparée.** Une constante unique en tête du script (`const URL_APPLICATION = null;`, documentée) : tant qu'elle vaut `null`, le lien garde l'ancre `#app` ; à la livraison de l'app (PWA/TWA), on y pose l'URL — le lien ouvre l'application dans un nouvel onglet, **aucun autre changement n'est nécessaire**. La procédure est dans `CONCEPTION-LP.md` §8. Pourquoi une constante et pas une redirection : la LP reste indexable et lisible pendant toute la transition, et le basculement se vérifie en un grep.
+- **Point 3 — le « 1 » n'est pas une mesure.** Remplacé par une mesure réelle : **11 contrôles automatiques par métier** (le banc sectoriel du produit). La prise en main, qui était le sens de cette carte, reste présentée là où elle appartient : dans les fonctionnalités de l'application (S5). La section Preuves affiche désormais trois chiffres comparables : **12 / 359 / 11**.
+- **Deux défauts corrigés au passage, tous deux les miens** : l'intro de la section Démonstration disait encore « Voici un échange **réel** » (C6 — corrigé en « un échange dans le secteur choisi, construit sur ses thèmes réels ») ; et le bouton de l'encart flottait à côté du texte (CSS).
+- **Fichiers touchés** : `docs/app-mia/maquettes/lp-mia.html` (points 1-3 + les deux correctifs), `docs/app-mia/CONCEPTION-LP.md` (§2, §3 S6, §8 nouveau). Aucun autre fichier.
 - **Contrôle** : `verifier-chatbot.py` → ✅ 15/15 site · ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre.
 
 ---

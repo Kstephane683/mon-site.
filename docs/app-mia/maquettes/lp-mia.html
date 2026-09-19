@@ -133,7 +133,7 @@ h2 { font-family:var(--police-titres); font-size:44px; line-height:1.1; font-wei
 .bulle.mia b { color:var(--accent); }
 .demo .encart { font-size:14px; color:var(--texte-doux); }
 .demo .encart b { display:block; font-size:16px; color:var(--texte); margin-bottom:8px; }
-.demo .encart .bouton { margin-top:16px; }
+.demo .encart .bouton { margin-top:16px; display:flex; }
 
 /* S5 app */
 .app-rangee { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:34px; }
@@ -270,13 +270,13 @@ footer a { color:var(--texte-discret); }
   <section id="demo" aria-labelledby="demo-titre">
     <p class="sur-titre">Démonstration</p>
     <h2 id="demo-titre">Voyez Mia répondre, maintenant</h2>
-    <p class="intro">Voici un échange réel, dans le secteur choisi ci-dessus. La démonstration interactive — où vous posez vos propres questions — arrive avec l'ouverture du domaine de démonstration.</p>
+    <p class="intro">Un échange dans le secteur choisi ci-dessus, construit sur ses thèmes réels. La démonstration interactive — où vous posez vos propres questions — arrive avec l'ouverture du domaine de démonstration.</p>
     <div class="demo">
-      <div class="fil" aria-label="Exemple de conversation">
-        <div class="bulle visiteur">Bonjour, vous avez une table pour 6 personnes ce samedi soir ?</div>
-        <div class="bulle mia"><b>Mia</b> — Bonsoir ! Oui, nous accueillons les groupes : notre salle peut recevoir 6 personnes ce samedi. Souhaitez-vous que l'équipe vous confirme par téléphone ?</div>
-        <div class="bulle visiteur">Oui volontiers, c'est pour 20h.</div>
-        <div class="bulle mia"><b>Mia</b> — Parfait, je note : 6 personnes, samedi 20h. Votre demande est transmise à Chez Amina, vous serez rappelé pour confirmer. Autre chose ?</div>
+      <div class="fil" aria-label="Exemple de conversation" id="fil-demo">
+        <div class="bulle visiteur">Bonjour, avez-vous une table pour 6 ce samedi soir ?</div>
+        <div class="bulle mia"><b>Mia</b> — Bonsoir ! Oui, nous accueillons les groupes. Je note pour la réservation : 6 personnes, samedi soir. Vous souhaitez être contacté pour confirmer ?</div>
+        <div class="bulle visiteur">Oui, 20h — et vous avez des options sans gluten ?</div>
+        <div class="bulle mia"><b>Mia</b> — Nos plats sont indiqués allergènes et régimes. C'est transmis : table de 6, samedi 20h — l'équipe vous rappelle pour confirmer.</div>
       </div>
       <div class="encart">
         <b>Cet échange illustre ce que Mia répond.</b>
@@ -350,7 +350,7 @@ footer a { color:var(--texte-discret); }
     <div class="preuves">
       <div class="preuve"><div class="chiffre">12</div><div class="libelle">métiers clients couverts par le même moteur, contenus réels vérifiés</div><div class="source">banc sectoriel, 11 contrôles automatiques par secteur</div></div>
       <div class="preuve"><div class="chiffre">359</div><div class="libelle">tests automatisés sur le backend — isolation, sécurité, notifications</div><div class="source">suite pytest du backend, septembre 2026</div></div>
-      <div class="preuve"><div class="chiffre">1</div><div class="libelle">prise en main toujours possible : vous restez le patron de la conversation</div><div class="source">parce qu'une machine ne tranche pas à votre place</div></div>
+      <div class="preuve"><div class="chiffre">11</div><div class="libelle">contrôles automatiques sur chaque métier — contenus vérifiés avant d'être promis</div><div class="source">banc sectoriel automatique du produit</div></div>
     </div>
   </section>
 
@@ -528,6 +528,81 @@ const SECTEURS = {
     ]
   }
 };
+/* Demonstrations par secteur — chaque echange illustre les themes REELS du noyau */
+const DEMOS = {
+  "restauration": [
+    "Bonjour, avez-vous une table pour 6 ce samedi soir ?",
+    "Bonsoir ! Oui, nous accueillons les groupes. Je note pour la réservation : 6 personnes, samedi soir. Vous souhaitez être contacté pour confirmer ?",
+    "Oui, 20h — et vous avez des options sans gluten ?",
+    "Nos plats sont indiqués allergènes et régimes. C'est transmis : table de 6, samedi 20h — l'équipe vous rappelle pour confirmer."
+  ],
+  "hotellerie": [
+    "Une chambre double est-elle libre du 24 au 26 ?",
+    "Oui, la chambre double est disponible. Arrivée dès 13h, départ avant 12h — réservation avec annulation jusqu'à 48h avant. Je transmets votre demande ?",
+    "D'accord, et la chambre a la climatisation ?",
+    "Oui, climatisation et wifi inclus. C'est transmis : double du 24 au 26 — l'hôtel vous confirme."
+  ],
+  "ecommerce": [
+    "Vous livrez à Bouaké, et sous combien de temps ?",
+    "Oui, livraison sous 48 à 72h — le délai exact s'affiche au paiement. Vous regardiez un produit en particulier ?",
+    "Et si la taille ne va pas ?",
+    "Retours et remboursements sont prévus : 14 jours pour renvoyer l'article. Je vous envoie le lien pour commander."
+  ],
+  "immobilier": [
+    "Vous avez des 3 pièces disponibles à Cocody ?",
+    "Oui, plusieurs 3 pièces sont disponibles. Souhaitez-vous programmer une visite ? Je peux aussi vous orienter sur le financement.",
+    "Oui, samedi si possible — et l'achat passe par quel montage ?",
+    "Visite notée pour samedi : l'agent vous confirme l'heure et vous explique le financement, frais et notaire compris."
+  ],
+  "mlm": [
+    "Comment on démarre dans le réseau, et ça demande quel investissement ?",
+    "Le démarrage se fait avec un kit de départ — l'investissement exact vous est présenté avec les produits. Voulez-vous qu'un distributeur vous contacte ?",
+    "Et le plan de rémunération, il marche comment ?",
+    "Je vous l'explique en langage simple, étape par étape. Votre demande est transmise : un distributeur vous rappelle pour tout détailler."
+  ],
+  "beaute": [
+    "Quels soins proposez-vous pour peaux mixtes ?",
+    "Des soins adaptés aux peaux mixtes : nettoyage profond et hydratation. Souhaitez-vous un rendez-vous ?",
+    "Oui, samedi matin si possible.",
+    "C'est noté : samedi matin. Votre demande est transmise, l'institut vous confirme l'heure."
+  ],
+  "sante": [
+    "Puis-je avoir un rendez-vous cette semaine ?",
+    "Oui, des créneaux sont disponibles. Je note votre demande — plutôt le matin ou l'après-midi ?",
+    "Le matin. Vos consultations sont-elles remboursées ?",
+    "Remboursement et mutuelle dépendent de votre couverture : l'équipe vous le confirme au rappel. Votre rendez-vous est transmis."
+  ],
+  "education": [
+    "Les inscriptions sont-elles encore ouvertes ?",
+    "Oui, les inscriptions sont ouvertes. Je peux vous guider sur le dossier à préparer — quel programme vous intéresse ?",
+    "La licence — et les frais de scolarité ?",
+    "Les frais de scolarité vous sont détaillés avec le dossier. Votre demande est transmise : l'école vous rappelle avec le guide d'inscription."
+  ],
+  "evenementiel": [
+    "Reste-t-il des places pour le concert de vendredi ?",
+    "Oui, des places sont encore disponibles pour vendredi. Je peux vous indiquer comment les réserver.",
+    "Et pour un groupe de 10, il y a un tarif ?",
+    "Un devis de groupe est possible. Votre demande est transmise : l'équipe vous rappelle avec les conditions."
+  ],
+  "tourisme": [
+    "Vous avez des séjours au Sénégal en décembre ?",
+    "Oui, des séjours sont proposés en décembre. Souhaitez-vous un devis — et je peux aussi vous informer sur les formalités et le visa ?",
+    "Oui — il faut un passeport ou juste la CNI ?",
+    "Les formalités dépendent de votre nationalité, je vous les détaille. Votre demande de devis est transmise : un conseiller vous rappelle."
+  ],
+  "artisan": [
+    "Vous faites la pose de carrelage, et à quel tarif ?",
+    "Oui, la pose de carrelage fait partie de nos prestations. Le tarif se chiffre sur votre surface — puis-je faire établir un devis ?",
+    "Oui. Et sous quel délai vous pouvez intervenir ?",
+    "Délais et planning sont confirmés au devis. Votre demande est transmise : l'artisan vous rappelle pour prendre les mesures."
+  ],
+  "vitrine": [
+    "Comment se passe une mission avec vous ?",
+    "La prestation se déroule en trois temps : échange, proposition, réalisation. Souhaitez-vous un devis pour votre besoin ?",
+    "Oui, pour un site de présentation.",
+    "Votre demande de devis est transmise : vous êtes rappelé pour cadrer le besoin."
+  ]
+};
 
 /* le selecteur structure TOUTE la page : hero, capacites, miroir final */
 function rendreSelecteur(conteneur, avecDefaut) {
@@ -547,6 +622,13 @@ function choisirSecteur(cle) {
   document.getElementById('secteur-hero').textContent = s.nom.toLowerCase();
   document.getElementById('secteur-capacites').textContent = 'dans votre métier : ' + s.nom.toLowerCase();
   document.getElementById('hero-accroche').textContent = s.accroche;
+  const d = DEMOS[cle];
+  document.getElementById('fil-demo').innerHTML = [
+    `<div class="bulle visiteur">${d[0]}</div>`,
+    `<div class="bulle mia"><b>Mia</b> — ${d[1]}</div>`,
+    `<div class="bulle visiteur">${d[2]}</div>`,
+    `<div class="bulle mia"><b>Mia</b> — ${d[3]}</div>`
+  ].join('');
   const liste = document.getElementById('liste-capacites');
   liste.innerHTML = s.themes.map(th => `
     <article class="capacite">
@@ -557,6 +639,17 @@ function choisirSecteur(cle) {
 }
 rendreSelecteur(document.getElementById('selecteur'));
 rendreSelecteur(document.getElementById('selecteur-final'));
+
+/* Lien « Gerez-la » — URL_APPLICATION reste null tant que l'app n'est pas deployee.
+   A la livraison (PWA/TWA) : poser l'URL ici (ex. "https://app.mia…"), le lien
+   quitte l'ancre LP et ouvre l'application. Documente dans CONCEPTION-LP.md §8. */
+const URL_APPLICATION = null;
+if (URL_APPLICATION) {
+  const lien = document.querySelector('.barre .deja');
+  lien.setAttribute('href', URL_APPLICATION);
+  lien.setAttribute('target', '_blank');
+  lien.setAttribute('rel', 'noopener');
+}
 
 /* theme clair/sombre */
 document.getElementById('bascule-theme').addEventListener('click', e => {

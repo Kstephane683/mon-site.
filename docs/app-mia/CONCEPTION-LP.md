@@ -22,7 +22,7 @@ La décision de structure : **le sélecteur de secteur avant le titre**. La prom
 ## 2. Le sélecteur de secteur — l'élément structurant
 
 - **Position** : au-dessus du titre (S1) et en miroir dans le CTA final (S8). Deux instances, un seul état.
-- **Comportement** : cliquer un secteur change, instantanément — le titre du hero, l'accroche (donnée réelle), les cartes de capacités (S2), et l'exemple de conversation suggéré en S4 (à venir). Vérifié au navigateur : sélection « Immobilier » → accroche réelle du secteur + thèmes `visite, financement, frais et notaire, estimation` + miroir synchronisé.
+- **Comportement** : cliquer un secteur change, instantanément — le titre du hero, l'accroche (donnée réelle), les cartes de capacités (S2) **et l'échange de démonstration (S4)**. Vérifié au navigateur : sélection « Immobilier » → accroche réelle + thèmes `visite, financement, frais et notaire, estimation` ; sélection « Éducation et formation » → l'échange passe sur `inscription et dossier` / `frais de scolarité`. Miroir synchronisé. **Les 12 conversations sont écrites sur les thèmes réels du noyau, verbatim** — aucune invention.
 - **Défaut** : Restauration (premier secteur du noyau), rendu **en balisage** — la page est complète et indexable sans JavaScript.
 - **Accessibilité** : `role="group"` avec libellé, `aria-pressed` sur chaque bouton, ordre de tabulation naturel, focus visible or.
 - **Persistance** : choix mémorisé (localStorage) — à l'ouverture suivante, la page parle le métier du visiteur.
@@ -76,3 +76,12 @@ Le contrôle actuel impose le DOM de la LP v1 (ids, classes, un nom de restauran
 **Interdits inchangés** : zéro emoji · zéro nom d'agent (agent, modèle, compteur) · zéro hexadécimal en dur hors le bloc de primitives · zéro référence externe au chargement · les mentions « bientôt » ne décrivent jamais une capacité comme disponible.
 
 **C2 en contrôle automatique** : toute occurrence de « réserve », « commande », « paie » comme capacité présente doit coexister avec un badge « bientôt » dans la même carte — sinon le push échoue.
+
+
+## 8. Le lien « Gérez-la » — la transition vers l'app
+
+**État actuel** : le lien du bandeau pointe vers l'ancre `#app` (la section LP qui présente l'application) — parce que l'app n'est pas encore déployée.
+
+**À la livraison** : une seule constante en tête du script — `const URL_APPLICATION = null;` — reçoit l'URL de l'app (PWA web ou store). Le lien quitte alors l'ancre, s'ouvre dans un nouvel onglet (`rel="noopener"`), et **aucun autre changement n'est nécessaire**. La variable est documentée en tête du fichier `lp-mia.html`.
+
+**Pourquoi une constante et pas une redirection** : la LP reste lisible et indexable pendant toute la transition ; le lien devient un simple changement de destination, vérifiable en un grep.
