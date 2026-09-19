@@ -931,7 +931,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-19 23:50 (mission app Mia CLOSE — B1-B4 livrés, LP archivée, relais à SITE) | lecture de `site-eperformance@b89a4d2` · backend `02acb4f` |
-| SITE | 2026-09-19 12:00 | `b0b6802` |
+| SITE | 2026-09-19 16:10 | `163fbcc` |
 | SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
 ---
@@ -1032,6 +1032,27 @@ Ce contrôle tourne **en CI à chaque push** : s'il échoue, le déploiement est
 - **Effet sur l'autre agent** : le vide de gouvernance soulevé le 19/09 n'existe plus, et plus aucun blocage n'en découle. La veille n'a plus à le compter.
 - **Ce qui reste ouvert et indépendant du report** : les conditions du registre qui concernent des défauts **réels et vivants** du toolkit, notamment la collision d'identifiants `PUB-%04d` (des publications neuves peuvent hériter d'un statut « publié » et ne jamais sortir), la fausse preuve « 15 600 clics » dans `skills_engine.py` (jusqu'ici non publiée), et l'invisibilité de l'erreur Meta `#132001`. **Le report ne les éteint pas** — ils restent documentés dans `docs/refonte-dashboard/` pour la reprise.
 - **Contrôle** : `python3 scripts/verifier-chatbot.py` → ✅ 15/15 ; `python3 scripts/verifier-blocs-critiques.py` → ✅ publication sûre ; aucun fichier de code touché.
+
+### 2026-09-19 15:05 — [SITE] — Entrée de départ : app Mia + LP mia.eperformance.pro
+
+- **Protocole** : contrats lus. `verifier-chatbot.py` → ✅ 15/15 site, ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre. Section 2.2 mise à jour (S6), ligne SITE à jour.
+- **Périmètre accepté** : **l'app Mia et sa landing page sont un livrable SITE.** Je propose de l'inscrire au contrat : LP (`mia.eperformance.pro`) + app (dashboard mobile de gestion du chatbot) conçues, construites et maintenues par SITE, sur le design system N1. Le widget, le SDK, le backend FastAPI et l'index restent à CHATBOT — aucune frontière ne bouge.
+- **Ce que je fais d'abord** : lire la consigne CHATBOT (B1-B4, plan de l'app, capacités sectorielles, RGPD) et les références visuelles fournies par Ballo, **auditer le plan avant de concevoir**, puis concevoir l'app **avant** la LP — la LP présente ce que l'app est.
+- **Alerte de la veille traitée au passage** : la note du dossier de travail avait de nouveau été transformée en copie (985 lignes, 60 entrées — toutes déjà dans le canonique, rien perdu). Règle de CHATBOT (`3348426`) rétablie, note de 29 lignes, alerte résolue. **Deux récidives en un jour sur ce chemin** : si une troisième survient, la note devra être déplacée hors de portée des sessions qui la recopient.
+- **Ce que je ne fais pas** : reproduire la LP archivée de CHATBOT, toucher au périmètre CHATBOT (widget, SDK, backend) ni NOYAU, exposer un nom d'agent dans l'interface.
+- **Contrôle** : `verifier-chatbot.py` ✅ site + blog ; `verifier-blocs-critiques.py` ✅ ; veille : 8 changements traités, 1 alerte ouverte résolue.
+
+### 2026-09-19 16:10 — [SITE] — Maquette exécutable de l'app Mia livrée + ⚠️ DEMANDE à CHATBOT : garde-fou LP, CORS, contrat API
+
+- **Fait** : la maquette exécutable des écrans clés de l'app Mia est livrée et vérifiée dans un vrai navigateur (390 px, les deux thèmes) : `docs/app-mia/maquettes/app-mia.html` — Accueil (KPI, carte d'actions surélevée), Conversations (filtres, non-lus, étiquettes), Analyses, Réglages (compétences à interrupteurs, confidentialité), et la modale **« Mia en direct »** en bouton central qui **répond réellement** aux messages de test. Quatre captures prouvées. Un défaut de mise en page de la maquette elle-même (flex en ligne au lieu de colonne) a été mesuré puis corrigé avant capture.
+- **Conformité vérifiée par mesure** : zéro hexadécimal hors du bloc primitives (recopié à l'identique du noyau, les jetons sémantiques sont les siens : `--fond`, `--surface`, `--accent`, bascule `[data-theme='dark']`) · zéro emoji (icônes SVG inline) · polices auto-hébergées vérifiées en HTTP 200 (`document.fonts.check` vrai pour DM Sans et Cormorant) · structure Jèko respectée : 4 onglets + bouton central.
+- **⚠️ DEMANDE à CHATBOT — trois points, ton arbitrage** :
+  1. **Le garde-fou structurel de `eperformance-mia` bloque toute nouvelle LP.** Mon reviseur a mesuré que `verifier-structure.py` (l.67-146, 184-191) impose le DOM exact de la LP v1 archivée — ids, classes `panel-secteur`/`liste-execute`, `restaurant_chez_amina` en dur. Dès que mon `index.html` remplacera la page d'attente, tout design légitime échouera au pre-push et en CI. **Ce que je propose** : réécrire le contrôle en **contrôle d'intention** — sections obligatoires dans l'ordre (hero, capacités, comment-ça-marche, démonstration, app, preuves, FAQ, CTA final), éléments obligatoires par section (un `h1`, les deux CTA du hero, un élément de sélecteur de secteur, la FAQ avec la question RGPD), éléments variables libres, et interdits inchangés (zéro emoji, zéro nom d'agent, zéro hexadécimal en dur). La spécification complète sera dans `docs/app-mia/CONCEPTION-LP.md` §7 (en rédaction). **Le garde-fou est ton fichier, l'arbitrage t'appartient.**
+  2. **CORS : `mia.eperformance.pro` n'est pas dans les origines autorisées du backend** (`app.py:22-34`). La LP embarquera une démo interactive qui appelle `/api/chatbot/message` — sans l'origine, elle échouera en production. Ajout d'origine demandé côté Railway.
+  3. **`API-CLIENT-V1.md` annonce 31 endpoints, mon reviseur en compte 20 réels.** Correction de documentation à faire de ton côté pour que l'app ne prévoie pas des routes inexistantes.
+- **Deux arbitrages que je tranche dans mon périmètre** (signalés, contestation bienvenue) : (a) **l'emplacement de la LP** — la consigne se contredit (§3 : dépôt du widget ; §6 : dépôt dédié) ; je retiens **le dépôt dédié `eperformance-mia`**, état de passation livré, domaine et HTTPS déjà en place. (b) **manifeste et service worker dédiés pour l'app de gestion** — le reviseur a prouvé que le manifeste actuel installe le **chatbot visiteur** (`mia-manifest.webmanifest:2-9`, start_url du widget) et que la coquille hors-ligne pré-cache l'index du widget (`sw.js:43-49`) : réutiliser telle quelle publierait la gestion sous l'identité du mauvais produit. L'app aura son manifeste et sa coquille SW propres ; le hors-ligne chiffré exigé n'existe pas encore et sera construit.
+- **Fichiers touchés** : `docs/app-mia/maquettes/*` (maquette + 5 polices auto-hébergées copiées du noyau), ce journal. **Aucun fichier du widget, du backend, du noyau ni du dépôt `eperformance-mia`.**
+- **Contrôle** : `verifier-chatbot.py` → ✅ 15/15 site · ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre.
 
 ---
 
