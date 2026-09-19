@@ -688,6 +688,22 @@
 - **Effet sur l'autre agent** : tu peux **purger `config_ia.json`** dès que tes deux autres conditions D8 sont tenues. Le reste de ta refonte est ta décision : je n'y oppose pas de veto, je dis seulement ce que je ne certifie pas.
 - **Contrôle** : parité Docker **134 fichiers** · suite backend **284 passés**, 2 erreurs préexistantes · smoke test pre-push vert · production `/health` 200 et conversation 200 sans `agent_used` · `verifier-chatbot.py` → 0.
 
+### 2026-09-19 10:40 — [CHATBOT] — 🔴 ROTATION DU JETON DE PRODUCTION : audit fait, prémisse corrigée, en attente de Ballo
+
+- **Fait (protocole)** : documents relus. Garde-fous exécutés — `verifier-chatbot.py` → **0 site et blog**, `verifier-parite-docker.py` → **0**. Sections 2.1 et 5 mises à jour.
+- **⚠️ LA CONSIGNE REPOSE SUR UNE PRÉMISSE FAUSSE, ET JE LE MESURE AVANT D'AGIR.** Elle décrit un jeton « partagé entre le backend FastAPI (Railway + Docker) et le PHP sur LWS », avec une étape « poser côté Railway ». Vérifié trois fois : le backend ne contient **aucune occurrence** du jeton, n'appelle **aucun** des endpoints PHP cités (`proxy.php`, `api_mobile.php`, `cron_blog.php`), et ne lit **aucune** variable de jeton de production. `/sites/{id}/configure` est une **route FastAPI**, pas un appel sortant. **Toucher Railway n'aurait rien changé au problème** et aurait laissé intacts les vrais clients — j'ai préféré le dire que d'exécuter.
+- **Qui utilise réellement ce jeton** : **le PHP de cPanel est le validateur** (`secrets.php` porte la valeur dans **deux** constantes, `CRON_KEY` et `API_BEARER_TOKEN`), et les clients sont les **crons LWS**, **n8n**, **l'outillage du toolkit** (4 fichiers Python) et **agent-ia-web**. Ni le backend, ni le widget, ni le SDK.
+- **Inventaire mesuré — 48 fichiers, pas 39** : `site-eperformance` **1** (le seul dépôt **public** concerné) · `toolkit_eperformance` **40** (31 suivis) · `agent-ia-web` **7** (3 suivis) · `unified-ia-backend` **0** · `docker-unified` **0**. Documenté sans aucune valeur, par `fichier:ligne` et par nature : `unified-ia-backend/docs/securite/AUDIT-JETON-PRODUCTION.md`.
+- **Le piège de cette rotation**, identifié dans l'audit §3.3 : quatre fichiers Python du toolkit lisent le jeton depuis `EPERF_API_TOKEN` **avec l'ancienne valeur en repli codé en dur**. Après bascule, si la variable n'est pas posée dans leur environnement, ils enverront **l'ancien jeton en silence** et recevront 401 sans explication. **Le repli doit être retiré**, pas contourné.
+- **Fait de mon côté** : nouveau jeton généré (`openssl rand -hex 32`, 64 hexadécimaux), **hors de tout dépôt**, permissions **0600**, vérifié absent de l'arborescence et des scripts. Instructions de pose écrites au même endroit, avec l'emplacement exact et les deux constantes à changer. **Je ne transmets pas la valeur ici** : elle est dans un fichier local que Ballo seul lit.
+- **⚠️ EN ATTENTE DE BALLO** : poser la valeur dans `secrets.php` (cPanel LWS), constantes **`CRON_KEY`** et **`API_BEARER_TOKEN`**. Il confirme « posé » **sans la valeur** ; j'enchaîne alors la vérification et la bascule des clients de mon ressort. **Aucune coupure à craindre au-delà d'un tic de cron** : les clients sont des crons et des outils internes, pas la surface publique — le site, le blog et le chatbot n'utilisent pas ce jeton.
+- **⚠️ DEUX DEMANDES, une par agent concerné — je ne touche pas à leurs périmètres.**
+  · **À SITE** : `docs/refonte-dashboard/AUDIT-M1-ACQUISITION.md:952` porte la **valeur vivante** du jeton dans un exemple `curl`. Le dossier n'est **pas suivi par git** (donc non publié, et le garde-fou pre-push bloquerait le push qui l'exposerait) — mais il vit dans l'arborescence d'un dépôt à remote **public**, à un `git add` près. À remplacer par une référence.
+  · **À SOCIAL et NOYAU** : poser `EPERF_API_TOKEN` dans l'environnement d'exécution des outils et **retirer les replis codés en dur** (§3.3 de l'audit).
+- **Découverte annexe, hors périmètre de cette rotation** : trois autres constantes du même `secrets.php` — `ADMIN_TOKEN`, `MOBILE_API_TOKEN`, `CHATBOT_API_TOKEN` — sont des chaînes **devinables** (`<mot>_token_<année>`). Elles n'ont pas fuité, mais elles n'en ont pas besoin. Recommandation : les tourner aussi. Signalé, non fait.
+- **Fichiers touchés** : ce journal, `unified-ia-backend/docs/securite/AUDIT-JETON-PRODUCTION.md` (nouveau), `/home/ballo/EP-PROD-TOKEN-NOUVEAU.txt` (hors dépôt, 0600). **Aucun fichier du site, du blog, du toolkit, du noyau ni du widget.**
+- **Contrôle** : `verifier-secrets.py` → PASS (le garde-fou ne voit pas la nouvelle valeur, elle n'est nulle part) · parité Docker → 0 · garde-fous site et blog → 0 · sonde de production : le PHP répond **200** avec l'ancien jeton, donc la rotation n'a pas encore commencé — c'est l'état attendu.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -718,8 +734,8 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-19 09:35 (validation D1-D10 signée + condition D8 levée) | lecture de `site-eperformance@08f740f` · backend `73e8be0` |
-| SITE | 2026-09-19 04:45 | `fc8a1f2` |
+| CHATBOT | 2026-09-19 10:40 (rotation du jeton de production : audit, en attente cPanel) | lecture de `site-eperformance@b0b6802` · backend `73e8be0` |
+| SITE | 2026-09-19 11:20 | `b0b6802` |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
 ---
@@ -800,6 +816,16 @@ Ce contrôle tourne **en CI à chaque push** : s'il échoue, le déploiement est
 - **La veille surveille désormais la RÈGLE, pas les copies** : une note doit faire moins de 80 lignes et ne contenir **aucune** entrée de journal. Si elle en contient, c'est qu'elle redevient une copie — et l'alerte le dit.
 - **Fichiers touchés** : `COORDINATION-AGENTS.md` (dossier de travail SITE, devenu note), `.veille/veille.py`, `.veille/registre.md`. **Aucun fichier du toolkit, du noyau ni du widget.**
 - **Contrôle** : veille silencieuse après re-baseline ; les deux notes mesurées à 28 et 33 lignes, 0 entrée de journal ; contrat N1 vérifié aligné des deux côtés, rien à faire.
+
+### 2026-09-19 11:20 — [SITE] — Entrée de départ : exécution assumée des décisions D1-D7 et D9
+
+- **Protocole** : contrats lus, `verifier-chatbot.py` → ✅ site et blog, `verifier-blocs-critiques.py` → ✅ publication sûre. Section 2.2 remplie (elle était vide), ligne SITE mise à jour.
+- **Ce que j'exécute, et sous quelle responsabilité.** Les décisions **D1 à D7 et D9** de la refonte du toolkit n'ont **ni validation ni refus** : le validateur désigné (CHATBOT, commit `b0b6802`) a explicitement refusé de les certifier — huit sur dix touchent une pile qui n'est pas la sienne. **Décision Ballo, option B : exécution assumée par SITE, sous responsabilité SITE.** C'est une décision nommée, pas un vide comblé par défaut.
+- **Ne sont pas touchées** : **D8** (levée par CHATBOT après correction de l'ordre de résolution dans `llm_client.py`) et **D10** (ratifiée, index du chatbot en lecture seule).
+- **Ce que je ne fais pas** : aucune route qui publie sur les réseaux sociaux, aucun fichier du périmètre CHATBOT ni NOYAU, aucune décision exécutée si un doute sérieux apparaît — dans ce cas je signale et j'attends.
+- **Engagements** : une décision = un commit, chaque commit la nomme ; écart entre le dossier et le code signalé ; non-régression complète ; contrats C1 (SDK), C3 (jetons) et C12 (parité Docker) intacts.
+- **Départ** : ÉTAPE 1, audit préalable — ordre d'exécution et dépendances documentés dans `docs/refonte-toolkit/AUDIT-PREALABLE.md`.
+- **Contrôle** : `python3 scripts/verifier-chatbot.py` → ✅ ; `python3 scripts/verifier-blocs-critiques.py` → ✅ publication sûre ; veille silencieuse.
 
 ---
 
