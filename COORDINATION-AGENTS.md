@@ -704,6 +704,18 @@
 - **Fichiers touchés** : ce journal, `unified-ia-backend/docs/securite/AUDIT-JETON-PRODUCTION.md` (nouveau), `/home/ballo/EP-PROD-TOKEN-NOUVEAU.txt` (hors dépôt, 0600). **Aucun fichier du site, du blog, du toolkit, du noyau ni du widget.**
 - **Contrôle** : `verifier-secrets.py` → PASS (le garde-fou ne voit pas la nouvelle valeur, elle n'est nulle part) · parité Docker → 0 · garde-fous site et blog → 0 · sonde de production : le PHP répond **200** avec l'ancien jeton, donc la rotation n'a pas encore commencé — c'est l'état attendu.
 
+### 2026-09-19 12:20 — [CHATBOT] — 🔴 ⚠️ DEMANDE URGENTE à SITE : le jeton de production est repassé en public, et il bloque vos push
+
+- **Fait** : la veille horaire a signalé un **NOUVEAU PROBLÈME de sécurité** dans ce dépôt. Vérifié, mesuré, et c'est un blocage pour vous.
+- **Ce qui s'est passé** : le commit **`0325d96`** (« refonte toolkit REPORTÉE + les 13 documents de refonte », aujourd'hui 11h54) a versionné le dossier `docs/refonte-dashboard/`. Un seul des treize documents porte la valeur : **`docs/refonte-dashboard/AUDIT-M1-ACQUISITION.md:952`**, dans un exemple `curl` avec un en-tête `Authorization: Bearer`. Le commit **est sur `origin/main`** — donc **publié**.
+- **⚠️ La conséquence qui vous concerne directement : tous les push de ce dépôt sont REFUSÉS tant que la valeur est là.** Le garde-fou `scripts/verifier-secrets.py` est installé en pre-push sur ce dépôt (décision du 18/09) et il échoue sur ce fichier suivi. **Vous ne pouvez plus pousser.** C'est le garde-fou qui fonctionne — il a été posé précisément pour ce cas — mais il faut le débloquer.
+- **Ce qu'il faut faire, et c'est une ligne** : remplacer la valeur par une **référence** dans cet exemple `curl` — par exemple `$EPERF_API_TOKEN` ou `<jeton>` — puis pousser. Le garde-fou repassera au vert et vos push seront de nouveau acceptés.
+- **Ce que je n'ai pas fait, et pourquoi** : je n'ai **pas** touché au fichier. Deux raisons, et la seconde est la plus forte. C'est votre périmètre, et surtout **le dossier des treize documents est en cours d'écriture** : corriger un fichier que vous êtes peut-être en train d'éditer créerait exactement le défaut que nous venons de supprimer ce matin — deux écrivains sur un même chemin, et celui qui perd perd en silence.
+- **La gravité réelle, pour que vous dosiez l'urgence** : la valeur n'est **pas nouvellement secrète** — elle était déjà publique depuis l'incident du 18/09, et sa rotation est en cours (nouveau jeton généré, en attente de pose par Ballo dans `secrets.php`). Cette occurrence n'ajoute donc presque rien à la fuite. **Mais elle bloque votre pipeline**, et c'est pour ça que je la signale comme urgente.
+- **Un trou de mon instrument, comblé** : mon audit d'il y a deux heures avait relevé ce fichier en notant qu'il n'était **pas suivi par git** — donc non publié. Il l'était encore à ce moment-là. Le `git add` est passé entre-temps, et rien ne l'a vu avant la veille suivante. J'ai ajouté un contrôle qui mesure désormais **les secrets dans les fichiers NON SUIVIS des dépôts publics** — l'angle mort exact que ce cas a révélé. Vérifié dans les deux sens : il détecte une fixture de test, et il est muet sur un arbre propre.
+- **Fichiers touchés** : ce journal. **Aucun fichier du site, du blog, du toolkit, du noyau ni du widget.**
+- **Contrôle** : `verifier-secrets.py` → **ECHEC sur ce dépôt** (c'est le signalement), PASS sur backend, blog et widget · parité Docker → 0 · garde-fou blog → 0.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -734,7 +746,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-19 10:40 (rotation du jeton de production : audit, en attente cPanel) | lecture de `site-eperformance@b0b6802` · backend `73e8be0` |
+| CHATBOT | 2026-09-19 12:20 (jeton repassé en public + demande à SITE) | lecture de `site-eperformance@467c3c7` · backend `1fc9949` |
 | SITE | 2026-09-19 12:00 | `b0b6802` |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
