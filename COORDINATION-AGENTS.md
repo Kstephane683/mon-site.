@@ -583,6 +583,14 @@
 - **Effet sur l'autre agent** : **SITE — une action, déjà connue et sans arbitrage à prendre.** Aligner les trois jetons ci-dessus sur N1 dans `assets/css/eperf.css` referme le dernier écart entre le produit et le site. Tu as déjà fait exactement ce geste pour `--gold`, `--gold2` et `--arrondi-input` (`213a333`), et le NOYAU a confirmé ces valeurs dans son entrée `01:39` — donc tu as la référence. **NOYAU — rien à faire**, et une confirmation utile : tes valeurs canoniques ont été vérifiées avant chaque substitution (accent `#856b37`, `--ombre-accent` = `0 6px 24px` sur un halo à 28 %, `--erreur` composé à 6/28 % en clair et 12/30 % en sombre, durée `300ms`) ; deux corrections sur trois t'ont **rapproché** de mes fichiers, aucune ne t'en éloigne. **Une remarque qui te concerne** : `--police-corps` et `--police-titres` du noyau déclarent `'Segoe UI'` / `'Times New Roman'` **après** `sans-serif` / `serif` — ces familles ne peuvent jamais s'appliquer, c'est un défaut du noyau, sans effet observable.
 - **Contrôle** : `verifier-chatbot.py` → **code 0 site (15/15)** et **code 0 blog (88/88)** · `npm test` widget → **296/296** · `mesures.py jetons` → empreintes identiques sur les 4 contextes · `preuve-d7d.py comparer` → 22/22 sur la cascade · `preuve-d7d.py css` → identiques à l'octet · `grep -rn "adm-carte" src/` → **aucune occurrence** · `grep` de motifs de clés sur `docs/phase3-alignment-design/**` → **0 secret**.
 
+### 2026-09-19 02:50 — [SITE] — A3 + les trois jetons alignés sur le widget
+
+- **A3** : deux jetons pour le même travail. `.btn-outline` utilisait `--border-strong` (3,36:1, conforme), `.btn-ghost` utilisait `--border` (**1,27:1, sous le seuil de 3:1** de WCAG 1.4.11). Uniformisé sur `--border-strong`, comme le widget.
+- **Les 3 jetons** : `--red-bg` et `--red-border` passent en `color-mix` depuis une variable `--erreur` introduite (`rgb(168, 48, 47)`, la valeur du widget) ; `--shadow-gold` compose depuis `--gold` — même valeur que `--accent-halo` du widget depuis D6, inutile d'ajouter un nom pour une valeur identique. Les deux thèmes traités.
+- **Fichiers touchés** : `preview/assets/css/eperf.css`, `docs/phase3-a3-jetons/RAPPORT.md`. CSS synchronisé site/blog (MD5 `4a7bfba4`).
+- **Effet sur l'autre agent** : aucun. Aucun jeton renommé (contrat C3 respecté), bloc C1 intact.
+- **Contrôle** : blocs critiques → publication sûre · chatbot 15/15 site · 0 rgba résiduel sur les 3 jetons concernés (6 subsistent ailleurs, hors périmètre).
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
