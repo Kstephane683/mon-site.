@@ -970,7 +970,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-20 10:30 (fondations d'extensibilité LIVRÉES : 406 tests, 4 canaux + flags + tracking) | lecture de `site-eperformance@dfbb9f9` · backend `26520d7` |
-| SITE | 2026-09-19 22:55 | `163fbcc` |
+| SITE | 2026-09-19 23:59 | `373c837` |
 | SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
 ---
@@ -1105,6 +1105,17 @@ Ce contrôle tourne **en CI à chaque push** : s'il échoue, le déploiement est
 - **Tracking côté app, conçu local-first** : file IndexedDB, `event_id` UUID produit par l'app (dédup serveur au rejeu), horodatage client, batch 1-500, consentement comme porte unique — le contrat §17 est respecté au dessin près.
 - **Fichiers touchés** : `docs/app-mia/maquettes/app-mia.html` (extension), `docs/app-mia/EVOLUTIVITE-UI.md` (nouveau), ce journal. **Aucun fichier du backend, du widget ni du dépôt `eperformance-mia`.**
 - **Contrôle** : `verifier-chatbot.py` → ✅ 15/15 site · ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre ; zéro hexadécimal hors primitives, zéro emoji (vérifiés par script sur la maquette étendue).
+
+### 2026-09-19 23:59 — [SITE] — LP Mia conçue et démontrable : maquette exécutable 8 sections + contrat de structure pour le garde-fou
+
+- **Fait** : la LP est conçue **et réglable dans le navigateur** — `docs/app-mia/maquettes/lp-mia.html` (31 Ko, zéro requête externe, indexable sans JavaScript : le secteur par défaut est rendu en balisage). Reprise de l'identité validée par Ballo (mêmes jetons, mêmes polices, clair/sombre).
+- **La décision structurante : le sélecteur de secteur AVANT le titre.** La promesse change du tout au tout selon le métier — le titre du hero est donc généré par le secteur sélectionné, et l'accroche est **l'`intention_reformulee` réelle du noyau, mot pour mot**. Vérifié au navigateur : sélection « Immobilier » → titre, accroche, 4 thèmes réels (`visite, financement, frais et notaire, estimation`) et miroir du CTA final synchronisés.
+- **Les 8 sections de la consigne sont toutes là**, avec les interdits appliqués : capacités « Mia répond » uniquement (C2), démonstration qui se présente comme **une illustration** (voir ci-dessous), preuves sans témoignage ni chiffre inventé (12 métiers / 11 contrôles du banc, 359 tests backend), FAQ avec la question RGPD et la tarification dite franchement (« non arrêtée »), mini-téléphones dessinés en CSS reprenant les écrans de la maquette validée (aucune capture de l'ancienne app).
+- **Un défaut C6 commis puis corrigé par moi-même** : l'encart de démonstration prétendait « cet échange est réel » — faux, je l'avais écrit pour la maquette. Corrigé en « illustre ce que Mia répond » avant toute publication au-delà de l'arbre local. La faute est signalée parce que la règle « ne jamais vendre ce qui n'existe pas » vaut aussi pour la prose d'une maquette.
+- **Contrat de structure pour le garde-fou** : `CONCEPTION-LP.md` §7 traduit la conception en contrôle d'intention — sections obligatoires dans l'ordre, éléments obligatoires par section (h1, deux CTA, sélecteur, FAQ RGPD), éléments variables libres, interdits inchangés, **et un contrôle C2 automatique** (« réserve/commande/paie » coexiste avec « bientôt » ou le push échoue). C'est la pièce qui manquait à ma demande du 16:10 : CHATBOT peut réécrire son contrôle sur une spécification écrite.
+- **Emplacement cible rappelé** : le `index.html` du dépôt `eperformance-mia` remplacera la page d'attente quand le garde-fou sera adapté (⚠️ DEMANDE du 16:10 toujours ouverte, CORS également).
+- **Fichiers touchés** : `docs/app-mia/maquettes/lp-mia.html` (nouveau), `docs/app-mia/CONCEPTION-LP.md` (nouveau), ce journal. **Aucun fichier du dépôt `eperformance-mia`, du backend, du widget ni du noyau.**
+- **Contrôle** : `verifier-chatbot.py` → ✅ 15/15 site · ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre ; zéro emoji, zéro référence externe, zéro hexadécimal hors primitives (script).
 
 ---
 
