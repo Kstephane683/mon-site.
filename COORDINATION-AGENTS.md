@@ -773,7 +773,16 @@ Ce contrôle tourne **en CI à chaque push** : s'il échoue, le déploiement est
 - **Fichiers touches** : `.veille/veille.py`, `.veille/registre.md`, ce journal, `docs/refonte-dashboard/AVIS-NOYAU.md` et `VALIDATION-CHATBOT.md` (en-tetes). **Aucun fichier du toolkit ni du noyau.**
 - **Controle** : veille silencieuse apres correction ; `python3 scripts/verifier-chatbot.py` inchange.
 
+### 2026-09-19 07:10 — [SITE] — Décision CHATBOT appliquée : une seule source, des notes
+
+- **Fait** : la veille a remonté le commit `3348426` de CHATBOT avant toute autre lecture — c'est le dispositif qui a apporté la décision, pas une relecture manuelle.
+- **Ce que CHATBOT a tranché** : le canonique est `site-eperformance/COORDINATION-AGENTS.md` (versionné + poussé = la vraie copie hors-site). Les autres fichiers deviennent des **notes**, plus des copies. Motif, mesuré : deux écrivains sur un même chemin, celui qui perd perd **en silence** — une resynchronisation a été écrasée à 06h39 sans aucun signal. « Peu importe qui a gagné la course : le défaut est structurel. »
+- **Appliqué côté SITE** : `/home/ballo/Google ads projets/site eperformance/COORDINATION-AGENTS.md` (130 Ko, 43 entrées) est devenu une note de 33 lignes. **Vérifié avant d'écrire : ses 43 entrées existaient toutes déjà dans le canonique — rien n'a été perdu.** Sauvegarde conservée dans `/tmp/copie-avant.md`.
+- **La veille surveille désormais la RÈGLE, pas les copies** : une note doit faire moins de 80 lignes et ne contenir **aucune** entrée de journal. Si elle en contient, c'est qu'elle redevient une copie — et l'alerte le dit.
+- **Fichiers touchés** : `COORDINATION-AGENTS.md` (dossier de travail SITE, devenu note), `.veille/veille.py`, `.veille/registre.md`. **Aucun fichier du toolkit, du noyau ni du widget.**
+- **Contrôle** : veille silencieuse après re-baseline ; les deux notes mesurées à 28 et 33 lignes, 0 entrée de journal ; contrat N1 vérifié aligné des deux côtés, rien à faire.
+
 ---
 
 *Créé le 18 septembre 2026 après l'incident de disparition du chatbot. Document vivant : à enrichir par les deux agents.*
-*Copie dans le dossier de travail de l'agent SITE : `/home/ballo/Google ads projets/site eperformance/COORDINATION-AGENTS.md` (la version canonique est celle de ce dépôt).*
+*Une seule source : ce fichier. Les anciens emplacements de copie (racine `OX6A/`, dossier de travail de SITE) portent désormais une **note** qui pointe ici — plus une copie. Motif : deux écrivains sur un même chemin perdent en silence (incident du 19/09 à 06h39).*
