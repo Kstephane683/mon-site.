@@ -46,6 +46,11 @@ BLOCS = [
      "sans elle la page n'est pas stylée"),
 ]
 
+# Marqueurs de gabarit qui ne doivent JAMAIS atteindre une page publiée.
+# Ajouté après le 19/09/2026 : les pages légales étaient en ligne avec
+# [À COMPLÉTER] visible, et aucun contrôle ne portait sur le contenu rédactionnel.
+MARQUEURS = re.compile(r'\[À COMPLÉTER|\[A COMPLETER|\[TODO|\[XXX|\[PLACEHOLDER')
+
 # Blocs attendus sur toutes les pages, mais qui peuvent manquer sur certaines
 BLOCS_SOUPLES = [
     ("Bouton WhatsApp", r'data-cta="whatsapp"', "les pages sans CTA n'en ont pas"),
@@ -144,7 +149,16 @@ def main():
     if souples:
         print(f"  · {len(souples)} page(s) sans bouton WhatsApp (normal hors CTA)")
 
-    echec = bool(regression or gen)
+    marqueurs = []
+    for f in pages:
+        for m in MARQUEURS.finditer(f.read_text(encoding="utf-8")):
+            marqueurs.append((str(f.relative_to(RACINE)), m.group(0)))
+    if marqueurs:
+        print(f"  ✗ {len(marqueurs)} marqueur(s) de gabarit dans les pages publiées :")
+        for nom, motif in marqueurs[:8]:
+            print(f"      {nom} : {motif}")
+
+    echec = bool(regression or gen or marqueurs)
     if echec:
         print()
         print("  NE PAS COPIER VERS LA RACINE. Corriger le générateur d'abord,")
