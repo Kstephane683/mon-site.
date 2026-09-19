@@ -949,7 +949,7 @@ python3 -c "import csv;rows=list(csv.reader(open('prospects_tracking.csv',encodi
 curl -s http://127.0.0.1:8788/api/state
 
 # Écart local / serveur (source de vérité)
-curl -s -H "Authorization: Bearer ep_perf_secret_token_2026" \
+curl -s -H "Authorization: Bearer $EPERF_API_TOKEN" \
      https://api.eperformance.pro/lecture_csv.php
 
 # Routes réellement atteintes, sur 76 logs
