@@ -745,6 +745,24 @@
 - **Fichiers touchés** : ce journal. **Aucun fichier du site, du blog, du toolkit, du noyau ni du widget.** Aucune valeur de jeton dans ce document.
 - **Contrôle** : `verifier-chatbot.py` → 0 site et blog · parité Docker → 0 · `verifier-secrets.py` → PASS (la nouvelle valeur n'est nulle part).
 
+### 2026-09-19 15:20 — [CHATBOT] — Scission prête · 🔴 cinq workflows n8n portent le jeton · méthode pour l'API mobile
+
+- **Fait (protocole)** : documents relus. Garde-fous → **0 site, 0 blog, parité 0**. Sections 2.1 et 5 mises à jour.
+- **Mission 1 — la scission est prête.** Nouveau `API_BEARER_TOKEN` généré → **`/home/ballo/EP-PROD-JETON-BEARER.txt`** (0600), avec la valeur, l'empreinte, la raison de la scission, les clients et l'ordre. **`CRON_KEY` ne change pas** (l'URL du cron cPanel la porte). J'ai retiré la valeur du bearer de `LOT2.txt`, qui y renvoie désormais : **un secret, un fichier** — deux fichiers portant la même valeur seraient deux sources de vérité, exactement ce que nous venons de supprimer avec les copies du journal.
+- **🔴 LA DÉCOUVERTE UTILE DE CE PASSAGE : cinq workflows n8n portent le jeton en clair dans leurs nœuds**, et je peux les nommer parce que j'ai lu la base n8n (`n8n-compose/n8n_data/database.sqlite`) :
+  · **`Meta Webhook — Réponses & Statuts` — ACTIF** → nœud « Réponse prospect ? », en-tête `Authorization`. **Il envoie l'ancienne valeur, donc les réponses aux webhooks Meta sont cassées depuis ce matin.** C'est le seul client n8n qui tourne.
+  · `prospect-manuel` · `WhatsApp Sequences J0-J3-J7` (**deux versions**) · `WhatsApp Séquence J+3` · `WhatsApp Séquence J+7` — **inactifs**. Ils ne cassent rien aujourd'hui, mais ce sont des **pièges à retardement** : le jour où on les réactive, ils échoueront en silence. À corriger en même temps.
+  · Il existe aussi une credential `[httpHeaderAuth] « Header Auth account »`, chiffrée donc illisible ici — à vérifier dans l'interface n8n.
+- **La consigne « mettre à jour n8n » est donc remplacée par une liste nommée** : cinq workflows, un actif, le nœud et l'en-tête concernés. Une consigne qu'on peut exécuter vaut mieux qu'une consigne qu'on doit interpréter.
+- **Mission 2 — `MOBILE_API_TOKEN` : la bonne méthode est de mesurer le trafic, pas de deviner.** Aucun client dans les dépôts, ni dans le backend, ni dans le widget : l'appelant est externe. Avant de le tourner, **regarde les journaux d'accès de LWS** :
+  · cPanel → **Metrics → Raw Access Logs**, ou en SSH : `grep api_mobile.php ~/logs/*access*log | awk '{print $1, $12}' | sort | uniq -c | sort -rn | head`
+  · Tu obtiendras les IP et les User-Agent appelants. **Si le journal ne montre aucun appel sur 30 jours, l'endpoint n'a pas de client** — et le tourner (ou le désactiver) ne coupe rien. C'est la seule façon de trancher sans risquer une coupure.
+  · Si tu préfères, une seconde méthode : ajouter une ligne de journal temporaire dans `api_mobile.php` qui écrit l'IP et l'en-tête `User-Agent` à chaque appel, puis lire après quelques jours.
+- **Mission 2 (suite) — les cinq fichiers de configuration** qui portent les trois constantes en clair (`Eperformance/.env`, `notifications/config-notifications.php`, `gen-admin-token.php`, `agent-ia-web/.env`) sont dans les périmètres **SOCIAL** et **NOYAU** : consignes déposées, je n'y écris pas.
+- **Pièges restants, comptés** : **8 replis codés en dur** de l'ancien jeton subsistent dans le toolkit (périmètre SOCIAL) et **42 occurrences** de l'ancienne valeur dans les dépôts non publiés. Aucune n'est publiée — toolkit et agent-ia-web n'ont pas de remote — donc ce n'est plus une fuite, c'est du nettoyage. Mais tant que les replis sont là, les outils enverront une valeur morte **sans le dire**.
+- **Fichiers touchés** : ce journal, `/home/ballo/EP-PROD-JETON-BEARER.txt` (nouveau, 0600), `LOT2.txt` (valeur du bearer retirée). **Aucun fichier du site, du blog, du toolkit, du noyau ni du widget.** Aucune valeur dans ce document.
+- **Contrôle** : `verifier-chatbot.py` → 0 site et blog · parité Docker → 0 · la sonde de production reste verte (`cron_publications` 200) · **aucun des jetons générés n'apparaît dans une arborescence de dépôt ni dans un script**.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -775,7 +793,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-19 14:10 (rotation n°4 posée et vérifiée, lot 2 prêt) | lecture de `site-eperformance@4f256e2` · backend `1fc9949` |
+| CHATBOT | 2026-09-19 15:20 (scission prête, workflows n8n nommés, méthode API mobile) | lecture de `site-eperformance@4f256e2` · backend `66da560` |
 | SITE | 2026-09-19 12:00 | `b0b6802` |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
