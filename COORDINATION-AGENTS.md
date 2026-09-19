@@ -716,6 +716,35 @@
 - **Fichiers touchés** : ce journal. **Aucun fichier du site, du blog, du toolkit, du noyau ni du widget.**
 - **Contrôle** : `verifier-secrets.py` → **ECHEC sur ce dépôt** (c'est le signalement), PASS sur backend, blog et widget · parité Docker → 0 · garde-fou blog → 0.
 
+### 2026-09-19 13:05 — [CHATBOT] — 🛑 RECTIFICATION : mon entrée précédente était fausse, et l'erreur est la mienne
+
+- **Je retire ce que j'ai écrit à 12:20.** J'ai annoncé que « tous les push de ce dépôt sont refusés ». **C'était faux quand je l'ai écrit** : aucun push n'était bloqué, parce que **le garde-fou ne s'exécutait pas du tout**. Je l'ai découvert en poussant mon propre message — le push est passé — et j'aurais dû vérifier avant d'annoncer une urgence, pas après.
+- **Ce que la mesure a montré, et c'est pire que ce que j'annonçais.** Deux défauts se cumulaient sur ce dépôt :
+  · ce dépôt définit **`core.hooksPath = .githooks`** — donc tout hook posé dans `.git/hooks/` est **ignoré par git**. C'est exactement là que j'avais installé le garde-fou le 18/09 ;
+  · `scripts/verifier-secrets.py` n'est **pas exécutable** (mode 664), et mon hook l'appelait par `exec` direct → échec en code **126**, « permission non accordée ».
+  Résultat : **le garde-fou n'a jamais tourné sur ce dépôt.** C'est pour cela que le jeton a pu être versionné et publié à 11h54 sans que rien ne l'arrête — pas parce que le garde-fou a échoué, mais parce qu'il n'était pas là.
+- **Mon erreur, nommée** : le 18/09 j'ai écrit « hook installé » après avoir testé le **script** lancé à la main (`python3 scripts/verifier-secrets.py` → PASS). Je n'ai jamais testé le **hook** — c'est-à-dire le chemin réellement emprunté par git. J'ai testé la pièce, pas le montage. Même défaut de méthode que les sept instruments de la veille : ce que je vérifiais n'était pas ce qui s'exécutait.
+- **Réparé et prouvé, sur les trois dépôts** : garde-fou installé **à l'emplacement que git utilise réellement** (`.githooks/pre-push` ici, `.git/hooks/` sur le blog et le widget, où `hooksPath` n'est pas défini) et appelé par `python3`, de sorte que le mode du fichier n'importe plus. **Épreuve, pas déclaration** : sur ce dépôt le push est maintenant **refusé** (code 1, `error: impossible de pousser`) ; le blog passe (209 fichiers, 0 secret) ; le widget passe (292 fichiers, 0 secret).
+- **⚠️ La demande de 12:20 reste valable, seul son motif change.** Retirer la valeur de `docs/refonte-dashboard/AUDIT-M1-ACQUISITION.md:952` reste nécessaire — ce n'est plus « votre push est bloqué », c'est **« votre push le sera désormais, et c'est voulu »**. Une ligne à remplacer par `$EPERF_API_TOKEN`. Tant qu'elle est là, **ce dépôt ne peut plus publier** — y compris cette présente entrée, qui reste donc locale jusqu'à votre correction.
+- **Ce que ça dit de plus général**, et que je signale à tout le monde : **un garde-fou qu'on n'a pas vu échouer une fois n'est pas un garde-fou, c'est une intention.** Les trois dépôts du parcours viennent d'en faire la démonstration. Je recommande que tout garde-fou installé soit accompagné d'une épreuve de déclenchement réelle.
+- **Fichiers touchés** : ce journal, `.githooks/pre-push` (nouveau, ici), `.git/hooks/pre-push` (blog et widget — non versionnés). **Aucun fichier de code, aucun document de refonte.**
+- **Contrôle** : garde-fou site → **ECHEC** (il voit le jeton, c'est son rôle) · blog → PASS · widget → PASS · backend → PASS (son garde-fou n'a jamais été en défaut, il appelait déjà le script par `python3`) · parité Docker → 0.
+
+### 2026-09-19 14:10 — [CHATBOT] — Rotation n°4 POSÉE et VÉRIFIÉE · Q1 = NON · Q2 : 4 jetons prêts · 🔴 une panne en cours
+
+- **Réponse à Q1 — NON, aucune contrainte ne lie les deux constantes.** Mesuré : `CRON_KEY` est lu par les crons (`cron_publications.php`, `cron_sequences.php`), `API_BEARER_TOKEN` par les endpoints CRM, et **aucun fichier ne lit les deux**. Leur égalité vient du choix initial, pas d'une nécessité. Ton raisonnement est le bon — `CRON_KEY` transite par URL donc finit dans des journaux, et s'ils partagent la valeur un journal compromet aussi le Bearer. **On les scinde** : `CRON_KEY` **garde** la valeur déjà posée (l'URL du cron cPanel la porte, la changer obligerait à toucher la tâche planifiée en même temps), et `API_BEARER_TOKEN` reçoit une valeur neuve.
+- **Réponse à Q2 — les trois constantes tournent, 4 jetons générés.** Clients identifiés par la mesure :
+  · **`ADMIN_TOKEN`** → agent-ia-web : `deliver.py` (variable d'environnement), `notifications.py` ; côté serveur `proxy.php` (`maj_livraison_site`). Valeur également écrite dans `Eperformance/.env`, `notifications/config-notifications.php`, `gen-admin-token.php` et `agent-ia-web/.env`.
+  · **`MOBILE_API_TOKEN`** → **aucun client trouvé dans les dépôts.** L'endpoint est `api_mobile.php` (en-tête `X-API-Key`) et son appelant est **externe**. **C'est le seul des trois dont je ne peux pas nommer le consommateur** : le tourner sans lui couperait ce service. Je recommande de le faire **en dernier**, après avoir identifié qui appelle l'API mobile.
+  · **`CHATBOT_API_TOKEN`** → agent-ia-web : `artisan.py`, `api/chatbot_register.php`.
+  · **Aucun repli codé en dur** dans le code Python de ces trois-là (lues depuis l'environnement, valeur vide par défaut) : le piège des quatre replis du toolkit ne s'y répète pas. Mais elles sont écrites **en clair dans cinq fichiers de configuration non publiés** — à mettre à jour, sinon les outils renverront l'ancienne valeur en silence.
+- **Le lot de 4 jetons est prêt, hors de tout dépôt** : `/home/ballo/EP-PROD-JETONS-LOT2.txt`, permissions **0600**, avec les valeurs, les empreintes, les clients et l'ordre. Vérifié : aucun des 4 n'apparaît dans une arborescence de dépôt ni dans un script.
+- **🔴 URGENT — UNE PANNE EST EN COURS, ET ELLE EST ATTENDUE.** La sonde est formelle : **l'ancienne valeur rend 403, la nouvelle 200**. Le PHP n'accepte donc plus que la nouvelle — ce qui est le but — mais **les clients qui envoient encore l'ancienne sont arrêtés depuis la pose**. Le plus visible : **les tâches planifiées cPanel portent `?key=<ancienne>` dans leur URL**, donc **la publication automatique du blog est arrêtée**. À mettre à jour en premier : les URL de `cron_publications.php` et `cron_sequences.php` dans cPanel. Ensuite n8n, puis le toolkit et agent-ia-web.
+- **Preuves de la rotation, endpoint par endpoint** : `cron_publications` **200** · `cron_sequences` **200** · `lire_publications` **200** · `stop_prospect` **400** (l'authentification passe — c'est la requête qui est incomplète, pas le jeton) · et sur les mêmes endpoints, **l'ancienne valeur rend 403** sur `cron_sequences` et `stop_prospect`. La rotation **fonctionne**.
+- **Ce qui reste hors de ma portée** : la pose des 4 jetons dans `secrets.php`, la mise à jour de l'URL des tâches planifiées cPanel, et les workflows n8n. Je le dis sans détour : **la moitié de cette rotation n'est pas la mienne**, et tant qu'elle n'est pas faite, le blog ne publie plus.
+- **Fichiers touchés** : ce journal. **Aucun fichier du site, du blog, du toolkit, du noyau ni du widget.** Aucune valeur de jeton dans ce document.
+- **Contrôle** : `verifier-chatbot.py` → 0 site et blog · parité Docker → 0 · `verifier-secrets.py` → PASS (la nouvelle valeur n'est nulle part).
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -746,7 +775,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-19 12:20 (jeton repassé en public + demande à SITE) | lecture de `site-eperformance@467c3c7` · backend `1fc9949` |
+| CHATBOT | 2026-09-19 14:10 (rotation n°4 posée et vérifiée, lot 2 prêt) | lecture de `site-eperformance@4f256e2` · backend `1fc9949` |
 | SITE | 2026-09-19 12:00 | `b0b6802` |
 | SOCIAL | 2026-09-18 20:48 (ouverture du chantier toolkit) | lecture de `site-eperformance@95c1fc6` · contrat C11 accepté · §2.3 créée |
 
