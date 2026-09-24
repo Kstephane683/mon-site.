@@ -90,6 +90,7 @@
 | P3-6.7 | Chatbot sur toutes les pages site + blog | ✅ Fait | 16/16 et 88/88 (garde-fou CI) |
 | **P3-6.3-BIS** | **Bloc A — 11 corrections chatbot (URGENT production)** | ✅ **Fait** | Widget `1100b63` · backend `1d084bb` — 128/128 tests widget, 95 tests backend, vision opérationnelle, `docs/phase3-tache-6-3-bis/RAPPORT.md`. Contrat N3 livré au NOYAU (voir journal). |
 | **P3-6.4 Bloc B** | **PWA Mia installable + pages `/application` et `/application/mia` + portail + wrapper natif (sans publication) + assets de stores** | ✅ **Fait** (publication stores = propriétaire) | Widget `8e9b163` → `51ea8ff` — **171/171** tests widget, build vert, Lighthouse mesuré, `docs/phase3-tache-6-4/RAPPORT-6-4-BLOC-B.md`. **Reste au propriétaire** : sous-domaine `mia.eperformance.pro`, compte Play (25 USD), clé de signature + `assetlinks.json`. **Décision notifications** : Web Push standard (VAPID) — s'aligne sur le canal push de 6.5. |
+| **P4-LOT2-25-09** | **LOT Phase 4 bis** : routes client connaissances + secteur (CHATBOT.1), provisionnement compte Ballo (CHATBOT.2), tests (CHATBOT.3), message connexion (CHATBOT.4), icône PWA /app/ (SITE.1/.2), écrans F/G app v1 (SITE.3) | 🚧 **En cours** | entrée du 25/09 00:05 |
 | **P4-LOT-24-09** | **LOT Phase 4 (8 chantiers)** : LP Mia déployée (A), incident Telegram + rotation prouvée (B), 5 bugs prod corrigés + cause racine déploiement (C), liens directs déterministes (D), connaissance site + sources widget (E), apprentissage propriétaire bout en bout (F), instructions sectorielles canoniques (G), blog conforme (H) | ✅ **Fait** | entrée du 24/09 23:45 — backend 438, widget 304, parité 157, preuves en prod |
 | **P3-6.3** | **Dashboard admin** (compléter : sidebar, header, modules) | ⏳ Reporté après 6.4 | — |
 | **P3-6.5** | **Notifications** (toasts, push FCM, emails, Telegram, WhatsApp) | ✅ **Fait (infrastructure)** | Backend `aed7125` — `POST /api/chatbot/admin/notify` + `GET /api/chatbot/notifications`, trace en base des 3 cas, dégradation propre vérifiée sans aucune clé. **Reste au propriétaire** : clés VAPID + `pywebpush` (push), IP émettrice à autoriser chez Brevo (email). Aucun déclencheur métier câblé. | **MISE À JOUR 19/09 : le canal e-mail est OPÉRATIONNEL** (blocage IP Brevo désactivé par le propriétaire, test réel HTTP 200 avec messageId serveur ; API HTTPS port 443, pas de SMTP) ; petit correctif : destinataire par défaut `BREVO_NOTIF_EMAIL` ou état « non configuré » explicite. **3 canaux sur 4 opérationnels** (email, Telegram, webpush via 6.4 ; webpush attend les clés VAPID).
@@ -968,6 +969,17 @@
 - **Ce qui reste au propriétaire** : recharger le crédit DeepSeek (l'IA est en repli propre — le chatbot reste utilisable avec l'escalade WhatsApp et les liens) ; actions LWS (§4 du document d'incident) ; BotFather (supprimer l'ancien bot, 2FA). **Recommandation pipeline** (au propriétaire) : basculer le widget Pages en mode « workflow » — en mode branch, `deploy-pages.yml` ne sert pas le site ; c'est le défaut qui a laissé la production en retard de 6 jours sans aucun signal. Je le fais sur ordre, car cela change le mécanisme de publication établi.
 - **Effet sur l'autre agent** : aucun fichier du site ni du blog modifié. Pour SITE : (1) le widget servi a changé d'empreinte aujourd'hui — si tu avais des mesures figées sur le SDK, re-base ; (2) la LP de SITE est désormais la page réelle de `mia.eperformance.pro` — la démo est en illustration locale (zéro requête externe), ton choix du 20/09, assorti au garde-fou ; (3) ton `chatbot-index.json` est consommé par un troisième écran (console admin, bloc Entraînement en lecture du même index embarqué).
 
+### 2026-09-25 00:05 — [CHATBOT] — Entrée de départ : LOT Phase 4 bis (routes client, compte Ballo, icône PWA)
+
+- **Protocole** : journal relu (nouveautés depuis ma clôture 23:45 : l'entrée SITE 21:35 — app Mia v1 publiée sur `/app/`, lus les 3 emplacements). Garde-fous : site 15/15 · secrets PASS (114) · parité Docker 0.
+- **Ce que j'ouvre (bloc CHATBOT)** : CHATBOT.1 routes client connaissances + instructions sectorielles (scopées au site du compte, rôles client_admin/client_reader — à confronter aux rôles réels du backend) ; CHATBOT.2 provisionnement du compte Ballo (site + client_admin + mot de passe temporaire **hors journal**, fichier 0600, flux complet vérifié en production) ; CHATBOT.3 tests + parité + secrets ; CHATBOT.4 bloc « Pour te connecter ».
+- **Prise de connaissance de l'entrée SITE 21:35** : l'app v1 est servie depuis `eperformance-mia/app/` (4 commits de SITE dans le dépôt), CORS prouvé sauf le cas 401-WebView « à confirmer au premier provisionnement » — **mon provisionnement (CHATBOT.2) fournira cette confirmation**. Les écrans F/G de l'app v1 (SITE.3) suivront le contrat que je livre.
+- **Répartition de périmètre pour ce lot** : je traite mon bloc et je MEASURE le manifest `/app/` pour SITE.1/.2 ; si l'écart icône est réel et que la session SITE est close, je poserai une ⚠️ DEMANDE + correction minimale documentée (même mécanisme que le geste inverse de SITE à 21:35) — jamais une refonte silencieuse de son app.
+- **Secrets** : le mot de passe temporaire naîtra hors journal, vivra dans `/home/ballo/EP-COMPTE-BALLO.txt` (0600) et n'apparaîtra nulle part versionné.
+- **Fichiers touchés à ce stade** : ce document (§2.1, §5, cette entrée).
+- **Effet sur l'autre agent** : SITE.3 (écrans F/G) attend mon contrat étendu — API-CLIENT-V1.md sera enrichi en première livraison.
+- **Contrôle** : voir protocole — verts.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -998,7 +1010,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-24 23:45 (LOT Phase 4 clôturé : 8 chantiers, preuves en production) | lecture de `site-eperformance@b0bf03e` (journal relu intégralement) · backend `9664b68→667bff5` · widget `c38a4c2` |
+| CHATBOT | 2026-09-25 00:05 (LOT Phase 4 bis : entrée de départ, bloc CHATBOT ouvert) | lecture de `site-eperformance@b0bf03e` (journal relu intégralement) · backend `9664b68→667bff5` · widget `c38a4c2` |
 | SITE | 2026-09-24 21:35 | `73c301b` |
 | SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
