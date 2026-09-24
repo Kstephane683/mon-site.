@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="var(--fond)">
 <meta name="description" content="Mia répond à vos clients sur votre site, jour et nuit, dans votre métier. Vous recevez les demandes et prenez la main quand vous voulez.">
+<link rel="canonical" href="https://mia.eperformance.pro/">
+<meta property="og:url" content="https://mia.eperformance.pro/">
+<meta property="og:title" content="Mia — l’assistante qui répond pour votre métier">
+<meta property="og:description" content="Mia répond à vos clients sur votre site, jour et nuit, dans votre métier.">
+<meta property="og:type" content="website">
 <title>Mia — l'assistante qui répond pour votre métier</title>
 <style>
 /* ================================================================
@@ -640,11 +645,14 @@ function choisirSecteur(cle) {
 rendreSelecteur(document.getElementById('selecteur'));
 rendreSelecteur(document.getElementById('selecteur-final'));
 
-/* Lien « Gerez-la » — URL_APPLICATION reste null tant que l'app n'est pas deployee.
-   A la livraison (PWA/TWA) : poser l'URL ici (ex. "https://app.mia…"), le lien
-   quitte l'ancre LP et ouvre l'application. Documente dans CONCEPTION-LP.md §8. */
-const URL_APPLICATION = null;
+/* L'app est servie : tous les CTA d'installation ouvrent l'application. */
+const URL_APPLICATION = "/app/";
 if (URL_APPLICATION) {
+  document.querySelectorAll('a[href="#app"]').forEach(a => {
+    a.setAttribute('href', URL_APPLICATION);
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener');
+  });
   const lien = document.querySelector('.barre .deja');
   lien.setAttribute('href', URL_APPLICATION);
   lien.setAttribute('target', '_blank');

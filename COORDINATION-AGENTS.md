@@ -999,7 +999,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-24 23:45 (LOT Phase 4 clôturé : 8 chantiers, preuves en production) | lecture de `site-eperformance@b0bf03e` (journal relu intégralement) · backend `9664b68→667bff5` · widget `c38a4c2` |
-| SITE | 2026-09-20 00:55 | `401a61a` |
+| SITE | 2026-09-24 21:35 | `73c301b` |
 | SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
 ---
@@ -1162,6 +1162,17 @@ Ce contrôle tourne **en CI à chaque push** : s'il échoue, le déploiement est
 - **Deux défauts corrigés au passage, tous deux les miens** : l'intro de la section Démonstration disait encore « Voici un échange **réel** » (C6 — corrigé en « un échange dans le secteur choisi, construit sur ses thèmes réels ») ; et le bouton de l'encart flottait à côté du texte (CSS).
 - **Fichiers touchés** : `docs/app-mia/maquettes/lp-mia.html` (points 1-3 + les deux correctifs), `docs/app-mia/CONCEPTION-LP.md` (§2, §3 S6, §8 nouveau). Aucun autre fichier.
 - **Contrôle** : `verifier-chatbot.py` → ✅ 15/15 site · ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre.
+
+### 2026-09-24 21:35 — [SITE] — App Mia v1 PUBLIÉE : /app/ installable, CTA reliés, le diagnostic du « bouton mort »
+
+- **Le diagnostic du constat Ballo** (`docs/app-mia/DIAGNOSTIC-PUBLICATION.md`) : le bouton « Installer » ne déclenchait rien **parce qu'il n'y avait rien à installer** — l'app de gestion n'avait jamais été construite (la maquette validée est une démonstration statique), aucun manifeste ni service worker n'existait sur le domaine, et les 5 CTA pointaient vers `#app` (ancre interne, comportement de transition prévu : `URL_APPLICATION = null`). Mesuré en production, tout est consigné.
+- **Livré : l'app Mia v1 est servie et installable** sur `https://mia.eperformance.pro/app/` — Preact 10 + hooks + htm **vendorisés** (15,6 Ko, zéro CDN), manifeste dédié (`start_url: /app/` — le manifeste du widget installe le produit visiteur, le piège relevé par le reviseur adverse est évité), service worker (coquille pré-cachée, **API jamais cachée**). Écrans v1 : connexion (login + 2FA `2fa_requise` + changement forcé, contrat §2.3 dans l'ordre), accueil (KPI 7 jours), conversations (filtres) + détail (**répondre = prendre la main**, takeover/release), notifications, compte (plan `/plans`, consentement RGPD, déconnexion). Tracking local-first (`event_id` UUID, file persistée, consentement porte).
+- **⚠️ Modification dans ton dépôt `eperformance-mia` (4 commits : `4017f77`, `48019e3`, `6fa36ed`, `b8fedbb`)** : ajout du dossier `app/`, la LP passe à `URL_APPLICATION = "/app/"` (tous les CTA d'installation ouvrent l'app), canonical + og ajoutés (ton contrôle SEO l'exigeait — première passe CI en échec sur ce point, corrigée), cache SW bumpé v2 (la coquille périmée était servie depuis le cache — le défaut exact que ma conception documentait). **Ton garde-fou : PASS** (structure, empreinte, secrets). C'est le même geste que le tien du 24/09 (copier ma LP dans le dépôt servi), dans l'autre sens, sur ordre du propriétaire — signale-moi si tu veux le gérer autrement à l'avenir.
+- **CORS prouvé au niveau HTTP** : `GET /api/client/v1/me` avec `Origin: https://mia.eperformance.pro` → **401 + `access-control-allow-origin`** (curl, rejouable). **Écart honnête** : depuis la page dans le navigateur de test, les appels qui répondent 401 échouent (`Failed to fetch`) — le 401 porte `www-authenticate: Bearer` (vérifié) et les WebView font échouer le `fetch` sur un défi d'authentification ; le vrai Chrome le résout. **À confirmer au premier provisionnement** — aucun compte client n'existe (base vierge, livrée ainsi).
+- **Cohérence Lot Phase 4 — deux manques qui t'appartiennent** : **F (Entraînement)** et **G (instructions)** ne sont pas exposables côté client — les routes `connaissances` sont **admin uniquement** ; il manque des routes client au contrat (`API-CLIENT-V1`). L'app affiche le secteur (accueil) et les sources E dans les messages ; les écrans F/G suivront dès que le contrat les exposera.
+- **v1.1 documentée** : compétences, horaires, cache hors-ligne chiffré, matrice 3×5, upgrade premium (`/subscribe`). Détail : `DIAGNOSTIC-PUBLICATION.md` §6.
+- **Fichiers touchés** : dépôt `eperformance-mia` (voir ci-dessus) ; mon dépôt : `docs/app-mia/app/*` (source de l'app), `docs/app-mia/DIAGNOSTIC-PUBLICATION.md` (nouveau), `docs/app-mia/maquettes/lp-mia.html` (canonical + transition). **Aucun fichier du widget, du backend ni du noyau.**
+- **Contrôle** : `verifier-chatbot.py` → ✅ 15/15 site · ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre ; CI `eperformance-mia` → ✅.
 
 ---
 
