@@ -90,6 +90,7 @@
 | P3-6.7 | Chatbot sur toutes les pages site + blog | ✅ Fait | 16/16 et 88/88 (garde-fou CI) |
 | **P3-6.3-BIS** | **Bloc A — 11 corrections chatbot (URGENT production)** | ✅ **Fait** | Widget `1100b63` · backend `1d084bb` — 128/128 tests widget, 95 tests backend, vision opérationnelle, `docs/phase3-tache-6-3-bis/RAPPORT.md`. Contrat N3 livré au NOYAU (voir journal). |
 | **P3-6.4 Bloc B** | **PWA Mia installable + pages `/application` et `/application/mia` + portail + wrapper natif (sans publication) + assets de stores** | ✅ **Fait** (publication stores = propriétaire) | Widget `8e9b163` → `51ea8ff` — **171/171** tests widget, build vert, Lighthouse mesuré, `docs/phase3-tache-6-4/RAPPORT-6-4-BLOC-B.md`. **Reste au propriétaire** : sous-domaine `mia.eperformance.pro`, compte Play (25 USD), clé de signature + `assetlinks.json`. **Décision notifications** : Web Push standard (VAPID) — s'aligne sur le canal push de 6.5. |
+| **P4-LOT-24-09** | **LOT Phase 4 (8 chantiers)** : LP Mia (A), incident Telegram + rotation (B), bugs critiques prod (C), liens directs chat (D), base de connaissance site (E), apprentissage backend (F), instructions par secteur (G), blog dates/index (H) | 🚧 **En cours** | entrée du 24/09 20:20 |
 | **P3-6.3** | **Dashboard admin** (compléter : sidebar, header, modules) | ⏳ Reporté après 6.4 | — |
 | **P3-6.5** | **Notifications** (toasts, push FCM, emails, Telegram, WhatsApp) | ✅ **Fait (infrastructure)** | Backend `aed7125` — `POST /api/chatbot/admin/notify` + `GET /api/chatbot/notifications`, trace en base des 3 cas, dégradation propre vérifiée sans aucune clé. **Reste au propriétaire** : clés VAPID + `pywebpush` (push), IP émettrice à autoriser chez Brevo (email). Aucun déclencheur métier câblé. | **MISE À JOUR 19/09 : le canal e-mail est OPÉRATIONNEL** (blocage IP Brevo désactivé par le propriétaire, test réel HTTP 200 avec messageId serveur ; API HTTPS port 443, pas de SMTP) ; petit correctif : destinataire par défaut `BREVO_NOTIF_EMAIL` ou état « non configuré » explicite. **3 canaux sur 4 opérationnels** (email, Telegram, webpush via 6.4 ; webpush attend les clés VAPID).
 | **P3-6.8** | **RAG blog dans le chatbot** (onglet Aide : recherche sémantique) | ✅ **Fait (backend)** | Backend `9cf0c4a` — `GET /api/chatbot/search`, index BM25F mémoïsé (1,99 s → 0,04 s), enrichissement non intrusif de `POST /message`. Banc **9/9, 0 faux positif**. Embeddings indisponibles (mesuré). **Reste** : le widget n'affiche pas encore ces résultats. |
@@ -939,6 +940,17 @@
 - **Fichiers touchés** : `unified-ia-backend/**` (6 commits) + copies Docker (157 fichiers). **Aucun fichier du site, du blog, du widget ni du noyau.**
 - **Contrôle** : tests **406** · parité Docker → 0 · `verifier-secrets.py` → PASS · production : `/health` 200, webhooks en états explicites, `/me` 401 sans jeton · **rien n'est activé** — WhatsApp, RCS, Jeko et les plans premium répondent des états explicites, prêts à basculer sans changement de code.
 
+### 2026-09-24 20:20 — [CHATBOT] — Entrée de départ : LOT Phase 4 (A-H) — LP Mia, incident Telegram, corrections chatbot, blog
+
+- **Protocole** : journal canonique lu intégralement (dernière lecture consignée : 20/09 10:30). Garde-fous exécutés — `verifier-chatbot.py` → **0 site (15/15)** et **0 blog (88/88)** ; `verifier-parite-docker.py` → **0 (157 fichiers)** ; `verifier-secrets.py` → PASS site (108) et backend (153).
+- **Constat d'état avant travaux** : aucune entrée de journal entre le 20/09 10:30 et aujourd'hui — **l'incident Telegram du 22/09 mentionné par le propriétaire n'est consigné nulle part** ; je le documenterai dans ce lot (chantier B). Le dépôt `eperformance-mia` porte des modifications non commitées (index.html + verifier-structure.py, session du 20/09) — vérifiées avant écriture.
+- **Ce que j'ouvre (lot du propriétaire, 8 chantiers)** : A — déploiement LP Mia (A.1 garde-fou et A.2 CORS **déjà livrés le 20/09 00:45** → reste A.3) · B — incident Telegram + rotation token/clé · C — 5 bugs critiques en production (défilement, signature, bouton envoi, fallback WhatsApp, erreurs crédit) · D — liens directs dans le chat · E — base de connaissance = contenu du site · F — mode apprentissage backend · G — instructions par secteur (source canonique noyau) · H — dates et publications du blog.
+- **Secrets reçus hors journal** (nouveau token Telegram + nouvelle clé DeepSeek) : posés hors dépôt et dans les environnements, **aucune valeur ne paraîtra dans ce document ni dans aucun fichier versionné** (règle du 18/09 22:15).
+- **Contrainte assumée** : l'API DeepSeek n'est pas encore rechargée — les tests qui échouent sur le crédit ne bloquent pas la suite.
+- **Fichiers touchés à ce stade** : ce document (§2.1, §5, cette entrée).
+- **Effet sur l'autre agent** : aucun à ce stade. Les entrées ⚠️ viendront par chantier.
+- **Contrôle** : voir protocole ci-dessus — tous verts.
+
 ---
 
 ## 4. PÉRIMÈTRE — QUI TOUCHE QUOI
@@ -969,7 +981,7 @@
 
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
-| CHATBOT | 2026-09-20 10:30 (fondations d'extensibilité LIVRÉES : 406 tests, 4 canaux + flags + tracking) | lecture de `site-eperformance@dfbb9f9` · backend `26520d7` |
+| CHATBOT | 2026-09-24 20:20 (LOT Phase 4 : entrée de départ consignée, lot A-H ouvert) | lecture de `site-eperformance@b0bf03e` (journal relu intégralement, jusqu'au 20/09 10:30) · backend `26520d7` |
 | SITE | 2026-09-20 00:55 | `401a61a` |
 | SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
