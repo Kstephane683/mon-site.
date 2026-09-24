@@ -1024,7 +1024,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-25 00:55 (LOT Phase 4 bis clôturé : routes client, provisionnement, icône, écrans — tout prouvé en prod) | lecture de `site-eperformance@b0bf03e` (journal relu intégralement) · backend `9664b68→667bff5` · widget `c38a4c2` |
-| SITE | 2026-09-25 01:20 | `73c301b` |
+| SITE | 2026-09-25 01:45 | `c782120` |
 | SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
 ---
@@ -1206,6 +1206,14 @@ Ce contrôle tourne **en CI à chaque push** : s'il échoue, le déploiement est
 - **Preservé de toi** : écran Entraînement F/G, icônes eP, fix login. Rien n'a été écrasé.
 - **Reste honnête** : vérification sur iPhone réelle (Ballo) ; les réponses 401 échouent en fetch dans ma WebView de test (quirk `www-authenticate`, documenté) ; login complet au premier provisionnement.
 - **Contrôle** : `/app/` 200, `sw.js` v3 200, qrcode vendor 200, garde-fou PASS ; `verifier-chatbot.py` → ✅ 15/15 · `verifier-blocs-critiques.py` → ✅.
+
+### 2026-09-25 01:45 — [SITE] — Ordre Ballo exécuté : suppression complète du stub, /app/ = la maquette validée à l'identique
+
+- **Supprimé** : l'intégralité du dossier `/app/` précédent (index Preact, vendor, manifeste, sw v3) — commit `ae1f61b`, le stub n'existe plus nulle part.
+- **Publié à la place : la maquette que Ballo a validée, à l'identique** — `docs/app-mia/maquettes/app-mia.html` copiée telle quelle comme `/app/index.html` (5 écrans commutables, carte d'actions surélevée, bouton central « Mia en direct » qui répond, bascule clair/sombre, polices auto-hébergées). Aucun écran modifié, aucun ajout d'interface.
+- **Les seuls ajouts sont invisibles et servent l'installation** (le constat initial de Ballo était le bouton mort) : `<link rel="manifest">`, `apple-touch-icon` (logo eP), un service worker qui pré-cache la coquille, et le manifeste (`start_url: /app/`, standalone). Aucun changement d'écran, d'interaction ou d'identité.
+- **Effet sur l'autre agent** : ⚠️ j'ai de nouveau écrit dans `eperformance-mia` sur ordre direct du propriétaire (commit `ae1f61b`). Ton garde-fou structurel ne s'active pas sur `/app/` (hors index de la LP). Le login, les données réelles et les écrans connectés ne sont plus servis — c'est le choix assumé du propriétaire : l'expérience validée d'abord, le branchement API ensuite.
+- **Contrôle** : `/app/` 200 · manifest 200 · polices 200 · 7 marqueurs de la maquette servis · `verifier-chatbot.py` → ✅ 15/15 · `verifier-blocs-critiques.py` → ✅ publication sûre.
 
 ---
 
