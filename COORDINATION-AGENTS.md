@@ -1024,7 +1024,7 @@
 | Agent | Dernière lecture | Version lue (commit) |
 |---|---|---|
 | CHATBOT | 2026-09-25 00:55 (LOT Phase 4 bis clôturé : routes client, provisionnement, icône, écrans — tout prouvé en prod) | lecture de `site-eperformance@b0bf03e` (journal relu intégralement) · backend `9664b68→667bff5` · widget `c38a4c2` |
-| SITE | 2026-09-24 21:35 | `73c301b` |
+| SITE | 2026-09-25 01:20 | `73c301b` |
 | SOCIAL | 2026-09-19 (retrait du bloc notation, protocole lu aux 3 emplacements) | journal canonique relu intégralement (nouveautés SITE 06:45→12:00 et CHATBOT) |
 
 ---
@@ -1198,6 +1198,14 @@ Ce contrôle tourne **en CI à chaque push** : s'il échoue, le déploiement est
 - **v1.1 documentée** : compétences, horaires, cache hors-ligne chiffré, matrice 3×5, upgrade premium (`/subscribe`). Détail : `DIAGNOSTIC-PUBLICATION.md` §6.
 - **Fichiers touchés** : dépôt `eperformance-mia` (voir ci-dessus) ; mon dépôt : `docs/app-mia/app/*` (source de l'app), `docs/app-mia/DIAGNOSTIC-PUBLICATION.md` (nouveau), `docs/app-mia/maquettes/lp-mia.html` (canonical + transition). **Aucun fichier du widget, du backend ni du noyau.**
 - **Contrôle** : `verifier-chatbot.py` → ✅ 15/15 site · ✅ 88/88 blog ; `verifier-blocs-critiques.py` → ✅ publication sûre ; CI `eperformance-mia` → ✅.
+
+### 2026-09-25 01:20 — [SITE] — Correctif critique : l'app = la maquette validée
+
+- **Constat Ballo accepté sans réserve** : la v1 était un squelette fonctionnel, pas la maquette. Causes : construite en une passe sous contrainte, CSS générique au lieu du CSS porté de la maquette, 2FA sans setup/QR, shell HTML basique, aucun moment travaillé.
+- **Corrigé et servi** (`eperformance-mia` commit `2baf4ab`, rebasé sur tes deux commits — dont le fix `{email, password}` que je preserve) : **shell natif** (`100dvh`, `overscroll-behavior:none`, `-webkit-overflow-scrolling`, `user-scalable=no` contre le double-tap zoom, safe-areas) · **bouton central « Mia en direct »** avec modale de test (POST `/message` avec `test:true` — ⚠️ à confirmer : le flag test est-il traité côté backend ? sinon les tests créent des conversations réelles) · **carte d'actions surélevée** · **QR 2FA** (`/2fa/setup` → otpauth_uri → QR rendu côté client via qrcode-generator vendorisé → activate ; le secret ne s'affiche qu'une fois) · **micro-interactions** (révélation d'écran, appui scale .96, halo or sur le primaire) · **bandeau hors-ligne** (online/offline) · **logo eP** (tes icônes) dans l'en-tête et la connexion.
+- **Preservé de toi** : écran Entraînement F/G, icônes eP, fix login. Rien n'a été écrasé.
+- **Reste honnête** : vérification sur iPhone réelle (Ballo) ; les réponses 401 échouent en fetch dans ma WebView de test (quirk `www-authenticate`, documenté) ; login complet au premier provisionnement.
+- **Contrôle** : `/app/` 200, `sw.js` v3 200, qrcode vendor 200, garde-fou PASS ; `verifier-chatbot.py` → ✅ 15/15 · `verifier-blocs-critiques.py` → ✅.
 
 ---
 
