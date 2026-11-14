@@ -316,15 +316,16 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
             <path d="M20 6L9 17l-5-5"/>
           </svg>
         </div>
-        <h3 id="sucTitle" tabindex="-1">Diagnostic en cours,<br>votre rapport arrive.</h3>
+        <h3 id="sucTitle" tabindex="-1">Votre diagnostic est prêt.</h3>
         <p class="lead mt-2 mx-auto">
-          Vérifiez votre boîte email dans quelques instants — ainsi que vos spams. Votre rapport
-          stratégique personnalisé est en route.
+          Envoyez-le-moi sur WhatsApp pour recevoir votre plan personnalisé.
+          Rien n’est transmis avant votre clic.
         </p>
         <div class="grid grid-2 mt-4">
-          <a class="btn btn-wa" target="_blank" rel="noopener"
-             href="https://wa.me/2250151170666?text=Bonjour%20K.%20St%C3%A9phane%2C%20je%20viens%20de%20remplir%20le%20diagnostic.">Confirmer sur WhatsApp</a>
-          <a class="btn btn-outline" href="index.html">Retour à l'accueil</a>
+          <a id="sucWa" class="btn btn-wa" target="_blank" rel="noopener" data-cta="whatsapp"
+             href="https://wa.me/2250151170666">Envoyer mon diagnostic sur WhatsApp</a>
+          <a id="sucMail" class="btn btn-outline"
+             href="mailto:bonjour@eperformance.pro">Recevoir par email</a>
         </div>
       </div>
     </div>
@@ -1207,57 +1208,44 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
   /* ------------------------------------------------------------------
      ENVOI
      ------------------------------------------------------------------ */
-  function send(d) {
-    var ref = '';
-    try { ref = sessionStorage.getItem('ep_ref') || ''; } catch (e) { ref = ''; }
+  function buildSummary(d, r, failles, reco) {
+    var lines = [
+      'Bonjour K. Stéphane, je viens de faire le diagnostic ePerformance.',
+      'Nom : ' + (d.nom || '—'),
+      'Entreprise : ' + (d.entreprise || '—'),
+      'WhatsApp : ' + (d.whatsapp || '—'),
+      'Score : ' + r.score + '/100 — ' + reco.label,
+      'CA mensuel : ' + (Math.round(parseFloat(d.ca_mensuel) || 0)) + ' FCFA',
+      'Clients/mois : ' + (Math.round(parseFloat(d.clients_par_mois) || 0)),
+      'Panier moyen : ' + (Math.round(parseFloat(d.panier_moyen) || 0)) + ' FCFA',
+      'CAC : ' + r.cac + ' FCFA',
+      'LTV : ' + r.ltv + ' FCFA',
+      'Payback : ' + r.payback + ' mois',
+      'Marge : ' + r.marge + ' %',
+      'Blocage principal : ' + (d.blocage_principal || '—'),
+      'Je souhaite recevoir mon plan personnalisé.'
+    ];
+    return lines.join('\n');
+  }
 
-    fetch('https://web-production-4ab53.up.railway.app/api/diagnostic/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        nom: d.nom,
-        email: d.email,
-        whatsapp: d.whatsapp,
-        entreprise: d.entreprise || undefined,
-        secteur: d.secteur,
-        ca_mensuel: Math.round(parseFloat(d.ca_mensuel) || 0),
-        clients_par_mois: Math.round(parseFloat(d.clients_par_mois) || 0),
-        budget_pub_mensuel: Math.round(parseFloat(d.budget_pub) || 0),
-        budget_disponible: Math.round(parseFloat(d.budget_accompagnement) || 0),
-        duree_vie_client_mois: DUREE_MOIS[d.duree_vie_client] || 12,
-        marge_pct: parseFloat(d.marge_pct) || 30,
-        has_website: d.site_web === 'oui',
-        uses_digital_tools: d.usage_whatsapp !== 'non',
-        tracks_metrics: d.suivi_indicateurs === 'oui',
-        objectif: ('Blocage: ' + (d.blocage_principal || 'non precis') +
-                   '. Accompagnement envisage: ' + (d.budget_accompagnement || 'non precis') +
-                   '. Experience conseil: ' + (d.experience_conseil || 'non precise') +
-                   '. Suivi des chiffres: ' + (d.suivi_indicateurs || 'non precise') +
-                   '. Sources: ' + (d.sources_acquisition || 'non precis') + '.').slice(0, 500),
-        sources_acquisition: d.sources_acquisition,
-        ref_parrainage: ref
-      })
-    })
-    .then(function (r) {
-      if (!r.ok) console.warn('Diagnostic submit HTTP', r.status);
-      return r.json();
-    })
-    .then(function (res) {
-      if (res && res.score != null) console.info('Diagnostic enregistre — score', res.score);
-
-      /* Conversion principale. Elle part sur la réponse du serveur, pas sur le
-         clic : un envoi qui échoue n'est pas un prospect. C'est ce qui rend le
-         chiffre exploitable en réunion. */
-      if (typeof window.eperfTrack === 'function') {
-        window.eperfTrack('generate_lead', {
-          value: 0,
-          currency: 'USD',
-          form_id: 'diagnostic',
-          event_id: (res && res.diagnosticId) || undefined
-        }, 'Lead');
-      }
-    })
-    .catch(function (e) { console.warn('Diagnostic error:', e); });
+  function send(d, r, failles, reco) {
+    var msg = buildSummary(d, r, failles, reco);
+    var wa = document.getElementById('sucWa');
+    var mail = document.getElementById('sucMail');
+    if (wa) wa.href = 'https://wa.me/2250151170666?text=' + encodeURIComponent(msg);
+    if (mail) mail.href = 'mailto:bonjour@eperformance.pro?subject=' +
+      encodeURIComponent('Diagnostic ePerformance — ' + (d.entreprise || d.nom || '')) +
+      '&body=' + encodeURIComponent(msg);
+    if (wa && !wa.dataset.bound) {
+      wa.dataset.bound = '1';
+      wa.addEventListener('click', function () {
+        if (typeof window.eperfTrack === 'function') {
+          window.eperfTrack('generate_lead', { value: 0, currency: 'USD', form_id: 'diagnostic' }, 'Lead');
+        }
+        if (window.fbq) window.fbq('track', 'Lead');
+        if (window.gtag) window.gtag('event', 'generate_lead', { form_id: 'diagnostic' });
+      });
+    }
   }
 
   function submit() {
@@ -1292,10 +1280,6 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
       }, stage.delay);
     });
 
-    /* Les traceurs sont chargés par consent.js, après accord explicite.
-       Aucun appel n'est fait s'ils sont absents. */
-    if (window.fbq) window.fbq('track', 'Lead');
-    if (window.gtag) window.gtag('event', 'generate_lead', { page_location: window.location.href });
 
     setTimeout(function () {
       if (load) load.hidden = true;
@@ -1312,7 +1296,7 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
       }
     }, 7200);
 
-    send(d);
+    send(d, ratios, failles, reco);
   }
 
   function goNext() {
