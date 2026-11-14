@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 """Vérifie que chaque page publiée contient tous les blocs critiques.
 
-Né d'un incident : le 18 septembre 2026, un commit a recomposé les pages depuis
-un générateur qui n'émettait pas le bloc SDK du chatbot, puis les a copiées vers
-la racine. Le chatbot a disparu d'eperformance.pro en production.
-
-La leçon : **recomposer ne met pas à jour les pages, il les régénère.** Tout ce
-qui n'est pas émis par le générateur disparaît, y compris ce qui avait été
-ajouté à la main dans les fichiers HTML.
+Contrôle des blocs techniques critiques des pages publiées.
+Le chatbot Mia a été retiré le 14/11/2026 : ses dépendances ne sont plus
+exigées. Le contrôle conserve le tracking, le consentement, le comportement
+et la feuille de style.
 
 Ce contrôle s'exécute sur les fichiers de la racine — ceux qui partent en
 production — et non sur le preview. Il doit tourner AVANT toute copie vers la
@@ -26,12 +23,6 @@ RACINE = Path(__file__).resolve().parent.parent
 
 # Chaque bloc : (nom, motif à trouver, pourquoi il compte)
 BLOCS = [
-    ("SDK chatbot",
-     r"eperformance-sdk\.js",
-     "sans lui le widget ne se charge pas — incident du 18/09/2026"),
-    ("Configuration chatbot",
-     r"ePerformanceConfig",
-     "le SDK lit sa configuration dans cet objet"),
     ("Tracking",
      r"assets/js/tracking\.js",
      "sans lui aucune conversion ne remonte à GA4"),
