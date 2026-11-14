@@ -895,14 +895,13 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
           <path d="M22 4 12 14.01l-3-3"/>
         </svg>
       </div>
-      <h3 class="card-title">Demande reçue.</h3>
+      <h3 class="card-title">Votre demande est prête.</h3>
       <p class="card-text">
-        Je vous contacte sur WhatsApp sous 24 à 48 h pour récupérer vos photos, vos
-        informations et confirmer la formule et le calendrier. Si vous préférez ne pas
-        attendre, écrivez-moi directement.
+        Envoyez-la sur WhatsApp pour que je la reçoive et confirme la formule, le
+        calendrier et les éléments à fournir. Rien n’est transmis avant votre clic.
       </p>
-      <a class="btn btn-wa mt-3" href="https://wa.me/2250151170666" target="_blank" rel="noopener">
-        M'écrire sur WhatsApp
+      <a id="cmdWa" class="btn btn-wa mt-3" href="https://wa.me/2250151170666" target="_blank" rel="noopener">
+        Envoyer ma demande sur WhatsApp
       </a>
     </div>
   </div>
@@ -1132,48 +1131,31 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
       submitBtn.textContent = 'Envoi en cours…';
     }
 
-    var donnees = new FormData(form);
-    donnees.set('whatsapp', whatsapp);
-    donnees.set('telephone', whatsapp);
-    donnees.set('type_site', libelle);
-    donnees.set('nom', 'Client Pub - ' + secteur.substring(0, 30));
-    donnees.set('ville', 'À définir avec le client');
-    donnees.set('email', 'client-' + Date.now() + '@temp.com');
-    donnees.set('presentation', 'Description client : ' + secteur + '. Formule choisie : ' + libelle + '.');
-    donnees.set('adresse', '');
-    donnees.set('horaires', '');
-    donnees.set('nb_produits', '');
-    donnees.set('style_souhaite', '');
-    donnees.set('domaine_souhaite', '');
-
-    var corps = Object.fromEntries(donnees.entries());
-    /* Le sélecteur de palier est un champ de confort : la valeur transmise
-       est celle de type_site. */
-    delete corps.plan_choisi;
-
-    try {
-      await fetch('https://web-production-4ab53.up.railway.app/proxy.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.assign({ action: 'commande_site_web' }, tracking, corps))
-      });
-    } catch (err) {
-      /* Le lead reste exploitable côté serveur : on n'interrompt pas le parcours. */
+    /* Aucun backend requis : la demande est préparée dans WhatsApp. */
+    var message = [
+      'Bonjour K. Stéphane, je souhaite commander un site web.',
+      'Formule : ' + libelle,
+      'Secteur : ' + (secteur || '—'),
+      'WhatsApp : ' + whatsapp,
+      'Budget indicatif : ' + prixDuPalier(libelle) + ' FCFA',
+      'Je souhaite confirmer le calendrier et les éléments à fournir.'
+    ].join('\n');
+    var wa = document.getElementById('cmdWa');
+    if (wa) {
+      wa.href = 'https://wa.me/2250151170666?text=' + encodeURIComponent(message);
+      if (!wa.dataset.bound) {
+        wa.dataset.bound = '1';
+        wa.addEventListener('click', function () {
+          if (window.fbq) window.fbq('track', 'Lead', {
+            content_name: 'Commande site web', content_category: libelle,
+            value: prixDuPalier(libelle), currency: 'XOF'
+          });
+          if (window.gtag) window.gtag('event', 'generate_lead', {
+            value: prixDuPalier(libelle), currency: 'XOF', item_name: libelle
+          });
+        });
+      }
     }
-
-    /* La valeur transmise reflète le palier choisi, jamais un montant figé. */
-    var valeur = prixDuPalier(libelle);
-    if (window.fbq) window.fbq('track', 'Lead', {
-      content_name: 'Commande site web',
-      content_category: libelle,
-      value: valeur,
-      currency: 'XOF'
-    });
-    if (window.gtag) window.gtag('event', 'generate_lead', {
-      value: valeur,
-      currency: 'XOF',
-      item_name: libelle
-    });
 
     if (submitBtn) {
       submitBtn.disabled = false;

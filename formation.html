@@ -589,15 +589,14 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
           <path d="M22 4 12 14.01l-3-3"/>
         </svg>
       </div>
-      <h3 class="card-title">Demande reçue.</h3>
+      <h3 class="card-title">Votre demande est prête.</h3>
       <p class="card-text">
-        Merci. Je reviens vers vous sous 24 h pour confirmer votre place, la formation
-        choisie et la date de la session. Aucun paiement n'a été effectué à cette étape.
+        Envoyez-la sur WhatsApp pour que je la reçoive et confirme votre place, la
+        formation et la date de la session. Rien n’est transmis avant votre clic.
       </p>
-      <a class="btn btn-outline mt-3"
-         href="https://wa.me/2250151170666?text=Bonjour%2C%20je%20viens%20d%27envoyer%20ma%20demande%20d%27inscription%20%C3%A0%20une%20formation"
-         target="_blank" rel="noopener">
-        M'écrire sur WhatsApp
+      <a id="formationWa" class="btn btn-wa mt-3"
+         href="https://wa.me/2250151170666" target="_blank" rel="noopener">
+        Envoyer ma demande sur WhatsApp
       </a>
     </div>
   </div>
@@ -791,35 +790,31 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
       bouton.textContent = 'Envoi en cours…';
     }
 
-    try {
-      await fetch('https://web-production-4ab53.up.railway.app/proxy.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.assign({
-          action: 'inscription_formation',
-          nom: nom,
-          email: email,
-          whatsapp: whatsapp,
-          telephone: whatsapp,
-          secteur: '',
-          formation: formation,
-          objectif: objectif,
-          source: 'formation.html'
-        }, tracking))
-      });
-    } catch (err) {
-      /* La demande reste exploitable côté serveur : on n'interrompt pas le parcours. */
+    var message = [
+      'Bonjour K. Stéphane, je souhaite m’inscrire à une formation ePerformance.',
+      'Nom : ' + nom,
+      'Email : ' + email,
+      'WhatsApp : ' + whatsapp,
+      'Formation : ' + formation,
+      'Objectif : ' + (objectif || '—'),
+      'Je souhaite confirmer ma place et la date de la session.'
+    ].join('\n');
+    var wa = document.getElementById('formationWa');
+    if (wa) {
+      wa.href = 'https://wa.me/2250151170666?text=' + encodeURIComponent(message);
+      if (!wa.dataset.bound) {
+        wa.dataset.bound = '1';
+        wa.addEventListener('click', function () {
+          if (window.fbq) window.fbq('track', 'Lead', {
+            content_name: 'Inscription Formation', content_category: 'Formation'
+          });
+          if (window.gtag) window.gtag('event', 'generate_lead', {
+            event_category: 'formation', event_label: formation
+          });
+          if (window.clarity) { try { window.clarity('event', 'inscription_formation'); } catch (_) {} }
+        });
+      }
     }
-
-    if (window.fbq) window.fbq('track', 'Lead', {
-      content_name: 'Inscription Formation',
-      content_category: 'Formation'
-    });
-    if (window.gtag) window.gtag('event', 'generate_lead', {
-      event_category: 'formation',
-      event_label: formation
-    });
-    if (window.clarity) { try { window.clarity('event', 'inscription_formation'); } catch (_) {} }
 
     if (bouton) {
       bouton.disabled = false;
