@@ -307,6 +307,20 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
       engagement.
     </p>
 
+    <div class="card mt-4" style="border-left:3px solid var(--gold)">
+      <span class="eyebrow">Après le diagnostic</span>
+      <h3 class="card-title mt-2">Audit d’acquisition 7 jours — 50 000 FCFA</h3>
+      <p class="card-text">
+        Le diagnostic est gratuit. L’audit complet reprend vos chiffres, identifie les
+        <strong>3 fuites prioritaires</strong> et vous remet un plan d’action 90 jours,
+        avec une session de restitution.
+      </p>
+      <div class="grid grid-2 mt-3">
+        <a class="btn btn-gold" href="https://wa.me/2250151170666?text=Bonjour%2C%20je%20souhaite%20un%20audit%20d%27acquisition%20%C3%A0%2050%20000%20FCFA." target="_blank" rel="noopener">Demander l’audit</a>
+        <a class="btn btn-outline" href="#diagnostic">Faire le diagnostic gratuit</a>
+      </div>
+    </div>
+
     <!-- ======= Panneau de confirmation ======= -->
     <div id="sucView" hidden>
       <div class="card text-center mt-4">
@@ -317,9 +331,8 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
           </svg>
         </div>
         <h3 id="sucTitle" tabindex="-1">Votre diagnostic est prêt.</h3>
-        <p class="lead mt-2 mx-auto">
-          Envoyez-le-moi sur WhatsApp pour recevoir votre plan personnalisé.
-          Rien n’est transmis avant votre clic.
+        <p id="sucStatus" class="lead mt-2 mx-auto" role="status" aria-live="polite">
+          Envoi de votre rapport par email…
         </p>
         <div class="grid grid-2 mt-4">
           <a id="sucWa" class="btn btn-wa" target="_blank" rel="noopener" data-cta="whatsapp"
@@ -1228,6 +1241,67 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
     return lines.join('\n');
   }
 
+  function setSucStatus(text) {
+    var status = document.getElementById('sucStatus');
+    if (status) status.textContent = text;
+  }
+
+  function postToLws(d, r, reco) {
+    var ref = '';
+    try { ref = sessionStorage.getItem('ep_ref') || ''; } catch (e) { ref = ''; }
+    var n = function (v) { var x = parseFloat(v); return isFinite(x) ? x : 0; };
+    var payload = {
+      action: 'diagnostic',
+      nom: d.nom,
+      email: d.email,
+      whatsapp: d.whatsapp,
+      entreprise: d.entreprise || '',
+      secteur: d.secteur || 'autre',
+      ca_mensuel: n(d.ca_mensuel),
+      clients_par_mois: n(d.clients_par_mois),
+      panier_moyen: n(d.panier_moyen),
+      budget_pub: n(d.budget_pub),
+      marge_pct: n(d.marge_pct) || 30,
+      duree_vie_client: d.duree_vie_client || '',
+      pub_active: d.pub_active || '',
+      site_web: d.site_web || '',
+      usage_whatsapp: d.usage_whatsapp || '',
+      suivi_indicateurs: d.suivi_indicateurs || '',
+      budget_accompagnement: d.budget_accompagnement || '',
+      blocage_principal: d.blocage_principal || '',
+      sources_acquisition: d.sources_acquisition || '',
+      ref_parrainage: ref
+    };
+
+    setSucStatus('Envoi de votre rapport par email…');
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, 25000);
+    fetch('https://api.eperformance.pro/proxy.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: controller.signal
+    })
+      .then(function (response) {
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        return response.json();
+      })
+      .then(function (res) {
+        if (!res || res.success !== true) throw new Error('Réponse invalide');
+        setSucStatus('Votre rapport a été envoyé à ' + d.email + '. Vérifiez aussi les spams. Vous pouvez aussi me l’envoyer sur WhatsApp.');
+        if (typeof window.eperfTrack === 'function') {
+          window.eperfTrack('generate_lead', { value: 0, currency: 'XOF', form_id: 'diagnostic' }, 'Lead');
+        }
+        if (window.fbq) window.fbq('track', 'Lead');
+        if (window.gtag) window.gtag('event', 'generate_lead', { form_id: 'diagnostic' });
+      })
+      .catch(function (err) {
+        console.warn('Diagnostic LWS:', err);
+        setSucStatus('L’envoi automatique n’a pas abouti. Envoyez-moi votre diagnostic sur WhatsApp : je le traite manuellement.');
+      })
+      .finally(function () { clearTimeout(timer); });
+  }
+
   function send(d, r, failles, reco) {
     var msg = buildSummary(d, r, failles, reco);
     var wa = document.getElementById('sucWa');
@@ -1240,12 +1314,13 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
       wa.dataset.bound = '1';
       wa.addEventListener('click', function () {
         if (typeof window.eperfTrack === 'function') {
-          window.eperfTrack('generate_lead', { value: 0, currency: 'USD', form_id: 'diagnostic' }, 'Lead');
+          window.eperfTrack('generate_lead', { value: 0, currency: 'XOF', form_id: 'diagnostic' }, 'Lead');
         }
         if (window.fbq) window.fbq('track', 'Lead');
         if (window.gtag) window.gtag('event', 'generate_lead', { form_id: 'diagnostic' });
       });
     }
+    postToLws(d, r, reco);
   }
 
   function submit() {
