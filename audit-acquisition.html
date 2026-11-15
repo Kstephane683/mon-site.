@@ -43,6 +43,7 @@
   .field input,.field select,.field textarea{width:100%;padding:13px 14px;border-radius:10px;border:1px solid #33333d;background:#0b0b0f;color:#f4efe6;font:inherit}
   .field textarea{min-height:92px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid #c9a96e;outline-offset:1px}
   .audit-note{font-size:12px;color:#8f887d;line-height:1.6}.audit-note a{color:#c9a96e}
+  [hidden]{display:none!important}
   .audit-success{display:none;background:#132016;border:1px solid #2f6b48;border-radius:14px;padding:18px;color:#d9f2e3;margin-top:16px}
   .audit-success a{color:#8ee0ae;font-weight:700}
   .audit-faq{max-width:820px}.audit-faq details{border-bottom:1px solid #24242c;padding:16px 0}
@@ -132,27 +133,24 @@
     <div class="container">
       <div class="audit-form-wrap">
         <div>
-          <span class="eyebrow">Réserver</span>
-          <h2>Dites-moi où vous en êtes.</h2>
-          <p>Je vérifie que l’audit peut vous apporter quelque chose. Si ce n’est pas le cas, je vous le dis.</p>
-          <p class="audit-note">Le bouton ouvre WhatsApp avec votre demande déjà remplie. Vous pourrez relire avant d’envoyer.</p>
-          <p class="audit-note mt-3">Paiement : Mobile Money ou virement, après confirmation. Aucun paiement n’est demandé sur cette page.</p>
+          <span class="eyebrow">Confirmer</span>
+          <h2>Votre diagnostic est votre demande.</h2>
+          <p>Pas besoin de recommencer. Le diagnostic a déjà qualifié votre activité : je vérifie simplement que l’audit est pertinent, puis je vous envoie le lien de paiement Jeko.</p>
+          <p class="audit-note">Si votre diagnostic a été fait sur cet appareil, votre email et votre score apparaissent à droite. Sinon, refaites-le en 5 minutes.</p>
+          <p class="audit-note mt-3">Aucun paiement n’est demandé avant confirmation de la faisabilité de votre audit.</p>
         </div>
-        <form class="audit-form" id="auditForm">
-          <h2>Demande d’audit</h2>
-          <p>Réponse sous 24 à 48 h ouvrées.</p>
-          <div class="field"><label for="aNom">Votre nom *</label><input id="aNom" required autocomplete="name" placeholder="ex : Kouadio Aimé"></div>
-          <div class="field"><label for="aEntreprise">Entreprise *</label><input id="aEntreprise" required placeholder="ex : Boutique Coco"></div>
-          <div class="field"><label for="aWhatsapp">WhatsApp *</label><input id="aWhatsapp" required type="tel" placeholder="ex : +225 07 01 23 45 67"></div>
-          <div class="field"><label for="aEmail">Email *</label><input id="aEmail" required type="email" placeholder="vous@exemple.com"></div>
-          <div class="field"><label for="aCA">CA mensuel (FCFA)</label><input id="aCA" type="number" min="0" placeholder="ex : 2 000 000"></div>
-          <div class="field"><label for="aBudget">Budget publicitaire mensuel (FCFA)</label><input id="aBudget" type="number" min="0" placeholder="ex : 150 000"></div>
-          <div class="field"><label for="aBlocage">Qu’est-ce qui bloque aujourd’hui ?</label><textarea id="aBlocage" placeholder="Ex : je dépense mais je ne sais pas si je gagne de l’argent…"></textarea></div>
-          <div class="field"><label style="display:flex;gap:10px;align-items:flex-start;font-weight:400;color:#a9a399"><input id="aConsent" type="checkbox" required style="width:auto;margin-top:3px"> J’accepte d’être recontacté au sujet de cet audit.</label></div>
-          <button class="btn btn-gold btn-block" type="submit">Envoyer ma demande sur WhatsApp</button>
-          <div class="audit-success" id="auditSuccess" role="status" aria-live="polite"></div>
-          <p class="audit-note mt-3">Ou écrivez directement : <a href="mailto:bonjour@eperformance.pro">bonjour@eperformance.pro</a></p>
-        </form>
+        <div class="audit-form" id="auditConfirm">
+          <h2>Votre diagnostic suffit.</h2>
+          <p>Pas de deuxième formulaire. Le diagnostic gratuit a déjà qualifié votre activité ; il ne reste qu’à confirmer l’audit et le paiement.</p>
+          <div class="audit-success" id="diagLinked" role="status" aria-live="polite"></div>
+          <a id="jekoPay" class="btn btn-gold btn-block" href="#" hidden>Payer mon audit — 50 000 FCFA avec Jeko</a>
+          <a id="auditRequest" class="btn btn-outline btn-block mt-3" href="https://wa.me/2250151170666">Recevoir le lien de paiement Jeko</a>
+          <p class="audit-note mt-3" id="diagHint">
+            Le paiement est sécurisé par Jeko (Mobile Money ou carte). Si vous n’avez pas encore fait le diagnostic,
+            commencez par lui : <a href="diagnostic_eperformance.html">diagnostic gratuit</a>.
+          </p>
+          <p class="audit-note mt-3">Aucun paiement n’est demandé avant confirmation de la faisabilité de votre audit.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -178,31 +176,34 @@
 
 <script>
 (function(){
-  var form=document.getElementById('auditForm');
-  if(!form) return;
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var v=function(id){return (document.getElementById(id).value||'').trim();};
-    var msg=[
-      'Bonjour K. Stéphane, je souhaite réserver l’audit d’acquisition 7 jours à 50 000 FCFA.',
-      'Nom : '+v('aNom'),
-      'Entreprise : '+v('aEntreprise'),
-      'WhatsApp : '+v('aWhatsapp'),
-      'Email : '+v('aEmail'),
-      'CA mensuel : '+(v('aCA')||'non renseigné')+' FCFA',
-      'Budget publicitaire : '+(v('aBudget')||'non renseigné')+' FCFA',
-      'Blocage : '+(v('aBlocage')||'non renseigné'),
-      'Je souhaite recevoir les instructions de paiement et confirmer le créneau.'
-    ].join('\n');
-    var url='https://wa.me/2250151170666?text='+encodeURIComponent(msg);
-    var box=document.getElementById('auditSuccess');
-    box.style.display='block';
-    box.innerHTML='Votre demande est prête. <a href="'+url+'" target="_blank" rel="noopener">Ouvrir WhatsApp pour l’envoyer</a>.';
-    window.open(url,'_blank','noopener');
-    if(window.eperfTrack) window.eperfTrack('generate_lead',{form_id:'audit_50k',value:50000,currency:'XOF'},'Lead');
-    if(window.fbq) window.fbq('track','Lead',{value:50000,currency:'XOF'});
-    if(window.gtag) window.gtag('event','generate_lead',{form_id:'audit_50k',value:50000,currency:'XOF'});
-  });
+  var JEKO_PAYMENT_URL = ''; // À remplir avec le lien de paiement Jeko de 50 000 FCFA
+  var raw = null;
+  try { raw = localStorage.getItem('ep_last_diagnostic'); } catch(e) {}
+  var d = null;
+  try { d = raw ? JSON.parse(raw) : null; } catch(e) {}
+  var linked = document.getElementById('diagLinked');
+  var pay = document.getElementById('jekoPay');
+  var request = document.getElementById('auditRequest');
+  var details = '';
+  if (d && d.email) {
+    var score = d.score != null ? ' · score ' + d.score + '/100' : '';
+    linked.style.display = 'block';
+    linked.innerHTML = 'Diagnostic lié à <strong>' + d.email + '</strong>' + score + '. Aucun formulaire à refaire.';
+    details = ' Diagnostic : ' + d.email + (d.score != null ? ' — score ' + d.score + '/100' : '') + '.';
+  } else {
+    linked.style.display = 'block';
+    linked.style.background = '#1a1712';
+    linked.style.borderColor = '#6b5d49';
+    linked.style.color = '#e9dfcf';
+    linked.innerHTML = 'Aucun diagnostic retrouvé sur cet appareil. Faites le diagnostic gratuit : il sert de qualification et évite un deuxième formulaire.';
+  }
+  var msg = encodeURIComponent('Bonjour K. Stéphane, je souhaite commander l’audit d’acquisition 7 jours à 50 000 FCFA.' + details + ' Je souhaite recevoir le lien de paiement Jeko.');
+  request.href = 'https://wa.me/2250151170666?text=' + msg;
+  if (JEKO_PAYMENT_URL) {
+    pay.href = JEKO_PAYMENT_URL;
+    pay.hidden = false;
+    request.textContent = 'Une question avant de payer ? WhatsApp';
+  }
 })();
 </script>
 </body>

@@ -1339,6 +1339,13 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
     var failles = getFailles(d, ratios);
     var reco = getReco(ratios);
     console.info('Diagnostic — ratios', ratios, failles, reco);
+    try {
+      localStorage.setItem('ep_last_diagnostic', JSON.stringify({
+        nom: d.nom, email: d.email, whatsapp: d.whatsapp, entreprise: d.entreprise,
+        secteur: d.secteur, score: ratios.score, cac: ratios.cac, ltv: ratios.ltv,
+        payback: ratios.payback, marge: ratios.marge, saved_at: new Date().toISOString()
+      }));
+    } catch (e) {}
 
     var shell = el('formShell');
     var load = el('loadOv');
