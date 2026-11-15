@@ -307,20 +307,6 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
       engagement.
     </p>
 
-    <div class="card mt-4" style="border-left:3px solid var(--gold)">
-      <span class="eyebrow">Après le diagnostic</span>
-      <h3 class="card-title mt-2">Audit d’acquisition 7 jours — 50 000 FCFA</h3>
-      <p class="card-text">
-        Le diagnostic est gratuit. L’audit complet reprend vos chiffres, identifie les
-        <strong>3 fuites prioritaires</strong> et vous remet un plan d’action 90 jours,
-        avec une session de restitution.
-      </p>
-      <div class="grid grid-2 mt-3">
-        <a class="btn btn-gold" href="audit-acquisition.html">Commander l’audit — 50 000 FCFA</a>
-        <a class="btn btn-outline" href="#diagnostic">Faire le diagnostic gratuit</a>
-      </div>
-    </div>
-
     <!-- ======= Panneau de confirmation ======= -->
     <div id="sucView" hidden>
       <div class="card text-center mt-4">
@@ -334,7 +320,7 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
         <p id="sucStatus" class="lead mt-2 mx-auto" role="status" aria-live="polite">
           Envoi de votre rapport par email…
         </p>
-        <a class="btn btn-gold btn-block mt-4" href="audit-acquisition.html">
+        <a id="sucAudit" class="btn btn-gold btn-block mt-4" href="audit-acquisition.html">
           Commander mon audit complet — 50 000 FCFA
         </a>
         <p class="text-muted mt-2" style="font-size:13px">
@@ -1316,6 +1302,17 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
     var msg = buildSummary(d, r, failles, reco);
     var wa = document.getElementById('sucWa');
     var mail = document.getElementById('sucMail');
+    var audit = document.getElementById('sucAudit');
+    if (audit) {
+      var q = new URLSearchParams();
+      if (d.nom) q.set('n', String(d.nom).split(' ')[0]);
+      q.set('s', r.score);
+      if (r.cac) q.set('c', r.cac);
+      if (r.ltv) q.set('l', r.ltv);
+      if (r.payback) q.set('p', r.payback);
+      if (failles && failles[0] && failles[0].t) q.set('f', failles[0].t);
+      audit.href = 'audit-acquisition.html?' + q.toString();
+    }
     if (wa) wa.href = 'https://wa.me/2250151170666?text=' + encodeURIComponent(msg);
     if (mail) mail.href = 'mailto:bonjour@eperformance.pro?subject=' +
       encodeURIComponent('Diagnostic ePerformance — ' + (d.entreprise || d.nom || '')) +

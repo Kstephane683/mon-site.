@@ -6,6 +6,7 @@
 <title>Audit d’acquisition 7 jours — 50 000 FCFA | ePerformance</title>
 <meta name="description" content="En 7 jours, calculez votre CAC, votre LTV et votre payback, identifiez vos 3 fuites d’acquisition et repartez avec un plan d’action 90 jours. Audit ePerformance — 50 000 FCFA.">
 <link rel="canonical" href="https://eperformance.pro/audit-acquisition.html">
+<meta name="robots" content="noindex,nofollow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Audit d’acquisition 7 jours — 50 000 FCFA | ePerformance">
 <meta property="og:description" content="Vos 4 ratios, vos 3 fuites prioritaires et un plan 90 jours. Un audit concret, pas un rapport de 80 pages.">
@@ -48,6 +49,14 @@
   .audit-success a{color:#8ee0ae;font-weight:700}
   .audit-faq{max-width:820px}.audit-faq details{border-bottom:1px solid #24242c;padding:16px 0}
   .audit-faq summary{cursor:pointer;font-weight:700;color:#f4efe6}.audit-faq p{color:#a9a399;margin:10px 0 0}
+  .audit-context{margin-top:22px;padding:15px 18px;border:1px solid #4b4033;border-left:3px solid #c9a96e;border-radius:10px;background:rgba(201,169,110,.08);color:#e9dfcf;font-size:14px;line-height:1.7}
+  .audit-context strong{color:#f4efe6}
+  .audit-summary{background:#fffdf8;border:1px solid #e2d6c4;border-radius:12px;padding:14px 16px;margin-top:18px;color:#5c3a1a}
+  .audit-summary .row{display:flex;justify-content:space-between;gap:16px;padding:7px 0;border-bottom:1px solid #eadfce;font-size:12px}
+  .audit-summary .row:last-child{border-bottom:0}.audit-summary b{font-size:13px}
+  .audit-list{margin:12px 0 20px;padding-left:18px;color:#b9b0a0;font-size:14px;line-height:1.9}
+  .audit-mini{border-top:1px solid #2a2a32;padding-top:14px;display:flex;flex-direction:column;gap:4px}
+  .audit-mini strong{color:#c9a96e;font-size:22px}.audit-mini span{color:#8f887d;font-size:12px;line-height:1.5}
   @media(max-width:820px){.audit-grid{grid-template-columns:1fr}.audit-form-wrap{grid-template-columns:1fr}.audit-hero{padding-top:42px}}
 </style>
 </head>
@@ -58,26 +67,27 @@
       <img class="logo-img-light" src="assets/img/logo-light.webp" alt="ePerformance" width="152" height="25">
       <img class="logo-img-dark" src="assets/img/logo-dark.webp" alt="ePerformance" width="157" height="25">
     </a>
-    <a class="btn btn-outline btn-desktop" href="diagnostic_eperformance.html">Diagnostic gratuit</a>
+    <a class="btn btn-outline btn-desktop" href="https://wa.me/2250151170666" rel="noopener">Une question</a>
   </div>
 </header>
 
 <main>
   <section class="audit-hero">
     <div class="container">
-      <span class="eyebrow">Audit d’acquisition · 7 jours</span>
-      <h1>Arrêtez de financer une acquisition <em>que vous ne comprenez pas.</em></h1>
-      <p class="lead">
-        En 7 jours, je calcule vos quatre ratios sur vos vrais chiffres, j’identifie les
-        <strong>3 fuites</strong> qui coûtent le plus cher et je vous remets un plan d’action 90 jours.
+      <span class="eyebrow">Votre analyse — la suite</span>
+      <h1>Votre analyse est faite. <em>Voici comment agir.</em></h1>
+      <p class="lead" id="auditIntro">
+        Un score ne dit pas quoi corriger. L’audit transforme votre analyse en décisions :
+        les 3 fuites à traiter, leur coût réel et un plan d’action sur 90 jours.
       </p>
+      <div class="audit-context" id="auditContext" hidden></div>
       <div class="audit-price">
         <strong>50 000 FCFA</strong>
-        <span>Paiement après validation de votre dossier. Aucun prélèvement sur cette page.</span>
+        <span>Un seul paiement. L’audit démarre à réception de la confirmation Jeko.</span>
       </div>
       <div class="audit-actions">
-        <a class="btn btn-gold" href="#reserver">Commander mon audit — 50 000 FCFA</a>
-        <a class="btn btn-outline" href="diagnostic_eperformance.html">D’abord le diagnostic gratuit</a>
+        <a class="btn btn-gold" id="jekoPayHero" href="https://pay.jeko.africa/pl/398f9414-866e-4804-824e-1dc99624063f?amount=50000" target="_blank" rel="noopener">Payer et démarrer mon audit — 50 000 FCFA</a>
+        <a class="btn btn-outline" href="https://wa.me/2250151170666" target="_blank" rel="noopener">Une question avant de payer</a>
       </div>
       <div class="audit-proof">
         <span><b>7 jours</b> ouvrés</span>
@@ -90,8 +100,8 @@
 
   <section class="section section-dark" id="pour-qui">
     <div class="container">
-      <span class="eyebrow">Pour qui</span>
-      <h2>Un audit utile si vous vendez déjà.</h2>
+      <span class="eyebrow">Ce que l’audit change</span>
+      <h2>Passer d’un constat à un plan.</h2>
       <div class="audit-grid mt-4">
         <article class="card"><h3 class="card-title">Vous avez des clients</h3><p class="card-text">PME, e-commerce ou activité de services avec des ventes réelles, même petites.</p></article>
         <article class="card"><h3 class="card-title">Vous dépensez déjà</h3><p class="card-text">Publicité, temps, outils : vous voulez savoir ce que ça coûte vraiment par client.</p></article>
@@ -133,24 +143,28 @@
     <div class="container">
       <div class="audit-form-wrap">
         <div>
-          <span class="eyebrow">Confirmer</span>
-          <h2>Votre diagnostic est votre demande.</h2>
-          <p>Pas besoin de recommencer. Le diagnostic a déjà qualifié votre activité : je vérifie simplement que l’audit est pertinent, puis je vous envoie le lien de paiement Jeko.</p>
-          <p class="audit-note">Si votre diagnostic a été fait sur cet appareil, votre email et votre score apparaissent à droite. Sinon, refaites-le en 5 minutes.</p>
-          <p class="audit-note mt-3">Aucun paiement n’est demandé avant confirmation de la faisabilité de votre audit.</p>
+          <span class="eyebrow">Commande</span>
+          <h2>Votre analyse a posé les faits. L’audit donne le plan.</h2>
+          <p>Votre analyse montre où vous en êtes. L’audit complet montre quoi faire, dans quel ordre, et ce que chaque décision change sur votre trésorerie.</p>
+          <div id="auditSummary" class="audit-summary" hidden></div>
+          <a id="jekoPay" class="btn btn-gold btn-block mt-4" href="https://pay.jeko.africa/pl/398f9414-866e-4804-824e-1dc99624063f?amount=50000" target="_blank" rel="noopener">Payer mon audit — 50 000 FCFA avec Jeko</a>
+          <p class="audit-note mt-3">Paiement sécurisé par Jeko (Mobile Money ou carte). Après confirmation, je vous contacte pour lancer la collecte.</p>
+          <a class="btn btn-outline btn-block mt-3" id="auditQuestion" href="https://wa.me/2250151170666" target="_blank" rel="noopener">Une question ? WhatsApp</a>
         </div>
-        <div class="audit-form" id="auditConfirm">
-          <h2>Votre diagnostic suffit.</h2>
-          <p>Pas de deuxième formulaire. Le diagnostic gratuit a déjà qualifié votre activité ; il ne reste qu’à confirmer l’audit et le paiement.</p>
-          <div class="audit-success" id="diagLinked" role="status" aria-live="polite"></div>
-          <a id="jekoPay" class="btn btn-gold btn-block" href="#" hidden>Payer mon audit — 50 000 FCFA avec Jeko</a>
-          <a id="auditRequest" class="btn btn-outline btn-block mt-3" href="https://wa.me/2250151170666">Recevoir le lien de paiement Jeko</a>
-          <p class="audit-note mt-3" id="diagHint">
-            Le paiement est sécurisé par Jeko (Mobile Money ou carte). Si vous n’avez pas encore fait le diagnostic,
-            commencez par lui : <a href="diagnostic_eperformance.html">diagnostic gratuit</a>.
-          </p>
-          <p class="audit-note mt-3">Aucun paiement n’est demandé avant confirmation de la faisabilité de votre audit.</p>
-        </div>
+        <aside class="audit-form">
+          <h2>Ce que vous obtenez</h2>
+          <ul class="audit-list">
+            <li>Vos 4 ratios recalculés et expliqués</li>
+            <li>Les 3 fuites prioritaires, chiffrées</li>
+            <li>Un plan d’action 90 jours, ordonné</li>
+            <li>Un PDF de 8 à 12 pages</li>
+            <li>Une restitution de 45 minutes</li>
+          </ul>
+          <div class="audit-mini">
+            <strong>7 jours ouvrés</strong>
+            <span>À partir de la réception des données et du paiement.</span>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
@@ -158,10 +172,10 @@
   <section class="section section-dark" id="faq">
     <div class="container audit-faq">
       <span class="eyebrow">Questions</span>
-      <h2>Avant de réserver.</h2>
-      <details><summary>Pourquoi 50 000 FCFA ?</summary><p>C’est le prix d’entrée. Le diagnostic est gratuit ; l’audit complet demande du temps de collecte, de calcul et de rédaction. Le prix filtre les curieux et permet de livrer un vrai travail.</p></details>
+      <h2>Avant de payer.</h2>
+      <details><summary>Pourquoi 50 000 FCFA ?</summary><p>C’est le prix du passage à l’action : collecte, calcul, priorisation, rédaction et restitution. L’analyse initiale est déjà faite ; l’audit produit le plan.</p></details>
       <details><summary>Est-ce que l’audit garantit des résultats ?</summary><p>Non. Il garantit une lecture chiffrée et un plan priorisé. Les résultats dépendent de votre exécution, de votre offre et de votre marché.</p></details>
-      <details><summary>Comment se passe le paiement ?</summary><p>Après validation de votre demande, je vous envoie les instructions Mobile Money ou virement. L’audit démarre à réception du paiement.</p></details>
+      <details><summary>Comment se passe le paiement ?</summary><p>Vous payez directement avec Jeko, par Mobile Money ou carte. Dès que la confirmation est reçue, je lance la collecte.</p></details>
       <details><summary>Et si je n’ai pas tous les chiffres ?</summary><p>On utilise des estimations prudentes et on identifie les données à fiabiliser. L’audit sert aussi à savoir quoi mesurer.</p></details>
     </div>
   </section>
@@ -169,41 +183,59 @@
 
 <footer class="site-footer">
   <div class="container">
-    <p>ePerformance — K. Stéphane · Abidjan, Côte d’Ivoire · <a href="diagnostic_eperformance.html">Diagnostic gratuit</a></p>
+    <p>ePerformance — K. Stéphane · Abidjan, Côte d’Ivoire</p>
     <p class="text-muted">Aucune promesse de résultat. Les chiffres dépendent de vos données et de votre exécution.</p>
   </div>
 </footer>
 
 <script>
 (function(){
-  var JEKO_PAYMENT_URL = ''; // À remplir avec le lien de paiement Jeko de 50 000 FCFA
-  var raw = null;
-  try { raw = localStorage.getItem('ep_last_diagnostic'); } catch(e) {}
-  var d = null;
-  try { d = raw ? JSON.parse(raw) : null; } catch(e) {}
-  var linked = document.getElementById('diagLinked');
-  var pay = document.getElementById('jekoPay');
-  var request = document.getElementById('auditRequest');
-  var details = '';
-  if (d && d.email) {
-    var score = d.score != null ? ' · score ' + d.score + '/100' : '';
-    linked.style.display = 'block';
-    linked.innerHTML = 'Diagnostic lié à <strong>' + d.email + '</strong>' + score + '. Aucun formulaire à refaire.';
-    details = ' Diagnostic : ' + d.email + (d.score != null ? ' — score ' + d.score + '/100' : '') + '.';
+  var JEKO_PAYMENT_URL = 'https://pay.jeko.africa/pl/398f9414-866e-4804-824e-1dc99624063f?amount=50000';
+  var q = new URLSearchParams(window.location.search);
+  var stored = null;
+  try { stored = JSON.parse(localStorage.getItem('ep_last_diagnostic') || 'null'); } catch(e) {}
+  var name = q.get('n') || (stored && stored.nom) || '';
+  var score = q.get('s') || (stored && stored.score);
+  var cac = q.get('c') || (stored && stored.cac);
+  var ltv = q.get('l') || (stored && stored.ltv);
+  var payback = q.get('p') || (stored && stored.payback);
+  var faille = q.get('f') || '';
+  var ctx = document.getElementById('auditContext');
+  var summary = document.getElementById('auditSummary');
+  var intro = document.getElementById('auditIntro');
+  if (name || score) {
+    var hello = name ? 'Bonjour ' + name + '. ' : '';
+    var scoreTxt = score ? 'Votre analyse indique <strong>' + score + '/100</strong>. ' : '';
+    ctx.hidden = false;
+    ctx.innerHTML = hello + scoreTxt + (faille ? 'Le point prioritaire identifié : <strong>' + faille + '</strong>. ' : '') + 'L’audit transforme ce constat en plan d’action.';
+    intro.hidden = true;
+    var rows = '';
+    if (cac) rows += '<div class="row"><span>CAC calculé</span><b>' + Number(cac).toLocaleString('fr-FR') + ' FCFA</b></div>';
+    if (ltv) rows += '<div class="row"><span>LTV (revenu cumulé)</span><b>' + Number(ltv).toLocaleString('fr-FR') + ' FCFA</b></div>';
+    if (payback) rows += '<div class="row"><span>Payback</span><b>' + payback + ' mois</b></div>';
+    if (rows) { summary.hidden = false; summary.innerHTML = '<div style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#8a6a43;margin-bottom:4px">Votre analyse en un coup d’œil</div>' + rows; }
   } else {
-    linked.style.display = 'block';
-    linked.style.background = '#1a1712';
-    linked.style.borderColor = '#6b5d49';
-    linked.style.color = '#e9dfcf';
-    linked.innerHTML = 'Aucun diagnostic retrouvé sur cet appareil. Faites le diagnostic gratuit : il sert de qualification et évite un deuxième formulaire.';
+    ctx.hidden = false;
+    ctx.innerHTML = 'Votre lien d’analyse est incomplet. Utilisez le lien reçu par email ou WhatsApp, ou posez votre question directement.';
   }
-  var msg = encodeURIComponent('Bonjour K. Stéphane, je souhaite commander l’audit d’acquisition 7 jours à 50 000 FCFA.' + details + ' Je souhaite recevoir le lien de paiement Jeko.');
-  request.href = 'https://wa.me/2250151170666?text=' + msg;
-  if (JEKO_PAYMENT_URL) {
-    pay.href = JEKO_PAYMENT_URL;
-    pay.hidden = false;
-    request.textContent = 'Une question avant de payer ? WhatsApp';
-  }
+  var question = 'Bonjour K. Stéphane, j’ai fait mon analyse ePerformance' +
+    (score ? ' (score ' + score + '/100)' : '') +
+    (faille ? '. Le point identifié : ' + faille : '') +
+    '. Je souhaite des précisions avant de payer l’audit à 50 000 FCFA.';
+  var wa = 'https://wa.me/2250151170666?text=' + encodeURIComponent(question);
+  document.getElementById('auditQuestion').href = wa;
+  var hero = document.getElementById('jekoPayHero');
+  if (hero) hero.href = JEKO_PAYMENT_URL;
+  var pay = document.getElementById('jekoPay');
+  if (pay) pay.href = JEKO_PAYMENT_URL;
+  [hero, pay].forEach(function(el){
+    if (!el) return;
+    el.addEventListener('click', function(){
+      if (window.eperfTrack) window.eperfTrack('begin_checkout', { form_id:'audit_50k', value:50000, currency:'XOF' }, 'Checkout');
+      if (window.fbq) window.fbq('track','InitiateCheckout',{value:50000,currency:'XOF'});
+      if (window.gtag) window.gtag('event','begin_checkout',{value:50000,currency:'XOF',items:[{item_name:'Audit acquisition 7 jours'}]});
+    });
+  });
 })();
 </script>
 </body>
