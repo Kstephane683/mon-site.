@@ -464,9 +464,9 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
             </div>
 
             <div class="field">
-              <label for="cli">Nombre de clients par mois <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></label>
+              <label for="cli">Nouveaux clients par mois <span class="req" aria-hidden="true">*</span> <span class="field-hint">obligatoire</span></label>
               <input type="number" id="cli" name="cli" min="0" required aria-required="true" placeholder="ex : 25">
-              <p class="field-hint">Combien de personnes différentes ont acheté ce mois-ci ? Estimez si besoin.</p>
+              <p class="field-hint">Combien de <strong>nouveaux clients</strong> avez-vous acquis ce mois-ci ? Un client qui rachète ne compte pas. Estimez si besoin.</p>
               <p class="field-error" id="err-cli" role="alert" aria-live="polite"></p>
             </div>
           </div>
@@ -887,7 +887,7 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 
     if (s === 2) {
       if (!needValue('ca', 'err-ca', "Le chiffre d'affaires mensuel est requis.")) ok = false;
-      if (!needValue('cli', 'err-cli', 'Le nombre de clients par mois est requis.')) ok = false;
+      if (!needValue('cli', 'err-cli', 'Le nombre de nouveaux clients par mois est requis.')) ok = false;
       if (!needValue('pan', 'err-pan', 'Ce chiffre est requis.')) ok = false;
       if (!needChoice('duree', 'fs-duree', 'err-duree', 'Choisissez une durée.')) ok = false;
     }
@@ -1229,7 +1229,7 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
       'WhatsApp : ' + (d.whatsapp || '—'),
       'Score : ' + r.score + '/100 — ' + reco.label,
       'CA mensuel : ' + (Math.round(parseFloat(d.ca_mensuel) || 0)) + ' FCFA',
-      'Clients/mois : ' + (Math.round(parseFloat(d.clients_par_mois) || 0)),
+      'Nouveaux clients/mois : ' + (Math.round(parseFloat(d.clients_par_mois) || 0)),
       'Panier moyen : ' + (Math.round(parseFloat(d.panier_moyen) || 0)) + ' FCFA',
       'CAC : ' + r.cac + ' FCFA',
       'LTV : ' + r.ltv + ' FCFA',
