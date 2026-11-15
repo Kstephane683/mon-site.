@@ -380,6 +380,11 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 
       <form id="diagForm" novalidate>
 
+        <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+          <label for="website">Ne pas remplir ce champ</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
         <!-- ======= ÉTAPE 1 : identification ======= -->
         <div id="pane1">
           <h3 id="t1" tabindex="-1">Qui êtes-vous ?</h3>
@@ -1110,6 +1115,7 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
       function (box) { sources.push(box.value); }
     );
     return {
+      website: val('website'),
       nom: val('nom'),
       whatsapp: val('iwa'),
       email: val('email'),
@@ -1244,6 +1250,7 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
     var n = function (v) { var x = parseFloat(v); return isFinite(x) ? x : 0; };
     var payload = {
       action: 'diagnostic',
+      website: d.website || '',
       nom: d.nom,
       email: d.email,
       whatsapp: d.whatsapp,
