@@ -177,7 +177,6 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 
     <nav class="nav" id="primary-nav" aria-label="Navigation principale">
       <a href="diagnostic_eperformance.html">Diagnostic</a>
-      <a href="audit-acquisition.html">Audit</a>
       <a href="index.html#methode">Méthode</a>
       <a href="cas-client-mlm.html">Cas client</a>
       <a href="https://blog.eperformance.pro/" class="text-gold" rel="noopener">Blog</a>
@@ -319,11 +318,11 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
         <p id="sucStatus" class="lead mt-2 mx-auto" role="status" aria-live="polite">
           Envoi de votre rapport par email…
         </p>
-        <a id="sucAudit" class="btn btn-gold btn-block mt-4" href="https://whop.com/eperformance/audit-d-acquisition-eperformance/" target="_blank" rel="noopener">
-          Commander mon audit complet, 45 000 FCFA
+        <a id="sucAudit" class="btn btn-gold btn-block mt-4" href="https://whop.com/eperformance/products/programme-mlm-30-jours/" target="_blank" rel="noopener">
+          Voir le programme 30 jours, 25 000 FCFA
         </a>
         <p class="text-muted mt-2" style="font-size:13px">
-          Votre diagnostic est déjà fait. Passez directement à l’audit complet sur Whop : vos 4 ratios, vos 3 fuites et votre plan 90 jours, sans repasser par un formulaire.
+          Votre diagnostic est déjà fait. Choisissez votre programme : audit personnalisé, second formulaire, plan 30 jours et ebook bonus.
         </p>
         <div class="grid grid-2 mt-3">
           <a id="sucWa" class="btn btn-outline" target="_blank" rel="noopener" data-cta="whatsapp"
@@ -1310,17 +1309,24 @@ document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
     var mail = document.getElementById('sucMail');
     var audit = document.getElementById('sucAudit');
     if (audit) {
-      audit.href = 'https://whop.com/eperformance/audit-d-acquisition-eperformance/';
+      var programmeUrls = {
+        mlm: 'https://whop.com/eperformance/products/programme-mlm-30-jours/',
+        ecommerce: 'https://whop.com/eperformance/products/programme-e-commerce-30-jours/'
+      };
+      audit.href = programmeUrls[d.secteur] || programmeUrls.mlm;
+      audit.textContent = d.secteur === 'ecommerce'
+        ? 'Voir le programme e-commerce, 25 000 FCFA'
+        : 'Voir le programme MLM, 25 000 FCFA';
       audit.target = '_blank';
       audit.rel = 'noopener';
       if (!audit.dataset.bound) {
         audit.dataset.bound = '1';
         audit.addEventListener('click', function () {
           if (typeof window.eperfTrack === 'function') {
-            window.eperfTrack('begin_checkout', { form_id: 'diagnostic_to_audit', value: 45000, currency: 'XOF' }, 'Checkout');
+            window.eperfTrack('begin_checkout', { form_id: 'diagnostic_to_programme', value: 25000, currency: 'XOF' }, 'Checkout');
           }
-          if (window.fbq) window.fbq('track', 'InitiateCheckout', { value: 45000, currency: 'XOF' });
-          if (window.gtag) window.gtag('event', 'begin_checkout', { value: 45000, currency: 'XOF', items: [{ item_name: 'Audit acquisition 7 jours' }] });
+          if (window.fbq) window.fbq('track', 'InitiateCheckout', { value: 25000, currency: 'XOF' });
+          if (window.gtag) window.gtag('event', 'begin_checkout', { value: 25000, currency: 'XOF', items: [{ item_name: 'Programme acquisition 30 jours' }] });
         });
       }
     }
