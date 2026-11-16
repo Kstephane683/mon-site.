@@ -180,9 +180,9 @@
             <div class="field"><label for="marge">Marge nette (%) *</label><input type="number" id="marge" name="marge" min="1" max="95" required placeholder="ex : 30"></div>
           </div>
           <div class="grid grid-2">
-            <div class="field"><label for="budget">Budget publicitaire / mois (FCFA)</label><input type="number" id="budget" name="budget" min="0" placeholder="ex : 500000"></div>
-            <div class="field"><label for="duree">Durée de vie client *</label>
-              <select id="duree" name="duree" required>
+            <div class="field"><label for="budget">Budget publicitaire / mois (FCFA) <span class="field-hint">facultatif</span></label><input type="number" id="budget" name="budget" min="0" placeholder="ex : 500000"></div>
+            <div class="field"><label for="duree">Durée de vie client <span class="field-hint">facultatif</span></label>
+              <select id="duree" name="duree">
                 <option value="">Choisir</option>
                 <option value="moins_1">Achat unique</option>
                 <option value="1_3">1 à 3 mois</option>
@@ -193,14 +193,14 @@
             </div>
           </div>
           <div class="grid grid-2">
-            <div class="field"><label for="pub">Publicité payante active ? *</label>
-              <select id="pub" name="pub" required><option value="">Choisir</option><option value="oui">Oui</option><option value="non">Non</option></select>
+            <div class="field"><label for="pub">Publicité payante active ? <span class="field-hint">facultatif</span></label>
+              <select id="pub" name="pub"><option value="">Choisir</option><option value="oui">Oui</option><option value="non">Non</option></select>
             </div>
-            <div class="field"><label for="site">Site ou page de vente ? *</label>
-              <select id="site" name="site" required><option value="">Choisir</option><option value="oui">Oui</option><option value="non">Non</option></select>
+            <div class="field"><label for="site">Site ou page de vente ? <span class="field-hint">facultatif</span></label>
+              <select id="site" name="site"><option value="">Choisir</option><option value="oui">Oui</option><option value="non">Non</option></select>
             </div>
           </div>
-          <div class="field"><label for="blocage">Qu’est-ce qui bloque votre croissance ? *</label><textarea id="blocage" name="blocage" required placeholder="Ce que vous avez essayé, ce qui ne fonctionne pas, votre priorité…"></textarea></div>
+          <div class="field"><label for="blocage">Qu’est-ce qui bloque votre croissance ? <span class="field-hint">facultatif</span></label><textarea id="blocage" name="blocage" placeholder="Ce que vous avez essayé, ce qui ne fonctionne pas, votre priorité…"></textarea></div>
           <button class="btn btn-gold btn-block" type="submit" id="auditSubmit">Recevoir mon diagnostic et payer 45 000 FCFA</button>
           <p class="audit-note mt-3">Votre diagnostic est envoyé par email. Le paiement de l’audit se fait ensuite sur Whop, par Mobile Money ou carte.</p>
           <div id="auditStatus" class="audit-note mt-3" role="status" aria-live="polite"></div>
@@ -275,7 +275,7 @@
   form.addEventListener('submit', function(event){
     event.preventDefault();
     if (val('website')) return;
-    var required = ['nom','email','whatsapp','entreprise','secteur','ca','clients','panier','marge','duree','pub','site','blocage'];
+    var required = ['nom','email','whatsapp','entreprise','secteur','ca','clients','panier','marge'];
     for (var i = 0; i < required.length; i++) {
       if (!val(required[i])) { setStatus('Merci de compléter les champs obligatoires.'); document.getElementById(required[i]).focus(); return; }
     }
@@ -284,9 +284,9 @@
       action: 'diagnostic', website: '', nom: val('nom'), email: val('email'), whatsapp: val('whatsapp'),
       entreprise: val('entreprise'), secteur: val('secteur'), ca_mensuel: num(val('ca')),
       clients_par_mois: num(val('clients')), panier_moyen: num(val('panier')), budget_pub: num(val('budget')),
-      marge_pct: num(val('marge')) || 30, duree_vie_client: val('duree'), pub_active: val('pub'),
-      site_web: val('site'), usage_whatsapp: '', suivi_indicateurs: 'non', budget_accompagnement: '',
-      blocage_principal: val('blocage'), sources_acquisition: '', ref_parrainage: ''
+      marge_pct: num(val('marge')) || 30, duree_vie_client: val('duree') || '1_3', pub_active: val('pub') || 'non',
+      site_web: val('site') || 'non', usage_whatsapp: '', suivi_indicateurs: 'non', budget_accompagnement: '',
+      blocage_principal: val('blocage') || 'À préciser lors de l’appel de cadrage.', sources_acquisition: '', ref_parrainage: ''
     };
     var controller = new AbortController(); var timer = setTimeout(function(){ controller.abort(); }, 25000);
     fetch('https://api.eperformance.pro/proxy.php', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload), signal: controller.signal })
