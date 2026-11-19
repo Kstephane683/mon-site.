@@ -236,11 +236,8 @@
       toggle.setAttribute('aria-expanded', String(open));
       /* inert retire le sous-arbre du focus et de l'arbre d'accessibilité
          quand le menu est fermé — évite les liens hors écran focalisables. */
-      if (open) {
-        nav.removeAttribute('inert');
-      } else {
-        nav.setAttribute('inert', '');
-      }
+      /* La visibilité fermée est gérée par CSS. Pas d'inert : les liens
+         restent utilisables après un retour navigateur. */
     }
 
     toggle.setAttribute('aria-expanded', 'false');
@@ -269,11 +266,10 @@
         nav.classList.remove('is-open');
         nav.removeAttribute('inert');
         toggle.setAttribute('aria-expanded', 'false');
-      } else if (!nav.classList.contains('is-open')) {
-        nav.setAttribute('inert', '');
       }
     }
     desktop.addEventListener('change', sync);
+    window.addEventListener('pageshow', function () { sync(desktop); if (desktop.matches) setOpen(false); });
     sync(desktop);
   }
 
