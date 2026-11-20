@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "slug": "decision-avant-campagne",
+    "title": "Lancer une campagne publicitaire : la décision avant le budget",
+    "excerpt": "Avant d’augmenter un budget publicitaire, il faut comprendre où les demandes se perdent. Trois questions à poser.",
+    "image": "/photos/carte_acquisition.webp",
+    "image_alt": "Illustration de l’article",
+    "date": "20/11/2026",
+    "reading": "5 min de lecture",
+    "author": "K. Stéphane",
+    "category": "Acquisition"
+  }
+]
