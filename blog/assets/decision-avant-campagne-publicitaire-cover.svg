@@ -1,10 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Lancer une campagne publicitaire : décider avant le budget">
-<rect width="1200" height="675" fill="#fdfcfa"/><rect x="32" y="32" width="1136" height="611" fill="none" stroke="#d8c8a8"/>
-<text x="72" y="92" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#17151a">e<tspan fill="#b58b3c">P</tspan>erformance</text>
-<text x="72" y="150" font-family="Arial,sans-serif" font-size="12" letter-spacing="3" fill="#b58b3c">ACQUISITION</text>
-<text x="72" y="210" font-family="Georgia,serif" font-size="62" font-weight="600" fill="#17151a">Lancer une campagne</text><text x="72" y="280" font-family="Georgia,serif" font-size="62" font-weight="600" fill="#17151a">publicitaire : décider</text><text x="72" y="350" font-family="Georgia,serif" font-size="62" font-weight="600" fill="#17151a">avant le budget</text>
-<text x="72" y="545" font-family="Arial,sans-serif" font-size="17" fill="#5f5a50">PME et e-commerce : six conditions avant de dépenser en publicité — offre, marge, page, suivi, livraison…</text>
-<line x1="72" y1="590" x2="1128" y2="590" stroke="#d8c8a8"/>
-<text x="72" y="620" font-family="Arial,sans-serif" font-size="12" letter-spacing="2" fill="#8f8574">MESURER · DÉCIDER · EXÉCUTER</text>
-<text x="1128" y="620" text-anchor="end" font-family="Arial,sans-serif" font-size="12" letter-spacing="2" fill="#8f8574">ePerformance · Abidjan</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Six conditions avant de lancer une campagne publicitaire">
+<rect width="1200" height="675" fill="#17151a"/><rect x="30" y="30" width="1140" height="615" fill="none" stroke="#4c3d27"/>
+<text x="72" y="92" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#fdfcfa">e<tspan fill="#c9a96e">P</tspan>erformance</text>
+<text x="72" y="145" font-family="Arial,sans-serif" font-size="12" letter-spacing="3" fill="#c9a96e">ACQUISITION · GO / NO-GO</text>
+<text x="72" y="205" font-family="Georgia,serif" font-size="52" font-weight="600" fill="#fdfcfa">Lancer une campagne</text><text x="72" y="263" font-family="Georgia,serif" font-size="52" font-weight="600" fill="#fdfcfa">publicitaire : décider</text><text x="72" y="321" font-family="Georgia,serif" font-size="52" font-weight="600" fill="#fdfcfa">avant le budget</text>
+<text x="72" y="440" font-family="Arial,sans-serif" font-size="16" fill="#b9b0a0">Six conditions à vérifier avant de payer.</text>
+<line x1="72" y1="470" x2="440" y2="470" stroke="#c9a96e"/>
+<text x="72" y="520" font-family="Georgia,serif" font-size="35" fill="#c9a96e">Décider.</text>
+<text x="72" y="560" font-family="Georgia,serif" font-size="35" fill="#c9a96e">Pas subir.</text>
+<text x="800" y="135" font-family="Arial,sans-serif" font-size="12" letter-spacing="3" fill="#c9a96e">LE FILTRE</text>
+<text x="800" y="160" font-family="Arial,sans-serif" font-size="13" fill="#8f8574">Une condition non validée reporte la dépense.</text>
+<rect x="800" y="170" width="330" height="44" rx="4" fill="none" stroke="#6f5c3b"/><text x="818" y="200" font-family="Arial,sans-serif" font-size="12" fill="#c9a96e">01</text><text x="858" y="200" font-family="Arial,sans-serif" font-size="16" fill="#e9e1d2">Offre</text><rect x="800" y="222" width="330" height="44" rx="4" fill="none" stroke="#6f5c3b"/><text x="818" y="252" font-family="Arial,sans-serif" font-size="12" fill="#c9a96e">02</text><text x="858" y="252" font-family="Arial,sans-serif" font-size="16" fill="#e9e1d2">Marge</text><rect x="800" y="274" width="330" height="44" rx="4" fill="none" stroke="#6f5c3b"/><text x="818" y="304" font-family="Arial,sans-serif" font-size="12" fill="#c9a96e">03</text><text x="858" y="304" font-family="Arial,sans-serif" font-size="16" fill="#e9e1d2">Page</text><rect x="800" y="326" width="330" height="44" rx="4" fill="none" stroke="#6f5c3b"/><text x="818" y="356" font-family="Arial,sans-serif" font-size="12" fill="#c9a96e">04</text><text x="858" y="356" font-family="Arial,sans-serif" font-size="16" fill="#e9e1d2">Suivi</text><rect x="800" y="378" width="330" height="44" rx="4" fill="none" stroke="#6f5c3b"/><text x="818" y="408" font-family="Arial,sans-serif" font-size="12" fill="#c9a96e">05</text><text x="858" y="408" font-family="Arial,sans-serif" font-size="16" fill="#e9e1d2">Livraison</text><rect x="800" y="430" width="330" height="44" rx="4" fill="none" stroke="#6f5c3b"/><text x="818" y="460" font-family="Arial,sans-serif" font-size="12" fill="#c9a96e">06</text><text x="858" y="460" font-family="Arial,sans-serif" font-size="16" fill="#e9e1d2">Trésorerie</text>
+<line x1="72" y1="610" x2="1128" y2="610" stroke="#4c3d27"/>
+<text x="72" y="640" font-family="Arial,sans-serif" font-size="11" letter-spacing="2" fill="#8f8574">ACQUISITION · MESURE · DÉCISION</text>
+<text x="1128" y="640" text-anchor="end" font-family="Arial,sans-serif" font-size="11" letter-spacing="2" fill="#8f8574">ePerformance · Abidjan</text>
 </svg>
