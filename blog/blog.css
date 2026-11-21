@@ -63,11 +63,170 @@
   padding: 14px 16px;
   border-bottom: 1px solid var(--border);
   vertical-align: top;
+  overflow-wrap: anywhere;
 }
 .article-table tbody tr:last-child td { border-bottom: 0; }
 .article-table tbody tr:nth-child(even) { background: var(--card2); }
 .article-table td:first-child { font-weight: 700; color: var(--text); }
+
+/* Conteneur de défilement : le tableau reste un vrai tableau, il défile
+   seulement quand la largeur ne suffit pas (3 colonnes et plus). */
+.article-table-wrap {
+  margin: 2.2em 0;
+  border: 1px solid var(--border);
+  border-radius: var(--arrondi-carte);
+  background: var(--card);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.article-table-wrap > .article-table {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  display: table;
+  white-space: normal;
+}
+.article-table-wrap::-webkit-scrollbar { height: 6px; }
+.article-table-wrap::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 999px; }
+
+/* Listes */
+.article-body ul,
+.article-body ol {
+  margin: 0 0 1.5em;
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: .65em;
+}
+.article-body li { position: relative; padding-left: 1.55em; }
+.article-body li > ul,
+.article-body li > ol { margin: .6em 0 0; }
+.article-body ul > li::before {
+  content: "";
+  position: absolute;
+  left: .12em;
+  top: .68em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.article-body ol { counter-reset: article-item; }
+.article-body ol > li { counter-increment: article-item; padding-left: 1.85em; }
+.article-body ol > li::before {
+  content: counter(article-item) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--police-titres);
+  font-size: 1.05em;
+  font-weight: 600;
+  line-height: 1.75;
+  color: var(--gold);
+}
+.article-body li p { margin-bottom: .5em; }
+
+/* Citations */
+.article-body blockquote {
+  margin: 2.4em 0;
+  padding: 2px 0 2px 24px;
+  border-left: 2px solid var(--gold);
+  font-family: var(--police-titres);
+  font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+  line-height: 1.28;
+  color: var(--text);
+}
+.article-body blockquote p { margin-bottom: .6em; }
+.article-body blockquote p:last-child { margin-bottom: 0; }
+.article-body blockquote cite {
+  display: block;
+  margin-top: .7em;
+  font-family: var(--police-corps);
+  font-size: .72rem;
+  font-style: normal;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.article-body .article-pull {
+  margin: 2.6em 0;
+  padding: 4px 0 4px 26px;
+  border-left: 2px solid var(--gold);
+  font-family: var(--police-titres);
+  font-size: clamp(1.45rem, 2.7vw, 2.05rem);
+  line-height: 1.22;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+/* Blocs repliables (FAQ) */
+.article-body details {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+.article-body details:first-of-type { border-top: 1px solid var(--border); }
+.article-body summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--police-corps);
+  font-size: 1.02em;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text);
+}
+.article-body summary::-webkit-details-marker { display: none; }
+.article-body summary::after {
+  content: "+";
+  flex: none;
+  font-family: var(--police-titres);
+  font-size: 1.3em;
+  line-height: 1;
+  color: var(--gold);
+  transition: transform .18s ease;
+}
+.article-body details[open] > summary::after { content: "\2212"; }
+.article-body summary:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.article-body details > :not(summary) { margin-top: .85em; }
+.article-body details > p { color: var(--soft); }
+
+/* Images dans le corps */
+.article-body figure { margin: 2.4em 0; }
+.article-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--arrondi-carte);
+  border: 1px solid var(--border);
+}
+.article-body figcaption { margin-top: 10px; font-size: .74rem; color: var(--muted); }
+.article-body h3 {
+  font-family: var(--police-titres);
+  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+  line-height: 1.15;
+  letter-spacing: -.015em;
+  margin: 2.1em 0 .55em;
+}
+
 @media (max-width: 760px) {
-  .article-table { display: block; overflow-x: auto; white-space: nowrap; }
-  .article-table th, .article-table td { min-width: 150px; }
+  .article-table { font-size: .82rem; }
+  .article-table th { padding: 12px 12px; font-size: .62rem; letter-spacing: .08em; }
+  .article-table td { padding: 12px 12px; }
+  .article-table th,
+  .article-table td { min-width: 0; }
+  .article-table-wrap { margin-inline: -4px; border-radius: calc(var(--arrondi-carte) - 8px); }
+  .article-body .article-pull { padding-left: 18px; }
+  .article-body blockquote { padding-left: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-body summary::after { transition: none; }
 }
