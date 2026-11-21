@@ -217,7 +217,7 @@
 }
 
 @media (max-width: 760px) {
-  .article-table { font-size: .82rem; }
+  .article-table { font-size: .875rem; }
   .article-table th { padding: 12px 12px; font-size: .62rem; letter-spacing: .08em; }
   .article-table td { padding: 12px 12px; }
   .article-table th,
