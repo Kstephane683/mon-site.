@@ -1,5 +1,16 @@
 [
   {
+    "slug": "diagnostic-avant-campagne",
+    "title": "Diagnostic avant campagne : ce qu'il mesure vraiment",
+    "excerpt": "Ce qu'un diagnostic avant campagne calcule vraiment : marge nette, CAC plafond, LTV, payback. Ce qu'il ne peut pas voir, et comment lire le rapport.",
+    "image": "/blog/assets/diagnostic-avant-campagne-cover.svg",
+    "image_alt": "Quatre chiffres du diagnostic avant campagne : marge nette, CAC plafond, LTV et payback",
+    "date": "21/11/2026",
+    "reading": "12 min de lecture",
+    "author": "K. Stéphane",
+    "category": "Acquisition"
+  },
+  {
     "slug": "decision-avant-campagne-publicitaire",
     "title": "Lancer une campagne publicitaire : décider avant le budget",
     "excerpt": "PME et e-commerce : six conditions avant de dépenser en publicité — offre, marge, page, suivi, livraison, trésorerie. Un protocole de cinq jours.",
