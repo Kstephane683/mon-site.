@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Trois règles d&#x27;arrêt d&#x27;une campagne : coût par résultat au-dessus du plafond, deux semaines sans vente, budget épuisé sans conversion"><title>Trois règles d&#x27;arrêt d&#x27;une campagne : coût par résultat au-dessus du plafond, deux semaines sans vente, budget épuisé sans conversion</title>
+<rect width="1200" height="675" fill="#17151a"/>
+<rect x="30" y="30" width="1140" height="615" fill="none" stroke="#4c3d27"/>
+<text x="80" y="92" font-family="Georgia,serif" font-size="26" font-weight="700" fill="#fdfcfa">e<tspan fill="#c9a96e">P</tspan>erformance</text>
+<text x="80" y="130" font-family="Arial,sans-serif" font-size="11" letter-spacing="3" fill="#c9a96e">TROIS RÈGLES D&#x27;ARRÊT</text>
+<text x="80" y="196" font-family="Georgia,serif" font-size="34" fill="#fdfcfa">Quand couper une campagne</text>
+<g font-family="Arial,sans-serif"><text x="80" y="296" font-size="12" letter-spacing="2" fill="#8f8574">COÛT PAR RÉSULTAT</text><text x="80" y="334" font-size="30" fill="#c9a96e">au-dessus du plafond</text><rect x="80" y="352" width="936" height="12" rx="6" fill="#6f5c3b"/><text x="80" y="406" font-size="12" letter-spacing="2" fill="#8f8574">SANS VENTE</text><text x="80" y="444" font-size="30" fill="#e9e1d2">2 semaines</text><rect x="80" y="462" width="520" height="12" rx="6" fill="#6f5c3b"/><text x="80" y="516" font-size="12" letter-spacing="2" fill="#8f8574">BUDGET ÉPUISÉ</text><text x="80" y="554" font-size="30" fill="#c9a96e">sans conversion</text><rect x="80" y="572" width="728" height="12" rx="6" fill="#6f5c3b"/></g>
+<line x1="30" y1="620" x2="1170" y2="620" stroke="#4c3d27"/>
+</svg>
